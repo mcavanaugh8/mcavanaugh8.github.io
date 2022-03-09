@@ -249,39 +249,36 @@ class UI {
   addAllRounds() {
     if (this.hasActivePlayer === false) {
       for (let i = 0; i <= 31; i++) {
-        for (let i = 0; i <= 31; i++) {
-          let newRow = boardTable.insertRow(i + 1);
-          for (let j = 0; j < 3; j++) {
-            let newCell = newRow.insertCell();
-            newCell.classList.add("text-center");
-            switch (j) {
-              case 1:
-                newCell.textContent = intitialDraftOrder[i].team;
-                newCell.classList.add("team");
-                newCell.classList.add("text-center");
-                this.formatTeamCells(newCell);
-                break;
-              case 2:
-                newCell.innerHTML =
-                  '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
-                const pickText = newCell.querySelector("input");
-                pickText.classList.add("actual-pick");
-                let str = "";
-                str += `
+        let newRow = boardTable.insertRow(i + 1);
+        for (let j = 0; j < 3; j++) {
+          let newCell = newRow.insertCell();
+          newCell.classList.add("text-center");
+          switch (j) {
+            case 1:
+              newCell.textContent = intitialDraftOrder[i].team;
+              newCell.classList.add("team");
+              newCell.classList.add("text-center");
+              this.formatTeamCells(newCell);
+              break;
+            case 2:
+              newCell.innerHTML =
+                '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+              const pickText = newCell.querySelector("input");
+              pickText.classList.add("actual-pick");
+              let str = "";
+              str += `
             <ul id="playerList" class="hidden">`;
 
-                prospects.forEach((player, index, arr) => {
-                  str += `<li class="player-li">${player.name}</li>`;
-                });
-                str += "</ul>";
-                newCell.innerHTML += str;
-                break;
-            }
+              prospects.forEach((player, index, arr) => {
+                str += `<li class="player-li">${player.name}</li>`;
+              });
+              str += "</ul>";
+              newCell.innerHTML += str;
+              break;
           }
-          newRow.cells[0].textContent = i + 1;
         }
+        newRow.cells[0].textContent = i + 1;
       }
-
     }
   }
 
