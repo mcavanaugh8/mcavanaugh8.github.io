@@ -9,8 +9,7 @@ const draftBoard = document.querySelector(".draftboard");
 const boardTable = document.querySelector(".board-table");
 const submitButton = document.querySelector(".validate-pick");
 
-const intitialDraftOrder = [
-  {
+const intitialDraftOrder = [{
     team: "JACKSONVILLE",
     needs: [],
   },
@@ -43,7 +42,7 @@ const intitialDraftOrder = [
     needs: [],
   },
   {
-    team: "DENVER",
+    team: "SEATTLE",
     needs: [],
   },
   {
