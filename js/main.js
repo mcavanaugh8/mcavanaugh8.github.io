@@ -5,8 +5,6 @@
  *  convert to ES6 using classes
  *
  */
-const draftBoard = document.querySelector(".draftboard");
-const boardTable = document.querySelector(".board-table");
 const submitButton = document.querySelector(".validate-pick");
 
 const intitialDraftOrder = [{
@@ -142,11 +140,10 @@ const intitialDraftOrder = [{
 let realDraftOrder = [...intitialDraftOrder];
 
 const ui = new UI();
-
 ui.addImageLinksToPlayerObject();
 ui.addAllRounds();
 
-submitButton.addEventListener("click", function (event) {
+submitButton.addEventListener("clic88k", function (event) {
   const audio = new Audio("draft_sound.mp3");
   audio.play();
   ui.validatePicks();

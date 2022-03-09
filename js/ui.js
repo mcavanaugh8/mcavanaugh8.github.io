@@ -2,6 +2,9 @@ class UI {
   constructor() {
     this.numberOfPlayers = 0;
     this.hasActivePlayer = false;
+
+    this.draftBoard = document.querySelector(".draftboard");
+    this.boardTable = document.querySelector(".board-table");
   }
 
   checkNumberOfPlayers() {
@@ -20,33 +23,6 @@ class UI {
     });
   }
 
-  addPlayers(name, file) {
-    let trTop = document.getElementById("scoreboard-table-row-top"),
-      trBottom = document.getElementById("scoreboard-table-row-score");
-    let thTop = document.createElement("th"),
-      thBottom = document.createElement("th");
-
-    thTop.innerHTML = name;
-    thTop.scope = "col";
-    thBottom.innerHTML = "0";
-    thBottom.classList.add("player-score");
-
-    trTop.appendChild(thTop);
-    trBottom.appendChild(thBottom);
-
-    const reader = new FileReader();
-    reader.readAsText(file, "UTF-8");
-    reader.onload = function (event) {
-      console.log(event.target.result);
-    };
-
-    this.numberOfPlayers++;
-    this.hasActivePlayer === false ? this.hasActivePlayer = true : false;
-
-    /**
-     * <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-     */
-  }
 
   createPlayerCard(player) {}
   formatTeamCells(teamCell) {
@@ -216,17 +192,17 @@ class UI {
 
     players.forEach((player, index) => {
       let playerDraftObj = {};
-      for (let i = 1; i < boardTable.rows.length; i++) {
+      for (let i = 1; i < this.boardTable.rows.length; i++) {
         if (index === 0) {
           draftObj[i] = {
             draftPosition: i,
             team: realDraftOrder[i - 1],
-            player: boardTable.rows[i].cells[5].textContent,
+            player: this.boardTable.rows[i].cells[5].textContent,
           };
         }
 
-        if (boardTable.rows[i].cells[index + 2].textContent.includes("/")) {
-          const picksArr = boardTable.rows[i].cells[index + 2].textContent.split("/");
+        if (this.boardTable.rows[i].cells[index + 2].textContent.includes("/")) {
+          const picksArr = this.boardTable.rows[i].cells[index + 2].textContent.split("/");
           playerDraftObj[i] = {
             team: intitialDraftOrder[i - 1],
             player: picksArr[0],
@@ -235,7 +211,7 @@ class UI {
         } else {
           playerDraftObj[i] = {
             team: intitialDraftOrder[i - 1],
-            player: boardTable.rows[i].cells[index + 2].textContent,
+            player: this.boardTable.rows[i].cells[index + 2].textContent,
             altPlayer: "",
           };
         }
@@ -246,10 +222,10 @@ class UI {
 
   }
 
-  addAllRounds() {
+  addAllRounds(playerPicks) {
     if (this.hasActivePlayer === false) {
       for (let i = 0; i <= 31; i++) {
-        let newRow = boardTable.insertRow(i + 1);
+        let newRow = this.boardTable.insertRow(i + 1);
         for (let j = 0; j < 3; j++) {
           let newCell = newRow.insertCell();
           newCell.classList.add("text-center");
@@ -279,7 +255,48 @@ class UI {
         }
         newRow.cells[0].textContent = i + 1;
       }
+    } else {
+      for (let i = 0; i < this.boardTable.rows.length; i++) {
+        let currRow = this.boardTable.rows[i];
+        let newCell = currRow.insertCell(this.numberOfPlayers + 1);
+        newCell.classList.add("text-center");
+        newCell.textContent = playerPicks[i];
+      }
     }
+  }
+
+  addPlayers(name, file) {
+    const scope = this;
+    this.numberOfPlayers++;
+    this.hasActivePlayer === false ? this.hasActivePlayer = true : false;
+
+    let trTop = document.getElementById("scoreboard-table-row-top"),
+      trBottom = document.getElementById("scoreboard-table-row-score");
+    let thTop = document.createElement("th"),
+      thBottom = document.createElement("th");
+
+    thTop.innerHTML = name;
+    thTop.scope = "col";
+    thBottom.innerHTML = "0";
+    thBottom.classList.add("player-score");
+
+    trTop.appendChild(thTop);
+    trBottom.appendChild(thBottom);
+
+    const reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (event) {
+      const picksArr = event.target.result.split("\r\n");
+      const picksArrClean = picksArr.map((item) => {
+        return item.replace(/(^)(\s.+?)(\w)/g, "$1$3")
+      })
+      console.log(picksArrClean);
+      scope.addAllRounds(picksArrClean);
+    };
+
+    /**
+     * <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+     */
   }
 
   validatePicks() {
@@ -288,30 +305,30 @@ class UI {
      * Should also check if TRADE has been made by seeing if .new-team class exists in row index 1. If so, assign value of input to textContent of cell; then change value in draftOrder array
      */
 
-    for (let i = 1; i < boardTable.rows.length; i++) {
+    for (let i = 1; i < this.boardTable.rows.length; i++) {
       if (
-        boardTable.rows[i].cells[5].querySelector(".actual-pick") &&
-        boardTable.rows[i].cells[5].querySelector(".actual-pick").value !== ""
+        this.boardTable.rows[i].cells[5].querySelector(".actual-pick") &&
+        this.boardTable.rows[i].cells[5].querySelector(".actual-pick").value !== ""
       ) {
         const pick =
-          boardTable.rows[i].cells[5].querySelector(".actual-pick").value;
-        boardTable.rows[i].cells[5].innerHTML = "";
-        boardTable.rows[i].cells[5].textContent = pick;
-        boardTable.rows[i].cells[5].classList.add("pick-final");
+          this.boardTable.rows[i].cells[5].querySelector(".actual-pick").value;
+        this.boardTable.rows[i].cells[5].innerHTML = "";
+        this.boardTable.rows[i].cells[5].textContent = pick;
+        this.boardTable.rows[i].cells[5].classList.add("pick-final");
       }
 
       if (
-        boardTable.rows[i].cells[1].querySelector(".new-team") &&
-        boardTable.rows[i].cells[1].querySelector(".new-team").value !== ""
+        this.boardTable.rows[i].cells[1].querySelector(".new-team") &&
+        this.boardTable.rows[i].cells[1].querySelector(".new-team").value !== ""
       ) {
         const newTeam =
-          boardTable.rows[i].cells[1].querySelector(".new-team").value;
-        boardTable.rows[i].cells[1].innerHTML = "";
-        boardTable.rows[i].cells[1].textContent = newTeam;
-        boardTable.rows[i].cells[1].classList.add("team");
+          this.boardTable.rows[i].cells[1].querySelector(".new-team").value;
+        this.boardTable.rows[i].cells[1].innerHTML = "";
+        this.boardTable.rows[i].cells[1].textContent = newTeam;
+        this.boardTable.rows[i].cells[1].classList.add("team");
 
         realDraftOrder[i - 1] = newTeam;
-        this.formatTeamCells(boardTable.rows[i].cells[1]);
+        this.formatTeamCells(this.boardTable.rows[i].cells[1]);
       }
     }
 
@@ -334,12 +351,12 @@ class UI {
       if (draftObj[j].player !== "") {
         if (draftObj[j].player === personDraftObject[j].player) {
           score.textContent = Number(score.textContent) + 1;
-          boardTable.rows[j].cells[index].style.backgroundColor = "green";
+          this.boardTable.rows[j].cells[index].style.backgroundColor = "green";
         } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
           score.textContent = Number(score.textContent) + 0.5;
-          boardTable.rows[j].cells[index].style.backgroundColor = "navy";
+          this.boardTable.rows[j].cells[index].style.backgroundColor = "navy";
         } else {
-          boardTable.rows[j].cells[index].style.backgroundColor = "#212529";
+          this.boardTable.rows[j].cells[index].style.backgroundColor = "#212529";
         }
       }
 
