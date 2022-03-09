@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.page-head {
+    width: 100%;
+    background-color: #212529;
+    color: white;
+    text-align: center;
+    height: 75px;
+    line-height: 75px;
+    vertical-align: middle;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+
+.header-col {
+    background-color: #333;
+    color: #fff;
+}
+
+.draftboard,
+.scoreboard {
+    margin-top: 25px;
+}
+
+.validate-pick {
+    width: 100%;
+}
+
+.validate-pick:hover {
+    color:#212529;
+    background-color: #fff;
+    font-weight: bolder;
+    border: 1px solid #212529;
+}
+
+.team,
+.draftboard td {
+    vertical-align: middle;
+}
+
+.alternates-names {
+    font-weight: bolder;
+}
