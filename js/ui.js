@@ -222,10 +222,26 @@ class UI {
 
   }
 
-  addAllRounds(playerPicks) {
+  addAllRounds(playerPicks, playerName) {
     if (this.hasActivePlayer === false) {
       for (let i = 0; i <= 31; i++) {
         let newRow = this.boardTable.insertRow(i + 1);
+        if (i === 0) {
+          let th1 = document.createElement("th");
+          th1.scope = "col";
+          th1.innerHTML = "#";
+          this.boardTable.rows[0].appendChild(th1);
+
+          let th2 = document.createElement("th");
+          th2.scope = "col";
+          th2.innerHTML = "Team";
+          this.boardTable.rows[0].appendChild(th2);
+
+          let th3 = document.createElement("th");
+          th3.scope = "col";
+          th3.innerHTML = "Actual";
+          this.boardTable.rows[0].appendChild(th3);
+        }
         for (let j = 0; j < 3; j++) {
           let newCell = newRow.insertCell();
           newCell.classList.add("text-center");
@@ -276,15 +292,16 @@ class UI {
           th3.scope = "col";
           th3.innerHTML = "Actual";
           currRow.appendChild(th3);
+
+          let th = document.createElement("th");
+          th.scope = "col";
+          th.innerHTML = playerName;
+          currRow.insertBefore(th, currRow.children[currRow.children.length - 1]);
         } else {
           let newCell = currRow.insertCell(this.numberOfPlayers + 1);
           newCell.classList.add("text-center");
           newCell.textContent = playerPicks[i - 0];
 
-          let th = document.createElement("th");
-          th.scope = "col";
-          th.innerHTML = "Actual";
-          currRow.insertBefore(th, currRow.children[currRow.children.length - 1]);
         }
       }
     }
@@ -316,7 +333,7 @@ class UI {
         return item.replace(/(^)(\s.+?)(\w)/g, "$1$3")
       });
 
-      scope.addAllRounds(picksArrClean);
+      scope.addAllRounds(picksArrClean, name);
     };
 
     /**
