@@ -230,6 +230,8 @@ class UI {
           let newCell = newRow.insertCell();
           newCell.classList.add("text-center");
           switch (j) {
+            case 0:
+              break;
             case 1:
               newCell.textContent = intitialDraftOrder[i].team;
               newCell.classList.add("team");
@@ -258,9 +260,32 @@ class UI {
     } else {
       for (let i = 0; i < this.boardTable.rows.length; i++) {
         let currRow = this.boardTable.rows[i];
-        let newCell = currRow.insertCell(this.numberOfPlayers + 1);
-        newCell.classList.add("text-center");
-        newCell.textContent = playerPicks[i];
+
+        if (i === 0) {
+          let th1 = document.createElement("th");
+          th1.scope = "col";
+          th1.innerHTML = "#";
+          currRow.appendChild(th1);
+
+          let th2 = document.createElement("th");
+          th2.scope = "col";
+          th2.innerHTML = "Team";
+          currRow.appendChild(th2);
+
+          let th3 = document.createElement("th");
+          th3.scope = "col";
+          th3.innerHTML = "Actual";
+          currRow.appendChild(th3);
+        } else {
+          let newCell = currRow.insertCell(this.numberOfPlayers + 1);
+          newCell.classList.add("text-center");
+          newCell.textContent = playerPicks[i - 0];
+
+          let th = document.createElement("th");
+          th.scope = "col";
+          th.innerHTML = "Actual";
+          currRow.insertBefore(th, currRow.children[currRow.children.length - 1]);
+        }
       }
     }
   }
@@ -289,8 +314,8 @@ class UI {
       const picksArr = event.target.result.split("\r\n");
       const picksArrClean = picksArr.map((item) => {
         return item.replace(/(^)(\s.+?)(\w)/g, "$1$3")
-      })
-      console.log(picksArrClean);
+      });
+
       scope.addAllRounds(picksArrClean);
     };
 

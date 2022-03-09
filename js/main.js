@@ -143,7 +143,7 @@ const ui = new UI();
 ui.addImageLinksToPlayerObject();
 ui.addAllRounds();
 
-submitButton.addEventListener("clic88k", function (event) {
+submitButton.addEventListener("click", function (event) {
   const audio = new Audio("draft_sound.mp3");
   audio.play();
   ui.validatePicks();
