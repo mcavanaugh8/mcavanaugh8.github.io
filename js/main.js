@@ -207,4 +207,9 @@ document.addEventListener("click", (event) => {
       }
     }
   }
+
+  if (event.target.classList.contains("add-player-submit")) {
+    ui.addPlayers(document.getElementById("modal-player-name").value, document.getElementById("playerPicks").files[0]);
+    document.getElementById("modal-player-name").value = "";
+  }
 });

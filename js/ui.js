@@ -1,5 +1,12 @@
 class UI {
-  constructor() {}
+  constructor() {
+    this.numberOfPlayers = 0;
+    this.hasActivePlayer = false;
+  }
+
+  checkNumberOfPlayers() {
+    return this.numberOfPlayers;
+  }
 
   getProspectNames() {
     let prospectNames = [];
@@ -13,9 +20,29 @@ class UI {
     });
   }
 
-  addPlayers() {
-    // const reader = new FileReader();
-    // reader.read
+  addPlayers(name, file) {
+    let trTop = document.getElementById("scoreboard-table-row-top"),
+      trBottom = document.getElementById("scoreboard-table-row-score");
+    let thTop = document.createElement("th"),
+      thBottom = document.createElement("th");
+
+    thTop.innerHTML = name;
+    thTop.scope = "col";
+    thBottom.innerHTML = "0";
+    thBottom.classList.add("player-score");
+
+    trTop.appendChild(thTop);
+    trBottom.appendChild(thBottom);
+
+    const reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (event) {
+      console.log(event.target.result);
+    };
+
+    this.numberOfPlayers++;
+    this.hasActivePlayer === false ? this.hasActivePlayer = true : false;
+
     /**
      * <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
      */
@@ -183,113 +210,78 @@ class UI {
   }
 
   createDraftObjects() {
-    const mikeScore = document.querySelector(".mike-score");
-    const carneyScore = document.querySelector(".carney-score");
-    const andrewScore = document.querySelector(".andrew-score");
 
-    let mikeDraftObj = {};
-    let carneyDraftObj = {};
-    let andrewDraftObj = {};
+    const players = document.querySelectorAll(".player-score");
     let draftObj = {};
 
-    for (let i = 1; i < boardTable.rows.length; i++) {
-      draftObj[i] = {
-        draftPosition: i,
-        team: realDraftOrder[i - 1],
-        player: boardTable.rows[i].cells[5].textContent,
-      };
+    players.forEach((player, index) => {
+      let playerDraftObj = {};
+      for (let i = 1; i < boardTable.rows.length; i++) {
+        if (index === 0) {
+          draftObj[i] = {
+            draftPosition: i,
+            team: realDraftOrder[i - 1],
+            player: boardTable.rows[i].cells[5].textContent,
+          };
+        }
 
-      if (boardTable.rows[i].cells[2].textContent.includes("/")) {
-        const picksArr = boardTable.rows[i].cells[2].textContent.split("/");
-        mikeDraftObj[i] = {
-          team: intitialDraftOrder[i - 1],
-          player: picksArr[0],
-          altPlayer: picksArr[1],
-        };
-      } else {
-        mikeDraftObj[i] = {
-          team: intitialDraftOrder[i - 1],
-          player: boardTable.rows[i].cells[2].textContent,
-          altPlayer: "",
-        };
+        if (boardTable.rows[i].cells[index + 2].textContent.includes("/")) {
+          const picksArr = boardTable.rows[i].cells[index + 2].textContent.split("/");
+          playerDraftObj[i] = {
+            team: intitialDraftOrder[i - 1],
+            player: picksArr[0],
+            altPlayer: picksArr[1],
+          };
+        } else {
+          playerDraftObj[i] = {
+            team: intitialDraftOrder[i - 1],
+            player: boardTable.rows[i].cells[index + 2].textContent,
+            altPlayer: "",
+          };
+        }
       }
+      this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
+    });
 
-      if (boardTable.rows[i].cells[3].textContent.includes("/")) {
-        const picksArr = boardTable.rows[i].cells[3].textContent.split("/");
-        carneyDraftObj[i] = {
-          team: intitialDraftOrder[i - 1],
-          player: picksArr[0],
-          altPlayer: picksArr[1],
-        };
-      } else {
-        carneyDraftObj[i] = {
-          team: intitialDraftOrder[i - 1],
-          player: boardTable.rows[i].cells[3].textContent,
-          altPlayer: "",
-        };
-      }
 
-      if (boardTable.rows[i].cells[4].textContent.includes("/")) {
-        const picksArr = boardTable.rows[i].cells[4].textContent.split("/");
-        andrewDraftObj[i] = {
-          team: intitialDraftOrder[i - 1],
-          player: picksArr[0],
-          altPlayer: picksArr[1],
-        };
-      } else {
-        andrewDraftObj[i] = {
-          team: intitialDraftOrder[i - 1],
-          player: boardTable.rows[i].cells[4].textContent,
-          altPlayer: "",
-        };
-      }
-    }
-
-    this.calculatePoints(draftObj, mikeDraftObj, mikeScore, 2, 0);
-    this.calculatePoints(draftObj, carneyDraftObj, carneyScore, 3, 1);
-    this.calculatePoints(draftObj, andrewDraftObj, andrewScore, 4, 2);
   }
 
   addAllRounds() {
-    for (let i = 0; i <= 31; i++) {
-      let newRow = boardTable.insertRow(i + 1);
-      for (let j = 0; j < 6; j++) {
-        let newCell = newRow.insertCell();
-        newCell.classList.add("text-center");
-        switch (j) {
-          case 1:
-            newCell.textContent = intitialDraftOrder[i].team;
-            newCell.classList.add("team");
+    if (this.hasActivePlayer === false) {
+      for (let i = 0; i <= 31; i++) {
+        for (let i = 0; i <= 31; i++) {
+          let newRow = boardTable.insertRow(i + 1);
+          for (let j = 0; j < 3; j++) {
+            let newCell = newRow.insertCell();
             newCell.classList.add("text-center");
-            this.formatTeamCells(newCell);
-            break;
-          case 2:
-            newCell.textContent = sourceMike[i];
-            break;
-          case 3:
-            newCell.textContent = sourceCarney[i];
-            break;
-          case 4:
-            newCell.textContent = sourceAndrew[i];
-            break;
-          case 5:
-            newCell.innerHTML =
-              '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
-            const pickText = newCell.querySelector("input");
-            pickText.classList.add("actual-pick");
-            let str = "";
-            str += `
+            switch (j) {
+              case 1:
+                newCell.textContent = intitialDraftOrder[i].team;
+                newCell.classList.add("team");
+                newCell.classList.add("text-center");
+                this.formatTeamCells(newCell);
+                break;
+              case 2:
+                newCell.innerHTML =
+                  '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+                const pickText = newCell.querySelector("input");
+                pickText.classList.add("actual-pick");
+                let str = "";
+                str += `
             <ul id="playerList" class="hidden">`;
 
-            prospects.forEach((player, index, arr) => {
-              str += `<li class="player-li">${player.name}</li>`;
-            });
-            str += "</ul>";
-            newCell.innerHTML += str;
-            break;
+                prospects.forEach((player, index, arr) => {
+                  str += `<li class="player-li">${player.name}</li>`;
+                });
+                str += "</ul>";
+                newCell.innerHTML += str;
+                break;
+            }
+          }
+          newRow.cells[0].textContent = i + 1;
         }
       }
-      newRow.cells[0].textContent = i + 1;
+
     }
   }
 

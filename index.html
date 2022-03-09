@@ -21,21 +21,37 @@
         <!-- </div> -->
         <!-- </div> -->
         <div class="container" id="top-buttons">
-            <button type="button" id="addPlayerButton" class="btn btn-dark btn-lg add-player">Add New Player</button>
+            <button type="button" id="addPlayerButton" class="btn btn-dark btn-lg add-player" data-bs-toggle="modal"
+                data-bs-target="#add-player-modal">Add New Player</button>
+        </div>
+        <div class="modal fade" id="add-player-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Add a New Player...</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid perspiciatis harum, sed
+                            cumque tempora quo molestiae est quam blanditiis laudantium.</p>
+                        <label for="modal-player-name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="modal-player-name" placeholder="Name...">
+                        <label class="form-label" for="playerPicks">Default file input example</label>
+                        <input type="file" class="form-control" id="playerPicks" />
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary add-player-submit" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container scoreboard">
-            <table class="table table-dark table-bordered table-scoreboard">
+            <table id="score-table" class="table table-dark table-bordered table-scoreboard">
                 <thead>
-                    <tr class="text-center">
-                        <th scope="col">Mike</th>
-                        <th scope="col">Carney</th>
-                        <th scope="col">Andrew</th>
+                    <tr id="scoreboard-table-row-top" class="text-center">
                     </tr>
                 </thead>
-                <tr class="text-center">
-                    <td class="mike-score">0</td>
-                    <td class="carney-score">0</td>
-                    <td class="andrew-score">0</td>
+                <tr id="scoreboard-table-row-score" class="text-center">
                 </tr>
             </table>
         </div>
@@ -50,9 +66,9 @@
                     <tr class="text-center">
                         <th scope="col-1">#</th>
                         <th scope="col-2">Team</th>
-                        <th scope="col-2">Mike</th>
+                        <!-- <th scope="col-2">Mike</th>
                         <th scope="col-2">Carney</th>
-                        <th scope="col-2">Andrew</th>
+                        <th scope="col-2">Andrew</th> -->
                         <th scope="col-3">Actual</th>
                     </tr>
                 </thead>
