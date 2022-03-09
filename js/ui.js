@@ -23,7 +23,6 @@ class UI {
     });
   }
 
-
   createPlayerCard(player) {}
   formatTeamCells(teamCell) {
     switch (teamCell.textContent) {
@@ -182,11 +181,15 @@ class UI {
         teamCell.style.color = "#FFF";
         teamCell.style.fontWeight = "bolder";
         break;
+      case "SEATTLE":
+        teamCell.style.backgroundColor = "rgba(0,34,68,1)";
+        teamCell.style.color = "rgba(105,190,40,1)";
+        teamCell.style.fontWeight = "bolder";
+        break;
     }
   }
 
   createDraftObjects() {
-
     const players = document.querySelectorAll(".player-score");
     let draftObj = {};
 
@@ -201,8 +204,11 @@ class UI {
           };
         }
 
-        if (this.boardTable.rows[i].cells[index + 2].textContent.includes("/")) {
-          const picksArr = this.boardTable.rows[i].cells[index + 2].textContent.split("/");
+        if (
+          this.boardTable.rows[i].cells[index + 2].textContent.includes("/")
+        ) {
+          const picksArr =
+            this.boardTable.rows[i].cells[index + 2].textContent.split("/");
           playerDraftObj[i] = {
             team: intitialDraftOrder[i - 1],
             player: picksArr[0],
@@ -218,8 +224,6 @@ class UI {
       }
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
     });
-
-
   }
 
   addAllRounds(playerPicks, playerName) {
@@ -296,12 +300,14 @@ class UI {
           let th = document.createElement("th");
           th.scope = "col";
           th.innerHTML = playerName;
-          currRow.insertBefore(th, currRow.children[currRow.children.length - 1]);
+          currRow.insertBefore(
+            th,
+            currRow.children[currRow.children.length - 1]
+          );
         } else {
           let newCell = currRow.insertCell(this.numberOfPlayers + 1);
           newCell.classList.add("text-center");
           newCell.textContent = playerPicks[i - 0];
-
         }
       }
     }
@@ -310,7 +316,7 @@ class UI {
   addPlayers(name, file) {
     const scope = this;
     this.numberOfPlayers++;
-    this.hasActivePlayer === false ? this.hasActivePlayer = true : false;
+    this.hasActivePlayer === false ? (this.hasActivePlayer = true) : false;
 
     let trTop = document.getElementById("scoreboard-table-row-top"),
       trBottom = document.getElementById("scoreboard-table-row-score");
@@ -330,7 +336,7 @@ class UI {
     reader.onload = function (event) {
       const picksArr = event.target.result.split("\r\n");
       const picksArrClean = picksArr.map((item) => {
-        return item.replace(/(^)(\s.+?)(\w)/g, "$1$3")
+        return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
       });
 
       scope.addAllRounds(picksArrClean, name);
@@ -350,7 +356,8 @@ class UI {
     for (let i = 1; i < this.boardTable.rows.length; i++) {
       if (
         this.boardTable.rows[i].cells[5].querySelector(".actual-pick") &&
-        this.boardTable.rows[i].cells[5].querySelector(".actual-pick").value !== ""
+        this.boardTable.rows[i].cells[5].querySelector(".actual-pick").value !==
+          ""
       ) {
         const pick =
           this.boardTable.rows[i].cells[5].querySelector(".actual-pick").value;
@@ -398,7 +405,8 @@ class UI {
           score.textContent = Number(score.textContent) + 0.5;
           this.boardTable.rows[j].cells[index].style.backgroundColor = "navy";
         } else {
-          this.boardTable.rows[j].cells[index].style.backgroundColor = "#212529";
+          this.boardTable.rows[j].cells[index].style.backgroundColor =
+            "#212529";
         }
       }
 
