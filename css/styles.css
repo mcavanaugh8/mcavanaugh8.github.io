@@ -1,51 +1,86 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .page-head {
-    width: 100%;
-    background-color: #212529;
-    color: white;
-    text-align: center;
-    height: 75px;
-    line-height: 75px;
-    vertical-align: middle;
-    font-size: 50px;
-    font-weight: bolder;
+  width: 100%;
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  height: 75px;
+  line-height: 75px;
+  vertical-align: middle;
+  font-size: 50px;
+  font-weight: bolder;
 }
 
-
 .header-col {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
 }
 
 .draftboard,
-.scoreboard {
-    margin-top: 25px;
+.scoreboard,
+#addPlayerButton {
+  margin-top: 25px;
 }
 
 .validate-pick {
-    width: 100%;
+  width: 100%;
 }
 
-.validate-pick:hover {
-    color:#212529;
-    background-color: #fff;
-    font-weight: bolder;
-    border: 1px solid #212529;
+.validate-pick:hover,
+.add-player:hover {
+  color: #212529;
+  background-color: #fff;
+  font-weight: bolder;
+  border: 1px solid #212529;
 }
 
 .team,
 .draftboard td {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .alternates-names {
-    font-weight: bolder;
+  font-weight: bolder;
+}
+
+#playerList {
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 12px 12px 12px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+#playerList li {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#playerList li {
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+}
+
+#playerList li:hover:not(.header) {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
