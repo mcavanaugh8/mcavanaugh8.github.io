@@ -7,7 +7,8 @@
  */
 const submitButton = document.querySelector(".validate-pick");
 
-const intitialDraftOrder = [{
+const intitialDraftOrder = [
+  {
     team: "JACKSONVILLE",
     needs: [],
   },
@@ -140,6 +141,7 @@ const intitialDraftOrder = [{
 let realDraftOrder = [...intitialDraftOrder];
 
 const ui = new UI();
+
 ui.addImageLinksToPlayerObject();
 ui.addAllRounds();
 
@@ -206,7 +208,20 @@ document.addEventListener("click", (event) => {
   }
 
   if (event.target.classList.contains("add-player-submit")) {
-    ui.addPlayers(document.getElementById("modal-player-name").value, document.getElementById("playerPicks").files[0]);
+    ui.addPlayers(
+      document.getElementById("modal-player-name").value,
+      document.getElementById("playerPicks").files[0]
+    );
     document.getElementById("modal-player-name").value = "";
+  }
+});
+
+document.addEventListener("focus", (event) => {
+  if (event.target.classList.includes("new-team")) {
+    event.target.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") {
+        console.log(event.target);
+      }
+    });
   }
 });

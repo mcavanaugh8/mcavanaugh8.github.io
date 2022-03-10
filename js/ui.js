@@ -3,8 +3,19 @@ class UI {
     this.numberOfPlayers = 0;
     this.hasActivePlayer = false;
 
+    this.validateButton = document.querySelector(".validate-pick");
     this.draftBoard = document.querySelector(".draftboard");
     this.boardTable = document.querySelector(".board-table");
+
+    this.validateButton.disabled = true;
+  }
+
+  disableButton() {
+    this.validateButton.disabled = true;
+  }
+
+  enableButton() {
+    this.validateButton.disabled = false;
   }
 
   checkNumberOfPlayers() {
@@ -314,33 +325,37 @@ class UI {
   }
 
   addPlayers(name, file) {
-    const scope = this;
-    this.numberOfPlayers++;
-    this.hasActivePlayer === false ? (this.hasActivePlayer = true) : false;
+    if (!file) {
+      alert("You must add a file containing your picks!");
+    } else {
+      const scope = this;
+      this.numberOfPlayers++;
+      this.hasActivePlayer === false ? (this.hasActivePlayer = true) : false;
 
-    let trTop = document.getElementById("scoreboard-table-row-top"),
-      trBottom = document.getElementById("scoreboard-table-row-score");
-    let thTop = document.createElement("th"),
-      thBottom = document.createElement("th");
+      let trTop = document.getElementById("scoreboard-table-row-top"),
+        trBottom = document.getElementById("scoreboard-table-row-score");
+      let thTop = document.createElement("th"),
+        thBottom = document.createElement("th");
 
-    thTop.innerHTML = name;
-    thTop.scope = "col";
-    thBottom.innerHTML = "0";
-    thBottom.classList.add("player-score");
+      thTop.innerHTML = name;
+      thTop.scope = "col";
+      thBottom.innerHTML = "0";
+      thBottom.classList.add("player-score");
 
-    trTop.appendChild(thTop);
-    trBottom.appendChild(thBottom);
+      trTop.appendChild(thTop);
+      trBottom.appendChild(thBottom);
 
-    const reader = new FileReader();
-    reader.readAsText(file, "UTF-8");
-    reader.onload = function (event) {
-      const picksArr = event.target.result.split("\r\n");
-      const picksArrClean = picksArr.map((item) => {
-        return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
-      });
+      const reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (event) {
+        const picksArr = event.target.result.split("\r\n");
+        const picksArrClean = picksArr.map((item) => {
+          return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
+        });
 
-      scope.addAllRounds(picksArrClean, name);
-    };
+        scope.addAllRounds(picksArrClean, name);
+      };
+    }
 
     /**
      * <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -355,15 +370,26 @@ class UI {
 
     for (let i = 1; i < this.boardTable.rows.length; i++) {
       if (
-        this.boardTable.rows[i].cells[5].querySelector(".actual-pick") &&
-        this.boardTable.rows[i].cells[5].querySelector(".actual-pick").value !==
-          ""
+        this.boardTable.rows[i].cells[
+          this.boardTable.rows[i].cells.length - 1
+        ].querySelector(".actual-pick") &&
+        this.boardTable.rows[i].cells[
+          this.boardTable.rows[i].cells.length - 1
+        ].querySelector(".actual-pick").value !== ""
       ) {
         const pick =
-          this.boardTable.rows[i].cells[5].querySelector(".actual-pick").value;
-        this.boardTable.rows[i].cells[5].innerHTML = "";
-        this.boardTable.rows[i].cells[5].textContent = pick;
-        this.boardTable.rows[i].cells[5].classList.add("pick-final");
+          this.boardTable.rows[i].cells[
+            this.boardTable.rows[i].cells.length - 1
+          ].querySelector(".actual-pick").value;
+        this.boardTable.rows[i].cells[
+          this.boardTable.rows[i].cells.length - 1
+        ].innerHTML = "";
+        this.boardTable.rows[i].cells[
+          this.boardTable.rows[i].cells.length - 1
+        ].textContent = pick;
+        this.boardTable.rows[i].cells[
+          this.boardTable.rows[i].cells.length - 1
+        ].classList.add("pick-final");
       }
 
       if (
