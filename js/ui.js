@@ -30,7 +30,8 @@ class UI {
 
   addImageLinksToPlayerObject() {
     prospects.forEach((prospect, index) => {
-      prospect.imageLink = prospectsHeadshots[index];
+      prospect.imageLink = prospectsHeadshots[index].replace(/f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g, 'f_auto,q_85');
+      console.log(prospect.imageLink);
     });
   }
 
@@ -211,12 +212,10 @@ class UI {
         let lastCell = this.boardTable.rows[i].cells.length - 1;
         if (index === 0) {
           if (
-            this.boardTable.rows[i].cells[lastCell].querySelector("a") !== null
+            this.boardTable.rows[i].cells[lastCell].querySelector(".container") !== null
           ) {
             pickName =
-              this.boardTable.rows[i].cells[lastCell].querySelector(
-                "a"
-              ).textContent;
+              this.boardTable.rows[i].cells[lastCell].querySelector(".container").querySelector(".pick-name").textContent;
           }
 
           draftObj[i] = {
@@ -349,7 +348,8 @@ class UI {
       const reader = new FileReader();
       reader.readAsText(file, "UTF-8");
       reader.onload = function (event) {
-        const picksArr = event.target.result.split("\r\n");
+        console.log(event.target.result);
+        const picksArr = event.target.result.split("\r\n").length > 1 ? event.target.result.split("\r\n") : event.target.result.split("\n");
         const picksArrClean = picksArr.map((item) => {
           return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
         });
@@ -374,14 +374,15 @@ class UI {
             let popoutString = `
               <div class=\"container\">
                 <div class="row">
-                  <div class="col-6 prospect-image">
+                <div class="col-md-4 my-auto pick-name">${prospect.name}</div>
+                <div class="col-md-4 prospect-image">
                     <img src=\"${prospect.imageLink}\" alt=\"\">
-                  </div>
-                  <div class="col-6">
-                    <p>Position: ${prospect.position}</p>
-                    <p>School: ${prospect.school}</p>
-                    <p>NFL.com Grade: ${prospect.grade}</p>
-                  </div>
+                </div>
+                <div class="col-md-4">
+                    <p><b>Position:</b> ${prospect.position}</p>
+                    <p><b>School:</b> ${prospect.school}</p>
+                    <p><b>NFL.com Grade:</b> ${prospect.grade}</p>
+                </div>
                </div>
               </div>
               `;
@@ -404,7 +405,7 @@ class UI {
       if (
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick") &&
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick")
-          .value !== ""
+        .value !== ""
       ) {
         const pick =
           this.boardTable.rows[i].cells[lastRow].querySelector(

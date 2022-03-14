@@ -12,14 +12,16 @@
     <link rel="stylesheet" href="./css/styles.css">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-790RTSSZ1W"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-790RTSSZ1W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-790RTSSZ1W');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-790RTSSZ1W');
+    </script>
     <title>2022 NFL Draft Game</title>
 </head>
 
@@ -32,7 +34,7 @@
         <!-- </div> -->
         <div class="container" id="top-buttons">
             <button type="button" id="addPlayerButton" class="btn btn-dark btn-lg add-player" data-bs-toggle="modal"
-                data-bs-target="#add-player-modal">Add New Player</button>
+                data-bs-target="#add-player-modal">Add New Participant</button>
         </div>
         <div class="modal fade" id="add-player-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog">

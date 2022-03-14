@@ -7,8 +7,7 @@
  */
 const submitButton = document.querySelector(".validate-pick");
 
-const intitialDraftOrder = [
-  {
+const intitialDraftOrder = [{
     team: "JACKSONVILLE",
     needs: [],
   },
@@ -129,11 +128,11 @@ const intitialDraftOrder = [
     needs: [],
   },
   {
-    team: "LA RAMS",
+    team: "CINCINNATI",
     needs: [],
   },
   {
-    team: "CINCINNATI",
+    team: "LA RAMS",
     needs: [],
   },
 ];
