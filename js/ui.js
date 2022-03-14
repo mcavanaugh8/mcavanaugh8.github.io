@@ -210,14 +210,23 @@ class UI {
       for (let i = 1; i < this.boardTable.rows.length; i++) {
         let lastCell = this.boardTable.rows[i].cells.length - 1;
         if (index === 0) {
-          console.log(this.boardTable.rows[i].cells[lastCell].children[0].children[0].children[0].textContent);
+          const nodes = this.boardTable.rows[i].cells[lastCell].childNodes;
+          nodes.forEach((node, index, arr) => {
+            if (node.tagName !== "INPUT") {
+              console.log(node)
+              pickName = JSON.stringify(node);
+            }
+          });
+
+          console.log("Pick Name: " + pickName);
+
           if (
             this.boardTable.rows[i].cells[lastCell].querySelector("div") !== null
           ) {
             pickName =
               this.boardTable.rows[i].cells[lastCell].querySelector(".container").querySelector("div").querySelector(".pick-name").textContent;
           }
-          console.log(pickName);
+          // console.log(pickName);
 
           draftObj[i] = {
             draftPosition: i,
