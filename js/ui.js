@@ -34,7 +34,6 @@ class UI {
     });
   }
 
-  createPlayerCard(player) {}
   formatTeamCells(teamCell) {
     switch (teamCell.textContent) {
       case "JACKSONVILLE":
@@ -206,12 +205,24 @@ class UI {
 
     players.forEach((player, index) => {
       let playerDraftObj = {};
+      let pickName;
+
       for (let i = 1; i < this.boardTable.rows.length; i++) {
+        let lastCell = this.boardTable.rows[i].cells.length - 1;
         if (index === 0) {
+          if (
+            this.boardTable.rows[i].cells[lastCell].querySelector("a") !== null
+          ) {
+            pickName =
+              this.boardTable.rows[i].cells[lastCell].querySelector(
+                "a"
+              ).textContent;
+          }
+
           draftObj[i] = {
             draftPosition: i,
             team: realDraftOrder[i - 1],
-            player: this.boardTable.rows[i].cells[5].textContent,
+            player: pickName,
           };
         }
 
@@ -232,6 +243,7 @@ class UI {
             altPlayer: "",
           };
         }
+        // console.log(playerDraftObj);
       }
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
     });
@@ -274,15 +286,15 @@ class UI {
                 '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
               const pickText = newCell.querySelector("input");
               pickText.classList.add("actual-pick");
-              let str = "";
-              str += `
-            <ul id="playerList" class="hidden">`;
+              //   let str = "";
+              //   str += `
+              // <ul id="playerList" class="hidden">`;
 
-              prospects.forEach((player, index, arr) => {
-                str += `<li class="player-li">${player.name}</li>`;
-              });
-              str += "</ul>";
-              newCell.innerHTML += str;
+              //   prospects.forEach((player, index, arr) => {
+              //     str += `<li class="player-li">${player.name}</li>`;
+              //   });
+              //   str += "</ul>";
+              //   newCell.innerHTML += str;
               break;
           }
         }
@@ -293,21 +305,6 @@ class UI {
         let currRow = this.boardTable.rows[i];
 
         if (i === 0) {
-          let th1 = document.createElement("th");
-          th1.scope = "col";
-          th1.innerHTML = "#";
-          currRow.appendChild(th1);
-
-          let th2 = document.createElement("th");
-          th2.scope = "col";
-          th2.innerHTML = "Team";
-          currRow.appendChild(th2);
-
-          let th3 = document.createElement("th");
-          th3.scope = "col";
-          th3.innerHTML = "Actual";
-          currRow.appendChild(th3);
-
           let th = document.createElement("th");
           th.scope = "col";
           th.innerHTML = playerName;
@@ -318,7 +315,7 @@ class UI {
         } else {
           let newCell = currRow.insertCell(this.numberOfPlayers + 1);
           newCell.classList.add("text-center");
-          newCell.textContent = playerPicks[i - 0];
+          newCell.textContent = playerPicks[i - 1];
         }
       }
     }
@@ -330,7 +327,11 @@ class UI {
     } else {
       const scope = this;
       this.numberOfPlayers++;
-      this.hasActivePlayer === false ? (this.hasActivePlayer = true) : false;
+
+      if (this.hasActivePlayer === false) {
+        this.hasActivePlayer = true;
+        this.enableButton();
+      }
 
       let trTop = document.getElementById("scoreboard-table-row-top"),
         trBottom = document.getElementById("scoreboard-table-row-score");
@@ -362,34 +363,62 @@ class UI {
      */
   }
 
+  addPlayerCards() {
+    for (let i = 1; i < this.boardTable.rows.length; i++) {
+      for (let c = 0; c < this.boardTable.rows[i].cells.length; c++) {
+        console.log(this.boardTable.rows[i].cells[c].classList);
+        if (this.boardTable.rows[i].cells[c].textContent !== "") {
+          const selection = this.boardTable.rows[i].cells[c].textContent;
+
+          prospects.forEach((prospect, index) => {
+            if (prospect.name == selection) {
+              let popoutString = `
+              <div class=\"container\">
+                <div>
+                 <img src=\"${prospect.imageLink}\" alt=\"\">
+                </div>
+                <div>
+                    <p>Position: ${prospect.position}</p>
+                    <p>School: ${prospect.school}</p>
+                    <p>NFL.com Grade: ${prospect.grade}</p>
+                </div>
+              </div>
+              `;
+              this.boardTable.rows[i].cells[c].innerHTML = `
+              <a tabindex="0"
+              class="btn btn-lg btn-primary" 
+              role="button" 
+              data-html="true" 
+              data-toggle="popover" 
+              data-trigger="focus" 
+              title="<b>${prospect.name}</b>" 
+              data-content="${popoutString} ${prospect.name}</a>`;
+            }
+          });
+        }
+      }
+    }
+  }
+
   validatePicks() {
     /**
-     * On button press, create DRAFT object. Should contain list of each pick slot with "team" and "player" keys. Also create playerDraft objects for MIKE, CARNEY, and ANDREW
+     * On button press, create DRAFT object. Should contain list of each pick slot with "team" and "player" keys. Also create playerDraft objects for all players
      * Should also check if TRADE has been made by seeing if .new-team class exists in row index 1. If so, assign value of input to textContent of cell; then change value in draftOrder array
      */
 
     for (let i = 1; i < this.boardTable.rows.length; i++) {
+      var lastRow = this.boardTable.rows[i].cells.length - 1;
       if (
-        this.boardTable.rows[i].cells[
-          this.boardTable.rows[i].cells.length - 1
-        ].querySelector(".actual-pick") &&
-        this.boardTable.rows[i].cells[
-          this.boardTable.rows[i].cells.length - 1
-        ].querySelector(".actual-pick").value !== ""
+        this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick") &&
+        this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick")
+          .value !== ""
       ) {
         const pick =
-          this.boardTable.rows[i].cells[
-            this.boardTable.rows[i].cells.length - 1
-          ].querySelector(".actual-pick").value;
-        this.boardTable.rows[i].cells[
-          this.boardTable.rows[i].cells.length - 1
-        ].innerHTML = "";
-        this.boardTable.rows[i].cells[
-          this.boardTable.rows[i].cells.length - 1
-        ].textContent = pick;
-        this.boardTable.rows[i].cells[
-          this.boardTable.rows[i].cells.length - 1
-        ].classList.add("pick-final");
+          this.boardTable.rows[i].cells[lastRow].querySelector(
+            ".actual-pick"
+          ).value;
+        this.boardTable.rows[i].cells[lastRow].innerHTML = pick;
+        this.boardTable.rows[i].cells[lastRow].classList.add("pick-final");
       }
 
       if (
@@ -408,6 +437,7 @@ class UI {
     }
 
     this.createDraftObjects();
+    this.addPlayerCards();
   }
 
   calculatePoints(draftObj, personDraftObject, score, index, altsIndex) {

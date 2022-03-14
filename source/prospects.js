@@ -33,7 +33,7 @@ const prospects = [
   },
   { name: "Tyler Linderbaum", position: "C", school: "Iowa", grade: 6.7 },
   {
-    name: "Ickey Ekwonu",
+    name: "Ikem Ekwonu",
     position: "OT",
     school: "N.C. State",
     grade: 6.52,

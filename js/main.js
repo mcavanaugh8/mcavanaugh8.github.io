@@ -173,39 +173,39 @@ document.addEventListener("dblclick", (event) => {
   }
 });
 
-document.addEventListener("keyup", (event) => {
-  if (event.target.classList.contains("actual-pick")) {
-    const list = document.getElementById("playerList");
-    const li = list.getElementsByTagName("li");
+// document.addEventListener("keyup", (event) => {
+//   if (event.target.classList.contains("actual-pick")) {
+//     const list = document.getElementById("playerList");
+//     const li = list.getElementsByTagName("li");
 
-    for (let i = 0; i < li.length; i++) {
-      let searchVal = event.target.value;
-      let playerVal = li[i].textContent;
-      // console.log(searchVal, playerVal);
-      if (playerVal.indexOf(searchVal) > -1 && searchVal !== "") {
-        // console.log("match", searchVal, playerVal);
-        list.classList.remove("hidden");
-        li[i].classList.remove("hidden");
-      } else if (searchVal === "") {
-        list.classList.add("hidden");
-      } else {
-        li[i].classList.add("hidden");
-      }
-    }
-  }
-});
+//     for (let i = 0; i < li.length; i++) {
+//       let searchVal = event.target.value;
+//       let playerVal = li[i].textContent;
+//       // console.log(searchVal, playerVal);
+//       if (playerVal.indexOf(searchVal) > -1 && searchVal !== "") {
+//         // console.log("match", searchVal, playerVal);
+//         list.classList.remove("hidden");
+//         li[i].classList.remove("hidden");
+//       } else if (searchVal === "") {
+//         list.classList.add("hidden");
+//       } else {
+//         li[i].classList.add("hidden");
+//       }
+//     }
+//   }
+// });
 
 document.addEventListener("click", (event) => {
-  if (event.target.classList.contains("player-li")) {
-    const childNodes = event.target.parentNode.parentNode.children;
-    console.log(event.target, event.target.classList);
-    for (let i = 0; i < childNodes.length; i++) {
-      if (childNodes[i].tagName === "INPUT") {
-        const form = childNodes[i];
-        form.value = event.target.textContent;
-      }
-    }
-  }
+  // if (event.target.classList.contains("player-li")) {
+  //   const childNodes = event.target.parentNode.parentNode.children;
+  //   console.log(event.target, event.target.classList);
+  //   for (let i = 0; i < childNodes.length; i++) {
+  //     if (childNodes[i].tagName === "INPUT") {
+  //       const form = childNodes[i];
+  //       form.value = event.target.textContent;
+  //     }
+  //   }
+  // }
 
   if (event.target.classList.contains("add-player-submit")) {
     ui.addPlayers(
@@ -216,12 +216,12 @@ document.addEventListener("click", (event) => {
   }
 });
 
-document.addEventListener("focus", (event) => {
-  if (event.target.classList.includes("new-team")) {
-    event.target.addEventListener("keypress", (event) => {
-      if (event.key === "Enter") {
-        console.log(event.target);
-      }
-    });
-  }
-});
+// document.addEventListener("focus", (event) => {
+//   if (event.target.classList.includes("new-team")) {
+//     event.target.addEventListener("keypress", (event) => {
+//       if (event.key === "Enter") {
+//         console.log(event.target);
+//       }
+//     });
+//   }
+// });
