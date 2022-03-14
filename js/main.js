@@ -132,7 +132,7 @@ const intitialDraftOrder = [{
     needs: [],
   },
   {
-    team: "LA RAMS",
+    team: "DETROIT",
     needs: [],
   },
 ];
