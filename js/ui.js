@@ -31,7 +31,6 @@ class UI {
   addImageLinksToPlayerObject() {
     prospects.forEach((prospect, index) => {
       prospect.imageLink = prospectsHeadshots[index].replace(/f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g, 'f_auto,q_85');
-      console.log(prospect.imageLink);
     });
   }
 
@@ -211,12 +210,14 @@ class UI {
       for (let i = 1; i < this.boardTable.rows.length; i++) {
         let lastCell = this.boardTable.rows[i].cells.length - 1;
         if (index === 0) {
+          console.log(this.boardTable.rows[i].cells[lastCell].children[0].children[0].children[0].textContent);
           if (
-            this.boardTable.rows[i].cells[lastCell].querySelector(".container") !== null
+            this.boardTable.rows[i].cells[lastCell].querySelector("div") !== null
           ) {
             pickName =
-              this.boardTable.rows[i].cells[lastCell].querySelector(".container").querySelector(".pick-name").textContent;
+              this.boardTable.rows[i].cells[lastCell].querySelector(".container").querySelector("div").querySelector(".pick-name").textContent;
           }
+          console.log(pickName);
 
           draftObj[i] = {
             draftPosition: i,
@@ -348,7 +349,7 @@ class UI {
       const reader = new FileReader();
       reader.readAsText(file, "UTF-8");
       reader.onload = function (event) {
-        console.log(event.target.result);
+        // console.log(event.target.result);
         const picksArr = event.target.result.split("\r\n").length > 1 ? event.target.result.split("\r\n") : event.target.result.split("\n");
         const picksArrClean = picksArr.map((item) => {
           return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
