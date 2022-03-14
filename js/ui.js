@@ -210,23 +210,22 @@ class UI {
       for (let i = 1; i < this.boardTable.rows.length; i++) {
         let lastCell = this.boardTable.rows[i].cells.length - 1;
         if (index === 0) {
-          const nodes = this.boardTable.rows[i].cells[lastCell].childNodes;
-          nodes.forEach((node, index, arr) => {
-            if (node.tagName !== "INPUT") {
-              console.log(node)
-              pickName = JSON.stringify(node);
-            }
-          });
+          // const nodes = this.boardTable.rows[i].cells[lastCell].childNodes;
 
-          console.log("Pick Name: " + pickName);
+          // [nodes].forEach(node => {
+          //   if (node.length > 1) {
+          //     console.log(node);
+          //   }
+          // });
 
           if (
             this.boardTable.rows[i].cells[lastCell].querySelector("div") !== null
           ) {
             pickName =
               this.boardTable.rows[i].cells[lastCell].querySelector(".container").querySelector("div").querySelector(".pick-name").textContent;
+          } else {
+            pickName = "";
           }
-          // console.log(pickName);
 
           draftObj[i] = {
             draftPosition: i,
@@ -252,10 +251,11 @@ class UI {
             altPlayer: "",
           };
         }
-        // console.log(playerDraftObj);
+        // console.log("PLAYER OBJECT:", playerDraftObj);
       }
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
     });
+    // console.log("DRAFT OBJECT:", draftObj);
   }
 
   addAllRounds(playerPicks, playerName) {
@@ -388,7 +388,7 @@ class UI {
                 <div class="col-md-4 prospect-image">
                     <img src=\"${prospect.imageLink}\" alt=\"\">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 my-auto pick-info">
                     <p><b>Position:</b> ${prospect.position}</p>
                     <p><b>School:</b> ${prospect.school}</p>
                     <p><b>NFL.com Grade:</b> ${prospect.grade}</p>
@@ -440,8 +440,8 @@ class UI {
       }
     }
 
-    this.createDraftObjects();
     this.addPlayerCards();
+    this.createDraftObjects();
   }
 
   calculatePoints(draftObj, personDraftObject, score, index, altsIndex) {
@@ -450,7 +450,7 @@ class UI {
     for (var j in draftObj) {
       /**
        * calculate score for Mike
-       *  - +1 if PLAYER is correct
+       *  - +1 if PLAYER is correct at draft position predicted by player
        *  - +1 if PLAYER/TEAM combo is correct
        *  - +1 if FIRST ROUND IS CORRECT
        * add formatting to cells
@@ -506,11 +506,11 @@ class UI {
 
       for (var z in personDraftObject) {
         if (draftObj[j].player !== "") {
-          if (draftObj[j].team === personDraftObject[z].team) {
+          if ((draftObj[j].team.team || draftObj[j].team) === (personDraftObject[z].team.team)) {
+            console.log(draftObj[j], personDraftObject[z])
             if (draftObj[j].player === personDraftObject[z].player) {
               score.textContent = Number(score.textContent) + 1;
             } else if (draftObj[j].player === personDraftObject[z].altPlayer) {
-              //   console.log(draftObj[j], personDraftObject[z]);
               score.textContent = Number(score.textContent) + 0.5;
             }
           }

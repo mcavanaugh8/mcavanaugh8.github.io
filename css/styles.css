@@ -8,8 +8,14 @@ body {
 }
 
 .prospect-image img {
-  width: 60%;
+  width: 90%;
 }
+
+.pick-name,
+.pick-info {
+  font-size: 1.25rem;
+}
+
 .page-head {
   width: 100%;
   background-color: #212529;
