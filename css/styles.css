@@ -7,6 +7,9 @@ body {
   padding: 0px;
 }
 
+.prospect-image img {
+  width: 40%;
+}
 .page-head {
   width: 100%;
   background-color: #212529;

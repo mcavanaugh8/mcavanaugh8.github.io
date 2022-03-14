@@ -365,37 +365,30 @@ class UI {
 
   addPlayerCards() {
     for (let i = 1; i < this.boardTable.rows.length; i++) {
-      for (let c = 0; c < this.boardTable.rows[i].cells.length; c++) {
-        console.log(this.boardTable.rows[i].cells[c].classList);
-        if (this.boardTable.rows[i].cells[c].textContent !== "") {
-          const selection = this.boardTable.rows[i].cells[c].textContent;
+      const c = this.boardTable.rows[i].cells.length - 1;
+      if (this.boardTable.rows[i].cells[c].textContent !== "") {
+        const selection = this.boardTable.rows[i].cells[c].textContent;
 
-          prospects.forEach((prospect, index) => {
-            if (prospect.name == selection) {
-              let popoutString = `
+        prospects.forEach((prospect, index) => {
+          if (prospect.name == selection) {
+            let popoutString = `
               <div class=\"container\">
-                <div>
-                 <img src=\"${prospect.imageLink}\" alt=\"\">
-                </div>
-                <div>
+                <div class="row">
+                  <div class="col-6 prospect-image">
+                    <img src=\"${prospect.imageLink}\" alt=\"\">
+                  </div>
+                  <div class="col-6">
                     <p>Position: ${prospect.position}</p>
                     <p>School: ${prospect.school}</p>
                     <p>NFL.com Grade: ${prospect.grade}</p>
-                </div>
+                  </div>
+               </div>
               </div>
               `;
-              this.boardTable.rows[i].cells[c].innerHTML = `
-              <a tabindex="0"
-              class="btn btn-lg btn-primary" 
-              role="button" 
-              data-html="true" 
-              data-toggle="popover" 
-              data-trigger="focus" 
-              title="<b>${prospect.name}</b>" 
-              data-content="${popoutString} ${prospect.name}</a>`;
-            }
-          });
-        }
+            this.boardTable.rows[i].cells[c].innerHTML = popoutString;
+          }
+        });
+        // console.log(this.boardTable.rows[i].cells[c].innerHTML);
       }
     }
   }
