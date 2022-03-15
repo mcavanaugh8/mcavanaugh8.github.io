@@ -41,22 +41,26 @@ class UI {
   }
 
   addToLocalStorage(person, name) {
-    const participants = this.getFromLocalStorage();
-    participants.push(person);
+    const obj = this.getFromLocalStorage(name);
+    obj.push(person);
 
-    localStorage.setItem(name, JSON.stringify(participants));
+    localStorage.setItem(name, JSON.stringify(obj));
   }
 
   getFromLocalStorage(name) {
-    let participants;
+    let obj;
 
     if (localStorage.getItem(name) === null) {
-      participants = [];
+      obj = [];
     } else {
-      participants = JSON.parse(localStorage.getItem("participants"));
+      obj = JSON.parse(localStorage.getItem(name));
     }
 
-    return participants;
+    return obj;
+  }
+
+  addFromLocalStorageToPage(obj) {
+
   }
 
   formatTeamCells(teamCell) {
@@ -279,15 +283,16 @@ class UI {
             altPlayer: "",
           };
         }
-        // console.log("PLAYER OBJECT:", playerDraftObj);
+        console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
       }
 
       this.participantObjects.push(playerDraftObj);
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
+      this.addToLocalStorage(playerDraftObj, "participants");
     });
-    // console.log("DRAFT OBJECT:", draftObj);
+    console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.actualPicks.push(draftObj);
-    this.addToLocalStorage(playerDraftObj, "");
+    this.addToLocalStorage(draftObj, "draft_results");
     // console.log(this.participantObjects, this.actualPicks);
   }
 
@@ -393,9 +398,9 @@ class UI {
       reader.onload = function (event) {
         // console.log(event.target.result);
         const picksArr =
-          event.target.result.split("\r\n").length > 1
-            ? event.target.result.split("\r\n")
-            : event.target.result.split("\n");
+          event.target.result.split("\r\n").length > 1 ?
+          event.target.result.split("\r\n") :
+          event.target.result.split("\n");
         const picksArrClean = picksArr.map((item) => {
           return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
         });
@@ -408,6 +413,7 @@ class UI {
      * <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
      */
   }
+
 
   addPlayerCards() {
     for (let i = 1; i < this.boardTable.rows.length; i++) {
@@ -451,7 +457,7 @@ class UI {
       if (
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick") &&
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick")
-          .value !== ""
+        .value !== ""
       ) {
         const pick =
           this.boardTable.rows[i].cells[lastRow].querySelector(
@@ -546,7 +552,6 @@ class UI {
             (draftObj[j].team.team || draftObj[j].team) ===
             personDraftObject[z].team.team
           ) {
-            console.log(draftObj[j], personDraftObject[z]);
             if (draftObj[j].player === personDraftObject[z].player) {
               score.textContent = Number(score.textContent) + 1;
             } else if (draftObj[j].player === personDraftObject[z].altPlayer) {

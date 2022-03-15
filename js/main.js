@@ -150,6 +150,11 @@ submitButton.addEventListener("click", function (event) {
   ui.validatePicks();
 });
 
+document.addEventListener("DOMContentLoaded", (event) => {
+  const participants = ui.getFromLocalStorage("participants");
+  const draft = ui.getFromLocalStorage("draft-results");
+});
+
 document.addEventListener("dblclick", (event) => {
   if (event.target.classList.contains("pick-final")) {
     event.target.innerHTML =
