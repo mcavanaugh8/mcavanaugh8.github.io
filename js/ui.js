@@ -8,6 +8,9 @@ class UI {
     this.boardTable = document.querySelector(".board-table");
 
     this.validateButton.disabled = true;
+
+    this.participantObjects = [];
+    this.actualPicks = [];
   }
 
   disableButton() {
@@ -30,8 +33,30 @@ class UI {
 
   addImageLinksToPlayerObject() {
     prospects.forEach((prospect, index) => {
-      prospect.imageLink = prospectsHeadshots[index].replace(/f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g, 'f_auto,q_85');
+      prospect.imageLink = prospectsHeadshots[index].replace(
+        /f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g,
+        "f_auto,q_85"
+      );
     });
+  }
+
+  addToLocalStorage(person, name) {
+    const participants = this.getFromLocalStorage();
+    participants.push(person);
+
+    localStorage.setItem(name, JSON.stringify(participants));
+  }
+
+  getFromLocalStorage(name) {
+    let participants;
+
+    if (localStorage.getItem(name) === null) {
+      participants = [];
+    } else {
+      participants = JSON.parse(localStorage.getItem("participants"));
+    }
+
+    return participants;
   }
 
   formatTeamCells(teamCell) {
@@ -219,10 +244,13 @@ class UI {
           // });
 
           if (
-            this.boardTable.rows[i].cells[lastCell].querySelector("div") !== null
+            this.boardTable.rows[i].cells[lastCell].querySelector("div") !==
+            null
           ) {
-            pickName =
-              this.boardTable.rows[i].cells[lastCell].querySelector(".container").querySelector("div").querySelector(".pick-name").textContent;
+            pickName = this.boardTable.rows[i].cells[lastCell]
+              .querySelector(".container")
+              .querySelector("div")
+              .querySelector(".pick-name").textContent;
           } else {
             pickName = "";
           }
@@ -253,9 +281,14 @@ class UI {
         }
         // console.log("PLAYER OBJECT:", playerDraftObj);
       }
+
+      this.participantObjects.push(playerDraftObj);
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
     });
     // console.log("DRAFT OBJECT:", draftObj);
+    this.actualPicks.push(draftObj);
+    this.addToLocalStorage(playerDraftObj, "");
+    // console.log(this.participantObjects, this.actualPicks);
   }
 
   addAllRounds(playerPicks, playerName) {
@@ -359,7 +392,10 @@ class UI {
       reader.readAsText(file, "UTF-8");
       reader.onload = function (event) {
         // console.log(event.target.result);
-        const picksArr = event.target.result.split("\r\n").length > 1 ? event.target.result.split("\r\n") : event.target.result.split("\n");
+        const picksArr =
+          event.target.result.split("\r\n").length > 1
+            ? event.target.result.split("\r\n")
+            : event.target.result.split("\n");
         const picksArrClean = picksArr.map((item) => {
           return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
         });
@@ -415,7 +451,7 @@ class UI {
       if (
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick") &&
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick")
-        .value !== ""
+          .value !== ""
       ) {
         const pick =
           this.boardTable.rows[i].cells[lastRow].querySelector(
@@ -506,8 +542,11 @@ class UI {
 
       for (var z in personDraftObject) {
         if (draftObj[j].player !== "") {
-          if ((draftObj[j].team.team || draftObj[j].team) === (personDraftObject[z].team.team)) {
-            console.log(draftObj[j], personDraftObject[z])
+          if (
+            (draftObj[j].team.team || draftObj[j].team) ===
+            personDraftObject[z].team.team
+          ) {
+            console.log(draftObj[j], personDraftObject[z]);
             if (draftObj[j].player === personDraftObject[z].player) {
               score.textContent = Number(score.textContent) + 1;
             } else if (draftObj[j].player === personDraftObject[z].altPlayer) {
