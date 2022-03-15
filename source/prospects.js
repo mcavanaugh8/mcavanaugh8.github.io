@@ -1,5 +1,4 @@
-const prospects = [
-  {
+const prospects = [{
     name: "Kyle Hamilton",
     position: "SAF",
     school: "Notre Dame",
@@ -11,7 +10,12 @@ const prospects = [
     school: "Michigan",
     grade: 6.83,
   },
-  { name: "Evan Neal", position: "OT", school: "Alabama", grade: 6.76 },
+  {
+    name: "Evan Neal",
+    position: "OT",
+    school: "Alabama",
+    grade: 6.76
+  },
   {
     name: "Kayvon Thibodeaux",
     position: "EDGE",
@@ -24,22 +28,42 @@ const prospects = [
     school: "Cincinnati",
     grade: 6.72,
   },
-  { name: "Treylon Burks", position: "WR", school: "Arkansas", grade: 6.71 },
+  {
+    name: "Treylon Burks",
+    position: "WR",
+    school: "Arkansas",
+    grade: 6.71
+  },
   {
     name: "Trent McDuffie",
     position: "CB",
     school: "Washington",
     grade: 6.7,
   },
-  { name: "Tyler Linderbaum", position: "C", school: "Iowa", grade: 6.7 },
+  {
+    name: "Tyler Linderbaum",
+    position: "C",
+    school: "Iowa",
+    grade: 6.7
+  },
   {
     name: "Ikem Ekwonu",
     position: "OT",
     school: "N.C. State",
     grade: 6.52,
   },
-  { name: "David Ojabo", position: "EDGE", school: "Michigan", grade: 6.5 },
-  { name: "Derek Stingley Jr.", position: "CB", school: "LSU", grade: 6.5 },
+  {
+    name: "David Ojabo",
+    position: "EDGE",
+    school: "Michigan",
+    grade: 6.5
+  },
+  {
+    name: "Derek Stingley Jr.",
+    position: "CB",
+    school: "LSU",
+    grade: 6.5
+  },
   {
     name: "Garrett Wilson",
     position: "WR",
@@ -47,7 +71,7 @@ const prospects = [
     grade: 6.5,
   },
   {
-    name: "Jermaine Johnson II",
+    name: "Jermaine Johnson",
     position: "DE",
     school: "Florida State",
     grade: 6.49,
@@ -58,9 +82,24 @@ const prospects = [
     school: "Alabama",
     grade: 6.48,
   },
-  { name: "Chris Olave", position: "WR", school: "Ohio State", grade: 6.46 },
-  { name: "Kenyon Green", position: "G", school: "Texas A&M", grade: 6.45 },
-  { name: "Jordan Davis", position: "DT", school: "Georgia", grade: 6.43 },
+  {
+    name: "Chris Olave",
+    position: "WR",
+    school: "Ohio State",
+    grade: 6.46
+  },
+  {
+    name: "Kenyon Green",
+    position: "G",
+    school: "Texas A&M",
+    grade: 6.45
+  },
+  {
+    name: "Jordan Davis",
+    position: "DT",
+    school: "Georgia",
+    grade: 6.43
+  },
   {
     name: "Charles Cross",
     position: "OT",
@@ -79,8 +118,18 @@ const prospects = [
     school: "Central Michigan",
     grade: 6.4,
   },
-  { name: "Matt Corral", position: "QB", school: "Mississippi", grade: 6.4 },
-  { name: "Nakobe Dean", position: "LB", school: "Georgia", grade: 6.4 },
+  {
+    name: "Matt Corral",
+    position: "QB",
+    school: "Mississippi",
+    grade: 6.4
+  },
+  {
+    name: "Nakobe Dean",
+    position: "LB",
+    school: "Georgia",
+    grade: 6.4
+  },
   {
     name: "Trevor Penning",
     position: "OT",
@@ -93,15 +142,30 @@ const prospects = [
     school: "Pittsburgh",
     grade: 6.39,
   },
-  { name: "Andrew Booth", position: "CB", school: "Clemson", grade: 6.38 },
-  { name: "Devin Lloyd", position: "LB", school: "Utah", grade: 6.38 },
+  {
+    name: "Andrew Booth",
+    position: "CB",
+    school: "Clemson",
+    grade: 6.38
+  },
+  {
+    name: "Devin Lloyd",
+    position: "LB",
+    school: "Utah",
+    grade: 6.38
+  },
   {
     name: "Jaquan Brisker",
     position: "SAF",
     school: "Penn State",
     grade: 6.38,
   },
-  { name: "Bryan Cook", position: "SAF", school: "Cincinnati", grade: 6.37 },
+  {
+    name: "Bryan Cook",
+    position: "SAF",
+    school: "Cincinnati",
+    grade: 6.37
+  },
   {
     name: "George Karlaftis",
     position: "EDGE",
@@ -114,9 +178,24 @@ const prospects = [
     school: "Cincinnati",
     grade: 6.36,
   },
-  { name: "Boye Mafe", position: "EDGE", school: "Minnesota", grade: 6.35 },
-  { name: "Devonte Wyatt", position: "DT", school: "Georgia", grade: 6.35 },
-  { name: "Kaiir Elam", position: "CB", school: "Florida", grade: 6.35 },
+  {
+    name: "Boye Mafe",
+    position: "EDGE",
+    school: "Minnesota",
+    grade: 6.35
+  },
+  {
+    name: "Devonte Wyatt",
+    position: "DT",
+    school: "Georgia",
+    grade: 6.35
+  },
+  {
+    name: "Kaiir Elam",
+    position: "CB",
+    school: "Florida",
+    grade: 6.35
+  },
   {
     name: "Kenneth Walker III",
     position: "RB",
@@ -129,32 +208,72 @@ const prospects = [
     school: "Penn State",
     grade: 6.34,
   },
-  { name: "Breece Hall", position: "RB", school: "Iowa State", grade: 6.34 },
-  { name: "Drake London", position: "WR", school: "USC", grade: 6.34 },
+  {
+    name: "Breece Hall",
+    position: "RB",
+    school: "Iowa State",
+    grade: 6.34
+  },
+  {
+    name: "Drake London",
+    position: "WR",
+    school: "USC",
+    grade: 6.34
+  },
   {
     name: "Jalen Tolbert",
     position: "WR",
     school: "South Alabama",
     grade: 6.34,
   },
-  { name: "Malik Willis", position: "QB", school: "Liberty", grade: 6.34 },
+  {
+    name: "Malik Willis",
+    position: "QB",
+    school: "Liberty",
+    grade: 6.34
+  },
   {
     name: "Zion Johnson",
     position: "G",
     school: "Boston College",
     grade: 6.34,
   },
-  { name: "Cade Otton", position: "TE", school: "Washington", grade: 6.33 },
-  { name: "Dax Hill", position: "SAF", school: "Michigan", grade: 6.33 },
+  {
+    name: "Cade Otton",
+    position: "TE",
+    school: "Washington",
+    grade: 6.33
+  },
+  {
+    name: "Dax Hill",
+    position: "SAF",
+    school: "Michigan",
+    grade: 6.33
+  },
   {
     name: "Jahan Dotson",
     position: "WR",
     school: "Penn State",
     grade: 6.33,
   },
-  { name: "Nik Bonitto", position: "EDGE", school: "Oklahoma", grade: 6.33 },
-  { name: "Travon Walker", position: "DE", school: "Georgia", grade: 6.33 },
-  { name: "Damone Clark", position: "LB", school: "LSU", grade: 6.32 },
+  {
+    name: "Nik Bonitto",
+    position: "EDGE",
+    school: "Oklahoma",
+    grade: 6.33
+  },
+  {
+    name: "Travon Walker",
+    position: "DE",
+    school: "Georgia",
+    grade: 6.33
+  },
+  {
+    name: "Damone Clark",
+    position: "LB",
+    school: "LSU",
+    grade: 6.32
+  },
   {
     name: "Sam Williams",
     position: "EDGE",
@@ -173,8 +292,18 @@ const prospects = [
     school: "Miami (Ohio)",
     grade: 6.3,
   },
-  { name: "Joshua Paschal", position: "DE", school: "Kentucky", grade: 6.3 },
-  { name: "Dameon Pierce", position: "RB", school: "Florida", grade: 6.29 },
+  {
+    name: "Joshua Paschal",
+    position: "DE",
+    school: "Kentucky",
+    grade: 6.3
+  },
+  {
+    name: "Dameon Pierce",
+    position: "RB",
+    school: "Florida",
+    grade: 6.29
+  },
   {
     name: "Isaiah Spiller",
     position: "RB",
@@ -187,37 +316,72 @@ const prospects = [
     school: "Minnesota",
     grade: 6.28,
   },
-  { name: "Marcus Jones", position: "CB", school: "Houston", grade: 6.27 },
+  {
+    name: "Marcus Jones",
+    position: "CB",
+    school: "Houston",
+    grade: 6.27
+  },
   {
     name: "Phidarian Mathis",
     position: "DT",
     school: "Alabama",
     grade: 6.27,
   },
-  { name: "Quay Walker", position: "LB", school: "Georgia", grade: 6.27 },
+  {
+    name: "Quay Walker",
+    position: "LB",
+    school: "Georgia",
+    grade: 6.27
+  },
   {
     name: "Cole Strange",
     position: "G",
     school: "Tennessee-Chattanooga",
     grade: 6.26,
   },
-  { name: "David Bell", position: "WR", school: "Purdue", grade: 6.26 },
-  { name: "Coby Bryant", position: "CB", school: "Cincinnati", grade: 6.25 },
+  {
+    name: "David Bell",
+    position: "WR",
+    school: "Purdue",
+    grade: 6.26
+  },
+  {
+    name: "Coby Bryant",
+    position: "CB",
+    school: "Cincinnati",
+    grade: 6.25
+  },
   {
     name: "Travis Jones",
     position: "DT",
     school: "Connecticut",
     grade: 6.25,
   },
-  { name: "Tyler Smith", position: "OT", school: "Tulsa", grade: 6.25 },
-  { name: "Zamir White", position: "RB", school: "Georgia", grade: 6.25 },
+  {
+    name: "Tyler Smith",
+    position: "OT",
+    school: "Tulsa",
+    grade: 6.25
+  },
+  {
+    name: "Zamir White",
+    position: "RB",
+    school: "Georgia",
+    grade: 6.25
+  },
   {
     name: "Channing Tindall",
     position: "LB",
     school: "Georgia",
     grade: 6.24,
   },
-  { name: "Darian Kinnard", position: "G", school: "Kentucky", grade: 6.24 },
+  {
+    name: "Darian Kinnard",
+    position: "G",
+    school: "Kentucky",
+    grade: 6.24
+  },
   {
     name: "Jeremy Ruckert",
     position: "TE",
@@ -230,7 +394,12 @@ const prospects = [
     school: "South Carolina",
     grade: 6.24,
   },
-  { name: "Roger McCreary", position: "CB", school: "Auburn", grade: 6.24 },
+  {
+    name: "Roger McCreary",
+    position: "CB",
+    school: "Auburn",
+    grade: 6.24
+  },
   {
     name: "DeMarvin Leal",
     position: "DT",
@@ -243,7 +412,12 @@ const prospects = [
     school: "Penn State",
     grade: 6.23,
   },
-  { name: "Lewis Cine", position: "SAF", school: "Georgia", grade: 6.23 },
+  {
+    name: "Lewis Cine",
+    position: "SAF",
+    school: "Georgia",
+    grade: 6.23
+  },
   {
     name: "Luke Goedeke",
     position: "G",
@@ -268,7 +442,12 @@ const prospects = [
     school: "Oklahoma",
     grade: 6.22,
   },
-  { name: "John Metchie", position: "WR", school: "Alabama", grade: 6.22 },
+  {
+    name: "John Metchie",
+    position: "WR",
+    school: "Alabama",
+    grade: 6.22
+  },
   {
     name: "Joshua Williams",
     position: "CB",
@@ -281,22 +460,42 @@ const prospects = [
     school: "Kentucky",
     grade: 6.22,
   },
-  { name: "Brian Robinson", position: "RB", school: "Alabama", grade: 6.21 },
+  {
+    name: "Brian Robinson",
+    position: "RB",
+    school: "Alabama",
+    grade: 6.21
+  },
   {
     name: "Christian Harris",
     position: "LB",
     school: "Alabama",
     grade: 6.21,
   },
-  { name: "Logan Hall", position: "DE", school: "Houston", grade: 6.21 },
-  { name: "Luke Fortner", position: "C", school: "Kentucky", grade: 6.21 },
+  {
+    name: "Logan Hall",
+    position: "DE",
+    school: "Houston",
+    grade: 6.21
+  },
+  {
+    name: "Luke Fortner",
+    position: "C",
+    school: "Kentucky",
+    grade: 6.21
+  },
   {
     name: "Tré Turner",
     position: "WR",
     school: "Virginia Tech",
     grade: 6.21,
   },
-  { name: "George Pickens", position: "WR", school: "Georgia", grade: 6.2 },
+  {
+    name: "George Pickens",
+    position: "WR",
+    school: "Georgia",
+    grade: 6.2
+  },
   {
     name: "Isaiah Likely",
     position: "TE",
@@ -309,24 +508,54 @@ const prospects = [
     school: "Tennessee",
     grade: 6.2,
   },
-  { name: "Max Mitchell", position: "OT", school: "Louisiana", grade: 6.2 },
-  { name: "Neil Farrell", position: "DT", school: "LSU", grade: 6.2 },
+  {
+    name: "Max Mitchell",
+    position: "OT",
+    school: "Louisiana",
+    grade: 6.2
+  },
+  {
+    name: "Neil Farrell",
+    position: "DT",
+    school: "LSU",
+    grade: 6.2
+  },
   {
     name: "Thayer Munford Jr.",
     position: "OT",
     school: "Ohio State",
     grade: 6.2,
   },
-  { name: "Zach Carter", position: "DE", school: "Florida", grade: 6.2 },
+  {
+    name: "Zach Carter",
+    position: "DE",
+    school: "Florida",
+    grade: 6.2
+  },
   {
     name: "Cameron Thomas",
     position: "DE",
     school: "San Diego State",
     grade: 6.19,
   },
-  { name: "Carson Strong", position: "QB", school: "Nevada", grade: 6.19 },
-  { name: "Greg Dulcich", position: "TE", school: "UCLA", grade: 6.19 },
-  { name: "Jamaree Salyer", position: "G", school: "Georgia", grade: 6.19 },
+  {
+    name: "Carson Strong",
+    position: "QB",
+    school: "Nevada",
+    grade: 6.19
+  },
+  {
+    name: "Greg Dulcich",
+    position: "TE",
+    school: "UCLA",
+    grade: 6.19
+  },
+  {
+    name: "Jamaree Salyer",
+    position: "G",
+    school: "Georgia",
+    grade: 6.19
+  },
   {
     name: "Perrion Winfrey",
     position: "DT",
@@ -339,8 +568,18 @@ const prospects = [
     school: "Boise State",
     grade: 6.18,
   },
-  { name: "Sean Rhyan", position: "G", school: "UCLA", grade: 6.18 },
-  { name: "Abram Smith", position: "RB", school: "Baylor", grade: 6.17 },
+  {
+    name: "Sean Rhyan",
+    position: "G",
+    school: "UCLA",
+    grade: 6.18
+  },
+  {
+    name: "Abram Smith",
+    position: "RB",
+    school: "Baylor",
+    grade: 6.17
+  },
   {
     name: "Alontae Taylor",
     position: "CB",
@@ -353,7 +592,12 @@ const prospects = [
     school: "Texas A&M",
     grade: 6.17,
   },
-  { name: "Dylan Parham", position: "G", school: "Memphis", grade: 6.16 },
+  {
+    name: "Dylan Parham",
+    position: "G",
+    school: "Memphis",
+    grade: 6.16
+  },
   {
     name: "Sam Howell",
     position: "QB",
@@ -384,14 +628,24 @@ const prospects = [
     school: "Georgia Tech",
     grade: 6.15,
   },
-  { name: "Leo Chenal", position: "LB", school: "Wisconsin", grade: 6.15 },
+  {
+    name: "Leo Chenal",
+    position: "LB",
+    school: "Wisconsin",
+    grade: 6.15
+  },
   {
     name: "Christopher Allen",
     position: "EDGE",
     school: "Alabama",
     grade: 6.14,
   },
-  { name: "Tyler Badie", position: "RB", school: "Missouri", grade: 6.14 },
+  {
+    name: "Tyler Badie",
+    position: "RB",
+    school: "Missouri",
+    grade: 6.14
+  },
   {
     name: "Aaron Hansford",
     position: "LB",
@@ -410,25 +664,60 @@ const prospects = [
     school: "Cincinnati",
     grade: 6.13,
   },
-  { name: "Tycen Anderson", position: "SAF", school: "Toledo", grade: 6.13 },
+  {
+    name: "Tycen Anderson",
+    position: "SAF",
+    school: "Toledo",
+    grade: 6.13
+  },
   {
     name: "Verone McKinley III",
     position: "SAF",
     school: "Oregon",
     grade: 6.13,
   },
-  { name: "Jalen Pitre", position: "SAF", school: "Baylor", grade: 6.12 },
-  { name: "Tyler Allgeier", position: "RB", school: "BYU", grade: 6.12 },
-  { name: "JoJo Domann", position: "LB", school: "Nebraska", grade: 6.11 },
-  { name: "Cade Mays", position: "G", school: "Tennessee", grade: 6.1 },
-  { name: "Chasen Hines", position: "C", school: "LSU", grade: 6.1 },
+  {
+    name: "Jalen Pitre",
+    position: "SAF",
+    school: "Baylor",
+    grade: 6.12
+  },
+  {
+    name: "Tyler Allgeier",
+    position: "RB",
+    school: "BYU",
+    grade: 6.12
+  },
+  {
+    name: "JoJo Domann",
+    position: "LB",
+    school: "Nebraska",
+    grade: 6.11
+  },
+  {
+    name: "Cade Mays",
+    position: "G",
+    school: "Tennessee",
+    grade: 6.1
+  },
+  {
+    name: "Chasen Hines",
+    position: "C",
+    school: "LSU",
+    grade: 6.1
+  },
   {
     name: "Jalen Wydermyer",
     position: "TE",
     school: "Texas A&M",
     grade: 6.1,
   },
-  { name: "Kerby Joseph", position: "SAF", school: "Illinois", grade: 6.1 },
+  {
+    name: "Kerby Joseph",
+    position: "SAF",
+    school: "Illinois",
+    grade: 6.1
+  },
   {
     name: "Kyren Williams",
     position: "RB",
@@ -441,8 +730,18 @@ const prospects = [
     school: "Mississippi",
     grade: 6.0,
   },
-  { name: "Drake Jackson", position: "EDGE", school: "USC", grade: 6.0 },
-  { name: "James Cook", position: "RB", school: "Georgia", grade: 6.0 },
+  {
+    name: "Drake Jackson",
+    position: "EDGE",
+    school: "USC",
+    grade: 6.0
+  },
+  {
+    name: "James Cook",
+    position: "RB",
+    school: "Georgia",
+    grade: 6.0
+  },
   {
     name: "Tariq Woolen",
     position: "CB",
@@ -455,31 +754,66 @@ const prospects = [
     school: "Sam Houston State",
     grade: 6.0,
   },
-  { name: "Alec Pierce", position: "WR", school: "Cincinnati", grade: 5.99 },
-  { name: "Jordan Stout", position: "P", school: "Penn State", grade: 5.99 },
-  { name: "Justyn Ross", position: "WR", school: "Clemson", grade: 5.99 },
+  {
+    name: "Alec Pierce",
+    position: "WR",
+    school: "Cincinnati",
+    grade: 5.99
+  },
+  {
+    name: "Jordan Stout",
+    position: "P",
+    school: "Penn State",
+    grade: 5.99
+  },
+  {
+    name: "Justyn Ross",
+    position: "WR",
+    school: "Clemson",
+    grade: 5.99
+  },
   {
     name: "Pierre Strong",
     position: "RB",
     school: "South Dakota State",
     grade: 5.99,
   },
-  { name: "Nick Zakelj", position: "OT", school: "Fordham", grade: 5.98 },
+  {
+    name: "Nick Zakelj",
+    position: "OT",
+    school: "Fordham",
+    grade: 5.98
+  },
   {
     name: "Braxton Jones",
     position: "OT",
     school: "Southern Utah State",
     grade: 5.97,
   },
-  { name: "Brian Asamoah", position: "LB", school: "Oklahoma", grade: 5.97 },
-  { name: "Jerome Ford", position: "RB", school: "Cincinnati", grade: 5.97 },
+  {
+    name: "Brian Asamoah",
+    position: "LB",
+    school: "Oklahoma",
+    grade: 5.97
+  },
+  {
+    name: "Jerome Ford",
+    position: "RB",
+    school: "Cincinnati",
+    grade: 5.97
+  },
   {
     name: "Cam Taylor-Britt",
     position: "CB",
     school: "Nebraska",
     grade: 5.96,
   },
-  { name: "Chad Muma", position: "LB", school: "Wyoming", grade: 5.96 },
+  {
+    name: "Chad Muma",
+    position: "LB",
+    school: "Wyoming",
+    grade: 5.96
+  },
   {
     name: "Derion Kendrick",
     position: "CB",
@@ -492,7 +826,12 @@ const prospects = [
     school: "Western Michigan",
     grade: 5.96,
   },
-  { name: "Yusuf Corker", position: "SAF", school: "Kentucky", grade: 5.96 },
+  {
+    name: "Yusuf Corker",
+    position: "SAF",
+    school: "Kentucky",
+    grade: 5.96
+  },
   {
     name: "Daniel Bellinger",
     position: "TE",
@@ -517,15 +856,30 @@ const prospects = [
     school: "Texas-San Antonio",
     grade: 5.95,
   },
-  { name: "Jeremiah Hall", position: "TE", school: "Oklahoma", grade: 5.94 },
+  {
+    name: "Jeremiah Hall",
+    position: "TE",
+    school: "Oklahoma",
+    grade: 5.94
+  },
   {
     name: "Tariq Castro-Fields",
     position: "CB",
     school: "Penn State",
     grade: 5.94,
   },
-  { name: "Terrel Bernard", position: "LB", school: "Baylor", grade: 5.94 },
-  { name: "Chase Allen", position: "TE", school: "Iowa State", grade: 5.93 },
+  {
+    name: "Terrel Bernard",
+    position: "LB",
+    school: "Baylor",
+    grade: 5.94
+  },
+  {
+    name: "Chase Allen",
+    position: "TE",
+    school: "Iowa State",
+    grade: 5.93
+  },
   {
     name: "Esezi Otomewo",
     position: "DE",
@@ -538,13 +892,48 @@ const prospects = [
     school: "Notre Dame",
     grade: 5.93,
   },
-  { name: "Velus Jones", position: "WR", school: "Tennessee", grade: 5.93 },
-  { name: "Danny Gray", position: "WR", school: "SMU", grade: 5.92 },
-  { name: "Jayden Peevy", position: "DT", school: "Texas A&M", grade: 5.92 },
-  { name: "Marquis Hayes", position: "G", school: "Oklahoma", grade: 5.92 },
-  { name: "Ed Ingram", position: "G", school: "LSU", grade: 5.9 },
-  { name: "Grant Calcaterra", position: "TE", school: "SMU", grade: 5.9 },
-  { name: "Noah Elliss", position: "DT", school: "Idaho", grade: 5.9 },
+  {
+    name: "Velus Jones",
+    position: "WR",
+    school: "Tennessee",
+    grade: 5.93
+  },
+  {
+    name: "Danny Gray",
+    position: "WR",
+    school: "SMU",
+    grade: 5.92
+  },
+  {
+    name: "Jayden Peevy",
+    position: "DT",
+    school: "Texas A&M",
+    grade: 5.92
+  },
+  {
+    name: "Marquis Hayes",
+    position: "G",
+    school: "Oklahoma",
+    grade: 5.92
+  },
+  {
+    name: "Ed Ingram",
+    position: "G",
+    school: "LSU",
+    grade: 5.9
+  },
+  {
+    name: "Grant Calcaterra",
+    position: "TE",
+    school: "SMU",
+    grade: 5.9
+  },
+  {
+    name: "Noah Elliss",
+    position: "DT",
+    school: "Idaho",
+    grade: 5.9
+  },
   {
     name: "Troy Andersen",
     position: "LB",
@@ -563,8 +952,18 @@ const prospects = [
     school: "Arizona State",
     grade: 5.89,
   },
-  { name: "Otito Ogbonnia", position: "DT", school: "UCLA", grade: 5.89 },
-  { name: "Bo Melton", position: "WR", school: "Rutgers", grade: 5.88 },
+  {
+    name: "Otito Ogbonnia",
+    position: "DT",
+    school: "UCLA",
+    grade: 5.89
+  },
+  {
+    name: "Bo Melton",
+    position: "WR",
+    school: "Rutgers",
+    grade: 5.88
+  },
   {
     name: "Hassan Haskins",
     position: "RB",
@@ -577,39 +976,84 @@ const prospects = [
     school: "Coastal Carolina",
     grade: 5.88,
   },
-  { name: "Mario Goodrich", position: "CB", school: "Clemson", grade: 5.88 },
+  {
+    name: "Mario Goodrich",
+    position: "CB",
+    school: "Clemson",
+    grade: 5.88
+  },
   {
     name: "Amaré Barno",
     position: "EDGE",
     school: "Virginia Tech",
     grade: 5.87,
   },
-  { name: "Thomas Booker", position: "DT", school: "Stanford", grade: 5.86 },
+  {
+    name: "Thomas Booker",
+    position: "DT",
+    school: "Stanford",
+    grade: 5.86
+  },
   {
     name: "Calvin Austin III",
     position: "WR",
     school: "Memphis",
     grade: 5.85,
   },
-  { name: "Jake Camarda", position: "P", school: "Georgia", grade: 5.85 },
-  { name: "Romeo Doubs", position: "WR", school: "Nevada", grade: 5.84 },
-  { name: "Cam Jurgens", position: "C", school: "Nebraska", grade: 5.83 },
+  {
+    name: "Jake Camarda",
+    position: "P",
+    school: "Georgia",
+    grade: 5.85
+  },
+  {
+    name: "Romeo Doubs",
+    position: "WR",
+    school: "Nevada",
+    grade: 5.84
+  },
+  {
+    name: "Cam Jurgens",
+    position: "C",
+    school: "Nebraska",
+    grade: 5.83
+  },
   {
     name: "D'vonte Price",
     position: "RB",
     school: "Florida International",
     grade: 5.83,
   },
-  { name: "Ja'Tyre Carter", position: "G", school: "Southern", grade: 5.83 },
-  { name: "Obinna Eze", position: "OT", school: "TCU", grade: 5.82 },
-  { name: "Micah McFadden", position: "LB", school: "Indiana", grade: 5.81 },
+  {
+    name: "Ja'Tyre Carter",
+    position: "G",
+    school: "Southern",
+    grade: 5.83
+  },
+  {
+    name: "Obinna Eze",
+    position: "OT",
+    school: "TCU",
+    grade: 5.82
+  },
+  {
+    name: "Micah McFadden",
+    position: "LB",
+    school: "Indiana",
+    grade: 5.81
+  },
   {
     name: "Damarri Mathis",
     position: "CB",
     school: "Pittsburgh",
     grade: 5.8,
   },
-  { name: "Jeremiah Moon", position: "LB", school: "Florida", grade: 5.68 },
+  {
+    name: "Jeremiah Moon",
+    position: "LB",
+    school: "Florida",
+    grade: 5.68
+  },
   {
     name: "Markquese Bell",
     position: "SAF",
@@ -640,7 +1084,12 @@ const prospects = [
     school: "Cincinnati",
     grade: 5.65,
   },
-  { name: "Chris Paul", position: "G", school: "Tulsa", grade: 5.64 },
+  {
+    name: "Chris Paul",
+    position: "G",
+    school: "Tulsa",
+    grade: 5.64
+  },
   {
     name: "D'Marco Jackson",
     position: "LB",
@@ -665,36 +1114,66 @@ const prospects = [
     school: "Penn State",
     grade: 5.6,
   },
-  { name: "Cal Adomitis", position: "LS", school: "Pittsburgh", grade: 5.6 },
+  {
+    name: "Cal Adomitis",
+    position: "LS",
+    school: "Pittsburgh",
+    grade: 5.6
+  },
   {
     name: "Jermaine Waller",
     position: "CB",
     school: "Virginia Tech",
     grade: 5.6,
   },
-  { name: "Leon O'Neal", position: "SAF", school: "Texas A&M", grade: 5.6 },
+  {
+    name: "Leon O'Neal",
+    position: "SAF",
+    school: "Texas A&M",
+    grade: 5.6
+  },
   {
     name: "Max Borghi",
     position: "RB",
     school: "Washington State",
     grade: 5.6,
   },
-  { name: "Slade Bolden", position: "WR", school: "Alabama", grade: 5.6 },
+  {
+    name: "Slade Bolden",
+    position: "WR",
+    school: "Alabama",
+    grade: 5.6
+  },
   {
     name: "Jordan Jackson",
     position: "DT",
     school: "Air Force",
     grade: 5.58,
   },
-  { name: "Brock Purdy", position: "QB", school: "Iowa State", grade: 5.57 },
+  {
+    name: "Brock Purdy",
+    position: "QB",
+    school: "Iowa State",
+    grade: 5.57
+  },
   {
     name: "Johnny Johnson III",
     position: "WR",
     school: "Oregon",
     grade: 5.56,
   },
-  { name: "Austin Deculus", position: "OT", school: "LSU", grade: 5.53 },
-  { name: "Tyler Goodson", position: "RB", school: "Iowa", grade: 5.52 },
+  {
+    name: "Austin Deculus",
+    position: "OT",
+    school: "LSU",
+    grade: 5.53
+  },
+  {
+    name: "Tyler Goodson",
+    position: "RB",
+    school: "Iowa",
+    grade: 5.52
+  },
 ];
 
 const prospectsHeadshots = [
