@@ -156,7 +156,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 document.addEventListener("dblclick", (event) => {
-  if (event.target.classList.contains("pick-final")) {
+  console.log(event.target, event.target.classList)
+  if (event.target.classList.contains("pick-final") || event.target.classList.contains("pick-name")) {
     event.target.innerHTML =
       '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
 

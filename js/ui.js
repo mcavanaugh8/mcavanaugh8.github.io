@@ -286,15 +286,46 @@ class UI {
         console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
       }
 
-      this.participantObjects.push(playerDraftObj);
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
-      this.addToLocalStorage(playerDraftObj, "participants");
     });
     console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.actualPicks.push(draftObj);
     this.addToLocalStorage(draftObj, "draft_results");
     // console.log(this.participantObjects, this.actualPicks);
   }
+
+  // createPlayerObjects() {
+  //   const players = document.querySelectorAll(".player-score");
+
+  //   players.forEach((player, index) => {
+  //     let playerDraftObj = {};
+  //     let pickName;
+
+  //     for (let i = 1; i < this.boardTable.rows.length; i++) {
+
+  //       if (
+  //         this.boardTable.rows[i].cells[index + 2].textContent.includes("/")
+  //       ) {
+  //         const picksArr =
+  //           this.boardTable.rows[i].cells[index + 2].textContent.split("/");
+  //         playerDraftObj[i] = {
+  //           team: intitialDraftOrder[i - 1],
+  //           player: picksArr[0],
+  //           altPlayer: picksArr[1],
+  //         };
+  //       } else {
+  //         playerDraftObj[i] = {
+  //           team: intitialDraftOrder[i - 1],
+  //           player: this.boardTable.rows[i].cells[index + 2].textContent,
+  //           altPlayer: "",
+  //         };
+  //       }
+  //     }
+
+  //     this.participantObjects.push(playerDraftObj[i]);
+  //   });
+
+  // }
 
   addAllRounds(playerPicks, playerName) {
     if (this.hasActivePlayer === false) {
@@ -405,8 +436,24 @@ class UI {
           return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
         });
 
+        let obj = {
+          name: name,
+          picks: []
+        };
+
+        picksArrClean.forEach((pick, index, arr) => {
+          obj.picks.push(pick);
+        });
+
+        scope.participantObjects.push(obj);
         scope.addAllRounds(picksArrClean, name);
+        console.log(scope.participantObjects);
       };
+
+      scope.participantObjects.forEach(item => {
+        this.addToLocalStorage(item, "participants");
+      });
+
     }
 
     /**
