@@ -40,9 +40,14 @@ class UI {
     });
   }
 
-  addToLocalStorage(person, name) {
+  addToLocalStorage(src, name) {
     const obj = this.getFromLocalStorage(name);
-    obj.push(person);
+    if (name === "participants") {
+      console.log('log1', obj);
+      console.log('log2', obj);
+    } else {
+      obj.push(src);
+    }
 
     localStorage.setItem(name, JSON.stringify(obj));
   }
@@ -60,7 +65,8 @@ class UI {
   }
 
   addFromLocalStorageToPage(obj) {
-
+    const participants = this.getFromLocalStorage("participants");
+    const draftPicks = this.getFromLocalStorage("draft-results");
   }
 
   formatTeamCells(teamCell) {
@@ -283,12 +289,12 @@ class UI {
             altPlayer: "",
           };
         }
-        console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
+        // console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
       }
 
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
     });
-    console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+    // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.actualPicks.push(draftObj);
     this.addToLocalStorage(draftObj, "draft_results");
     // console.log(this.participantObjects, this.actualPicks);
@@ -447,11 +453,11 @@ class UI {
 
         scope.participantObjects.push(obj);
         scope.addAllRounds(picksArrClean, name);
-        console.log(scope.participantObjects);
+        // console.log(scope.participantObjects);
       };
 
       scope.participantObjects.forEach(item => {
-        this.addToLocalStorage(item, "participants");
+        scope.addToLocalStorage(item, "participants");
       });
 
     }
