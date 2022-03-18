@@ -7,7 +7,8 @@
  */
 const submitButton = document.querySelector(".validate-pick");
 
-const intitialDraftOrder = [{
+const intitialDraftOrder = [
+  {
     team: "JACKSONVILLE",
     needs: [],
   },
@@ -92,7 +93,7 @@ const intitialDraftOrder = [{
     needs: [],
   },
   {
-    team: "LAS VEGAS",
+    team: "GREEN BAY",
     needs: [],
   },
   {
@@ -151,13 +152,17 @@ submitButton.addEventListener("click", function (event) {
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  const participants = ui.getFromLocalStorage("participants");
-  const draft = ui.getFromLocalStorage("draft-results");
+  // const participants = ui.getFromLocalStorage("participants");
+  // const draft = ui.getFromLocalStorage("draft-results");
+  // console.log(participants, draft);
 });
 
 document.addEventListener("dblclick", (event) => {
-  console.log(event.target, event.target.classList)
-  if (event.target.classList.contains("pick-final") || event.target.classList.contains("pick-name")) {
+  console.log(event.target, event.target.classList);
+  if (
+    event.target.classList.contains("pick-final") ||
+    event.target.classList.contains("pick-name")
+  ) {
     event.target.innerHTML =
       '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
 
@@ -212,21 +217,19 @@ document.addEventListener("click", (event) => {
   //   }
   // }
 
+  if (event.target.classList.contains("reset-draft")) {
+    // ui.hasActivePlayer = false;
+    ui.resetLocalStorage("participants");
+    ui.resetLocalStorage("draft-results");
+    // ui.addAllRounds();
+  }
+
   if (event.target.classList.contains("add-player-submit")) {
     ui.addPlayers(
       document.getElementById("modal-player-name").value,
       document.getElementById("playerPicks").files[0]
     );
     document.getElementById("modal-player-name").value = "";
+    // console.log(ui.getFromLocalStorage("participants"));
   }
 });
-
-// document.addEventListener("focus", (event) => {
-//   if (event.target.classList.includes("new-team")) {
-//     event.target.addEventListener("keypress", (event) => {
-//       if (event.key === "Enter") {
-//         console.log(event.target);
-//       }
-//     });
-//   }
-// });

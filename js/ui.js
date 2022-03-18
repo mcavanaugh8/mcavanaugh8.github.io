@@ -40,16 +40,9 @@ class UI {
     });
   }
 
-  addToLocalStorage(src, name) {
-    const obj = this.getFromLocalStorage(name);
-    if (name === "participants") {
-      console.log('log1', obj);
-      console.log('log2', obj);
-    } else {
-      obj.push(src);
-    }
-
-    localStorage.setItem(name, JSON.stringify(obj));
+  addToLocalStorage(name, src) {
+    // const obj = this.getFromLocalStorage(name);
+    localStorage.setItem(name, JSON.stringify(src));
   }
 
   getFromLocalStorage(name) {
@@ -60,13 +53,17 @@ class UI {
     } else {
       obj = JSON.parse(localStorage.getItem(name));
     }
-
+    console.log(obj, typeof obj);
     return obj;
   }
 
   addFromLocalStorageToPage(obj) {
     const participants = this.getFromLocalStorage("participants");
     const draftPicks = this.getFromLocalStorage("draft-results");
+  }
+
+  resetLocalStorage(name) {
+    localStorage.removeItem(name);
   }
 
   formatTeamCells(teamCell) {
@@ -245,14 +242,6 @@ class UI {
       for (let i = 1; i < this.boardTable.rows.length; i++) {
         let lastCell = this.boardTable.rows[i].cells.length - 1;
         if (index === 0) {
-          // const nodes = this.boardTable.rows[i].cells[lastCell].childNodes;
-
-          // [nodes].forEach(node => {
-          //   if (node.length > 1) {
-          //     console.log(node);
-          //   }
-          // });
-
           if (
             this.boardTable.rows[i].cells[lastCell].querySelector("div") !==
             null
@@ -292,46 +281,15 @@ class UI {
         // console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
       }
 
+      this.participantObjects.push(playerDraftObj);
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
     });
-    // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+
     this.actualPicks.push(draftObj);
-    this.addToLocalStorage(draftObj, "draft_results");
+    // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+    this.addToLocalStorage("draft-results", draftObj);
     // console.log(this.participantObjects, this.actualPicks);
   }
-
-  // createPlayerObjects() {
-  //   const players = document.querySelectorAll(".player-score");
-
-  //   players.forEach((player, index) => {
-  //     let playerDraftObj = {};
-  //     let pickName;
-
-  //     for (let i = 1; i < this.boardTable.rows.length; i++) {
-
-  //       if (
-  //         this.boardTable.rows[i].cells[index + 2].textContent.includes("/")
-  //       ) {
-  //         const picksArr =
-  //           this.boardTable.rows[i].cells[index + 2].textContent.split("/");
-  //         playerDraftObj[i] = {
-  //           team: intitialDraftOrder[i - 1],
-  //           player: picksArr[0],
-  //           altPlayer: picksArr[1],
-  //         };
-  //       } else {
-  //         playerDraftObj[i] = {
-  //           team: intitialDraftOrder[i - 1],
-  //           player: this.boardTable.rows[i].cells[index + 2].textContent,
-  //           altPlayer: "",
-  //         };
-  //       }
-  //     }
-
-  //     this.participantObjects.push(playerDraftObj[i]);
-  //   });
-
-  // }
 
   addAllRounds(playerPicks, playerName) {
     if (this.hasActivePlayer === false) {
@@ -435,16 +393,16 @@ class UI {
       reader.onload = function (event) {
         // console.log(event.target.result);
         const picksArr =
-          event.target.result.split("\r\n").length > 1 ?
-          event.target.result.split("\r\n") :
-          event.target.result.split("\n");
+          event.target.result.split("\r\n").length > 1
+            ? event.target.result.split("\r\n")
+            : event.target.result.split("\n");
         const picksArrClean = picksArr.map((item) => {
           return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
         });
 
         let obj = {
           name: name,
-          picks: []
+          picks: [],
         };
 
         picksArrClean.forEach((pick, index, arr) => {
@@ -452,21 +410,16 @@ class UI {
         });
 
         scope.participantObjects.push(obj);
+        scope.addToLocalStorage("participants", scope.participantObjects);
+        console.log(scope.getFromLocalStorage("participants"));
         scope.addAllRounds(picksArrClean, name);
-        // console.log(scope.participantObjects);
       };
-
-      scope.participantObjects.forEach(item => {
-        scope.addToLocalStorage(item, "participants");
-      });
-
     }
 
     /**
      * <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
      */
   }
-
 
   addPlayerCards() {
     for (let i = 1; i < this.boardTable.rows.length; i++) {
@@ -510,7 +463,7 @@ class UI {
       if (
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick") &&
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick")
-        .value !== ""
+          .value !== ""
       ) {
         const pick =
           this.boardTable.rows[i].cells[lastRow].querySelector(

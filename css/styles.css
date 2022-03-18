@@ -43,8 +43,13 @@ body {
   width: 100%;
 }
 
+.add-player {
+  margin-bottom: 10px;
+}
+
 .validate-pick:hover,
-.add-player:hover {
+.add-player:hover,
+.reset-draft:hover {
   color: #212529;
   background-color: #fff;
   font-weight: bolder;
