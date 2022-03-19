@@ -57,7 +57,7 @@ const intitialDraftOrder = [
     needs: [],
   },
   {
-    team: "CLEVELAND",
+    team: "HOUSTON",
     needs: [],
   },
   {
@@ -142,19 +142,25 @@ let realDraftOrder = [...intitialDraftOrder];
 
 const ui = new UI();
 
-ui.addImageLinksToPlayerObject();
-ui.addAllRounds();
+document.addEventListener("DOMContentLoaded", (event) => {
+  const participants = ui.getFromLocalStorage("participants");
+  const draftPicks = ui.getFromLocalStorage("draft-results");
+  ui.numberOfPlayers = Object.keys(participants).length;
+  ui.addImageLinksToPlayerObject();
+  ui.addAllRounds();
+
+  if (Object.keys(participants).length > 0) {
+    // console.log(ui.numberOfPlayers);
+    ui.hasActivePlayer = true;
+    ui.enableButton();
+    ui.addFromLocalStorageToPage();
+  }
+});
 
 submitButton.addEventListener("click", function (event) {
   const audio = new Audio("draft_sound.mp3");
   audio.play();
   ui.validatePicks();
-});
-
-document.addEventListener("DOMContentLoaded", (event) => {
-  // const participants = ui.getFromLocalStorage("participants");
-  // const draft = ui.getFromLocalStorage("draft-results");
-  // console.log(participants, draft);
 });
 
 document.addEventListener("dblclick", (event) => {
@@ -218,16 +224,20 @@ document.addEventListener("click", (event) => {
   // }
 
   if (event.target.classList.contains("reset-draft")) {
-    // ui.hasActivePlayer = false;
-    ui.resetLocalStorage("participants");
-    ui.resetLocalStorage("draft-results");
-    // ui.addAllRounds();
+    let result = confirm(
+      "Are you sure you wish to reset the draft? All draft progress will be lost."
+    );
+
+    if (result) {
+      ui.resetDraft();
+    }
   }
 
   if (event.target.classList.contains("add-player-submit")) {
     ui.addPlayers(
       document.getElementById("modal-player-name").value,
-      document.getElementById("playerPicks").files[0]
+      document.getElementById("playerPicks").files[0],
+      false
     );
     document.getElementById("modal-player-name").value = "";
     // console.log(ui.getFromLocalStorage("participants"));

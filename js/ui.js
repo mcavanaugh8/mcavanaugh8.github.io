@@ -40,8 +40,23 @@ class UI {
     });
   }
 
+  resetDraft() {
+    this.hasActivePlayer = false;
+    this.numberOfPlayers = 0;
+    this.resetLocalStorage("participants");
+    this.resetLocalStorage("draft-results");
+    this.addAllRounds();
+
+    let trTop = document.getElementById("scoreboard-table-row-top"),
+      trBottom = document.getElementById("scoreboard-table-row-score");
+
+    trTop.innerHTML = ``;
+    trBottom.innerHTML = ``;
+
+    this.disableButton();
+  }
+
   addToLocalStorage(name, src) {
-    // const obj = this.getFromLocalStorage(name);
     localStorage.setItem(name, JSON.stringify(src));
   }
 
@@ -53,13 +68,36 @@ class UI {
     } else {
       obj = JSON.parse(localStorage.getItem(name));
     }
-    console.log(obj, typeof obj);
+    // console.log(obj, typeof obj);
     return obj;
   }
 
-  addFromLocalStorageToPage(obj) {
+  addFromLocalStorageToPage() {
+    /**load each participant & their picks */
     const participants = this.getFromLocalStorage("participants");
     const draftPicks = this.getFromLocalStorage("draft-results");
+
+    participants.forEach((participant, index) => {
+      this.participantObjects.push(participant);
+      this.addPlayers(participant.name, false, true, participant.picks);
+      // console.log(participant.name, participant.picks);
+    });
+
+    /** load actual draft selections */
+
+    if (draftPicks !== null && Object.keys(draftPicks).length === 32) {
+      for (let i = 0; i < this.boardTable.rows.length; i++) {
+        if (draftPicks[i + 1] !== undefined) {
+          const currRow = this.boardTable.rows[i + 1];
+          const c = this.boardTable.rows[i + 1].cells.length - 1;
+          if (draftPicks[i + 1].player !== "") {
+            currRow.cells[c].textContent = draftPicks[i + 1].player;
+          }
+        }
+      }
+    }
+
+    this.addPlayerCards();
   }
 
   resetLocalStorage(name) {
@@ -281,7 +319,6 @@ class UI {
         // console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
       }
 
-      this.participantObjects.push(playerDraftObj);
       this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
     });
 
@@ -291,8 +328,104 @@ class UI {
     // console.log(this.participantObjects, this.actualPicks);
   }
 
+  addAllRoundsOnReload(playerPicks, playerName) {
+    const participants = this.getFromLocalStorage("participants");
+    const draftPicks = this.getFromLocalStorage("draft-results");
+
+    if (this.boardTable.querySelector("td") !== null) {
+      this.boardTable.innerHTML = `          
+          <thead>
+            <tr class="text-center">
+            </tr>
+        </thead>`;
+    }
+
+    for (let i = 0; i <= 31; i++) {
+      let newRow = this.boardTable.insertRow(i + 1);
+      if (i === 0) {
+        let th1 = document.createElement("th");
+        th1.scope = "col";
+        th1.innerHTML = "#";
+        this.boardTable.rows[0].appendChild(th1);
+
+        let th2 = document.createElement("th");
+        th2.scope = "col";
+        th2.innerHTML = "Team";
+        this.boardTable.rows[0].appendChild(th2);
+
+        let th3 = document.createElement("th");
+        th3.scope = "col";
+        th3.innerHTML = "Actual";
+        this.boardTable.rows[0].appendChild(th3);
+      }
+
+      for (let j = 0; j < 3; j++) {
+        let newCell = newRow.insertCell();
+        newCell.classList.add("text-center");
+        switch (j) {
+          case 0:
+            break;
+          case 1:
+            newCell.textContent = intitialDraftOrder[i].team;
+            newCell.classList.add("team");
+            newCell.classList.add("text-center");
+            this.formatTeamCells(newCell);
+            break;
+          // case 3:
+          //   newCell.innerHTML =
+          //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+          //   const pickText = newCell.querySelector("input");
+          //   pickText.classList.add("actual-pick");
+        }
+      }
+
+      newRow.cells[0].textContent = i + 1;
+    }
+
+    participants.forEach((participant, index) => {
+      // console.log(
+      //   `${index}: ${participant.name} | Number of Players: ${this.numberOfPlayers}`
+      // );
+      for (let i = 0; i < this.boardTable.rows.length; i++) {
+        let currRow = this.boardTable.rows[i];
+        if (i === 0) {
+          let th = document.createElement("th");
+          th.scope = "col";
+          th.innerHTML = participant.name;
+          currRow.insertBefore(
+            th,
+            currRow.children[currRow.children.length - 1]
+          );
+        } else {
+          let newCell = currRow.insertCell(index + 2);
+          newCell.classList.add("text-center");
+          newCell.textContent = participant.picks[i - 1];
+        }
+      }
+    });
+
+    for (let i = 1; i < this.boardTable.rows.length; i++) {
+      let currRow = this.boardTable.rows[i];
+      let c = currRow.cells.length - 1;
+
+      currRow.cells[c].innerHTML =
+        '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+      const pickText = currRow.cells[c].querySelector("input");
+      pickText.classList.add("actual-pick");
+    }
+  }
+
   addAllRounds(playerPicks, playerName) {
+    /**Add different functionality for loading picks from local storage */
+
     if (this.hasActivePlayer === false) {
+      if (this.boardTable.querySelector("td") !== null) {
+        this.boardTable.innerHTML = `          
+          <thead>
+            <tr class="text-center">
+            </tr>
+        </thead>`;
+      }
       for (let i = 0; i <= 31; i++) {
         let newRow = this.boardTable.insertRow(i + 1);
         if (i === 0) {
@@ -355,6 +488,7 @@ class UI {
             currRow.children[currRow.children.length - 1]
           );
         } else {
+          console.log(this.numberOfPlayers, this.numberOfPlayers + 1);
           let newCell = currRow.insertCell(this.numberOfPlayers + 1);
           newCell.classList.add("text-center");
           newCell.textContent = playerPicks[i - 1];
@@ -363,12 +497,9 @@ class UI {
     }
   }
 
-  addPlayers(name, file) {
-    if (!file) {
-      alert("You must add a file containing your picks!");
-    } else {
+  addPlayers(name, file, onReload, participantPicks) {
+    if (onReload === true) {
       const scope = this;
-      this.numberOfPlayers++;
 
       if (this.hasActivePlayer === false) {
         this.hasActivePlayer = true;
@@ -388,32 +519,70 @@ class UI {
       trTop.appendChild(thTop);
       trBottom.appendChild(thBottom);
 
-      const reader = new FileReader();
-      reader.readAsText(file, "UTF-8");
-      reader.onload = function (event) {
-        // console.log(event.target.result);
-        const picksArr =
-          event.target.result.split("\r\n").length > 1
-            ? event.target.result.split("\r\n")
-            : event.target.result.split("\n");
-        const picksArrClean = picksArr.map((item) => {
-          return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
-        });
-
-        let obj = {
-          name: name,
-          picks: [],
-        };
-
-        picksArrClean.forEach((pick, index, arr) => {
-          obj.picks.push(pick);
-        });
-
-        scope.participantObjects.push(obj);
-        scope.addToLocalStorage("participants", scope.participantObjects);
-        console.log(scope.getFromLocalStorage("participants"));
-        scope.addAllRounds(picksArrClean, name);
+      let obj = {
+        name: name,
+        picks: [],
       };
+
+      participantPicks.forEach((pick, index, arr) => {
+        obj.picks.push(pick);
+      });
+
+      this.hasActivePlayer = true;
+      scope.addAllRoundsOnReload(participantPicks, name);
+    } else {
+      if (!file) {
+        alert("You must add a file containing your picks!");
+      } else {
+        const scope = this;
+        this.numberOfPlayers++;
+
+        if (this.hasActivePlayer === false) {
+          this.hasActivePlayer = true;
+          this.enableButton();
+        }
+
+        let trTop = document.getElementById("scoreboard-table-row-top"),
+          trBottom = document.getElementById("scoreboard-table-row-score");
+        let thTop = document.createElement("th"),
+          thBottom = document.createElement("th");
+
+        thTop.innerHTML = name;
+        thTop.scope = "col";
+        thBottom.innerHTML = "0";
+        thBottom.classList.add("player-score");
+
+        trTop.appendChild(thTop);
+        trBottom.appendChild(thBottom);
+
+        const reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = function (event) {
+          // console.log(event.target.result);
+          const picksArr =
+            event.target.result.split("\r\n").length > 1
+              ? event.target.result.split("\r\n")
+              : event.target.result.split("\n");
+          const picksArrClean = picksArr.map((item) => {
+            return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
+          });
+
+          let obj = {
+            name: name,
+            picks: [],
+          };
+
+          picksArrClean.forEach((pick, index, arr) => {
+            obj.picks.push(pick);
+          });
+
+          scope.participantObjects.push(obj);
+          scope.addToLocalStorage("participants", scope.participantObjects);
+          // console.log(scope.getFromLocalStorage("participants"));
+          // console.log(scope.participantObjects);
+          scope.addAllRounds(picksArrClean, name);
+        };
+      }
     }
 
     /**
