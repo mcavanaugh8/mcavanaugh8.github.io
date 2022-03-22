@@ -488,7 +488,7 @@ class UI {
             currRow.children[currRow.children.length - 1]
           );
         } else {
-          console.log(this.numberOfPlayers, this.numberOfPlayers + 1);
+          // console.log(this.numberOfPlayers, this.numberOfPlayers + 1);
           let newCell = currRow.insertCell(this.numberOfPlayers + 1);
           newCell.classList.add("text-center");
           newCell.textContent = playerPicks[i - 1];
@@ -698,15 +698,18 @@ class UI {
       }
 
       const altsTable = document.querySelector(".table-alternates");
-
-      for (let r = 1; r < altsTable.rows.length; r++) {
-        if (draftObj[j].player !== "") {
-          if (
-            draftObj[j].player ===
-            altsTable.rows[r].cells[altsIndex].textContent
-          ) {
-            altsTable.rows[r].cells[altsIndex].style.backgroundColor = "green";
-            score.textContent = Number(score.textContent) + 0.5;
+      // console.log(altsTable);
+      if (altsTable) {
+        for (let r = 1; r < altsTable.rows.length; r++) {
+          if (draftObj[j].player !== "") {
+            if (
+              draftObj[j].player ===
+              altsTable.rows[r].cells[altsIndex].textContent
+            ) {
+              altsTable.rows[r].cells[altsIndex].style.backgroundColor =
+                "green";
+              score.textContent = Number(score.textContent) + 0.5;
+            }
           }
         }
       }
@@ -714,7 +717,7 @@ class UI {
       if (draftObj[j].player !== "") {
         if (firstRoundersArr.includes(draftObj[j].player)) {
           score.textContent = Number(score.textContent) + 1;
-        } else if (altFirstRounders.includes(draftObj[j].player)) {
+        } else if (altsTable && altFirstRounders.includes(draftObj[j].player)) {
           score.textContent = Number(score.textContent) + 0.5;
         }
       }

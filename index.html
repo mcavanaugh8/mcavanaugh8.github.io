@@ -89,11 +89,30 @@
               ></button>
             </div>
             <div class="modal-body">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                perspiciatis harum, sed cumque tempora quo molestiae est quam
-                blanditiis laudantium.
-              </p>
+              <h3>How to Play</h5>
+              <h5>Getting Started</h5>
+              <ol>
+                <li>Add your name.</li>
+                <li>
+                  Add a *.txt file that contains your picks. The file should be
+                  very simply formatted: thirty-two lines, with each line
+                  containing the name of one player. The number of that line
+                  corresponds to the draft position that they will be taken
+                  (e.g., the name on line one of the plain text file is the
+                  player you believe will be selected at position 1, currently
+                  held by the Jacksonville Jaguards). Once you submit your name and selections, the draft table will be automatically populated.
+                </li>
+                <li>Add the actual selections as they happen! In the empty fields that say "Player Name," enter the name of the player selected at that draft position. For example, if Alabama OT Evan Neal is selected 1st overall, his name should be entered in that empty field.</li>
+                <li>Once a pick is made, hit the button that says "The Pick Is In..." and (hopefully) watch your score go up!</li>
+              </ol>
+              <h5>Scoring</h5>
+                <p>One point each is awarded for:
+                  <ul>
+                    <li>Correctly predicting that a player will be selected in the first round</li>
+                    <li>Correctly predicting that a player will be selected at a specific draft position.</li>
+                    <li>Correctly predicting that a player will be selected by a specific team.</li>
+                  </ul>
+                </p>
               <label for="modal-player-name" class="form-label">Name</label>
               <input
                 type="text"
@@ -140,13 +159,12 @@
           class="table table-striped table-dark table-bordered board-table"
         >
           <thead>
-            <tr class="text-center">
-            </tr>
+            <tr class="text-center"></tr>
           </thead>
         </table>
       </div>
 
-      <div class="container alternates">
+      <!-- <div class="container alternates">
             <table class="table table-dark table-bordered table-alternates text-center">
                 <thead>
                     <tr class="text-center">
@@ -184,7 +202,7 @@
                     <td class="andrew-alt">Elijah Moore</td>
                 </tr>
             </table>
-        </div>
+        </div> -->
     </main>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
