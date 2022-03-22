@@ -35,7 +35,8 @@ body {
 
 .draftboard,
 .scoreboard,
-#addPlayerButton {
+#addPlayerButton,
+.reset-draft {
   margin-top: 25px;
 }
 
@@ -43,8 +44,11 @@ body {
   width: 100%;
 }
 
-.add-player {
+.add-player,
+.reset-draft {
   margin-bottom: 10px;
+  height: 50px;
+  width: 250px;
 }
 
 .validate-pick:hover,

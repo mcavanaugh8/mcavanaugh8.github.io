@@ -7,8 +7,7 @@
  */
 const submitButton = document.querySelector(".validate-pick");
 
-const intitialDraftOrder = [
-  {
+const intitialDraftOrder = [{
     team: "JACKSONVILLE",
     needs: [],
   },
@@ -189,27 +188,34 @@ document.addEventListener("dblclick", (event) => {
   }
 });
 
-// document.addEventListener("keyup", (event) => {
-//   if (event.target.classList.contains("actual-pick")) {
-//     const list = document.getElementById("playerList");
-//     const li = list.getElementsByTagName("li");
+document.addEventListener("keyup", (event) => {
+  if (event.target.classList.contains("actual-pick")) {
+    //     const list = document.getElementById("playerList");
+    //     const li = list.getElementsByTagName("li");
 
-//     for (let i = 0; i < li.length; i++) {
-//       let searchVal = event.target.value;
-//       let playerVal = li[i].textContent;
-//       // console.log(searchVal, playerVal);
-//       if (playerVal.indexOf(searchVal) > -1 && searchVal !== "") {
-//         // console.log("match", searchVal, playerVal);
-//         list.classList.remove("hidden");
-//         li[i].classList.remove("hidden");
-//       } else if (searchVal === "") {
-//         list.classList.add("hidden");
-//       } else {
-//         li[i].classList.add("hidden");
-//       }
-//     }
-//   }
-// });
+    //     for (let i = 0; i < li.length; i++) {
+    // let searchVal = event.target.value;
+    // console.log(ui.getProspectNames());
+    //       let playerVal = li[i].textContent;
+    //       // console.log(searchVal, playerVal);
+    //       if (playerVal.indexOf(searchVal) > -1 && searchVal !== "") {
+    //         // console.log("match", searchVal, playerVal);
+    //         list.classList.remove("hidden");
+    //         li[i].classList.remove("hidden");
+    //       } else if (searchVal === "") {
+    //         list.classList.add("hidden");
+    //       } else {
+    //         li[i].classList.add("hidden");
+    //       }
+    //     }
+  }
+});
+
+document.addEventListener("focusin", (event) => {
+  if (event.target.classList.contains("actual-pick")) {
+
+  }
+});
 
 document.addEventListener("click", (event) => {
   // if (event.target.classList.contains("player-li")) {
