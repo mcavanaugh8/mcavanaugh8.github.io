@@ -409,7 +409,7 @@ class UI {
       let c = currRow.cells.length - 1;
 
       currRow.cells[c].innerHTML =
-        '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+        '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
       const pickText = currRow.cells[c].querySelector("input");
       pickText.classList.add("actual-pick");
     }
@@ -458,7 +458,7 @@ class UI {
               break;
             case 2:
               newCell.innerHTML =
-                '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+                '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
               const pickText = newCell.querySelector("input");
               pickText.classList.add("actual-pick");
               //   let str = "";
@@ -603,12 +603,12 @@ class UI {
                 <div class="row">
                 <div class="col-md-4 my-auto pick-name">${prospect.name}</div>
                 <div class="col-md-4 prospect-image">
-                    <img src=\"${prospect.imageLink}\" alt=\"\">
+                    <img class="prospect-info-image" src=\"${prospect.imageLink}\" alt=\"\">
                 </div>
                 <div class="col-md-4 my-auto pick-info">
-                    <p><b>Position:</b> ${prospect.position}</p>
-                    <p><b>School:</b> ${prospect.school}</p>
-                    <p><b>NFL.com Grade:</b> ${prospect.grade}</p>
+                    <p class="prospect-info-para"><b>Position:</b> ${prospect.position}</p>
+                    <p class="prospect-info-para"><b>School:</b> ${prospect.school}</p>
+                    <p class="prospect-info-para"><b>NFL.com Grade:</b> ${prospect.grade}</p>
                 </div>
                </div>
               </div>
@@ -739,5 +739,14 @@ class UI {
         }
       }
     }
+  }
+
+  createPlayerDataList() {
+    const players = this.getProspectNames();
+    let dataList = `
+    <datalist id="player-list">`;
+    players.forEach((player) => (dataList += `<option value="${player}">`));
+    dataList += `</datalist>`;
+    return dataList;
   }
 }

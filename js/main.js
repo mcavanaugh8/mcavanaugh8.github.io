@@ -7,7 +7,8 @@
  */
 const submitButton = document.querySelector(".validate-pick");
 
-const intitialDraftOrder = [{
+const intitialDraftOrder = [
+  {
     team: "JACKSONVILLE",
     needs: [],
   },
@@ -163,18 +164,33 @@ submitButton.addEventListener("click", function (event) {
 });
 
 document.addEventListener("dblclick", (event) => {
-  console.log(event.target, event.target.classList);
-  if (
-    event.target.classList.contains("pick-final") ||
-    event.target.classList.contains("pick-name")
-  ) {
-    event.target.innerHTML =
-      '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
-
-    event.target.classList.remove("pick-final");
-    const pickText = event.target.querySelector("input");
-    pickText.classList.add("actual-pick");
+  if (event.target.classList.contains("pick-name")) {
+    // console.log(event.target.parentNode.parentNode.parentNode);
+    let tgt = event.target.parentNode.parentNode.parentNode;
+    event.target.parentNode.parentNode.parentNode.innerHTML =
+      '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
+    tgt.querySelector("input").classList.add("actual-pick");
+  } else if (event.target.classList.contains("pick-final")) {
+    console.log(event.target.parentNode.parentNode.parentNode);
+  } else if (event.target.classList.contains("prospect-info-para")) {
+  } else if (event.target.classList.contains("pick-info")) {
+  } else if (event.target.classList.contains("pick-info-image")) {
   }
+
+  // if (
+  //   event.target.classList.contains("pick-final") ||
+  //   event.target.classList.contains("pick-name") ||
+  //   event.target.classList.contains("prospect-info-para") ||
+  //   event.target.classList.contains("pick-info") ||
+  //   event.target.classList.contains("pick-info-image")
+  // ) {
+  //   event.target.innerHTML =
+  //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+
+  //   event.target.classList.remove("pick-final");
+  //   const pickText = event.target.querySelector("input");
+  //   pickText.classList.add("actual-pick");
+  // }
 
   /**
    * add editing of team name  for trades
@@ -188,11 +204,21 @@ document.addEventListener("dblclick", (event) => {
   }
 });
 
+document.addEventListener("focusin", (event) => {
+  if (event.target.classList.contains("actual-pick")) {
+    if (
+      event.target.textContent === "" &&
+      event.target.parentNode.querySelector("datalist") === null
+    ) {
+      event.target.parentNode.innerHTML += ui.createPlayerDataList();
+    }
+  }
+});
+
 document.addEventListener("keyup", (event) => {
   if (event.target.classList.contains("actual-pick")) {
     //     const list = document.getElementById("playerList");
     //     const li = list.getElementsByTagName("li");
-
     //     for (let i = 0; i < li.length; i++) {
     // let searchVal = event.target.value;
     // console.log(ui.getProspectNames());
@@ -208,12 +234,6 @@ document.addEventListener("keyup", (event) => {
     //         li[i].classList.add("hidden");
     //       }
     //     }
-  }
-});
-
-document.addEventListener("focusin", (event) => {
-  if (event.target.classList.contains("actual-pick")) {
-
   }
 });
 
