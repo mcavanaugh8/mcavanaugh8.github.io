@@ -164,17 +164,37 @@ submitButton.addEventListener("click", function (event) {
 });
 
 document.addEventListener("dblclick", (event) => {
+  console.log(event.target);
   if (event.target.classList.contains("pick-name")) {
-    // console.log(event.target.parentNode.parentNode.parentNode);
     let tgt = event.target.parentNode.parentNode.parentNode;
-    event.target.parentNode.parentNode.parentNode.innerHTML =
+    tgt.innerHTML =
       '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
     tgt.querySelector("input").classList.add("actual-pick");
-  } else if (event.target.classList.contains("pick-final")) {
-    console.log(event.target.parentNode.parentNode.parentNode);
   } else if (event.target.classList.contains("prospect-info-para")) {
-  } else if (event.target.classList.contains("pick-info")) {
-  } else if (event.target.classList.contains("pick-info-image")) {
+    let tgt = event.target.parentNode.parentNode.parentNode.parentNode;
+    tgt.innerHTML =
+      '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
+    tgt.querySelector("input").classList.add("actual-pick");
+  } else if (event.target.classList.contains("pick-name")) {
+    let tgt = event.target.parentNode.parentNode.parentNode;
+    tgt.innerHTML =
+      '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
+    tgt.querySelector("input").classList.add("actual-pick");
+  } else if (event.target.classList.contains("player-card-container")) {
+    let tgt = event.target.parentNode;
+    tgt.innerHTML =
+      '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
+    tgt.querySelector("input").classList.add("actual-pick");
+  } else if (event.target.classList.contains("prospect-info-image")) {
+    let tgt = event.target.parentNode.parentNode.parentNode.parentNode;
+    tgt.innerHTML =
+      '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
+    tgt.querySelector("input").classList.add("actual-pick");
+  } else if (event.target.classList.contains("player-card-row")) {
+    let tgt = event.target.parentNode.parentNode;
+    tgt.innerHTML =
+      '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
+    tgt.querySelector("input").classList.add("actual-pick");
   }
 
   // if (

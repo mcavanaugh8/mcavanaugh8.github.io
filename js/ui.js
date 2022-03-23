@@ -43,6 +43,7 @@ class UI {
   resetDraft() {
     this.hasActivePlayer = false;
     this.numberOfPlayers = 0;
+    this.participantObjects = [];
     this.resetLocalStorage("participants");
     this.resetLocalStorage("draft-results");
     this.addAllRounds();
@@ -599,8 +600,8 @@ class UI {
         prospects.forEach((prospect, index) => {
           if (prospect.name == selection) {
             let popoutString = `
-              <div class=\"container\">
-                <div class="row">
+              <div class=\"container player-card-container\">
+                <div class="row player-card-row">
                 <div class="col-md-4 my-auto pick-name">${prospect.name}</div>
                 <div class="col-md-4 prospect-image">
                     <img class="prospect-info-image" src=\"${prospect.imageLink}\" alt=\"\">
