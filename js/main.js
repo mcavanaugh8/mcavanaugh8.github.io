@@ -7,8 +7,7 @@
  */
 const submitButton = document.querySelector(".validate-pick");
 
-const intitialDraftOrder = [
-  {
+const intitialDraftOrder = [{
     team: "JACKSONVILLE",
     needs: [],
   },
@@ -287,5 +286,12 @@ document.addEventListener("click", (event) => {
     );
     document.getElementById("modal-player-name").value = "";
     // console.log(ui.getFromLocalStorage("participants"));
+  }
+
+  if (event.target.classList.contains("submit-draft")) {
+    const resultsOverlay = document.getElementById("results-overlay");
+    const resultsPage = document.getElementById("results-page");
+    resultsOverlay.style.display = "block";
+    resultsPage.style.display = "block";
   }
 });

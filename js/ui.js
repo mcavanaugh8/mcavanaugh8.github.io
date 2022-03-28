@@ -55,6 +55,8 @@ class UI {
     trBottom.innerHTML = ``;
 
     this.disableButton();
+
+    document.getElementById("submitButton").remove();
   }
 
   addToLocalStorage(name, src) {
@@ -372,11 +374,11 @@ class UI {
             newCell.classList.add("text-center");
             this.formatTeamCells(newCell);
             break;
-          // case 3:
-          //   newCell.innerHTML =
-          //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
-          //   const pickText = newCell.querySelector("input");
-          //   pickText.classList.add("actual-pick");
+            // case 3:
+            //   newCell.innerHTML =
+            //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+            //   const pickText = newCell.querySelector("input");
+            //   pickText.classList.add("actual-pick");
         }
       }
 
@@ -561,9 +563,9 @@ class UI {
         reader.onload = function (event) {
           // console.log(event.target.result);
           const picksArr =
-            event.target.result.split("\r\n").length > 1
-              ? event.target.result.split("\r\n")
-              : event.target.result.split("\n");
+            event.target.result.split("\r\n").length > 1 ?
+            event.target.result.split("\r\n") :
+            event.target.result.split("\n");
           const picksArrClean = picksArr.map((item) => {
             return item.replace(/(^)(\s.+?)(\w)/g, "$1$3");
           });
@@ -571,6 +573,7 @@ class UI {
           let obj = {
             name: name,
             picks: [],
+            score: 0
           };
 
           picksArrClean.forEach((pick, index, arr) => {
@@ -633,7 +636,7 @@ class UI {
       if (
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick") &&
         this.boardTable.rows[i].cells[lastRow].querySelector(".actual-pick")
-          .value !== ""
+        .value !== ""
       ) {
         const pick =
           this.boardTable.rows[i].cells[lastRow].querySelector(
@@ -663,6 +666,8 @@ class UI {
   }
 
   calculatePoints(draftObj, personDraftObject, score, index, altsIndex) {
+    const draftPicks = this.getFromLocalStorage("draft-results");
+
     score.textContent = "0";
 
     for (var j in draftObj) {
@@ -738,6 +743,18 @@ class UI {
             }
           }
         }
+      }
+    }
+
+    if (Object.keys(draftPicks).length === 32) {
+      const topButtonsRow = document.getElementById("top-buttons").querySelector(".row");
+      if (topButtonsRow.querySelector(".submit-draft") === null) {
+        topButtonsRow.innerHTML += `
+        <div class="col mx-auto text-center">
+            <button type="button" id="submitDraft" class="btn btn-success btn-lg submit-draft">
+              Submit Draft
+            </button>
+        </div>`;
       }
     }
   }
