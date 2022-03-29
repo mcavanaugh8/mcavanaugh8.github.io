@@ -746,15 +746,24 @@ class UI {
       }
     }
 
-    if (Object.keys(draftPicks).length === 32) {
+    let numPicksCounter = 0;
+
+    for (let x in draftPicks) {
+      draftPicks[x].player !== '' ? numPicksCounter++ : false;
+    }
+
+    if (numPicksCounter === 1) {
       const topButtonsRow = document.getElementById("top-buttons").querySelector(".row");
       if (topButtonsRow.querySelector(".submit-draft") === null) {
         topButtonsRow.innerHTML += `
         <div class="col mx-auto text-center">
-            <button type="button" id="submitDraft" class="btn btn-success btn-lg submit-draft">
+            <button type="button" id="submitDraft" class="btn btn-success btn-lg submit-draft" data-bs-toggle="modal"
+            data-bs-target="#results-modal">
               Submit Draft
             </button>
         </div>`;
+
+        document.getElementById("results-modal-body").innerHTML += document.querySelector(".scoreboard").innerHTML;
       }
     }
   }
@@ -766,5 +775,32 @@ class UI {
     players.forEach((player) => (dataList += `<option value="${player}">`));
     dataList += `</datalist>`;
     return dataList;
+  }
+
+  shareResults() {
+    const data = "TEST";
+
+    fetch('results/results.json', {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      console.log('resolved', response)
+    }).catch(error => console.log('rejected', error));
+
+    // fetch('results/results.json').then((response) => {
+    //   if (response.status === 200) {
+    //     console.log('resolved', response);
+    //     return response.json();
+    //   } else {
+    //     console.log('ERROR:', response.statusText, response.status)
+    //   }
+    // }).then((data) => {
+    //   console.log(data);
+    // }).catch((error) => {
+    //   console.log('rejected', error);
+    // });
   }
 }

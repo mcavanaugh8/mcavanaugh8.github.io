@@ -120,7 +120,7 @@ const intitialDraftOrder = [{
     needs: [],
   },
   {
-    team: "MIAMI",
+    team: "KANSAS CITY",
     needs: [],
   },
   {
@@ -234,39 +234,7 @@ document.addEventListener("focusin", (event) => {
   }
 });
 
-document.addEventListener("keyup", (event) => {
-  if (event.target.classList.contains("actual-pick")) {
-    //     const list = document.getElementById("playerList");
-    //     const li = list.getElementsByTagName("li");
-    //     for (let i = 0; i < li.length; i++) {
-    // let searchVal = event.target.value;
-    // console.log(ui.getProspectNames());
-    //       let playerVal = li[i].textContent;
-    //       // console.log(searchVal, playerVal);
-    //       if (playerVal.indexOf(searchVal) > -1 && searchVal !== "") {
-    //         // console.log("match", searchVal, playerVal);
-    //         list.classList.remove("hidden");
-    //         li[i].classList.remove("hidden");
-    //       } else if (searchVal === "") {
-    //         list.classList.add("hidden");
-    //       } else {
-    //         li[i].classList.add("hidden");
-    //       }
-    //     }
-  }
-});
-
 document.addEventListener("click", (event) => {
-  // if (event.target.classList.contains("player-li")) {
-  //   const childNodes = event.target.parentNode.parentNode.children;
-  //   console.log(event.target, event.target.classList);
-  //   for (let i = 0; i < childNodes.length; i++) {
-  //     if (childNodes[i].tagName === "INPUT") {
-  //       const form = childNodes[i];
-  //       form.value = event.target.textContent;
-  //     }
-  //   }
-  // }
 
   if (event.target.classList.contains("reset-draft")) {
     let result = confirm(
@@ -288,10 +256,8 @@ document.addEventListener("click", (event) => {
     // console.log(ui.getFromLocalStorage("participants"));
   }
 
-  if (event.target.classList.contains("submit-draft")) {
-    const resultsOverlay = document.getElementById("results-overlay");
-    const resultsPage = document.getElementById("results-page");
-    resultsOverlay.style.display = "block";
-    resultsPage.style.display = "block";
+  if (event.target.classList.contains("results-share-results")) {
+    event.preventDefault();
+    ui.shareResults();
   }
 });

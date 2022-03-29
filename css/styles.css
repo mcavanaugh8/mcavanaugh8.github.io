@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+#results-canvas {
+  width: 100%;
+}
+
 #results-overlay {
   position:fixed;
   top:0;
@@ -10,7 +14,7 @@
   z-index:5;
   width:100%;
   height:100%;
-  /* display:none; */
+  display:none;
 }
 
 #results-page {
@@ -20,14 +24,35 @@
   position:relative;
   z-index:10;
   margin-top: 100px;
-  /* display:none; */
+  display:none;
   background-color: white;
   border:5px solid #333;
   border-radius:10px;
   padding: 25px;
   text-align:center;
+  overflow-y: scroll;
 
 }
+/* #results-page { */
+  /* position: fixed; */
+  /* Sit on top of the page content */
+  /* display: none; */
+  /* Hidden by default */
+  /* width: 100%; */
+  /* Full width (cover the whole page) */
+  /* height: 100%; */
+  /* Full height (cover the whole page) */
+  /* top: 0; */
+  /* left: 0; */
+  /* right: 0; */
+  /* bottom: 0; */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* Black background with opacity */
+  /* z-index: 2; */
+  /* Specify a stack order in case you're using a different order for other elements */
+  /* cursor: pointer; */
+  /* Add a pointer on hover */
+/* } */
 
 #results-page::before {
     content: "";
@@ -41,6 +66,7 @@
     bottom: 0px;
     left: 0px;
     opacity: 0.1;
+    /* display: none; */
 }
 
 
