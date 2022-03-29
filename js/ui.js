@@ -778,29 +778,6 @@ class UI {
   }
 
   shareResults() {
-    const data = "TEST";
 
-    fetch('results/results.json', {
-      method: 'POST',
-      body: data,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      console.log('resolved', response)
-    }).catch(error => console.log('rejected', error));
-
-    // fetch('results/results.json').then((response) => {
-    //   if (response.status === 200) {
-    //     console.log('resolved', response);
-    //     return response.json();
-    //   } else {
-    //     console.log('ERROR:', response.statusText, response.status)
-    //   }
-    // }).then((data) => {
-    //   console.log(data);
-    // }).catch((error) => {
-    //   console.log('rejected', error);
-    // });
   }
 }
