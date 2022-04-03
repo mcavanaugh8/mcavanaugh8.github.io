@@ -1,13 +1,9 @@
-const express = require('express');
-const fs = require('fs');
-const app = express();
+    const express = require('express');
+    const app = express();
 
-// app.use(express.json());
-// app.use(express.urlencoded({
-//     extended: false
-// }));
+    app.get('/receive', function (req, res) {
+        //handle your request here.
+        console.log(req, res);
+    });
 
-// app.get('/', (req, res) => {
-//     console.log(req.body);
-//     res.status(201).send('TEST');
-// });
+    app.listen(3000);

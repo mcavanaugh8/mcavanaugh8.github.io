@@ -777,7 +777,4 @@ class UI {
     return dataList;
   }
 
-  shareResults() {
-
-  }
 }

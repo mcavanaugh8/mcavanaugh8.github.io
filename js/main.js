@@ -257,7 +257,6 @@ document.addEventListener("click", (event) => {
   }
 
   if (event.target.classList.contains("results-share-results")) {
-    event.preventDefault();
-    ui.shareResults();
+
   }
 });
