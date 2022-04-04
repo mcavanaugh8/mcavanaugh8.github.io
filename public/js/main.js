@@ -164,7 +164,7 @@ submitButton.addEventListener('click', function (event) {
 });
 
 document.addEventListener('dblclick', (event) => {
-  console.log(event.target);
+  // console.log(event.target);
   if (event.target.classList.contains('pick-name')) {
     let tgt = event.target.parentNode.parentNode.parentNode;
     tgt.innerHTML =
@@ -267,7 +267,7 @@ document.addEventListener('click', (event) => {
       })
         .then((response) => response.json())
         .then((item) => {
-          console.log(item);
+          // console.log(item);
           return item;
         });
     });
