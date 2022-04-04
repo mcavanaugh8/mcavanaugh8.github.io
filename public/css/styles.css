@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+#results-canvas {
+  width: 100%;
+}
+
+#results-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#results-page {
+  height: 700px;
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  margin-top: 100px;
+  display: none;
+  background-color: white;
+  border: 5px solid #333;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  overflow-y: scroll;
+}
+/* #results-page { */
+/* position: fixed; */
+/* Sit on top of the page content */
+/* display: none; */
+/* Hidden by default */
+/* width: 100%; */
+/* Full width (cover the whole page) */
+/* height: 100%; */
+/* Full height (cover the whole page) */
+/* top: 0; */
+/* left: 0; */
+/* right: 0; */
+/* bottom: 0; */
+/* background-color: rgba(0, 0, 0, 0.5); */
+/* Black background with opacity */
+/* z-index: 2; */
+/* Specify a stack order in case you're using a different order for other elements */
+/* cursor: pointer; */
+/* Add a pointer on hover */
+/* } */
+
+#results-page::before {
+  content: '';
+  background-image: url('/img/logo1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.1;
+  /* display: none; */
+}
+
+.results-page-head {
+  text-align: center;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.prospect-image img {
+  width: 90%;
+}
+
+.pick-name,
+.pick-info {
+  font-size: 1.25rem;
+}
+
+.page-head {
+  width: 100%;
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  height: 75px;
+  line-height: 75px;
+  vertical-align: middle;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.header-col {
+  background-color: #333;
+  color: #fff;
+}
+
+.draftboard,
+.scoreboard,
+#addPlayerButton,
+.reset-draft,
+.submit-draft {
+  margin-top: 25px;
+}
+
+.validate-pick {
+  width: 100%;
+}
+
+.add-player,
+.reset-draft,
+.submit-draft {
+  margin-bottom: 10px;
+  height: 50px;
+  width: 250px;
+}
+
+.validate-pick:hover,
+.add-player:hover,
+.reset-draft:hover {
+  color: #212529;
+  background-color: #fff;
+  font-weight: bolder;
+  border: 2px solid #212529;
+}
+
+.submit-draft:hover {
+  color: #198754;
+  background-color: white;
+  font-weight: bolder;
+  border: 2px solid #198754;
+}
+
+.team,
+.draftboard td {
+  vertical-align: middle;
+}
+
+.alternates-names {
+  font-weight: bolder;
+}
+
+#playerList {
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 12px 12px 12px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+#playerList li {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#playerList li {
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+}
+
+#playerList li:hover:not(.header) {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
