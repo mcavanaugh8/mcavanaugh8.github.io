@@ -755,7 +755,7 @@ class UI {
       draftPicks[x].player !== '' ? numPicksCounter++ : false;
     }
 
-    if (numPicksCounter > 0) {
+    if (numPicksCounter === 32) {
       const topButtonsRow = document
         .getElementById('top-buttons')
         .querySelector('.row');
