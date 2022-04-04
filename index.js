@@ -16,7 +16,8 @@ mongoose
   .catch((err) => console.log('ERR: ' + err));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Listening at PORT ${PORT}`));
+
+// app.listen(PORT, () => console.log(`Listening at PORT ${PORT}`));
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
 
