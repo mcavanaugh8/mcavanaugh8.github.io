@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 
@@ -18,6 +19,10 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening at PORT ${PORT}`));
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
+
+app.get('/', (req, res) => {
+  res.sendFile('./public/index.html', { root: __dirname });
+});
 
 app.post('/user-results', (req, res) => {
   console.log('Request received.');
