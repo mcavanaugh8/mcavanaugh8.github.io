@@ -7,8 +7,7 @@
  */
 const submitButton = document.querySelector('.validate-pick');
 
-const intitialDraftOrder = [
-  {
+const intitialDraftOrder = [{
     team: 'JACKSONVILLE',
     needs: [],
   },
@@ -69,7 +68,7 @@ const intitialDraftOrder = [
     needs: [],
   },
   {
-    team: 'PHILADELPHIA',
+    team: 'NEW ORLEANS',
     needs: [],
   },
   {
@@ -77,11 +76,11 @@ const intitialDraftOrder = [
     needs: [],
   },
   {
-    team: 'NEW ORLEANS',
+    team: 'PHILADELPHIA',
     needs: [],
   },
   {
-    team: 'PHILADELPHIA',
+    team: 'NEW ORLEANS',
     needs: [],
   },
   {
@@ -261,10 +260,12 @@ document.addEventListener('click', (event) => {
     const data = ui.participantObjects;
     data.forEach((item, index, arr) => {
       fetch('/user-results', {
-        method: 'POST',
-        body: JSON.stringify(item),
-        headers: { 'Content-Type': 'application/json' },
-      })
+          method: 'POST',
+          body: JSON.stringify(item),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
         .then((response) => response.json())
         .then((item) => {
           // console.log(item);
