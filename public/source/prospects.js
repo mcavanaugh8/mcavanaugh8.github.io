@@ -59,7 +59,7 @@ const prospects = [{
     grade: 6.5
   },
   {
-    name: "Derek Stingley Jr.",
+    name: "Derek Stingley",
     position: "CB",
     school: "LSU",
     grade: 6.5
@@ -197,7 +197,7 @@ const prospects = [{
     grade: 6.35
   },
   {
-    name: "Kenneth Walker III",
+    name: "Kenneth Walker",
     position: "RB",
     school: "Michigan State",
     grade: 6.35,
@@ -521,7 +521,7 @@ const prospects = [{
     grade: 6.2
   },
   {
-    name: "Thayer Munford Jr.",
+    name: "Thayer Munford",
     position: "OT",
     school: "Ohio State",
     grade: 6.2,
@@ -671,7 +671,7 @@ const prospects = [{
     grade: 6.13
   },
   {
-    name: "Verone McKinley III",
+    name: "Verone McKinley",
     position: "SAF",
     school: "Oregon",
     grade: 6.13,
@@ -887,7 +887,7 @@ const prospects = [{
     grade: 5.93,
   },
   {
-    name: "Kevin Austin Jr.",
+    name: "Kevin Austin",
     position: "WR",
     school: "Notre Dame",
     grade: 5.93,
@@ -941,7 +941,7 @@ const prospects = [{
     grade: 5.9,
   },
   {
-    name: "Derrick Deese Jr.",
+    name: "Derrick Deese",
     position: "TE",
     school: "San Jose State",
     grade: 5.89,
@@ -995,7 +995,7 @@ const prospects = [{
     grade: 5.86
   },
   {
-    name: "Calvin Austin III",
+    name: "Calvin Austin",
     position: "WR",
     school: "Memphis",
     grade: 5.85,
@@ -1157,7 +1157,7 @@ const prospects = [{
     grade: 5.57
   },
   {
-    name: "Johnny Johnson III",
+    name: "Johnny Johnson",
     position: "WR",
     school: "Oregon",
     grade: 5.56,
@@ -1374,3 +1374,5603 @@ const prospectsHeadshots = [
   "https://static.www.nfl.com/image/private/f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/league/god-combine-headshots/2022/eb29f56e-0204-44a6-9e0c-126d72e8664d",
   "https://static.www.nfl.com/image/private/f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/league/god-combine-headshots/2022/40d17455-9987-4ed4-b69b-404d14db0bba",
 ];
+
+const prospectsRAS = [{
+  name: "Jelani Woods",
+  score: "10"
+}, {
+  name: "Zyon McCollum",
+  score: "10"
+}, {
+  name: "Jordan Davis",
+  score: "10"
+}, {
+  name: "Troy Andersen",
+  score: "10"
+}, {
+  name: "Leo Chenal",
+  score: "9.99"
+}, {
+  name: "Travon Walker",
+  score: "9.99"
+}, {
+  name: "Brandon Smith",
+  score: "9.97"
+}, {
+  name: "Trevor Penning",
+  score: "9.96"
+}, {
+  name: "Breece Hall",
+  score: "9.96"
+}, {
+  name: "Christian Watson",
+  score: "9.96"
+}, {
+  name: "Matt Waletzko",
+  score: "9.95"
+}, {
+  name: "Cole Strange",
+  score: "9.95"
+}, {
+  name: "Cameron Jurgens",
+  score: "9.94"
+}, {
+  name: "Kevin Austin",
+  score: "9.94"
+}, {
+  name: "Boye Mafe",
+  score: "9.92"
+}, {
+  name: "Lewis Cine",
+  score: "9.92"
+}, {
+  name: "Marcel Dabo",
+  score: "9.91"
+}, {
+  name: "Rachaad White",
+  score: "9.88"
+}, {
+  name: "Aidan Hutchinson",
+  score: "9.88"
+}, {
+  name: "Thomas Booker",
+  score: "9.88"
+}, {
+  name: "Damone Clark",
+  score: "9.87"
+}, {
+  name: "Bernhard Raimann",
+  score: "9.87"
+}, {
+  name: "Nick Cross",
+  score: "9.87"
+}, {
+  name: "Master Teague",
+  score: "9.84"
+}, {
+  name: "Sebastian Gutierrez",
+  score: "9.84"
+}, {
+  name: "Nick Zakelj",
+  score: "9.83"
+}, {
+  name: "Zander Horvath",
+  score: "9.83"
+}, {
+  name: "Billy Taylor",
+  score: "9.83"
+}, {
+  name: "Alec Pierce",
+  score: "9.82"
+}, {
+  name: "Zamir White",
+  score: "9.82"
+}, {
+  name: "Blaise Andries",
+  score: "9.81"
+}, {
+  name: "Brenden Schooler",
+  score: "9.79"
+}, {
+  name: "Chad Muma",
+  score: "9.77"
+}, {
+  name: "Jeffrey Gunter",
+  score: "9.75"
+}, {
+  name: "Kellen Diesch",
+  score: "9.75"
+}, {
+  name: "Tony Adams",
+  score: "9.75"
+}, {
+  name: "Tariq Castro-Fields",
+  score: "9.74"
+}, {
+  name: "Dominique Robinson",
+  score: "9.74"
+}, {
+  name: "Zion Johnson",
+  score: "9.74"
+}, {
+  name: "Abraham Lucas",
+  score: "9.73"
+}, {
+  name: "Elliott Brown",
+  score: "9.73"
+}, {
+  name: "Damarri Mathis",
+  score: "9.72"
+}, {
+  name: "Sam Williams",
+  score: "9.72"
+}, {
+  name: "Bryant Koback",
+  score: "9.72"
+}, {
+  name: "Tariq Woolen",
+  score: "9.71"
+}, {
+  name: "Josh Paschal",
+  score: "9.7"
+}, {
+  name: "Dawson Deaton",
+  score: "9.7"
+}, {
+  name: "Kyler Gordon",
+  score: "9.69"
+}, {
+  name: "Chance Campbell",
+  score: "9.69"
+}, {
+  name: "Channing Tindall",
+  score: "9.68"
+}, {
+  name: "Scott Nelson",
+  score: "9.67"
+}, {
+  name: "Daniel Bellinger",
+  score: "9.65"
+}, {
+  name: "Wesley French",
+  score: "9.65"
+}, {
+  name: "Kayvon Thibodeaux",
+  score: "9.63"
+}, {
+  name: "Quay Walker",
+  score: "9.63"
+}, {
+  name: "Desmond Ridder",
+  score: "9.62"
+}, {
+  name: "Joey Blount",
+  score: "9.62"
+}, {
+  name: "Isaiah Weston",
+  score: "9.62"
+}, {
+  name: "Isaac Taylor-Stuart",
+  score: "9.61"
+}, {
+  name: "Darrian Beavers",
+  score: "9.6"
+}, {
+  name: "Andre Miller",
+  score: "9.6"
+}, {
+  name: "Daniel Whelan",
+  score: "9.6"
+}, {
+  name: "Luke Wattenberg",
+  score: "9.59"
+}, {
+  name: "Devonte Wyatt",
+  score: "9.59"
+}, {
+  name: "Devin Lloyd",
+  score: "9.59"
+}, {
+  name: "Zach Tom",
+  score: "9.59"
+}, {
+  name: "Garrett Owens",
+  score: "9.58"
+}, {
+  name: "Akayleb Evans",
+  score: "9.56"
+}, {
+  name: "Maurice Burkley",
+  score: "9.56"
+}, {
+  name: "Josh Thompson",
+  score: "9.55"
+}, {
+  name: "Kenny Pickett",
+  score: "9.55"
+}, {
+  name: "Tyler Goodson",
+  score: "9.54"
+}, {
+  name: "Tyshaun James",
+  score: "9.54"
+}, {
+  name: "Dallis Flowers",
+  score: "9.53"
+}, {
+  name: "Curtis Brooks",
+  score: "9.52"
+}, {
+  name: "Devin Harper",
+  score: "9.51"
+}, {
+  name: "Jack Snyder",
+  score: "9.5"
+}, {
+  name: "Cullen Wick",
+  score: "9.5"
+}, {
+  name: "Tycen Anderson",
+  score: "9.49"
+}, {
+  name: "Trent McDuffie",
+  score: "9.49"
+}, {
+  name: "Matt Araiza",
+  score: "9.48"
+}, {
+  name: "Jake Hummel",
+  score: "9.47"
+}, {
+  name: "Jason Poe",
+  score: "9.46"
+}, {
+  name: "Micah McFadden",
+  score: "9.46"
+}, {
+  name: "Cameron Goode",
+  score: "9.46"
+}, {
+  name: "Chris Paul",
+  score: "9.45"
+}, {
+  name: "Ryan Van Demark",
+  score: "9.45"
+}, {
+  name: "Joshua Williams",
+  score: "9.44"
+}, {
+  name: "Tanner Owen",
+  score: "9.44"
+}, {
+  name: "JT Woods",
+  score: "9.43"
+}, {
+  name: "EJ Perry IV",
+  score: "9.43"
+}, {
+  name: "Dane Belton",
+  score: "9.42"
+}, {
+  name: "Sam Webb",
+  score: "9.41"
+}, {
+  name: "Travis Jones",
+  score: "9.4"
+}, {
+  name: "Ra'shaun Henry",
+  score: "9.4"
+}, {
+  name: "David Ojabo",
+  score: "9.4"
+}, {
+  name: "Logan Hall",
+  score: "9.39"
+}, {
+  name: "Clint Ratkovicth",
+  score: "9.39"
+}, {
+  name: "Jamal Pettigrew",
+  score: "9.38"
+}, {
+  name: "Nik Bonitto",
+  score: "9.37"
+}, {
+  name: "George Pickens",
+  score: "9.37"
+}, {
+  name: "Adam Anderson",
+  score: "9.37"
+}, {
+  name: "Andrew Ogletree",
+  score: "9.35"
+}, {
+  name: "Ben Stille",
+  score: "9.34"
+}, {
+  name: "Pierre Strong",
+  score: "9.34"
+}, {
+  name: "John Chenal",
+  score: "9.34"
+}, {
+  name: "Kyle Hamilton",
+  score: "9.33"
+}, {
+  name: "Matt Henningsen",
+  score: "9.33"
+}, {
+  name: "Daniel Hardy",
+  score: "9.33"
+}, {
+  name: "Malcolm Rodriguez",
+  score: "9.27"
+}, {
+  name: "Kenneth Walker",
+  score: "9.26"
+}, {
+  name: "Derek Schwieger",
+  score: "9.26"
+}, {
+  name: "Bo Melton",
+  score: "9.24"
+}, {
+  name: "Rodney Thomas",
+  score: "9.24"
+}, {
+  name: "Jermaine Johnson",
+  score: "9.23"
+}, {
+  name: "George Karlaftis",
+  score: "9.21"
+}, {
+  name: "Jeremiah Moon",
+  score: "9.21"
+}, {
+  name: "Michael Niese",
+  score: "9.21"
+}, {
+  name: "Jaylen Watson",
+  score: "9.2"
+}, {
+  name: "Jack Koerner",
+  score: "9.19"
+}, {
+  name: "Keshunn Abram",
+  score: "9.19"
+}, {
+  name: "Amare Barno",
+  score: "9.18"
+}, {
+  name: "Jaylon Jones",
+  score: "9.18"
+}, {
+  name: "Jack Cochrane",
+  score: "9.18"
+}, {
+  name: "Devin Cochran",
+  score: "9.17"
+}, {
+  name: "Eric Johnson",
+  score: "9.16"
+}, {
+  name: "Jalen Virgil",
+  score: "9.16"
+}, {
+  name: "Isaiah Thomas",
+  score: "9.15"
+}, {
+  name: "Jaquan Brisker",
+  score: "9.14"
+}, {
+  name: "Arnold Ebiketie",
+  score: "9.14"
+}, {
+  name: "Jordan Jackson",
+  score: "9.14"
+}, {
+  name: "Baylon Spector",
+  score: "9.13"
+}, {
+  name: "Charlie Kolar",
+  score: "9.12"
+}, {
+  name: "Scott Patchan",
+  score: "9.12"
+}, {
+  name: "Darrell Baker",
+  score: "9.11"
+}, {
+  name: "Mike Griffin",
+  score: "9.11"
+}, {
+  name: "Christian Holmes",
+  score: "9.1"
+}, {
+  name: "Armani Rogers",
+  score: "9.1"
+}, {
+  name: "Drew Hartlaub",
+  score: "9.09"
+}, {
+  name: "Calvin Austin",
+  score: "9.08"
+}, {
+  name: "Alontae Taylor",
+  score: "9.07"
+}, {
+  name: "Mike Rose",
+  score: "9.07"
+}, {
+  name: "Nazeeh Johnson",
+  score: "9.07"
+}, {
+  name: "Lucas Krull",
+  score: "9.06"
+}, {
+  name: "Daxton Hill",
+  score: "9.06"
+}, {
+  name: "Christian Harris",
+  score: "9.06"
+}, {
+  name: "Chris Glaser",
+  score: "9.06"
+}, {
+  name: "DeAngelo Malone",
+  score: "9.04"
+}, {
+  name: "Kingsley Jonathan",
+  score: "9.04"
+}, {
+  name: "Mika Tafua",
+  score: "9.03"
+}, {
+  name: "Marcelino McCrary-Ball",
+  score: "9.03"
+}, {
+  name: "Mike Tverdov",
+  score: "9.01"
+}, {
+  name: "Jaquarii Roberson",
+  score: "9.01"
+}, {
+  name: "Cody Roscoe",
+  score: "9"
+}, {
+  name: "D'Anthony Bell",
+  score: "8.99"
+}, {
+  name: "Derek Stingley",
+  score: "8.98"
+}, {
+  name: "Jalen Martin",
+  score: "8.96"
+}, {
+  name: "Denzel Okafor",
+  score: "8.95"
+}, {
+  name: "Markquese Bell",
+  score: "8.94"
+}, {
+  name: "Chris Moore",
+  score: "8.93"
+}, {
+  name: "Tariq Carpenter",
+  score: "8.92"
+}, {
+  name: "Stone Smartt",
+  score: "8.92"
+}, {
+  name: "Daniel Cantrell",
+  score: "8.91"
+}, {
+  name: "Chase Lucas",
+  score: "8.9"
+}, {
+  name: "Brian Asamoah",
+  score: "8.89"
+}, {
+  name: "Liam Shanahan",
+  score: "8.89"
+}, {
+  name: "Manny Walker",
+  score: "8.88"
+}, {
+  name: "Terrel Bernard",
+  score: "8.87"
+}, {
+  name: "Brandon Peters",
+  score: "8.87"
+}, {
+  name: "Elijah Garcia",
+  score: "8.87"
+}, {
+  name: "Sterling Weatherford",
+  score: "8.86"
+}, {
+  name: "Vi Jones",
+  score: "8.86"
+}, {
+  name: "Greg Junior",
+  score: "8.86"
+}, {
+  name: "Isaih Pacheco",
+  score: "8.85"
+}, {
+  name: "Tanner Conner",
+  score: "8.85"
+}, {
+  name: "Isaiah Pola-Mao",
+  score: "8.84"
+}, {
+  name: "Luiji Vilain",
+  score: "8.84"
+}, {
+  name: "Kurt Hinish",
+  score: "8.83"
+}, {
+  name: "Ben Beise",
+  score: "8.81"
+}, {
+  name: "Dylan Parham",
+  score: "8.8"
+}, {
+  name: "Nick Muse",
+  score: "8.79"
+}, {
+  name: "Derek Wright",
+  score: "8.78"
+}, {
+  name: "Tre Avery",
+  score: "8.78"
+}, {
+  name: "James Cook",
+  score: "8.77"
+}, {
+  name: "Tyler Smith",
+  score: "8.77"
+}, {
+  name: "Isaiah Johnson-Mack",
+  score: "8.77"
+}, {
+  name: "Logan Bruss",
+  score: "8.76"
+}, {
+  name: "Charles Wiley",
+  score: "8.74"
+}, {
+  name: "Elijah Hamilton",
+  score: "8.74"
+}, {
+  name: "Myjai Sanders",
+  score: "8.73"
+}, {
+  name: "Kevin Brown",
+  score: "8.73"
+}, {
+  name: "Joshua Flowers",
+  score: "8.72"
+}, {
+  name: "Kody Russey",
+  score: "8.72"
+}, {
+  name: "Josh Selztner",
+  score: "8.7"
+}, {
+  name: "Zyon Gilbert",
+  score: "8.69"
+}, {
+  name: "Chris Olave",
+  score: "8.69"
+}, {
+  name: "Cameron Thomas",
+  score: "8.68"
+}, {
+  name: "Keaontay Ingram",
+  score: "8.68"
+}, {
+  name: "Jace Jordan",
+  score: "8.68"
+}, {
+  name: "Eric Wilson",
+  score: "8.67"
+}, {
+  name: "Brandon Easterling",
+  score: "8.67"
+}, {
+  name: "Lanc McCutcheon",
+  score: "8.67"
+}, {
+  name: "Allan George",
+  score: "8.66"
+}, {
+  name: "Tyrone Hill",
+  score: "8.64"
+}, {
+  name: "Kaiir Elam",
+  score: "8.63"
+}, {
+  name: "Jalen Tolbert",
+  score: "8.61"
+}, {
+  name: "Drake Jackson",
+  score: "8.59"
+}, {
+  name: "Alvin Peah",
+  score: "8.59"
+}, {
+  name: "Kader Kohou",
+  score: "8.58"
+}, {
+  name: "Ralph Singleton",
+  score: "8.58"
+}, {
+  name: "Tyquan Thornton",
+  score: "8.56"
+}, {
+  name: "Zein Obeid",
+  score: "8.53"
+}, {
+  name: "Kooper Richardson",
+  score: "8.53"
+}, {
+  name: "Alex Mollette",
+  score: "8.52"
+}, {
+  name: "Ikem Ekwonu",
+  score: "8.51"
+}, {
+  name: "Martin Emerson",
+  score: "8.48"
+}, {
+  name: "Jalen Pitre",
+  score: "8.48"
+}, {
+  name: "Marcus Moore",
+  score: "8.48"
+}, {
+  name: "Juanyeh Thomas",
+  score: "8.46"
+}, {
+  name: "Doug Kramer",
+  score: "8.46"
+}, {
+  name: "Christian Matthew",
+  score: "8.46"
+}, {
+  name: "Braxton Jones",
+  score: "8.45"
+}, {
+  name: "Jordan Genmark Heath",
+  score: "8.44"
+}, {
+  name: "Abrae Booker-Currin",
+  score: "8.44"
+}, {
+  name: "Kaden Roy",
+  score: "8.43"
+}, {
+  name: "Kyron Johnson",
+  score: "8.42"
+}, {
+  name: "Peyton Hendershot",
+  score: "8.4"
+}, {
+  name: "Kyle Hunter",
+  score: "8.4"
+}, {
+  name: "Irvin Charles",
+  score: "8.37"
+}, {
+  name: "Joe Mancuso",
+  score: "8.37"
+}, {
+  name: "Alec Lindstrom",
+  score: "8.36"
+}, {
+  name: "Vincent McConnell",
+  score: "8.36"
+}, {
+  name: "Cyrus Holder",
+  score: "8.36"
+}, {
+  name: "Cam Taylor-Britt",
+  score: "8.33"
+}, {
+  name: "Dominique Long",
+  score: "8.33"
+}, {
+  name: "Khalil Shakir",
+  score: "8.32"
+}, {
+  name: "Joshua Ezeudu",
+  score: "8.32"
+}, {
+  name: "Grant Dixon",
+  score: "8.32"
+}, {
+  name: "Kyle Philips",
+  score: "8.31"
+}, {
+  name: "Silas Kelly",
+  score: "8.31"
+}, {
+  name: "Jake Dixon",
+  score: "8.31"
+}, {
+  name: "Devin Hafford",
+  score: "8.31"
+}, {
+  name: "Noah Harvey",
+  score: "8.3"
+}, {
+  name: "Ja'Sir Taylor",
+  score: "8.29"
+}, {
+  name: "Trevor Denbow",
+  score: "8.27"
+}, {
+  name: "Aaron Shampklin",
+  score: "8.27"
+}, {
+  name: "D'Marco Jackson",
+  score: "8.26"
+}, {
+  name: "Austin Deculus",
+  score: "8.25"
+}, {
+  name: "Josh Blackwell",
+  score: "8.25"
+}, {
+  name: "Weston Kramer",
+  score: "8.25"
+}, {
+  name: "Vitaliy Gurman",
+  score: "8.25"
+}, {
+  name: "Greg Dulcich",
+  score: "8.24"
+}, {
+  name: "Raleigh Webb",
+  score: "8.24"
+}, {
+  name: "Raleigh Texada",
+  score: "8.23"
+}, {
+  name: "Micheal Clemons",
+  score: "8.21"
+}, {
+  name: "John Mitchell",
+  score: "8.21"
+}, {
+  name: "Trey McBride",
+  score: "8.19"
+}, {
+  name: "Shamarious Gilmore",
+  score: "8.19"
+}, {
+  name: "DaRon Bland",
+  score: "8.18"
+}, {
+  name: "Sean Rhyan",
+  score: "8.17"
+}, {
+  name: "Keyshon Camp",
+  score: "8.16"
+}, {
+  name: "Grant Calcaterra",
+  score: "8.15"
+}, {
+  name: "Joe Beckett",
+  score: "8.15"
+}, {
+  name: "Dee Anderson",
+  score: "8.14"
+}, {
+  name: "Segun Olubi",
+  score: "8.14"
+}, {
+  name: "Josh Babicz",
+  score: "8.14"
+}, {
+  name: "Christian Benford",
+  score: "8.13"
+}, {
+  name: "Manny Jones",
+  score: "8.13"
+}, {
+  name: "Bubba Bolden",
+  score: "8.11"
+}, {
+  name: "Kingston Davis",
+  score: "8.11"
+}, {
+  name: "Sy Barnett",
+  score: "8.1"
+}, {
+  name: "Don Gardner",
+  score: "8.1"
+}, {
+  name: "Zachary Carter",
+  score: "8.09"
+}, {
+  name: "Roger Carter",
+  score: "8.09"
+}, {
+  name: "LaKendrick Van Zandt",
+  score: "8.08"
+}, {
+  name: "Austin Allen",
+  score: "8.07"
+}, {
+  name: "Jalen Nailor",
+  score: "8.07"
+}, {
+  name: "Brandon Barlow",
+  score: "8.06"
+}, {
+  name: "Will Adams",
+  score: "8.06"
+}, {
+  name: "Samson Nacua",
+  score: "8.06"
+}, {
+  name: "Lewis Kidd",
+  score: "8.06"
+}, {
+  name: "Hayden Howerton",
+  score: "8.05"
+}, {
+  name: "Curtis Blackwell",
+  score: "8.05"
+}, {
+  name: "Sam Okuayinonu",
+  score: "8.05"
+}, {
+  name: "Jack Fagot",
+  score: "8.04"
+}, {
+  name: "Zeveyon Fulcron",
+  score: "8.03"
+}, {
+  name: "Miles Fox",
+  score: "8.03"
+}, {
+  name: "Jared Wyatt",
+  score: "8.01"
+}, {
+  name: "Clayton Bradley",
+  score: "8"
+}, {
+  name: "Xavior Williams",
+  score: "7.97"
+}, {
+  name: "Christian Albright",
+  score: "7.97"
+}, {
+  name: "Delan Stallworth",
+  score: "7.96"
+}, {
+  name: "Gage Kreski",
+  score: "7.95"
+}, {
+  name: "Zaire Mitchell",
+  score: "7.95"
+}, {
+  name: "Tre Webb",
+  score: "7.94"
+}, {
+  name: "James Houston IV",
+  score: "7.92"
+}, {
+  name: "Jefferson Fritz",
+  score: "7.92"
+}, {
+  name: "Josh Sills",
+  score: "7.91"
+}, {
+  name: "Cal Adomitis",
+  score: "7.9"
+}, {
+  name: "Trevor Begue",
+  score: "7.9"
+}, {
+  name: "Bryce Watts",
+  score: "7.89"
+}, {
+  name: "Bobby DeHaro",
+  score: "7.88"
+}, {
+  name: "Nasir Greer",
+  score: "7.87"
+}, {
+  name: "Derek Kerstetter",
+  score: "7.84"
+}, {
+  name: "Faion Hicks",
+  score: "7.84"
+}, {
+  name: "Johnny Petrishen",
+  score: "7.84"
+}, {
+  name: "Devin Darrington",
+  score: "7.83"
+}, {
+  name: "Israel Antwine",
+  score: "7.83"
+}, {
+  name: "Uzo Osuji",
+  score: "7.83"
+}, {
+  name: "Seth Green",
+  score: "7.83"
+}, {
+  name: "Adam West",
+  score: "7.82"
+}, {
+  name: "Marcus Williams",
+  score: "7.81"
+}, {
+  name: "D'Vonte Price",
+  score: "7.8"
+}, {
+  name: "Garrett Wilson",
+  score: "7.79"
+}, {
+  name: "Riley Boersma",
+  score: "7.79"
+}, {
+  name: "Xavier Gaines",
+  score: "7.78"
+}, {
+  name: "Logan Stewart",
+  score: "7.75"
+}, {
+  name: "Tyler Dressler",
+  score: "7.74"
+}, {
+  name: "Kaleb Brewer",
+  score: "7.73"
+}, {
+  name: "Andrew Rupcich",
+  score: "7.71"
+}, {
+  name: "Nolan Turner",
+  score: "7.7"
+}, {
+  name: "Caeveon Patton",
+  score: "7.7"
+}, {
+  name: "Jack Coan",
+  score: "7.68"
+}, {
+  name: "Taysir Mack",
+  score: "7.68"
+}, {
+  name: "Deane Leonard",
+  score: "7.68"
+}, {
+  name: "Phazion McClurge",
+  score: "7.68"
+}, {
+  name: "Dare Rosenthal",
+  score: "7.67"
+}, {
+  name: "Dawson Downing",
+  score: "7.67"
+}, {
+  name: "Theo Jackson",
+  score: "7.65"
+}, {
+  name: "Brad Hawkins",
+  score: "7.64"
+}, {
+  name: "DeJaun Cooper",
+  score: "7.64"
+}, {
+  name: "Mike Woods",
+  score: "7.63"
+}, {
+  name: "Luc Bequette",
+  score: "7.63"
+}, {
+  name: "Braylon Sanders",
+  score: "7.62"
+}, {
+  name: "Jarrid Williams",
+  score: "7.62"
+}, {
+  name: "Isaiah Pryor",
+  score: "7.62"
+}, {
+  name: "Tyler Vrabel",
+  score: "7.61"
+}, {
+  name: "Ryder Anderson",
+  score: "7.6"
+}, {
+  name: "JoJo Domann",
+  score: "7.6"
+}, {
+  name: "Aaron Hansford",
+  score: "7.6"
+}, {
+  name: "Freddie Johnson",
+  score: "7.6"
+}, {
+  name: "Abdul Adams",
+  score: "7.6"
+}, {
+  name: "Skyy Moore",
+  score: "7.59"
+}, {
+  name: "Nathan Cherry",
+  score: "7.59"
+}, {
+  name: "Colin Schooler",
+  score: "7.59"
+}, {
+  name: "Charles Cross",
+  score: "7.58"
+}, {
+  name: "Dennis Houston",
+  score: "7.58"
+}, {
+  name: "Omar Fortt",
+  score: "7.58"
+}, {
+  name: "Enoch Penney-Laryea",
+  score: "7.58"
+}, {
+  name: "JJ Howland",
+  score: "7.58"
+}, {
+  name: "Chris Steele",
+  score: "7.57"
+}, {
+  name: "Josh Sokol",
+  score: "7.57"
+}, {
+  name: "David Anenih",
+  score: "7.56"
+}, {
+  name: "Jake Tonges",
+  score: "7.56"
+}, {
+  name: "Cade Mays",
+  score: "7.55"
+}, {
+  name: "Jabari Ellis",
+  score: "7.54"
+}, {
+  name: "Mike Brown",
+  score: "7.54"
+}, {
+  name: "Christian Turner",
+  score: "7.54"
+}, {
+  name: "Max Borghi",
+  score: "7.53"
+}, {
+  name: "Olakunle Fatukasi",
+  score: "7.53"
+}, {
+  name: "Delarrin Turner-Yell",
+  score: "7.53"
+}, {
+  name: "Justin Shaffer",
+  score: "7.52"
+}, {
+  name: "A.J. Thomas",
+  score: "7.51"
+}, {
+  name: "Evan Holm",
+  score: "7.51"
+}, {
+  name: "Andrzez Hughes-Murray",
+  score: "7.49"
+}, {
+  name: "Derrick Tangelo",
+  score: "7.47"
+}, {
+  name: "Samuel Wright",
+  score: "7.47"
+}, {
+  name: "Anthony Brown",
+  score: "7.46"
+}, {
+  name: "Cordale Flott",
+  score: "7.45"
+}, {
+  name: "DeMarvin Leal",
+  score: "7.43"
+}, {
+  name: "Jack Gibbens",
+  score: "7.43"
+}, {
+  name: "Savon Scarver",
+  score: "7.42"
+}, {
+  name: "Ed Ingram",
+  score: "7.39"
+}, {
+  name: "Cory Rahman",
+  score: "7.39"
+}, {
+  name: "Curtis Hodges",
+  score: "7.39"
+}, {
+  name: "Tyreik McAllister",
+  score: "7.39"
+}, {
+  name: "Tyler Allgeier",
+  score: "7.38"
+}, {
+  name: "Cole Turner",
+  score: "7.37"
+}, {
+  name: "Percy Butler",
+  score: "7.36"
+}, {
+  name: "Wan'Dale Robinson",
+  score: "7.36"
+}, {
+  name: "Ben Griffiths",
+  score: "7.36"
+}, {
+  name: "Trevor Mason",
+  score: "7.36"
+}, {
+  name: "Clarence Hicks",
+  score: "7.35"
+}, {
+  name: "Jack Sanborn",
+  score: "7.35"
+}, {
+  name: "Ben Davis",
+  score: "7.35"
+}, {
+  name: "Brett Borske",
+  score: "7.34"
+}, {
+  name: "Will Miles",
+  score: "7.34"
+}, {
+  name: "Luke Masterson",
+  score: "7.33"
+}, {
+  name: "Chris Oladokun",
+  score: "7.33"
+}, {
+  name: "Chase Allen",
+  score: "7.31"
+}, {
+  name: "Matthew Butler",
+  score: "7.3"
+}, {
+  name: "Luke Fortner",
+  score: "7.28"
+}, {
+  name: "Dejoun Lee",
+  score: "7.28"
+}, {
+  name: "C.J. Avery",
+  score: "7.28"
+}, {
+  name: "Keonte Schad",
+  score: "7.28"
+}, {
+  name: "Carson Wells",
+  score: "7.27"
+}, {
+  name: "Jake Parker",
+  score: "7.26"
+}, {
+  name: "William Kwenkeu",
+  score: "7.25"
+}, {
+  name: "C.J. Perez",
+  score: "7.23"
+}, {
+  name: "Bradrick Shaw",
+  score: "7.23"
+}, {
+  name: "Dennis Johnson",
+  score: "7.22"
+}, {
+  name: "Dimitrios Sinodinos",
+  score: "7.22"
+}, {
+  name: "Delonte Hood",
+  score: "7.21"
+}, {
+  name: "Ty Fryfogle",
+  score: "7.2"
+}, {
+  name: "Vincent Gray",
+  score: "7.2"
+}, {
+  name: "Mo Diallo",
+  score: "7.2"
+}, {
+  name: "Caliph Brice",
+  score: "7.2"
+}, {
+  name: "Dustin Crum",
+  score: "7.19"
+}, {
+  name: "Henry Litwin",
+  score: "7.18"
+}, {
+  name: "Baer Hunter",
+  score: "7.18"
+}, {
+  name: "Velus Jones",
+  score: "7.17"
+}, {
+  name: "Deven Thompkins",
+  score: "7.17"
+}, {
+  name: "Jalyn Armour-Davis",
+  score: "7.17"
+}, {
+  name: "Braden Galloway",
+  score: "7.16"
+}, {
+  name: "Tyreke Smith",
+  score: "7.14"
+}, {
+  name: "Skylar Thompson",
+  score: "7.14"
+}, {
+  name: "Blake Green",
+  score: "7.14"
+}, {
+  name: "Tobias Oliver",
+  score: "7.13"
+}, {
+  name: "Dameon Pierce",
+  score: "7.12"
+}, {
+  name: "Kevin Harris",
+  score: "7.12"
+}, {
+  name: "Roy Baker",
+  score: "7.12"
+}, {
+  name: "Jordan Mason",
+  score: "7.11"
+}, {
+  name: "Marcus McKethan",
+  score: "7.11"
+}, {
+  name: "Will Ulmer",
+  score: "7.1"
+}, {
+  name: "Bradley Smith",
+  score: "7.1"
+}, {
+  name: "Tre Johnson",
+  score: "7.09"
+}, {
+  name: "Tariqious Tisdale",
+  score: "7.08"
+}, {
+  name: "Timothy Horne",
+  score: "7.08"
+}, {
+  name: "Snoop Conner",
+  score: "7.06"
+}, {
+  name: "De'Shaan Dixon",
+  score: "7.05"
+}, {
+  name: "Nephi Sewell",
+  score: "7.04"
+}, {
+  name: "Erik Ezukanma",
+  score: "7.03"
+}, {
+  name: "Carson Taylor",
+  score: "7.03"
+}, {
+  name: "Chase Garbers",
+  score: "7.02"
+}, {
+  name: "Sam Roberts",
+  score: "7.02"
+}, {
+  name: "Rodell Rahmaan",
+  score: "7.02"
+}, {
+  name: "Dohnovan West",
+  score: "7.01"
+}, {
+  name: "Clint Sigg",
+  score: "6.99"
+}, {
+  name: "AJ Arcuri",
+  score: "6.98"
+}, {
+  name: "Devonta'e Henry-Cole",
+  score: "6.98"
+}, {
+  name: "Cole Bentley",
+  score: "6.97"
+}, {
+  name: "Brandon Chapman",
+  score: "6.94"
+}, {
+  name: "Jerome Ford",
+  score: "6.93"
+}, {
+  name: "Kary Kutsch",
+  score: "6.93"
+}, {
+  name: "Clarence Hicks",
+  score: "6.93"
+}, {
+  name: "Jacob Morgenstern",
+  score: "6.92"
+}, {
+  name: "Tre Ford",
+  score: "6.92"
+}, {
+  name: "Freddie McGee",
+  score: "6.92"
+}, {
+  name: "Jahcour Pearson",
+  score: "6.91"
+}, {
+  name: "Tyreek Maddox-Williams",
+  score: "6.88"
+}, {
+  name: "Laakea Kahoohanohano-Davis",
+  score: "6.87"
+}, {
+  name: "Blaze Alldredge",
+  score: "6.86"
+}, {
+  name: "Mike Caliendo",
+  score: "6.86"
+}, {
+  name: "Caleb Holden",
+  score: "6.86"
+}, {
+  name: "Jordan Williams",
+  score: "6.84"
+}, {
+  name: "DeMontre Tuggle",
+  score: "6.82"
+}, {
+  name: "Nick Sink",
+  score: "6.82"
+}, {
+  name: "Ralph Holley",
+  score: "6.81"
+}, {
+  name: "Joel Dubanko",
+  score: "6.81"
+}, {
+  name: "Wyatt Harwood",
+  score: "6.81"
+}, {
+  name: "Danny Gray",
+  score: "6.8"
+}, {
+  name: "Chima Azunna",
+  score: "6.8"
+}, {
+  name: "Jean Delance",
+  score: "6.78"
+}, {
+  name: "Jonathan Johnson",
+  score: "6.78"
+}, {
+  name: "Josh McCauley",
+  score: "6.77"
+}, {
+  name: "Jack Jones",
+  score: "6.77"
+}, {
+  name: "Keaton Burggeling",
+  score: "6.77"
+}, {
+  name: "Justin Covington",
+  score: "6.76"
+}, {
+  name: "J'ATyre Carter",
+  score: "6.74"
+}, {
+  name: "Shermari Jones",
+  score: "6.74"
+}, {
+  name: "Jesse Bramble",
+  score: "6.74"
+}, {
+  name: "Elijah Jones",
+  score: "6.74"
+}, {
+  name: "Donnell Williams",
+  score: "6.74"
+}, {
+  name: "Jake Ferguson",
+  score: "6.73"
+}, {
+  name: "Thayer Munford",
+  score: "6.73"
+}, {
+  name: "Jake Hlava",
+  score: "6.73"
+}, {
+  name: "Mark Brooks",
+  score: "6.72"
+}, {
+  name: "Brayden Thomas",
+  score: "6.71"
+}, {
+  name: "Spencer Burford",
+  score: "6.7"
+}, {
+  name: "Leonard Johnson",
+  score: "6.7"
+}, {
+  name: "Jacobi Francis",
+  score: "6.69"
+}, {
+  name: "Nick Heninger",
+  score: "6.69"
+}, {
+  name: "Cedrick Cunningham",
+  score: "6.69"
+}, {
+  name: "Julius Turner",
+  score: "6.68"
+}, {
+  name: "Tyrion Davis-Price",
+  score: "6.68"
+}, {
+  name: "JD Woods",
+  score: "6.67"
+}, {
+  name: "Tyrell Ford",
+  score: "6.66"
+}, {
+  name: "Kevin Jarvis",
+  score: "6.65"
+}, {
+  name: "Chris Ciguineau",
+  score: "6.65"
+}, {
+  name: "Tolu Ogunrinde",
+  score: "6.64"
+}, {
+  name: "Mike Harley",
+  score: "6.63"
+}, {
+  name: "LaBryan Ray",
+  score: "6.63"
+}, {
+  name: "Chasen Hines",
+  score: "6.61"
+}, {
+  name: "Garrett Crall",
+  score: "6.61"
+}, {
+  name: "Caleb Lightbourn",
+  score: "6.61"
+}, {
+  name: "Brian Robinson",
+  score: "6.6"
+}, {
+  name: "Khalan Tolson",
+  score: "6.6"
+}, {
+  name: "Abram Smith",
+  score: "6.59"
+}, {
+  name: "Caleb Smith",
+  score: "6.59"
+}, {
+  name: "Moses Reynolds",
+  score: "6.58"
+}, {
+  name: "Tyrin Summers",
+  score: "6.58"
+}, {
+  name: "Kolby Harvell-Peel",
+  score: "6.57"
+}, {
+  name: "James Skalski",
+  score: "6.56"
+}, {
+  name: "Kalil Pimpleton",
+  score: "6.56"
+}, {
+  name: "Darren Evans",
+  score: "6.56"
+}, {
+  name: "James Parker",
+  score: "6.56"
+}, {
+  name: "Randy Wade",
+  score: "6.55"
+}, {
+  name: "Cam Butler",
+  score: "6.55"
+}, {
+  name: "Kenny Hebert",
+  score: "6.54"
+}, {
+  name: "Jack Badovinac",
+  score: "6.52"
+}, {
+  name: "Eyioma Uwazurike",
+  score: "6.52"
+}, {
+  name: "Lecitus Smith",
+  score: "6.51"
+}, {
+  name: "Deionte Knight",
+  score: "6.51"
+}, {
+  name: "Justin Rigg",
+  score: "6.5"
+}, {
+  name: "Deontai Williams",
+  score: "6.5"
+}, {
+  name: "Josh Greenwood",
+  score: "6.5"
+}, {
+  name: "Mataeo Durant",
+  score: "6.49"
+}, {
+  name: "Benjie Franklin",
+  score: "6.49"
+}, {
+  name: "Keondre Ko",
+  score: "6.48"
+}, {
+  name: "Brandon Lewis",
+  score: "6.48"
+}, {
+  name: "Demetrius Taylor",
+  score: "6.48"
+}, {
+  name: "Jared Brinkman",
+  score: "6.47"
+}, {
+  name: "Chigoziem Okonkwo",
+  score: "6.46"
+}, {
+  name: "Tay Martin",
+  score: "6.46"
+}, {
+  name: "Smoke Monday",
+  score: "6.46"
+}, {
+  name: "Frednick Eveillard",
+  score: "6.46"
+}, {
+  name: "Yusuf Corker",
+  score: "6.45"
+}, {
+  name: "Quandre Mosley",
+  score: "6.45"
+}, {
+  name: "Tre Swilling",
+  score: "6.45"
+}, {
+  name: "Zach McCloud",
+  score: "6.44"
+}, {
+  name: "Dante Mastrogiuseppe",
+  score: "6.44"
+}, {
+  name: "Nolan Cockrill",
+  score: "6.43"
+}, {
+  name: "JJ Russell",
+  score: "6.43"
+}, {
+  name: "Demytrick Ali'ifua",
+  score: "6.42"
+}, {
+  name: "Nate Landman",
+  score: "6.41"
+}, {
+  name: "Tyler Badie",
+  score: "6.4"
+}, {
+  name: "Brett Samson",
+  score: "6.4"
+}, {
+  name: "Marquis Hayes",
+  score: "6.39"
+}, {
+  name: "Kalon Barnes",
+  score: "6.39"
+}, {
+  name: "Dennis Grosel",
+  score: "6.39"
+}, {
+  name: "Walter Neil",
+  score: "6.38"
+}, {
+  name: "Ty Chandler",
+  score: "6.37"
+}, {
+  name: "Mark Robinson",
+  score: "6.37"
+}, {
+  name: "Alex Akingbulu",
+  score: "6.37"
+}, {
+  name: "Kenneth George",
+  score: "6.36"
+}, {
+  name: "Rontrez Morgan",
+  score: "6.36"
+}, {
+  name: "Jahan Dotson",
+  score: "6.35"
+}, {
+  name: "JaQuain Blakely",
+  score: "6.34"
+}, {
+  name: "Bryson Donnell",
+  score: "6.33"
+}, {
+  name: "Dylan Powell",
+  score: "6.32"
+}, {
+  name: "Montez Wilson",
+  score: "6.31"
+}, {
+  name: "Storey Jackson",
+  score: "6.29"
+}, {
+  name: "Ja'Marcus Ingram",
+  score: "6.29"
+}, {
+  name: "Nicholas Petit-Frere",
+  score: "6.27"
+}, {
+  name: "Keenan Forbes",
+  score: "6.26"
+}, {
+  name: "Caleb Vander Esch",
+  score: "6.26"
+}, {
+  name: "Jovani Haskins",
+  score: "6.25"
+}, {
+  name: "Dominion Ezinwa",
+  score: "6.24"
+}, {
+  name: "Traveon Redd",
+  score: "6.24"
+}, {
+  name: "Leddie Brown",
+  score: "6.23"
+}, {
+  name: "Ben Petrula",
+  score: "6.23"
+}, {
+  name: "Donovan Jeter",
+  score: "6.23"
+}, {
+  name: "Peter Fallon",
+  score: "6.23"
+}, {
+  name: "Makyle Sanders",
+  score: "6.22"
+}, {
+  name: "Ray Miller",
+  score: "6.22"
+}, {
+  name: "Isaiah Graham-Mobley",
+  score: "6.21"
+}, {
+  name: "Trevor Philio",
+  score: "6.21"
+}, {
+  name: "Damarion Williams",
+  score: "6.2"
+}, {
+  name: "Mitchell Brinkman",
+  score: "6.2"
+}, {
+  name: "Tariq Bitson",
+  score: "6.2"
+}, {
+  name: "DaMarcus Fields",
+  score: "6.19"
+}, {
+  name: "Marquis McClain",
+  score: "6.19"
+}, {
+  name: "Kingsley Enagbare",
+  score: "6.18"
+}, {
+  name: "Malkelm Morrison",
+  score: "6.16"
+}, {
+  name: "Samori Toure",
+  score: "6.15"
+}, {
+  name: "Guy Myers",
+  score: "6.15"
+}, {
+  name: "Wilson Catoe",
+  score: "6.14"
+}, {
+  name: "Jerrion Ealy",
+  score: "6.13"
+}, {
+  name: "Jack Maddox",
+  score: "6.13"
+}, {
+  name: "Diego Fagot",
+  score: "6.12"
+}, {
+  name: "TJ Storment",
+  score: "6.12"
+}, {
+  name: "Erik Krommenhoek",
+  score: "6.1"
+}, {
+  name: "Kana'i Mauga",
+  score: "6.09"
+}, {
+  name: "Enoch Penney-Laryea",
+  score: "6.09"
+}, {
+  name: "Tayler Hawkins",
+  score: "6.08"
+}, {
+  name: "Jontre Kirklin",
+  score: "6.08"
+}, {
+  name: "Kekoa Crawford",
+  score: "6.06"
+}, {
+  name: "C.J. Brewer",
+  score: "6.06"
+}, {
+  name: "Jacob Goldberg",
+  score: "6.05"
+}, {
+  name: "Stephan Davis",
+  score: "6.05"
+}, {
+  name: "Zach VanValkenburg",
+  score: "6.04"
+}, {
+  name: "Qua Brown",
+  score: "6.04"
+}, {
+  name: "B.J. Baylor",
+  score: "6.04"
+}, {
+  name: "Cody Gustafson",
+  score: "6.04"
+}, {
+  name: "Leon O'Neal",
+  score: "6.03"
+}, {
+  name: "Bryce Nunnelly",
+  score: "6.03"
+}, {
+  name: "Ethan Fernea",
+  score: "6.03"
+}, {
+  name: "Felix Harper",
+  score: "6.02"
+}, {
+  name: "Kadofi Wright",
+  score: "6.02"
+}, {
+  name: "Shaun Jolly",
+  score: "6.01"
+}, {
+  name: "Raheem Blackshear",
+  score: "6"
+}, {
+  name: "Deontay Anderson",
+  score: "6"
+}, {
+  name: "Andrew Garnett",
+  score: "6"
+}, {
+  name: "DeAndre Torrey",
+  score: "5.99"
+}, {
+  name: "Cassius Johnson",
+  score: "5.99"
+}, {
+  name: "Kenyon Green",
+  score: "5.97"
+}, {
+  name: "Ronnie Rivers",
+  score: "5.97"
+}, {
+  name: "Jordan Berner",
+  score: "5.96"
+}, {
+  name: "Bailey Zappe",
+  score: "5.95"
+}, {
+  name: "Kennedy Brooks",
+  score: "5.95"
+}, {
+  name: "Andre Anthony",
+  score: "5.94"
+}, {
+  name: "TJ Hammonds",
+  score: "5.94"
+}, {
+  name: "Malik Davis",
+  score: "5.93"
+}, {
+  name: "Antione Frazier",
+  score: "5.93"
+}, {
+  name: "Brooklyn Hardiman",
+  score: "5.93"
+}, {
+  name: "Britain Covey",
+  score: "5.92"
+}, {
+  name: "Ray Thornton",
+  score: "5.92"
+}, {
+  name: "Mike Van Hoeven",
+  score: "5.92"
+}, {
+  name: "Dai'Jean Dixon",
+  score: "5.91"
+}, {
+  name: "Brandon Drayton",
+  score: "5.91"
+}, {
+  name: "Deonte Perry",
+  score: "5.91"
+}, {
+  name: "Elijah Lilly",
+  score: "5.9"
+}, {
+  name: "Drew White",
+  score: "5.89"
+}, {
+  name: "Jalen Moss",
+  score: "5.89"
+}, {
+  name: "Alex Spillum",
+  score: "5.88"
+}, {
+  name: "Kevin Kegler",
+  score: "5.86"
+}, {
+  name: "Isaac Weaver",
+  score: "5.86"
+}, {
+  name: "Riley Boersma",
+  score: "5.86"
+}, {
+  name: "Stanley Berryhill",
+  score: "5.85"
+}, {
+  name: "Mulbah Car",
+  score: "5.85"
+}, {
+  name: "Treylon Burks",
+  score: "5.83"
+}, {
+  name: "Charleston Rambo",
+  score: "5.83"
+}, {
+  name: "Zonovan Knight",
+  score: "5.83"
+}, {
+  name: "Grayson Gunter",
+  score: "5.83"
+}, {
+  name: "Demario McCall",
+  score: "5.83"
+}, {
+  name: "Willie Johnson",
+  score: "5.83"
+}, {
+  name: "Abu Kai-Kai",
+  score: "5.8"
+}, {
+  name: "Chris Pierce",
+  score: "5.8"
+}, {
+  name: "David Solie",
+  score: "5.8"
+}, {
+  name: "Michael Maietti",
+  score: "5.79"
+}, {
+  name: "Jordan Mosley",
+  score: "5.79"
+}, {
+  name: "Josh Saunders",
+  score: "5.76"
+}, {
+  name: "Eric Munoz",
+  score: "5.74"
+}, {
+  name: "Khris Vaughn",
+  score: "5.74"
+}, {
+  name: "Melquise Stovall",
+  score: "5.74"
+}, {
+  name: "Calvin Jackson",
+  score: "5.73"
+}, {
+  name: "Vederian Lowe",
+  score: "5.72"
+}, {
+  name: "Terrell Lucas",
+  score: "5.72"
+}, {
+  name: "Dontario Drummond",
+  score: "5.71"
+}, {
+  name: "Tucker Fisk",
+  score: "5.71"
+}, {
+  name: "Kenneth Roman",
+  score: "5.7"
+}, {
+  name: "Phil Campbell",
+  score: "5.7"
+}, {
+  name: "Isiah Macklin",
+  score: "5.7"
+}, {
+  name: "Cole Johnson",
+  score: "5.69"
+}, {
+  name: "Isaiah Spiller",
+  score: "5.68"
+}, {
+  name: "Gabriel Watson",
+  score: "5.67"
+}, {
+  name: "Bruce Jordan-Swilling",
+  score: "5.67"
+}, {
+  name: "Ezra Naylor",
+  score: "5.67"
+}, {
+  name: "Jordan Kress",
+  score: "5.65"
+}, {
+  name: "Darien Rencher",
+  score: "5.64"
+}, {
+  name: "Bryce Cosby",
+  score: "5.64"
+}, {
+  name: "Isaac James-Gray",
+  score: "5.64"
+}, {
+  name: "Cameron Kaye",
+  score: "5.63"
+}, {
+  name: "Bryce Notree",
+  score: "5.63"
+}, {
+  name: "Denzel Williams",
+  score: "5.63"
+}, {
+  name: "Jesse Luketa",
+  score: "5.61"
+}, {
+  name: "Devon Williams",
+  score: "5.61"
+}, {
+  name: "Jairon McVea",
+  score: "5.6"
+}, {
+  name: "Chris Booker",
+  score: "5.6"
+}, {
+  name: "Xander Gagnon",
+  score: "5.6"
+}, {
+  name: "Coby Bryant",
+  score: "5.59"
+}, {
+  name: "Tyler Johnson",
+  score: "5.58"
+}, {
+  name: "Devanaire Conliffe",
+  score: "5.57"
+}, {
+  name: "Joshua Archibald",
+  score: "5.56"
+}, {
+  name: "Dy'jonn Turner",
+  score: "5.55"
+}, {
+  name: "Ross Reiter",
+  score: "5.55"
+}, {
+  name: "Max Mitchell",
+  score: "5.54"
+}, {
+  name: "Ellis Brooks",
+  score: "5.54"
+}, {
+  name: "Chris Hinton",
+  score: "5.54"
+}, {
+  name: "Caleb Brown",
+  score: "5.54"
+}, {
+  name: "Jerreth Sterns",
+  score: "5.53"
+}, {
+  name: "Keke Chism",
+  score: "5.53"
+}, {
+  name: "Derick Bush",
+  score: "5.52"
+}, {
+  name: "Troy Hairston",
+  score: "5.52"
+}, {
+  name: "Kendric Pryor",
+  score: "5.51"
+}, {
+  name: "Roger McCreary",
+  score: "5.48"
+}, {
+  name: "Chris Turner",
+  score: "5.48"
+}, {
+  name: "Johnny Johnson",
+  score: "5.47"
+}, {
+  name: "Trenton Morrow",
+  score: "5.47"
+}, {
+  name: "DaMarcus Mitchell",
+  score: "5.46"
+}, {
+  name: "Josh Rivas",
+  score: "5.46"
+}, {
+  name: "Russ Yeast",
+  score: "5.46"
+}, {
+  name: "Christian Mastramico",
+  score: "5.46"
+}, {
+  name: "Michael Young",
+  score: "5.45"
+}, {
+  name: "Chris Ciguineau",
+  score: "5.45"
+}, {
+  name: "D'Eriq King",
+  score: "5.44"
+}, {
+  name: "Mike Greene",
+  score: "5.44"
+}, {
+  name: "Ian Fryday",
+  score: "5.44"
+}, {
+  name: "Nick Harper",
+  score: "5.43"
+}, {
+  name: "Shabari Davis",
+  score: "5.42"
+}, {
+  name: "Terry Myrick",
+  score: "5.42"
+}, {
+  name: "Chris Bergin",
+  score: "5.41"
+}, {
+  name: "Glen Logan",
+  score: "5.41"
+}, {
+  name: "Case Cook",
+  score: "5.39"
+}, {
+  name: "George Moore",
+  score: "5.38"
+}, {
+  name: "Jashaun Corbin",
+  score: "5.37"
+}, {
+  name: "Obinna Eze",
+  score: "5.37"
+}, {
+  name: "Gavin Cobb",
+  score: "5.37"
+}, {
+  name: "Matt Hodges",
+  score: "5.37"
+}, {
+  name: "LD Brown",
+  score: "5.36"
+}, {
+  name: "Xavier Newman-Johnson",
+  score: "5.35"
+}, {
+  name: "Jamal Brooks",
+  score: "5.35"
+}, {
+  name: "Nick Ford",
+  score: "5.34"
+}, {
+  name: "Barry Wesley",
+  score: "5.33"
+}, {
+  name: "Lyndemian Brooks",
+  score: "5.33"
+}, {
+  name: "Darian Kinnard",
+  score: "5.3"
+}, {
+  name: "McClane Mannix",
+  score: "5.29"
+}, {
+  name: "Jerry Howard",
+  score: "5.28"
+}, {
+  name: "Ben Bos",
+  score: "5.28"
+}, {
+  name: "Jonathan Giles",
+  score: "5.27"
+}, {
+  name: "Darius Hawkins",
+  score: "5.27"
+}, {
+  name: "Daniel Amoako",
+  score: "5.26"
+}, {
+  name: "Devin Rockette",
+  score: "5.23"
+}, {
+  name: "Marqez Bimage",
+  score: "5.23"
+}, {
+  name: "LaRon Stokes",
+  score: "5.22"
+}, {
+  name: "Keric Wheatfall",
+  score: "5.22"
+}, {
+  name: "Keith Corbin",
+  score: "5.21"
+}, {
+  name: "Anthony Federico",
+  score: "5.21"
+}, {
+  name: "Lawrence Stevens",
+  score: "5.2"
+}, {
+  name: "Johncarlo Valentin",
+  score: "5.2"
+}, {
+  name: "Alvin Ward",
+  score: "5.2"
+}, {
+  name: "Sam Flowers",
+  score: "5.2"
+}, {
+  name: "Fredenick Eveillard",
+  score: "5.2"
+}, {
+  name: "Gavin Cobb",
+  score: "5.2"
+}, {
+  name: "Average FS",
+  score: "5.19"
+}, {
+  name: "Nawoola Awopetu",
+  score: "5.18"
+}, {
+  name: "Adrian Greene",
+  score: "5.17"
+}, {
+  name: "Decobie Durant",
+  score: "5.14"
+}, {
+  name: "Tray Eafford",
+  score: "5.14"
+}, {
+  name: "Jalik Jaggwe",
+  score: "5.14"
+}, {
+  name: "Troy Shallow",
+  score: "5.13"
+}, {
+  name: "Aron Johnson",
+  score: "5.12"
+}, {
+  name: "Tre Bugg",
+  score: "5.1"
+}, {
+  name: "Justin Calderon",
+  score: "5.1"
+}, {
+  name: "Kyler McMichael",
+  score: "5.08"
+}, {
+  name: "Tayon Fleet-Davis",
+  score: "5.08"
+}, {
+  name: "Bennett Dondoyano",
+  score: "5.08"
+}, {
+  name: "Andrew Stueber",
+  score: "5.07"
+}, {
+  name: "Ryan Johnson",
+  score: "5.07"
+}, {
+  name: "Komotay Koffie",
+  score: "5.07"
+}, {
+  name: "Desmond Noel",
+  score: "5.06"
+}, {
+  name: "Chris James",
+  score: "5.06"
+}, {
+  name: "Favon Hayes",
+  score: "5.04"
+}, {
+  name: "Mario Goodrich",
+  score: "5.03"
+}, {
+  name: "Amari Carter",
+  score: "5.03"
+}, {
+  name: "Turan Rush",
+  score: "5.03"
+}, {
+  name: "Aaron Sterling",
+  score: "5.02"
+}, {
+  name: "Jaxson Turner",
+  score: "5"
+}, {
+  name: "Will Evans",
+  score: "4.99"
+}, {
+  name: "Average LB",
+  score: "4.98"
+}, {
+  name: "Ivory Kelly-Martin",
+  score: "4.98"
+}, {
+  name: "Nick Grant",
+  score: "4.97"
+}, {
+  name: "Neil Pauu",
+  score: "4.97"
+}, {
+  name: "Sean Dykes",
+  score: "4.96"
+}, {
+  name: "Anthony Knighton",
+  score: "4.96"
+}, {
+  name: "Average OT",
+  score: "4.95"
+}, {
+  name: "Elorm Lumor",
+  score: "4.95"
+}, {
+  name: "Demetris Robertson",
+  score: "4.94"
+}, {
+  name: "Kuony Deng",
+  score: "4.93"
+}, {
+  name: "Jacob Batts",
+  score: "4.93"
+}, {
+  name: "Kevin Marks",
+  score: "4.91"
+}, {
+  name: "Drew Estrada",
+  score: "4.91"
+}, {
+  name: "Makai Polk",
+  score: "4.91"
+}, {
+  name: "Average QB",
+  score: "4.9"
+}, {
+  name: "Airon Servais",
+  score: "4.9"
+}, {
+  name: "Average CB",
+  score: "4.89"
+}, {
+  name: "Marquise Manning",
+  score: "4.89"
+}, {
+  name: "DaeLun Darien",
+  score: "4.89"
+}, {
+  name: "Slade Bolden",
+  score: "4.88"
+}, {
+  name: "Average OG",
+  score: "4.85"
+}, {
+  name: "James Jones IV",
+  score: "4.85"
+}, {
+  name: "Isaiah Likely",
+  score: "4.84"
+}, {
+  name: "Tyrin Ralph",
+  score: "4.84"
+}, {
+  name: "Logan Tyler",
+  score: "4.83"
+}, {
+  name: "Isaiah Gay",
+  score: "4.82"
+}, {
+  name: "Otito Ogbonnia",
+  score: "4.81"
+}, {
+  name: "Trestan Ebner",
+  score: "4.81"
+}, {
+  name: "Gerrit Prince",
+  score: "4.8"
+}, {
+  name: "William Dunkle",
+  score: "4.8"
+}, {
+  name: "Jaylen Warren",
+  score: "4.8"
+}, {
+  name: "Westin Elliott",
+  score: "4.8"
+}, {
+  name: "Bruce Bivens",
+  score: "4.8"
+}, {
+  name: "Jeremy Meiser",
+  score: "4.79"
+}, {
+  name: "Tison Gray",
+  score: "4.79"
+}, {
+  name: "David Vereen",
+  score: "4.79"
+}, {
+  name: "Carlins Patel",
+  score: "4.79"
+}, {
+  name: "Khalique Washington",
+  score: "4.79"
+}, {
+  name: "Ricky Person",
+  score: "4.78"
+}, {
+  name: "Donald Stewart",
+  score: "4.78"
+}, {
+  name: "Average WR",
+  score: "4.77"
+}, {
+  name: "Brittain Brown",
+  score: "4.77"
+}, {
+  name: "Cordell Volson",
+  score: "4.75"
+}, {
+  name: "Liam Jimmons",
+  score: "4.75"
+}, {
+  name: "Deandre Johnson",
+  score: "4.75"
+}, {
+  name: "Average RB",
+  score: "4.74"
+}, {
+  name: "Average TE",
+  score: "4.74"
+}, {
+  name: "Average SS",
+  score: "4.73"
+}, {
+  name: "John Ridgeway",
+  score: "4.73"
+}, {
+  name: "Cory McCoy",
+  score: "4.73"
+}, {
+  name: "Antonio Valentino",
+  score: "4.72"
+}, {
+  name: "Liam Fornadel",
+  score: "4.72"
+}, {
+  name: "Jordan Canady",
+  score: "4.72"
+}, {
+  name: "Teagan Quitoriano",
+  score: "4.71"
+}, {
+  name: "Brad Davis",
+  score: "4.71"
+}, {
+  name: "Average DE",
+  score: "4.7"
+}, {
+  name: "Luke Tenuta",
+  score: "4.7"
+}, {
+  name: "Noah Burks",
+  score: "4.7"
+}, {
+  name: "Kendricks Gladney",
+  score: "4.7"
+}, {
+  name: "Quan Harrison",
+  score: "4.7"
+}, {
+  name: "Najee Reams",
+  score: "4.69"
+}, {
+  name: "Qwynnterrio Cole",
+  score: "4.68"
+}, {
+  name: "Markell Utsey",
+  score: "4.66"
+}, {
+  name: "MJ Dumas",
+  score: "4.65"
+}, {
+  name: "Jacob Birmelin",
+  score: "4.65"
+}, {
+  name: "Brandon Bowen",
+  score: "4.63"
+}, {
+  name: "Trenton Thompson",
+  score: "4.62"
+}, {
+  name: "Connor Heyward",
+  score: "4.58"
+}, {
+  name: "Logan Harris",
+  score: "4.58"
+}, {
+  name: "Average OC",
+  score: "4.57"
+}, {
+  name: "Haskell Garrett",
+  score: "4.57"
+}, {
+  name: "Drew Singleton",
+  score: "4.57"
+}, {
+  name: "Eddie Graham",
+  score: "4.57"
+}, {
+  name: "Ryder Varga",
+  score: "4.56"
+}, {
+  name: "John  Lovett",
+  score: "4.56"
+}, {
+  name: "Tyrese Dedmon",
+  score: "4.55"
+}, {
+  name: "Tyson Morris",
+  score: "4.55"
+}, {
+  name: "Kylan Wilborn",
+  score: "4.55"
+}, {
+  name: "Tre Sterling",
+  score: "4.54"
+}, {
+  name: "Jarren Hampton",
+  score: "4.54"
+}, {
+  name: "Cinque Sweeting",
+  score: "4.54"
+}, {
+  name: "Dashawn Crawford",
+  score: "4.54"
+}, {
+  name: "Bobby Hill",
+  score: "4.54"
+}, {
+  name: "Changa Hodge",
+  score: "4.52"
+}, {
+  name: "Kwamie Lassiter",
+  score: "4.51"
+}, {
+  name: "Average FB",
+  score: "4.49"
+}, {
+  name: "David Kroll",
+  score: "4.49"
+}, {
+  name: "Adam Cofield",
+  score: "4.48"
+}, {
+  name: "Brock Purdy",
+  score: "4.47"
+}, {
+  name: "Inoke Moala",
+  score: "4.44"
+}, {
+  name: "Chrys Lane",
+  score: "4.44"
+}, {
+  name: "Christian Sampleton",
+  score: "4.44"
+}, {
+  name: "Reggie Roberson",
+  score: "4.4"
+}, {
+  name: "Ali Fayad",
+  score: "4.4"
+}, {
+  name: "Payton Muljo",
+  score: "4.4"
+}, {
+  name: "Sam Hammond",
+  score: "4.4"
+}, {
+  name: "Aaron Ramseur",
+  score: "4.4"
+}, {
+  name: "Zach Smith",
+  score: "4.39"
+}, {
+  name: "Carson Terrell",
+  score: "4.39"
+}, {
+  name: "Zakoby McClain",
+  score: "4.38"
+}, {
+  name: "Greg Bell",
+  score: "4.37"
+}, {
+  name: "Peter Adjey",
+  score: "4.37"
+}, {
+  name: "B.J. Daniels",
+  score: "4.36"
+}, {
+  name: "L.B. Mack",
+  score: "4.36"
+}, {
+  name: "Justin Chase",
+  score: "4.35"
+}, {
+  name: "Landin Mitchell",
+  score: "4.34"
+}, {
+  name: "Justin Rice",
+  score: "4.34"
+}, {
+  name: "Leroy Watson",
+  score: "4.34"
+}, {
+  name: "Jordan Myers",
+  score: "4.34"
+}, {
+  name: "Duron Lowe",
+  score: "4.33"
+}, {
+  name: "Sam Camargo",
+  score: "4.33"
+}, {
+  name: "Owen Carney",
+  score: "4.33"
+}, {
+  name: "Daylen Baldwin",
+  score: "4.32"
+}, {
+  name: "Ikenna Onwuasoanya",
+  score: "4.32"
+}, {
+  name: "Ron Hunt",
+  score: "4.31"
+}, {
+  name: "Kyle Schott",
+  score: "4.31"
+}, {
+  name: "Eric Maxiumuik",
+  score: "4.31"
+}, {
+  name: "Jayden Peevy",
+  score: "4.3"
+}, {
+  name: "Zabrian Moore",
+  score: "4.3"
+}, {
+  name: "Average DT",
+  score: "4.29"
+}, {
+  name: "Phillip Howard",
+  score: "4.29"
+}, {
+  name: "Jeremiah Tyler",
+  score: "4.29"
+}, {
+  name: "Andrew Parchment",
+  score: "4.28"
+}, {
+  name: "Montaric Brown",
+  score: "4.27"
+}, {
+  name: "Justus Harris",
+  score: "4.26"
+}, {
+  name: "Tyler Witt",
+  score: "4.26"
+}, {
+  name: "Logan Backhaus",
+  score: "4.26"
+}, {
+  name: "Vincent Forbes-Mombleau",
+  score: "4.26"
+}, {
+  name: "Dy'Vonne Inyang",
+  score: "4.25"
+}, {
+  name: "Jack Colquhoun",
+  score: "4.25"
+}, {
+  name: "Kaylon Geiger Sr.",
+  score: "4.25"
+}, {
+  name: "Sean Mahone",
+  score: "4.24"
+}, {
+  name: "Trevon Bradford",
+  score: "4.24"
+}, {
+  name: "DeMarco Artis",
+  score: "4.22"
+}, {
+  name: "Justin Hall",
+  score: "4.22"
+}, {
+  name: "Brock Hoffman",
+  score: "4.21"
+}, {
+  name: "Josiah Schakel",
+  score: "4.21"
+}, {
+  name: "Daniel Jackson",
+  score: "4.21"
+}, {
+  name: "Anthony Koclanakis",
+  score: "4.2"
+}, {
+  name: "Matt Lynch",
+  score: "4.18"
+}, {
+  name: "Meiko Dotson",
+  score: "4.17"
+}, {
+  name: "Naeem Smith",
+  score: "4.17"
+}, {
+  name: "Roger Cray",
+  score: "4.16"
+}, {
+  name: "Edris Jean-Alphonse",
+  score: "4.16"
+}, {
+  name: "Jamaree Salyer",
+  score: "4.15"
+}, {
+  name: "Jalil Lecky",
+  score: "4.15"
+}, {
+  name: "Chris Agyemang",
+  score: "4.14"
+}, {
+  name: "Tim Coleman",
+  score: "4.14"
+}, {
+  name: "Jahad Woods",
+  score: "4.13"
+}, {
+  name: "Peyton Logan",
+  score: "4.13"
+}, {
+  name: "Zaquandre White",
+  score: "4.12"
+}, {
+  name: "Thomas Odukoya",
+  score: "4.12"
+}, {
+  name: "Justin Mader",
+  score: "4.12"
+}, {
+  name: "Riley Pickett",
+  score: "4.11"
+}, {
+  name: "D.J. Davidson",
+  score: "4.1"
+}, {
+  name: "Vic Viramontes",
+  score: "4.1"
+}, {
+  name: "Michael Hawkins",
+  score: "4.1"
+}, {
+  name: "Cyrille Hogan-Saindon",
+  score: "4.09"
+}, {
+  name: "Jarrett Guarantano",
+  score: "4.09"
+}, {
+  name: "Grant Carlson",
+  score: "4.08"
+}, {
+  name: "Paul Grattan",
+  score: "4.07"
+}, {
+  name: "TJ Pledger",
+  score: "4.06"
+}, {
+  name: "Myron Tagovailoa-Amosa",
+  score: "4.06"
+}, {
+  name: "Jonathan Jones",
+  score: "4.05"
+}, {
+  name: "David Bell",
+  score: "4.04"
+}, {
+  name: "Michael Smith",
+  score: "4.03"
+}, {
+  name: "Mike Andrejco",
+  score: "4.03"
+}, {
+  name: "Jacob Plamondon",
+  score: "4.03"
+}, {
+  name: "Jake Stentz",
+  score: "4.03"
+}, {
+  name: "Josiah Erickson",
+  score: "3.99"
+}, {
+  name: "Brawntae Wells",
+  score: "3.98"
+}, {
+  name: "Jacob Matthew",
+  score: "3.98"
+}, {
+  name: "Nick Gualdoni",
+  score: "3.97"
+}, {
+  name: "Erik Hansen",
+  score: "3.97"
+}, {
+  name: "Omari Alexander",
+  score: "3.97"
+}, {
+  name: "Sincere McCormick",
+  score: "3.95"
+}, {
+  name: "Aaron Mosby",
+  score: "3.95"
+}, {
+  name: "Audie Omotosho",
+  score: "3.94"
+}, {
+  name: "Jaivon Heiligh",
+  score: "3.92"
+}, {
+  name: "Justin Kasuboski",
+  score: "3.92"
+}, {
+  name: "Zafir Kelly",
+  score: "3.91"
+}, {
+  name: "Anthony Russo",
+  score: "3.9"
+}, {
+  name: "David DuBose",
+  score: "3.9"
+}, {
+  name: "Zach Pelehos",
+  score: "3.9"
+}, {
+  name: "Juwan Carter",
+  score: "3.89"
+}, {
+  name: "Nakeie Montgomery",
+  score: "3.89"
+}, {
+  name: "James Stanley",
+  score: "3.89"
+}, {
+  name: "Bamidele Olaseni",
+  score: "3.88"
+}, {
+  name: "Kyle Mayberry",
+  score: "3.88"
+}, {
+  name: "Jon Alexander",
+  score: "3.87"
+}, {
+  name: "Reggie Todd",
+  score: "3.87"
+}, {
+  name: "Will Vereen",
+  score: "3.85"
+}, {
+  name: "Benjamin Wilson",
+  score: "3.85"
+}, {
+  name: "Anthony Budd",
+  score: "3.84"
+}, {
+  name: "Jermaine Waller",
+  score: "3.83"
+}, {
+  name: "Kyric McGowan",
+  score: "3.83"
+}, {
+  name: "Collin Wilder",
+  score: "3.82"
+}, {
+  name: "Brandon Mincey",
+  score: "3.82"
+}, {
+  name: "Greg Ross",
+  score: "3.82"
+}, {
+  name: "Nijuel Hill",
+  score: "3.81"
+}, {
+  name: "Tyrone Riley",
+  score: "3.8"
+}, {
+  name: "Antonio Ortiz",
+  score: "3.78"
+}, {
+  name: "Tristen Vance",
+  score: "3.78"
+}, {
+  name: "Cole Adamson",
+  score: "3.78"
+}, {
+  name: "Kashon Baker",
+  score: "3.77"
+}, {
+  name: "Charles Headen",
+  score: "3.76"
+}, {
+  name: "Elijah Reed",
+  score: "3.76"
+}, {
+  name: "Braydon Noll",
+  score: "3.75"
+}, {
+  name: "Zach Pelehos",
+  score: "3.75"
+}, {
+  name: "Lorenzo Dantzler",
+  score: "3.75"
+}, {
+  name: "Will Lydle",
+  score: "3.75"
+}, {
+  name: "Charles Williams",
+  score: "3.74"
+}, {
+  name: "James Fagan",
+  score: "3.74"
+}, {
+  name: "Josh Johnson",
+  score: "3.73"
+}, {
+  name: "Qwuantrezz Knight",
+  score: "3.73"
+}, {
+  name: "Alonzo McCoy",
+  score: "3.73"
+}, {
+  name: "Coby Tippett",
+  score: "3.71"
+}, {
+  name: "Tabarius Peterson",
+  score: "3.71"
+}, {
+  name: "Derrick Deese",
+  score: "3.7"
+}, {
+  name: "Cody Fletcher",
+  score: "3.7"
+}, {
+  name: "Al McKeller",
+  score: "3.7"
+}, {
+  name: "Robert Downs",
+  score: "3.69"
+}, {
+  name: "Chris Myers",
+  score: "3.68"
+}, {
+  name: "Raheem Layne",
+  score: "3.68"
+}, {
+  name: "Elery Alexander",
+  score: "3.68"
+}, {
+  name: "Patrick O'Brien",
+  score: "3.67"
+}, {
+  name: "Dylan Pasquali",
+  score: "3.67"
+}, {
+  name: "Chris Tucker",
+  score: "3.67"
+}, {
+  name: "Jacob Plamondon",
+  score: "3.66"
+}, {
+  name: "Bralon Robinson",
+  score: "3.65"
+}, {
+  name: "Ko Kieft",
+  score: "3.64"
+}, {
+  name: "Jeremy Kapelanski",
+  score: "3.64"
+}, {
+  name: "Cole Fotheringham",
+  score: "3.63"
+}, {
+  name: "Octavius Evans",
+  score: "3.62"
+}, {
+  name: "Harrell Blackmon",
+  score: "3.62"
+}, {
+  name: "Chauncey Manac",
+  score: "3.61"
+}, {
+  name: "Ja'Quan McMillian",
+  score: "3.6"
+}, {
+  name: "T.J. Carter",
+  score: "3.6"
+}, {
+  name: "Jonathan Ford",
+  score: "3.59"
+}, {
+  name: "Woo Scott",
+  score: "3.59"
+}, {
+  name: "Blake Bueter",
+  score: "3.59"
+}, {
+  name: "Jace Williams",
+  score: "3.59"
+}, {
+  name: "Drew Seers",
+  score: "3.59"
+}, {
+  name: "PJ Barr",
+  score: "3.58"
+}, {
+  name: "Caesar Willliams",
+  score: "3.57"
+}, {
+  name: "Cameron Lewis",
+  score: "3.56"
+}, {
+  name: "Jordan Young",
+  score: "3.56"
+}, {
+  name: "Tre Turner",
+  score: "3.55"
+}, {
+  name: "Kobie Whiteside",
+  score: "3.55"
+}, {
+  name: "Kade Parmelly",
+  score: "3.55"
+}, {
+  name: "Tony Collier",
+  score: "3.54"
+}, {
+  name: "Chance Warren",
+  score: "3.52"
+}, {
+  name: "Nelson Uzonwa",
+  score: "3.52"
+}, {
+  name: "D.J. Ford",
+  score: "3.5"
+}, {
+  name: "Grant Morgan",
+  score: "3.48"
+}, {
+  name: "Adrian Greene",
+  score: "3.48"
+}, {
+  name: "Tayvon Ruley",
+  score: "3.48"
+}, {
+  name: "McKinley Williams",
+  score: "3.47"
+}, {
+  name: "Jacub Panasiuk",
+  score: "3.47"
+}, {
+  name: "Jack Coco",
+  score: "3.47"
+}, {
+  name: "Reginald Henderson",
+  score: "3.47"
+}, {
+  name: "Tanner Smith",
+  score: "3.47"
+}, {
+  name: "Kyren Williams",
+  score: "3.46"
+}, {
+  name: "Cortez Davis",
+  score: "3.46"
+}, {
+  name: "Matthew Gotel",
+  score: "3.46"
+}, {
+  name: "Keegan Markgraf",
+  score: "3.45"
+}, {
+  name: "BJ Smith",
+  score: "3.44"
+}, {
+  name: "Dion Novil",
+  score: "3.43"
+}, {
+  name: "Lioundre Gallimore",
+  score: "3.42"
+}, {
+  name: "Jalen McKenzie",
+  score: "3.41"
+}, {
+  name: "Joe Comer",
+  score: "3.4"
+}, {
+  name: "Jett Duffey",
+  score: "3.39"
+}, {
+  name: "Ben Adler",
+  score: "3.39"
+}, {
+  name: "Jacoby Jones",
+  score: "3.39"
+}, {
+  name: "Marcus Lawrence",
+  score: "3.39"
+}, {
+  name: "Javaree Jackson",
+  score: "3.37"
+}, {
+  name: "Travis Levy",
+  score: "3.37"
+}, {
+  name: "Micah Wilson",
+  score: "3.37"
+}, {
+  name: "Will Jones",
+  score: "3.37"
+}, {
+  name: "Fernando Frye",
+  score: "3.37"
+}, {
+  name: "Boe Wilson",
+  score: "3.36"
+}, {
+  name: "Zach Hannibal",
+  score: "3.36"
+}, {
+  name: "Brian Keating",
+  score: "3.36"
+}, {
+  name: "JaVonta Payton",
+  score: "3.36"
+}, {
+  name: "Jah-Maine Martin",
+  score: "3.34"
+}, {
+  name: "Josh Powell",
+  score: "3.34"
+}, {
+  name: "Landon Lenoir",
+  score: "3.32"
+}, {
+  name: "Daniel Imatorbhebhe",
+  score: "3.3"
+}, {
+  name: "Avery Roberts",
+  score: "3.29"
+}, {
+  name: "Bryson Cannon",
+  score: "3.28"
+}, {
+  name: "Emeka Emezie",
+  score: "3.27"
+}, {
+  name: "Jalen Powell",
+  score: "3.25"
+}, {
+  name: "Kwannah Kollie",
+  score: "3.23"
+}, {
+  name: "Justin Thomas",
+  score: "3.23"
+}, {
+  name: "Marcel Dancy",
+  score: "3.23"
+}, {
+  name: "Jay Rose",
+  score: "3.23"
+}, {
+  name: "Levi Lewis",
+  score: "3.22"
+}, {
+  name: "Yohance Burnett",
+  score: "3.22"
+}, {
+  name: "Ivory Frimpong",
+  score: "3.22"
+}, {
+  name: "Stewart Reese",
+  score: "3.21"
+}, {
+  name: "Ronnell Wilson",
+  score: "3.21"
+}, {
+  name: "Noah Johnson",
+  score: "3.2"
+}, {
+  name: "Zach Burks",
+  score: "3.2"
+}, {
+  name: "Adam Higuera",
+  score: "3.19"
+}, {
+  name: "Myles Meyer",
+  score: "3.19"
+}, {
+  name: "Travell Harris",
+  score: "3.18"
+}, {
+  name: "Austin Evans",
+  score: "3.18"
+}, {
+  name: "Kailon Davis",
+  score: "3.17"
+}, {
+  name: "Kohl Levao",
+  score: "3.17"
+}, {
+  name: "Artie Henry",
+  score: "3.17"
+}, {
+  name: "Chris Owens",
+  score: "3.16"
+}, {
+  name: "Jawon Pass",
+  score: "3.15"
+}, {
+  name: "Jonathan Edouard",
+  score: "3.15"
+}, {
+  name: "Preston Guerra",
+  score: "3.14"
+}, {
+  name: "KaRon Ashley",
+  score: "3.13"
+}, {
+  name: "Stadford Anderson",
+  score: "3.13"
+}, {
+  name: "Cole Estabrooks",
+  score: "3.13"
+}, {
+  name: "Antwuan Jackson",
+  score: "3.12"
+}, {
+  name: "Trey Smith",
+  score: "3.12"
+}, {
+  name: "Lance Deveaux",
+  score: "3.11"
+}, {
+  name: "Amir Tyler",
+  score: "3.1"
+}, {
+  name: "Tyson Maeva",
+  score: "3.09"
+}, {
+  name: "Matthew Gledhill",
+  score: "3.09"
+}, {
+  name: "Brady Hanson",
+  score: "3.06"
+}, {
+  name: "Justin Terry",
+  score: "3.04"
+}, {
+  name: "Eddie Hahn",
+  score: "3.04"
+}, {
+  name: "Kaidan Smith",
+  score: "3.04"
+}, {
+  name: "Tyrese Robinson",
+  score: "3.03"
+}, {
+  name: "Cedric Boswell",
+  score: "3.02"
+}, {
+  name: "Justin Garrett",
+  score: "3.02"
+}, {
+  name: "Mikkah Hackett",
+  score: "3.02"
+}, {
+  name: "Carlos Acie",
+  score: "3.02"
+}, {
+  name: "Jay Woods",
+  score: "3.02"
+}, {
+  name: "Brandon Sebastian",
+  score: "3.01"
+}, {
+  name: "Quardraiz Wadley",
+  score: "3"
+}, {
+  name: "Chris Henderson",
+  score: "3"
+}, {
+  name: "Malik Clark",
+  score: "2.99"
+}, {
+  name: "Cory Roberts",
+  score: "2.99"
+}, {
+  name: "Marcque Ellington",
+  score: "2.99"
+}, {
+  name: "Michael Roots",
+  score: "2.98"
+}, {
+  name: "Rashun Freeman",
+  score: "2.98"
+}, {
+  name: "Mykael Wright",
+  score: "2.97"
+}, {
+  name: "Zach Herzog",
+  score: "2.97"
+}, {
+  name: "Will Allen",
+  score: "2.96"
+}, {
+  name: "Raekwon Chatman",
+  score: "2.96"
+}, {
+  name: "Cash Gilliam",
+  score: "2.95"
+}, {
+  name: "Erik Dickerson",
+  score: "2.94"
+}, {
+  name: "Zech Byrd",
+  score: "2.94"
+}, {
+  name: "Cory Jackson",
+  score: "2.94"
+}, {
+  name: "Michael McMorris",
+  score: "2.94"
+}, {
+  name: "Dio Williams",
+  score: "2.93"
+}, {
+  name: "TaMar Heart-Wilkins",
+  score: "2.92"
+}, {
+  name: "Jaylin Bannerman",
+  score: "2.92"
+}, {
+  name: "Remington Green",
+  score: "2.92"
+}, {
+  name: "Robert Gillum",
+  score: "2.91"
+}, {
+  name: "Troy Lefeged",
+  score: "2.9"
+}, {
+  name: "Terrence Smith",
+  score: "2.9"
+}, {
+  name: "Cord Sandberg",
+  score: "2.9"
+}, {
+  name: "Trey Gross",
+  score: "2.89"
+}, {
+  name: "Ricky Thomas",
+  score: "2.89"
+}, {
+  name: "Rasheet Tucker",
+  score: "2.89"
+}, {
+  name: "Amon Simon",
+  score: "2.89"
+}, {
+  name: "Bydarrius Knighten",
+  score: "2.87"
+}, {
+  name: "Michael Roberts",
+  score: "2.86"
+}, {
+  name: "Tommy McIntyre",
+  score: "2.85"
+}, {
+  name: "Troy Young",
+  score: "2.83"
+}, {
+  name: "Daquan Newkirk",
+  score: "2.83"
+}, {
+  name: "Justin Smith",
+  score: "2.83"
+}, {
+  name: "Anthony Federico",
+  score: "2.82"
+}, {
+  name: "Lionel McConnell",
+  score: "2.81"
+}, {
+  name: "Savion Williams",
+  score: "2.79"
+}, {
+  name: "DeCalon Brooks",
+  score: "2.78"
+}, {
+  name: "Max Chizmar",
+  score: "2.77"
+}, {
+  name: "Brodarious Hamm",
+  score: "2.76"
+}, {
+  name: "Travis Koontz",
+  score: "2.76"
+}, {
+  name: "Mykael White",
+  score: "2.75"
+}, {
+  name: "George Hicks",
+  score: "2.75"
+}, {
+  name: "Emilio Martinez",
+  score: "2.75"
+}, {
+  name: "Reggie Stubblefield",
+  score: "2.74"
+}, {
+  name: "Darion Dunn",
+  score: "2.74"
+}, {
+  name: "Korbin Harmon",
+  score: "2.74"
+}, {
+  name: "Marcus Hawkins",
+  score: "2.73"
+}, {
+  name: "Cade Brewer",
+  score: "2.7"
+}, {
+  name: "Jakoby Jones",
+  score: "2.7"
+}, {
+  name: "Javon Frazier",
+  score: "2.69"
+}, {
+  name: "Bryce Carter",
+  score: "2.69"
+}, {
+  name: "Thomas Hennigan",
+  score: "2.69"
+}, {
+  name: "Isaiah Edwards",
+  score: "2.68"
+}, {
+  name: "Zachary Wilcox",
+  score: "2.67"
+}, {
+  name: "Shawn Jennings",
+  score: "2.67"
+}, {
+  name: "Nykeim Johnson",
+  score: "2.67"
+}, {
+  name: "Bryce Young-Wells",
+  score: "2.65"
+}, {
+  name: "Kyle Fourtenbary",
+  score: "2.65"
+}, {
+  name: "Justyn Ross",
+  score: "2.64"
+}, {
+  name: "Big Kat Bryant",
+  score: "2.64"
+}, {
+  name: "Mike Beaudry",
+  score: "2.64"
+}, {
+  name: "Micah Dew-Treadway",
+  score: "2.63"
+}, {
+  name: "Levi Falck",
+  score: "2.63"
+}, {
+  name: "Hunter Kelly",
+  score: "2.61"
+}, {
+  name: "JaChai Baker",
+  score: "2.6"
+}, {
+  name: "James Empey",
+  score: "2.59"
+}, {
+  name: "Joe Ware",
+  score: "2.58"
+}, {
+  name: "D.J. Penick",
+  score: "2.58"
+}, {
+  name: "Anderson Recker",
+  score: "2.58"
+}, {
+  name: "Brendan Naujoks",
+  score: "2.58"
+}, {
+  name: "Kameron Brown",
+  score: "2.57"
+}, {
+  name: "Karl Mofor",
+  score: "2.57"
+}, {
+  name: "Allie Green IV",
+  score: "2.56"
+}, {
+  name: "Tre' Williams",
+  score: "2.56"
+}, {
+  name: "Gene Coleman",
+  score: "2.56"
+}, {
+  name: "Brandon Gandire",
+  score: "2.56"
+}, {
+  name: "Keir Thomas",
+  score: "2.56"
+}, {
+  name: "Josh Caldwell",
+  score: "2.55"
+}, {
+  name: "Daniel Smith",
+  score: "2.55"
+}, {
+  name: "Taylor Tuiasosopo",
+  score: "2.55"
+}, {
+  name: "Theo Howard",
+  score: "2.54"
+}, {
+  name: "Taylor Powell",
+  score: "2.53"
+}, {
+  name: "Jaxon Ciraolo-Brown",
+  score: "2.53"
+}, {
+  name: "Jordan Jones",
+  score: "2.51"
+}, {
+  name: "Damani Staley",
+  score: "2.49"
+}, {
+  name: "Orlando Umana",
+  score: "2.48"
+}, {
+  name: "Quentin Frazier",
+  score: "2.46"
+}, {
+  name: "Kholbe Coleman",
+  score: "2.46"
+}, {
+  name: "Jordan Wilson",
+  score: "2.45"
+}, {
+  name: "Jeremiah Hall",
+  score: "2.44"
+}, {
+  name: "Mitch Hall",
+  score: "2.44"
+}, {
+  name: "Quay Holmes",
+  score: "2.44"
+}, {
+  name: "Danny Davis",
+  score: "2.43"
+}, {
+  name: "Chandler Smith",
+  score: "2.43"
+}, {
+  name: "Alonzo Addae",
+  score: "2.42"
+}, {
+  name: "Daniel Wright",
+  score: "2.42"
+}, {
+  name: "Jayy McDonald",
+  score: "2.42"
+}, {
+  name: "Daniel Faalele",
+  score: "2.41"
+}, {
+  name: "Tyran Dixon",
+  score: "2.41"
+}, {
+  name: "Alex Gayle",
+  score: "2.41"
+}, {
+  name: "Cory Batie",
+  score: "2.4"
+}, {
+  name: "Jordan Perry",
+  score: "2.38"
+}, {
+  name: "Malik Williams",
+  score: "2.38"
+}, {
+  name: "Ibn Foster",
+  score: "2.38"
+}, {
+  name: "Aaron Lewis",
+  score: "2.36"
+}, {
+  name: "Sulaiman Kamara",
+  score: "2.36"
+}, {
+  name: "Tae Daley",
+  score: "2.35"
+}, {
+  name: "Valentino Daltoso",
+  score: "2.35"
+}, {
+  name: "JaCorey Sullivan",
+  score: "2.35"
+}, {
+  name: "Todd Summers",
+  score: "2.34"
+}, {
+  name: "Rishard Dames",
+  score: "2.34"
+}, {
+  name: "Jerrell Lawson",
+  score: "2.34"
+}, {
+  name: "Verone McKinley",
+  score: "2.33"
+}, {
+  name: "Juan Rodriguez",
+  score: "2.33"
+}, {
+  name: "Thomas Pickens",
+  score: "2.32"
+}, {
+  name: "Esaias Gandy",
+  score: "2.31"
+}, {
+  name: "Tysel-Otis Copeland",
+  score: "2.31"
+}, {
+  name: "Coney Durr",
+  score: "2.3"
+}, {
+  name: "CJ Verdell",
+  score: "2.3"
+}, {
+  name: "Bryce Rogers",
+  score: "2.3"
+}, {
+  name: "Kekaula Kaniho",
+  score: "2.3"
+}, {
+  name: "Tyler Snead",
+  score: "2.29"
+}, {
+  name: "Yanis Chihat",
+  score: "2.29"
+}, {
+  name: "Emmett Rice",
+  score: "2.28"
+}, {
+  name: "Ladarius Skelton",
+  score: "2.28"
+}, {
+  name: "Kareem Walker",
+  score: "2.28"
+}, {
+  name: "Jaxson Kincaide",
+  score: "2.27"
+}, {
+  name: "Cade Barnard",
+  score: "2.27"
+}, {
+  name: "Jeremy Jennings",
+  score: "2.26"
+}, {
+  name: "TJ Johnson",
+  score: "2.26"
+}, {
+  name: "Mike Palmer",
+  score: "2.25"
+}, {
+  name: "De'Vion Warren",
+  score: "2.25"
+}, {
+  name: "Kevin Mensah",
+  score: "2.25"
+}, {
+  name: "Jaylen Erwin",
+  score: "2.25"
+}, {
+  name: "Roderick Perry",
+  score: "2.24"
+}, {
+  name: "Lucky Oyovwi",
+  score: "2.24"
+}, {
+  name: "Cameron Johnson",
+  score: "2.24"
+}, {
+  name: "Jordan Nathan",
+  score: "2.24"
+}, {
+  name: "Jovaun Woolford",
+  score: "2.23"
+}, {
+  name: "Zach Herzog",
+  score: "2.22"
+}, {
+  name: "Brandon Dowdell",
+  score: "2.22"
+}, {
+  name: "Nick Moss",
+  score: "2.21"
+}, {
+  name: "Myles Olufemi",
+  score: "2.2"
+}, {
+  name: "Markel Roby",
+  score: "2.19"
+}, {
+  name: "Gregor Mackellar",
+  score: "2.18"
+}, {
+  name: "Ryan Nelson",
+  score: "2.18"
+}, {
+  name: "Melvin Rouse",
+  score: "2.17"
+}, {
+  name: "Jabbar Price",
+  score: "2.16"
+}, {
+  name: "Bobby Brown",
+  score: "2.15"
+}, {
+  name: "Marcel Arruda-Welch",
+  score: "2.15"
+}, {
+  name: "Jalon Thigpen",
+  score: "2.14"
+}, {
+  name: "Brandon McKinney",
+  score: "2.13"
+}, {
+  name: "Myron Cunningham",
+  score: "2.12"
+}, {
+  name: "Djimon Brooks",
+  score: "2.12"
+}, {
+  name: "Joey Lewis",
+  score: "2.11"
+}, {
+  name: "Cain Madden",
+  score: "2.1"
+}, {
+  name: "Dave Jones",
+  score: "2.09"
+}, {
+  name: "Josh Wilkes",
+  score: "2.08"
+}, {
+  name: "Darta Lee",
+  score: "2.08"
+}, {
+  name: "Lawson Hall",
+  score: "2.08"
+}, {
+  name: "Brandon Shuman",
+  score: "2.08"
+}, {
+  name: "TieNeal Martin",
+  score: "2.06"
+}, {
+  name: "T.D. Moultry",
+  score: "2.05"
+}, {
+  name: "Justin Collins",
+  score: "2.05"
+}, {
+  name: "Temitope Agoro",
+  score: "2.04"
+}, {
+  name: "Jake Molinich",
+  score: "2.03"
+}, {
+  name: "Ethan Tabel",
+  score: "2.02"
+}, {
+  name: "Tyler Turner",
+  score: "2.02"
+}, {
+  name: "TJ Rayam",
+  score: "2.01"
+}, {
+  name: "Patrick Minenok",
+  score: "2.01"
+}, {
+  name: "Kolo Uasike",
+  score: "1.99"
+}, {
+  name: "Harry Ballard",
+  score: "1.98"
+}, {
+  name: "Alfonzo Lambert",
+  score: "1.98"
+}, {
+  name: "Nathniel Hines",
+  score: "1.97"
+}, {
+  name: "Jerry Garner",
+  score: "1.96"
+}, {
+  name: "Lawrence Edwards",
+  score: "1.95"
+}, {
+  name: "Tyrell Alexander",
+  score: "1.95"
+}, {
+  name: "Philippe Lemieux-Cardinal",
+  score: "1.94"
+}, {
+  name: "Antwan Owens",
+  score: "1.94"
+}, {
+  name: "Shedrick Robinson",
+  score: "1.93"
+}, {
+  name: "Jared Beeksma",
+  score: "1.93"
+}, {
+  name: "Josh Rogers",
+  score: "1.93"
+}, {
+  name: "Evan Horn",
+  score: "1.93"
+}, {
+  name: "Jonathan Sullivan",
+  score: "1.93"
+}, {
+  name: "Damion Daniels",
+  score: "1.92"
+}, {
+  name: "Brandon Bowling",
+  score: "1.92"
+}, {
+  name: "Alessandro Molnar",
+  score: "1.92"
+}, {
+  name: "Chandler Wooten",
+  score: "1.91"
+}, {
+  name: "Nick Lenners",
+  score: "1.9"
+}, {
+  name: "Caleb Jones",
+  score: "1.9"
+}, {
+  name: "Justin Whisenhunt",
+  score: "1.9"
+}, {
+  name: "Ted Kubongo",
+  score: "1.9"
+}, {
+  name: "Devin Guice",
+  score: "1.89"
+}, {
+  name: "Delano Robinson",
+  score: "1.89"
+}, {
+  name: "Cyrus Habibi-Likio",
+  score: "1.88"
+}, {
+  name: "Jared Beeksma",
+  score: "1.87"
+}, {
+  name: "Lonnie Moore",
+  score: "1.86"
+}, {
+  name: "RaShaad Harding",
+  score: "1.86"
+}, {
+  name: "Elijah James",
+  score: "1.85"
+}, {
+  name: "Taurus Carroll",
+  score: "1.84"
+}, {
+  name: "K.D. Nixon",
+  score: "1.82"
+}, {
+  name: "Tyler Adkins",
+  score: "1.82"
+}, {
+  name: "Rodeem Brown",
+  score: "1.82"
+}, {
+  name: "Demarcus Gilmore",
+  score: "1.82"
+}, {
+  name: "Thomas Cole",
+  score: "1.82"
+}, {
+  name: "Cornelius Brown",
+  score: "1.81"
+}, {
+  name: "Treyvon Reeves",
+  score: "1.81"
+}, {
+  name: "Tre Walker",
+  score: "1.8"
+}, {
+  name: "Leandro DeBrito",
+  score: "1.79"
+}, {
+  name: "Antonneous Clayton",
+  score: "1.78"
+}, {
+  name: "Trevon Clark",
+  score: "1.78"
+}, {
+  name: "Justice Antrum",
+  score: "1.78"
+}, {
+  name: "Sean Bailey",
+  score: "1.78"
+}, {
+  name: "KeLenn Davis",
+  score: "1.78"
+}, {
+  name: "Arjay Shelley",
+  score: "1.78"
+}, {
+  name: "McKenzie Milton",
+  score: "1.77"
+}, {
+  name: "Brandon Robinson",
+  score: "1.77"
+}, {
+  name: "Jordan Silver",
+  score: "1.76"
+}, {
+  name: "Randal Grimes",
+  score: "1.76"
+}, {
+  name: "Stephen Carr",
+  score: "1.75"
+}, {
+  name: "Marcus Bowman",
+  score: "1.75"
+}, {
+  name: "Marcus Bowman",
+  score: "1.75"
+}, {
+  name: "Chase Pine",
+  score: "1.74"
+}, {
+  name: "Drew Beesley",
+  score: "1.74"
+}, {
+  name: "Alvinoski LaFleur",
+  score: "1.73"
+}, {
+  name: "Arik Smith",
+  score: "1.73"
+}, {
+  name: "Claude-Adler Joseph",
+  score: "1.73"
+}, {
+  name: "Michael LoVett",
+  score: "1.72"
+}, {
+  name: "Carl Igweh",
+  score: "1.72"
+}, {
+  name: "Josh Ross",
+  score: "1.71"
+}, {
+  name: "Trenton Dunn",
+  score: "1.71"
+}, {
+  name: "Marshaun Cameron",
+  score: "1.71"
+}, {
+  name: "Nick Starkel",
+  score: "1.7"
+}, {
+  name: "Zack Fry",
+  score: "1.7"
+}, {
+  name: "Grady Thomas",
+  score: "1.7"
+}, {
+  name: "Hayden Pittman",
+  score: "1.69"
+}, {
+  name: "Colby Ragland",
+  score: "1.69"
+}, {
+  name: "Thomas Parker",
+  score: "1.69"
+}, {
+  name: "Daniel Valente",
+  score: "1.69"
+}, {
+  name: "Charles Akanno",
+  score: "1.69"
+}, {
+  name: "Scottie Young",
+  score: "1.69"
+}, {
+  name: "Zach Moore",
+  score: "1.69"
+}, {
+  name: "Kaleb Eleby",
+  score: "1.68"
+}, {
+  name: "Chase Arseneau",
+  score: "1.68"
+}, {
+  name: "Carandal Hale",
+  score: "1.68"
+}, {
+  name: "Cole Weaver",
+  score: "1.68"
+}, {
+  name: "Ben Kimpler",
+  score: "1.67"
+}, {
+  name: "Antwon Kincade",
+  score: "1.66"
+}, {
+  name: "Erik Massey",
+  score: "1.66"
+}, {
+  name: "Kwameh Lewis",
+  score: "1.66"
+}, {
+  name: "David Sevigny",
+  score: "1.66"
+}, {
+  name: "Matthew Lucyshyn",
+  score: "1.66"
+}, {
+  name: "D.j. Morgan",
+  score: "1.65"
+}, {
+  name: "Chima Dunga",
+  score: "1.65"
+}, {
+  name: "Uriah Leiataua",
+  score: "1.65"
+}, {
+  name: "Isaiah Robinson",
+  score: "1.65"
+}, {
+  name: "Bryce Foxworth",
+  score: "1.63"
+}, {
+  name: "Jordan Tucker",
+  score: "1.62"
+}, {
+  name: "Hawk Wimmer",
+  score: "1.62"
+}, {
+  name: "Hunter Buczokowski",
+  score: "1.61"
+}, {
+  name: "Lane Farris",
+  score: "1.61"
+}, {
+  name: "Tristan Fleury",
+  score: "1.59"
+}, {
+  name: "Zach Lindley",
+  score: "1.58"
+}, {
+  name: "Domonique Williams",
+  score: "1.58"
+}, {
+  name: "James Charles",
+  score: "1.58"
+}, {
+  name: "Donovan Anderson",
+  score: "1.57"
+}, {
+  name: "Khalil Ladler",
+  score: "1.57"
+}, {
+  name: "Xavier Lane",
+  score: "1.57"
+}, {
+  name: "Obi Eboh",
+  score: "1.56"
+}, {
+  name: "Ryan Boehm",
+  score: "1.56"
+}, {
+  name: "Daniel Kwamou",
+  score: "1.55"
+}, {
+  name: "Derion Kendrick",
+  score: "1.54"
+}, {
+  name: "Richard Dames",
+  score: "1.54"
+}, {
+  name: "Zach Larkin",
+  score: "1.54"
+}, {
+  name: "TreShaud Smith",
+  score: "1.54"
+}, {
+  name: "Jalen Williams",
+  score: "1.54"
+}, {
+  name: "Uriel Kalenga",
+  score: "1.53"
+}, {
+  name: "Tyson Philpot",
+  score: "1.53"
+}, {
+  name: "Zachary Wilson",
+  score: "1.53"
+}, {
+  name: "CJ Holmes",
+  score: "1.52"
+}, {
+  name: "Brett Ellerman",
+  score: "1.52"
+}, {
+  name: "Marcus Brown",
+  score: "1.52"
+}, {
+  name: "Oscar Shadley",
+  score: "1.51"
+}, {
+  name: "Bayley Buchanan",
+  score: "1.5"
+}, {
+  name: "Zeke Brown",
+  score: "1.5"
+}, {
+  name: "Matthew Stephenson",
+  score: "1.5"
+}, {
+  name: "Chad Gilchrist",
+  score: "1.49"
+}, {
+  name: "Josh Drayden",
+  score: "1.47"
+}, {
+  name: "Remi Simmons",
+  score: "1.47"
+}, {
+  name: "Ryan Carriere",
+  score: "1.46"
+}, {
+  name: "Devin Taylor",
+  score: "1.45"
+}, {
+  name: "Samuel Warren",
+  score: "1.44"
+}, {
+  name: "Denzel Feaster",
+  score: "1.43"
+}, {
+  name: "Jerone Jackson",
+  score: "1.43"
+}, {
+  name: "Benjamin Alexander",
+  score: "1.42"
+}, {
+  name: "Deonte Williams",
+  score: "1.42"
+}, {
+  name: "John Tate IV",
+  score: "1.41"
+}, {
+  name: "Tre Tipton",
+  score: "1.4"
+}, {
+  name: "Joe Joe Headen",
+  score: "1.4"
+}, {
+  name: "Kyle Davis",
+  score: "1.39"
+}, {
+  name: "Gene Scott",
+  score: "1.37"
+}, {
+  name: "Garrett Walston",
+  score: "1.36"
+}, {
+  name: "Shawn Shamburger",
+  score: "1.36"
+}, {
+  name: "Solomon Wise",
+  score: "1.35"
+}, {
+  name: "C.J. Wright",
+  score: "1.35"
+}, {
+  name: "Nicholas Petermann",
+  score: "1.34"
+}, {
+  name: "Jay Jackson-Williams",
+  score: "1.34"
+}, {
+  name: "Jalen Philpot",
+  score: "1.33"
+}, {
+  name: "Caleb Shudak",
+  score: "1.32"
+}, {
+  name: "Tyree Robinson",
+  score: "1.31"
+}, {
+  name: "Amin Black",
+  score: "1.31"
+}, {
+  name: "Jaylan Alexander",
+  score: "1.31"
+}, {
+  name: "Cameron Odom",
+  score: "1.3"
+}, {
+  name: "Tarik Adams",
+  score: "1.3"
+}, {
+  name: "Markens Valcourt",
+  score: "1.3"
+}, {
+  name: "Vonte Davis",
+  score: "1.29"
+}, {
+  name: "Barnaba Niel",
+  score: "1.28"
+}, {
+  name: "Jack Sorenson",
+  score: "1.28"
+}, {
+  name: "Johnathon Edwards",
+  score: "1.28"
+}, {
+  name: "Mark Collins",
+  score: "1.28"
+}, {
+  name: "Matt Hankins",
+  score: "1.25"
+}, {
+  name: "Brenndan Johnson",
+  score: "1.25"
+}, {
+  name: "Nate Stewart",
+  score: "1.25"
+}, {
+  name: "Blake Kern",
+  score: "1.24"
+}, {
+  name: "Tyarise Stevenson",
+  score: "1.24"
+}, {
+  name: "Jayden Dalke",
+  score: "1.24"
+}, {
+  name: "Devante Loggins",
+  score: "1.24"
+}, {
+  name: "Patrick Howell",
+  score: "1.24"
+}, {
+  name: "Lakia Henry",
+  score: "1.23"
+}, {
+  name: "Adam Machart",
+  score: "1.23"
+}, {
+  name: "Johnny Huntley",
+  score: "1.23"
+}, {
+  name: "Brandon Sanford",
+  score: "1.23"
+}, {
+  name: "Daniel Norman",
+  score: "1.22"
+}, {
+  name: "S.J. Brown",
+  score: "1.21"
+}, {
+  name: "Cedrick Lavigne",
+  score: "1.21"
+}, {
+  name: "Keith Brown",
+  score: "1.2"
+}, {
+  name: "Jackson Anthrop",
+  score: "1.2"
+}, {
+  name: "Jack Constantine",
+  score: "1.19"
+}, {
+  name: "Tru Wilson",
+  score: "1.19"
+}, {
+  name: "Brandon Gandire",
+  score: "1.19"
+}, {
+  name: "Travon Fuller",
+  score: "1.17"
+}, {
+  name: "DeValon Whitcomb",
+  score: "1.17"
+}, {
+  name: "Keith Pearson",
+  score: "1.17"
+}, {
+  name: "Geremy Hickbottom",
+  score: "1.16"
+}, {
+  name: "Greg Johnson",
+  score: "1.15"
+}, {
+  name: "Aaron Dowell",
+  score: "1.15"
+}, {
+  name: "Beau Morris",
+  score: "1.15"
+}, {
+  name: "Kyle Bailey",
+  score: "1.15"
+}, {
+  name: "Kanore McKinnon",
+  score: "1.15"
+}, {
+  name: "Jordan Ighofose",
+  score: "1.14"
+}, {
+  name: "Kiondre Smith",
+  score: "1.14"
+}, {
+  name: "Teddy Gallagher",
+  score: "1.13"
+}, {
+  name: "Tiller Bucktrot",
+  score: "1.13"
+}, {
+  name: "Jeffery Pooler",
+  score: "1.13"
+}, {
+  name: "Aqeel Glass",
+  score: "1.11"
+}, {
+  name: "Logan Carter",
+  score: "1.11"
+}, {
+  name: "Casey Warming",
+  score: "1.1"
+}, {
+  name: "Jordan Hill",
+  score: "1.1"
+}, {
+  name: "Sandor Mod",
+  score: "1.1"
+}, {
+  name: "Deon Edwards",
+  score: "1.09"
+}, {
+  name: "Subomi Oyesoro",
+  score: "1.09"
+}, {
+  name: "Cameron Dollar",
+  score: "1.09"
+}, {
+  name: "Reggie Collins",
+  score: "1.09"
+}, {
+  name: "Caleb Bonner",
+  score: "1.08"
+}, {
+  name: "DeAndre Washington",
+  score: "1.08"
+}, {
+  name: "Riko Jeffers",
+  score: "1.07"
+}, {
+  name: "Daniel Joseph",
+  score: "1.07"
+}, {
+  name: "Brian Saunds",
+  score: "1.07"
+}, {
+  name: "Korey Banks",
+  score: "1.05"
+}, {
+  name: "Hayden Galvin",
+  score: "1.05"
+}, {
+  name: "Alec Anderson",
+  score: "1.04"
+}, {
+  name: "Marquan McCall",
+  score: "1.03"
+}, {
+  name: "Jalen Phelps",
+  score: "1.03"
+}, {
+  name: "Lorenzo Dorr",
+  score: "1.03"
+}, {
+  name: "Aaron Hackett",
+  score: "1.02"
+}, {
+  name: "Kei Beckham",
+  score: "1.02"
+}, {
+  name: "John Taylor",
+  score: "1.01"
+}, {
+  name: "Jalen Wydermyer",
+  score: "1"
+}, {
+  name: "Chris Fournier",
+  score: "1"
+}, {
+  name: "Zack Benson",
+  score: "0.99"
+}, {
+  name: "Ponce Deleon",
+  score: "0.99"
+}, {
+  name: "Trey Kellogg",
+  score: "0.99"
+}, {
+  name: "Juwan Taylor",
+  score: "0.98"
+}, {
+  name: "Peter Kozushka",
+  score: "0.98"
+}, {
+  name: "Sefo Milangi",
+  score: "0.98"
+}, {
+  name: "Tayland Humphrey",
+  score: "0.97"
+}, {
+  name: "Christian Blackburn",
+  score: "0.97"
+}, {
+  name: "AJ Farris",
+  score: "0.96"
+}, {
+  name: "Elijah Pierre",
+  score: "0.95"
+}, {
+  name: "Untareo Johnson",
+  score: "0.94"
+}, {
+  name: "Greg Eisworth",
+  score: "0.94"
+}, {
+  name: "Nate Edwards",
+  score: "0.94"
+}, {
+  name: "Trae Barry",
+  score: "0.93"
+}, {
+  name: "Tre Johnson",
+  score: "0.92"
+}, {
+  name: "Kevin Musai",
+  score: "0.91"
+}, {
+  name: "Brian Cavicante",
+  score: "0.9"
+}, {
+  name: "Alton Nobles",
+  score: "0.9"
+}, {
+  name: "Simon Chaves",
+  score: "0.87"
+}, {
+  name: "Julian Rochester",
+  score: "0.87"
+}, {
+  name: "Kledrick Wilson",
+  score: "0.87"
+}, {
+  name: "Neil Farrell",
+  score: "0.86"
+}, {
+  name: "Tommy Bringi",
+  score: "0.86"
+}, {
+  name: "Jalen Spady",
+  score: "0.86"
+}, {
+  name: "Chase Cokley",
+  score: "0.85"
+}, {
+  name: "Caleb Spurlin",
+  score: "0.85"
+}, {
+  name: "Emmanuel Tasie",
+  score: "0.84"
+}, {
+  name: "Rushon Dgelman",
+  score: "0.83"
+}, {
+  name: "Chris Ingram",
+  score: "0.83"
+}, {
+  name: "Kolby Buljevic",
+  score: "0.83"
+}, {
+  name: "Kayode Rufai",
+  score: "0.82"
+}, {
+  name: "Ibrahim Hassoun",
+  score: "0.82"
+}, {
+  name: "Luke Martin",
+  score: "0.82"
+}, {
+  name: "Jonah Kim",
+  score: "0.81"
+}, {
+  name: "Kameron Hill",
+  score: "0.81"
+}, {
+  name: "Ty Kelly",
+  score: "0.8"
+}, {
+  name: "Frank Burton",
+  score: "0.79"
+}, {
+  name: "Nicolas Guay",
+  score: "0.79"
+}, {
+  name: "Rashon Davis",
+  score: "0.79"
+}, {
+  name: "AJ Harrison",
+  score: "0.78"
+}, {
+  name: "Dalyn Wade-Perry",
+  score: "0.77"
+}, {
+  name: "Trevon Sidney",
+  score: "0.77"
+}, {
+  name: "A.J. Smith",
+  score: "0.77"
+}, {
+  name: "Frank Bailey",
+  score: "0.77"
+}, {
+  name: "Tyler Nevens",
+  score: "0.76"
+}, {
+  name: "Micah Awodiran",
+  score: "0.76"
+}, {
+  name: "Danny Garza",
+  score: "0.75"
+}, {
+  name: "Wallace Cowins",
+  score: "0.74"
+}, {
+  name: "Matthew Kempton",
+  score: "0.74"
+}, {
+  name: "Lacedrick Brunson",
+  score: "0.74"
+}, {
+  name: "Derrick Mayweather",
+  score: "0.74"
+}, {
+  name: "Connor Carusello",
+  score: "0.73"
+}, {
+  name: "Kwami Jones",
+  score: "0.73"
+}, {
+  name: "Navaughn Donaldson",
+  score: "0.73"
+}, {
+  name: "Tony Fair",
+  score: "0.72"
+}, {
+  name: "Luka Velure",
+  score: "0.72"
+}, {
+  name: "Tre Young",
+  score: "0.71"
+}, {
+  name: "TJ Johnson",
+  score: "0.71"
+}, {
+  name: "Josh Gontarek",
+  score: "0.71"
+}, {
+  name: "Amandre Williams",
+  score: "0.71"
+}, {
+  name: "Dionte Smith",
+  score: "0.7"
+}, {
+  name: "Shahman Moore",
+  score: "0.69"
+}, {
+  name: "Jamal Gates",
+  score: "0.69"
+}, {
+  name: "Nathanael Durkan",
+  score: "0.69"
+}, {
+  name: "Bronson Massie",
+  score: "0.68"
+}, {
+  name: "Datona Jackson",
+  score: "0.68"
+}, {
+  name: "Cole McGowan",
+  score: "0.68"
+}, {
+  name: "Damerren Mitchell",
+  score: "0.67"
+}, {
+  name: "John Davis",
+  score: "0.67"
+}, {
+  name: "Eric Monroe",
+  score: "0.66"
+}, {
+  name: "Hezekiah Grimsley",
+  score: "0.66"
+}, {
+  name: "Kordell Jackson",
+  score: "0.66"
+}, {
+  name: "Desi Dixon",
+  score: "0.65"
+}, {
+  name: "Logan Wright",
+  score: "0.65"
+}, {
+  name: "Tobias Enlow",
+  score: "0.64"
+}, {
+  name: "Akil Jones",
+  score: "0.64"
+}, {
+  name: "Hunter Rison",
+  score: "0.64"
+}, {
+  name: "Api Mane",
+  score: "0.64"
+}, {
+  name: "Josh Perry",
+  score: "0.63"
+}, {
+  name: "Brendan Radley-Hiles",
+  score: "0.63"
+}, {
+  name: "Kelvin Pinkney",
+  score: "0.63"
+}, {
+  name: "Connor Ross",
+  score: "0.63"
+}, {
+  name: "Christian Bobak",
+  score: "0.62"
+}, {
+  name: "K.J. Smith",
+  score: "0.62"
+}, {
+  name: "Danny Godlevske",
+  score: "0.62"
+}, {
+  name: "Joel Braden",
+  score: "0.62"
+}, {
+  name: "D'Juan Matthews",
+  score: "0.61"
+}, {
+  name: "Karon Delince",
+  score: "0.61"
+}, {
+  name: "Benoit Cormier",
+  score: "0.61"
+}, {
+  name: "Dallas Dixon",
+  score: "0.61"
+}, {
+  name: "Evan Fairs",
+  score: "0.6"
+}, {
+  name: "Taz Bell",
+  score: "0.59"
+}, {
+  name: "Shaq Bond",
+  score: "0.59"
+}, {
+  name: "Ralfs Rusins",
+  score: "0.58"
+}, {
+  name: "Lionell Wiggins",
+  score: "0.58"
+}, {
+  name: "Kyree Woods",
+  score: "0.57"
+}, {
+  name: "Jean-Paul Cimankinda",
+  score: "0.57"
+}, {
+  name: "Andre Blackett",
+  score: "0.57"
+}, {
+  name: "Richard Moore",
+  score: "0.56"
+}, {
+  name: "Max Bortenschlager",
+  score: "0.56"
+}, {
+  name: "Al Young",
+  score: "0.55"
+}, {
+  name: "Deon McIntosh",
+  score: "0.54"
+}, {
+  name: "Siah Sao",
+  score: "0.54"
+}, {
+  name: "Pearce Dumay",
+  score: "0.54"
+}, {
+  name: "Donovan Slates",
+  score: "0.53"
+}, {
+  name: "Jamal Savage",
+  score: "0.53"
+}, {
+  name: "LeCharles Pringle",
+  score: "0.53"
+}, {
+  name: "Sean McGrew",
+  score: "0.52"
+}, {
+  name: "Vincent Perry",
+  score: "0.52"
+}, {
+  name: "Jacquez Jones",
+  score: "0.52"
+}, {
+  name: "Dedrick Mackey",
+  score: "0.51"
+}, {
+  name: "Ryth-Jean Giraud",
+  score: "0.51"
+}, {
+  name: "Digaan Gomis",
+  score: "0.51"
+}, {
+  name: "Juwan Thomas",
+  score: "0.5"
+}, {
+  name: "Ryth-Jean Giraud",
+  score: "0.49"
+}, {
+  name: "Wayne Davis",
+  score: "0.49"
+}, {
+  name: "Liam Patton",
+  score: "0.49"
+}, {
+  name: "Zaire Jones",
+  score: "0.48"
+}, {
+  name: "Talki Ehouman",
+  score: "0.48"
+}, {
+  name: "Jaquel Pierce",
+  score: "0.48"
+}, {
+  name: "Rachuan Mitchell",
+  score: "0.48"
+}, {
+  name: "Graeme Stevens",
+  score: "0.48"
+}, {
+  name: "Corey Williams",
+  score: "0.48"
+}, {
+  name: "Cherokee Glasgow",
+  score: "0.47"
+}, {
+  name: "Bryan Syracuse",
+  score: "0.47"
+}, {
+  name: "Willie Wright",
+  score: "0.47"
+}, {
+  name: "Denario Critton",
+  score: "0.47"
+}, {
+  name: "Jaylan Foster",
+  score: "0.46"
+}, {
+  name: "Eric Stranz",
+  score: "0.46"
+}, {
+  name: "Troy Hilton",
+  score: "0.45"
+}, {
+  name: "Critt Johnson",
+  score: "0.45"
+}, {
+  name: "Devontay Love-Taylor",
+  score: "0.44"
+}, {
+  name: "Nicholas Terry",
+  score: "0.44"
+}, {
+  name: "Noah Zerr",
+  score: "0.44"
+}, {
+  name: "TJ Chase",
+  score: "0.44"
+}, {
+  name: "Lawtez Rogers",
+  score: "0.44"
+}, {
+  name: "Tyreik Campbell",
+  score: "0.44"
+}, {
+  name: "Chibueze Nwanna",
+  score: "0.43"
+}, {
+  name: "Kurt Huff",
+  score: "0.43"
+}, {
+  name: "Ben Ratzlaff",
+  score: "0.42"
+}, {
+  name: "Garth Knittig",
+  score: "0.42"
+}, {
+  name: "Roland Walder",
+  score: "0.41"
+}, {
+  name: "Azende Ray",
+  score: "0.4"
+}, {
+  name: "Kyland Richey",
+  score: "0.4"
+}, {
+  name: "Colby Campbell",
+  score: "0.4"
+}, {
+  name: "Codey McRoberts",
+  score: "0.39"
+}, {
+  name: "Marcus Clayton",
+  score: "0.39"
+}, {
+  name: "Joseph Hooper",
+  score: "0.39"
+}, {
+  name: "Damian Alloway",
+  score: "0.39"
+}, {
+  name: "Thad Mangum",
+  score: "0.39"
+}, {
+  name: "Dwight Blakey",
+  score: "0.39"
+}, {
+  name: "Luca Perrier",
+  score: "0.39"
+}, {
+  name: "Brandon Poulin",
+  score: "0.38"
+}, {
+  name: "Christian Williams",
+  score: "0.37"
+}, {
+  name: "Nick Yearwood",
+  score: "0.37"
+}, {
+  name: "Marquel Dismuke",
+  score: "0.36"
+}, {
+  name: "Blake Zarubiak",
+  score: "0.35"
+}, {
+  name: "Colby Burton",
+  score: "0.35"
+}, {
+  name: "Julio Garcia",
+  score: "0.35"
+}, {
+  name: "Eugene Ford",
+  score: "0.34"
+}, {
+  name: "Nate Durham",
+  score: "0.34"
+}, {
+  name: "Jordan Happie",
+  score: "0.33"
+}, {
+  name: "Xavier Washington",
+  score: "0.33"
+}, {
+  name: "Akial Byers",
+  score: "0.32"
+}, {
+  name: "Dominic Gudino",
+  score: "0.32"
+}, {
+  name: "Myles Benning",
+  score: "0.32"
+}, {
+  name: "Darius Campbell",
+  score: "0.32"
+}, {
+  name: "James Gillespie",
+  score: "0.31"
+}, {
+  name: "Jeremie Dominique",
+  score: "0.31"
+}, {
+  name: "John Boachie",
+  score: "0.31"
+}, {
+  name: "TristanFiseke-Casault",
+  score: "0.31"
+}, {
+  name: "Trey Giles",
+  score: "0.3"
+}, {
+  name: "Everitt Cunningham",
+  score: "0.3"
+}, {
+  name: "Bryan Latouche",
+  score: "0.29"
+}, {
+  name: "Matt Allen",
+  score: "0.28"
+}, {
+  name: "Billy Bob Humphreys",
+  score: "0.28"
+}, {
+  name: "Taurence Wilson",
+  score: "0.28"
+}, {
+  name: "Vincent Sampson",
+  score: "0.28"
+}, {
+  name: "D'Vaughn Whitt",
+  score: "0.28"
+}, {
+  name: "Mandela Lawrence-Burke",
+  score: "0.27"
+}, {
+  name: "Konner Burtenshaw",
+  score: "0.27"
+}, {
+  name: "Daeshaun Jupiter-Deane",
+  score: "0.26"
+}, {
+  name: "Trisin St. Kitts-Park",
+  score: "0.26"
+}, {
+  name: "Montavious Tinch",
+  score: "0.25"
+}, {
+  name: "Robert Revels",
+  score: "0.25"
+}, {
+  name: "Jeremy Darvin",
+  score: "0.24"
+}, {
+  name: "Lindon Ivezic",
+  score: "0.23"
+}, {
+  name: "Jahkai Gill",
+  score: "0.23"
+}, {
+  name: "JaQuez Akins",
+  score: "0.23"
+}, {
+  name: "Greg Latushko",
+  score: "0.22"
+}, {
+  name: "Keith Sherald",
+  score: "0.22"
+}, {
+  name: "Keke Leroy",
+  score: "0.21"
+}, {
+  name: "Tyron McDade",
+  score: "0.21"
+}, {
+  name: "George Hutchings",
+  score: "0.21"
+}, {
+  name: "Kyler Mosley",
+  score: "0.21"
+}, {
+  name: "Antonio Crosby",
+  score: "0.2"
+}, {
+  name: "Joshua Mack",
+  score: "0.2"
+}, {
+  name: "Quez Jackson",
+  score: "0.19"
+}, {
+  name: "David Hood",
+  score: "0.19"
+}, {
+  name: "Kobe Ross",
+  score: "0.19"
+}, {
+  name: "Eric Mitchell",
+  score: "0.19"
+}, {
+  name: "Katley Joseph",
+  score: "0.19"
+}, {
+  name: "Kohl Hollinquist",
+  score: "0.18"
+}, {
+  name: "Kevin Dubois",
+  score: "0.18"
+}, {
+  name: "CJ Schrimpf",
+  score: "0.17"
+}, {
+  name: "Jake Springer",
+  score: "0.17"
+}, {
+  name: "Jadavien Williams",
+  score: "0.17"
+}, {
+  name: "Justice Allin",
+  score: "0.16"
+}, {
+  name: "Spencer Hood",
+  score: "0.16"
+}, {
+  name: "Dejour Simpson",
+  score: "0.16"
+}, {
+  name: "Jonathan Wedgbury",
+  score: "0.16"
+}, {
+  name: "Keonte Hampton",
+  score: "0.15"
+}, {
+  name: "Ajavius Brown",
+  score: "0.15"
+}, {
+  name: "Jalen Hoover",
+  score: "0.15"
+}, {
+  name: "Mario Alyas",
+  score: "0.14"
+}, {
+  name: "Esson Hamilton",
+  score: "0.14"
+}, {
+  name: "Warren Newman",
+  score: "0.14"
+}, {
+  name: "Kendall Duckworth",
+  score: "0.14"
+}, {
+  name: "Markeveon Coleman",
+  score: "0.13"
+}, {
+  name: "Jacob Butler",
+  score: "0.13"
+}, {
+  name: "Josh Burger",
+  score: "0.13"
+}, {
+  name: "Justin Hullett",
+  score: "0.13"
+}, {
+  name: "MJ Hampton",
+  score: "0.12"
+}, {
+  name: "Michael Pitts",
+  score: "0.12"
+}, {
+  name: "Nicholas Wiseman",
+  score: "0.12"
+}, {
+  name: "Munchie Filer",
+  score: "0.11"
+}, {
+  name: "Maksim Duric",
+  score: "0.11"
+}, {
+  name: "Jason Pirtle",
+  score: "0.11"
+}, {
+  name: "Shamari Brooks",
+  score: "0.1"
+}, {
+  name: "Isaiah Thomas",
+  score: "0.1"
+}, {
+  name: "Isaac Fagnan",
+  score: "0.09"
+}, {
+  name: "Willie Baker",
+  score: "0.08"
+}, {
+  name: "Derek Acheampong",
+  score: "0.08"
+}, {
+  name: "Brody Williams",
+  score: "0.08"
+}, {
+  name: "James Sides",
+  score: "0.07"
+}, {
+  name: "Rob Luckett",
+  score: "0.07"
+}, {
+  name: "Rashaud Powell",
+  score: "0.07"
+}, {
+  name: "Austin Daisy",
+  score: "0.07"
+}, {
+  name: "Antwan Collier",
+  score: "0.06"
+}, {
+  name: "Christian Clark",
+  score: "0.06"
+}, {
+  name: "Dorrell James",
+  score: "0.06"
+}, {
+  name: "Gordon Lam",
+  score: "0.06"
+}, {
+  name: "Brandon Penerton",
+  score: "0.04"
+}, {
+  name: "Jacob Salvail",
+  score: "0.04"
+}, {
+  name: "Victor St. PIerre-Laviolette",
+  score: "0.04"
+}, {
+  name: "Jaiden Cruz",
+  score: "0.03"
+}, {
+  name: "Jacob Battenfelder",
+  score: "0.03"
+}, {
+  name: "Shomari Hutchinson",
+  score: "0.02"
+}, {
+  name: "Bobby Irby",
+  score: "0.02"
+}, {
+  name: "Nick Sutton",
+  score: "0.02"
+}, {
+  name: "Trevor Hobbs",
+  score: "0.02"
+}, {
+  name: "Elvis Hines",
+  score: "0.01"
+}, {
+  name: "EJ Labaze",
+  score: "0.01"
+}, {
+  name: "Matt Corral",
+  score: "N/A"
+}, {
+  name: "Drake London",
+  score: "N/A"
+}, {
+  name: "Cade Otton",
+  score: "N/A"
+}, {
+  name: "James Mitchell",
+  score: "N/A"
+}, {
+  name: "Cam'Ron Harris",
+  score: "N/A"
+}, {
+  name: "Malik Willis",
+  score: "N/A"
+}, {
+  name: "Jake Camarda",
+  score: "N/A"
+}, {
+  name: "Phidarian Mathis",
+  score: "N/A"
+}, {
+  name: "Andrew Mevis",
+  score: "N/A"
+}, {
+  name: "Bryan Cook",
+  score: "N/A"
+}, {
+  name: "Perrion Winfrey",
+  score: "N/A"
+}, {
+  name: "Marcus Jones",
+  score: "N/A"
+}, {
+  name: "Jeremiah Gemmel",
+  score: "N/A"
+}, {
+  name: "Hassan Haskins",
+  score: "N/A"
+}, {
+  name: "Jeremy Ruckert",
+  score: "N/A"
+}, {
+  name: "Romeo Doubs",
+  score: "N/A"
+}, {
+  name: "Carson Strong",
+  score: "N/A"
+}, {
+  name: "Quay Holmes",
+  score: "N/A"
+}, {
+  name: "Ryan Stonehouse",
+  score: "N/A"
+}, {
+  name: "Tyree Johnson",
+  score: "N/A"
+}, {
+  name: "Kerby Joseph",
+  score: "N/A"
+}, {
+  name: "Reed Blankenship",
+  score: "N/A"
+}, {
+  name: "Darien Butler",
+  score: "N/A"
+}, {
+  name: "Tommy Heatherly",
+  score: "N/A"
+}, {
+  name: "Luke Goedeke",
+  score: "N/A"
+}, {
+  name: "Jordan Stout",
+  score: "N/A"
+}, {
+  name: "Noah Elliss",
+  score: "N/A"
+}, {
+  name: "Kashard Cohens",
+  score: "N/A"
+}, {
+  name: "Kaden Davis",
+  score: "N/A"
+}, {
+  name: "Rashie Hodge",
+  score: "N/A"
+}, {
+  name: "Bernard Buhake",
+  score: "N/A"
+}, {
+  name: "Theo Howard",
+  score: "N/A"
+}, {
+  name: "Scott Lashley",
+  score: "N/A"
+}, {
+  name: "Liam Ryan",
+  score: "N/A"
+}, {
+  name: "Jack Wohlabaugh",
+  score: "N/A"
+}, {
+  name: "Chris Hughes",
+  score: "N/A"
+}, {
+  name: "Mandy Alonso",
+  score: "N/A"
+}, {
+  name: "Tomon Fox",
+  score: "N/A"
+}, {
+  name: "Ryan Bowman",
+  score: "N/A"
+}, {
+  name: "Tyshon Fogg",
+  score: "N/A"
+}, {
+  name: "Korel Smith",
+  score: "N/A"
+}, {
+  name: "Elijah Jones",
+  score: "N/A"
+}, {
+  name: "Myles Jones",
+  score: "N/A"
+}, {
+  name: "Evan Fields",
+  score: "N/A"
+}, {
+  name: "Jahmir Johnson",
+  score: "N/A"
+}, {
+  name: "De'Vante Cross",
+  score: "N/A"
+}, {
+  name: "Parker White",
+  score: "N/A"
+}, {
+  name: "Blake Hayes",
+  score: "N/A"
+}, {
+  name: "Lujuan Winningham",
+  score: "N/A"
+}, {
+  name: "Eric Barriere",
+  score: "N/A"
+}, {
+  name: "Zerrick Cooper",
+  score: "N/A"
+}, {
+  name: "Vavae Malepeia",
+  score: "N/A"
+}, {
+  name: "Kalia Davis",
+  score: "N/A"
+}, {
+  name: "Elvin De La Rosa",
+  score: "N/A"
+}, {
+  name: "Ezra Gray",
+  score: "N/A"
+}, {
+  name: "Gabe Brkic",
+  score: "N/A"
+}, {
+  name: "Sam Howell",
+  score: "N/A"
+}, {
+  name: "Cameron Dicker",
+  score: "N/A"
+}, {
+  name: "Quentin Lake",
+  score: "N/A"
+}, {
+  name: "Rasheed Walker",
+  score: "N/A"
+}, {
+  name: "Ahmad Gardner",
+  score: "N/A"
+}, {
+  name: "Walter Neil",
+  score: "N/A"
+}, {
+  name: "Josh Black",
+  score: "N/A"
+}, {
+  name: "Andrew Booth",
+  score: "N/A"
+}, {
+  name: "Evan Neal",
+  score: "N/A"
+}, {
+  name: "Jameson Williams",
+  score: "N/A"
+}, {
+  name: "Tyler Linderbaum",
+  score: "N/A"
+}, {
+  name: "Nakobe Dean",
+  score: "N/A"
+}, {
+  name: "John Metchie",
+  score: "N/A"
+}, {
+  name: "Josh Jobe",
+  score: "N/A"
+}, {
+  name: "Julius Chestnut",
+  score: "N/A"
+}, {
+  name: "Joey Kenny",
+  score: "N/A"
+}, {
+  name: "Shigeya Masunami",
+  score: "N/A"
+}, {
+  name: "Tristen Taylor",
+  score: "N/A"
+}, {
+  name: "Demetrius Taylor",
+  score: "N/A"
+}, {
+  name: "Miles Hayes",
+  score: "N/A"
+}, {
+  name: "Derrion Rakestraw",
+  score: "N/A"
+}, {
+  name: "Tristin McCullom",
+  score: "N/A"
+}, {
+  name: "Nick Sciba",
+  score: "N/A"
+}, {
+  name: "Cole Kelley",
+  score: "N/A"
+}, {
+  name: "Andrew Kamienski",
+  score: "N/A"
+}, {
+  name: "Ryo Miyazawa",
+  score: "N/A"
+}, {
+  name: "Stephon Robinson",
+  score: "N/A"
+}, {
+  name: "Jamal Pettigrew",
+  score: "N/A"
+}, {
+  name: "Isaiah Chambers",
+  score: "N/A"
+}, {
+  name: "Ty Shelby",
+  score: "N/A"
+}, {
+  name: "Deane Leonard",
+  score: "N/A"
+}, {
+  name: "Jonathan Doerer",
+  score: "N/A"
+}, {
+  name: "Alex Wright",
+  score: "N/A"
+}, {
+  name: "Christopher Allen",
+  score: "N/A"
+}, {
+  name: "Dareke Young",
+  score: "N/A"
+}, {
+  name: "Jequez Ezzard",
+  score: "N/A"
+}, {
+  name: "Cade York",
+  score: "N/A"
+}, {
+  name: "Shemar Bridges",
+  score: "N/A"
+}, {
+  name: "Keyshawn James",
+  score: "N/A"
+}, {
+  name: "Cam Durley",
+  score: "N/A"
+}, {
+  name: "Jeff Proctor",
+  score: "N/A"
+}, {
+  name: "John Fitzpatrick",
+  score: "N/A"
+}, {
+  name: "Deionte Knight",
+  score: "N/A"
+}, {
+  name: "Elijah Hicks",
+  score: "N/A"
+}, {
+  name: "Zachary Thomas",
+  score: "N/A"
+}, {
+  name: "Ben Brown",
+  score: "N/A"
+}, {
+  name: "Trenton Gill",
+  score: "N/A"
+}, {
+  name: "Jake Hansen",
+  score: "N/A"
+}, {
+  name: "Madison Cone",
+  score: "N/A"
+}, {
+  name: "Mi'Cario Stanley",
+  score: "N/A"
+}, {
+  name: "Tyree Turner",
+  score: "N/A"
+}, {
+  name: "Justin Hathoot",
+  score: "N/A"
+}, {
+  name: "Luke Barnes",
+  score: "N/A"
+}, {
+  name: "Marshall Esokpunwu",
+  score: "N/A"
+}, {
+  name: "Daniel Loggale",
+  score: "N/A"
+}, {
+  name: "Jordan Veltri",
+  score: "N/A"
+}, {
+  name: "Jeremy Webb",
+  score: "N/A"
+}, {
+  name: "Forrest Rhyne",
+  score: "N/A"
+}, {
+  name: "Ramone Atkins",
+  score: "N/A"
+}, {
+  name: "Brandon Burton",
+  score: "N/A"
+}, {
+  name: "Jacobi Hearn",
+  score: "N/A"
+}, {
+  name: "Vincent Forbes-Mombleau",
+  score: "N/A"
+}, {
+  name: "Daniel Kwamou",
+  score: "N/A"
+}, {
+  name: "Khadeem Pierre",
+  score: "N/A"
+}, {
+  name: "Eric Sutton",
+  score: "N/A"
+}, {
+  name: "Daniel Isom",
+  score: "N/A"
+}, {
+  name: "Tyreon Truesdell",
+  score: "N/A"
+}, {
+  name: "Jack Wohlabaugh",
+  score: "N/A"
+}, {
+  name: "John Rolls",
+  score: "N/A"
+}, {
+  name: "Cam Saunders",
+  score: "N/A"
+}, {
+  name: "Isaac Smith",
+  score: "N/A"
+}, {
+  name: "Dedrick Strambler",
+  score: "N/A"
+}, {
+  name: "Imoni Donadelle",
+  score: "N/A"
+}, {
+  name: "Omardrick Douglass",
+  score: "N/A"
+}, {
+  name: "Tobias Little",
+  score: "N/A"
+}, {
+  name: "Tyler Lovelace",
+  score: "N/A"
+}, {
+  name: "Terrance March",
+  score: "N/A"
+}, {
+  name: "Kevin Atkins",
+  score: "N/A"
+}, {
+  name: "Corey Sutton",
+  score: "N/A"
+}, {
+  name: "Jeff Jones",
+  score: "N/A"
+}, {
+  name: "Anthony Wilson",
+  score: "N/A"
+}, {
+  name: "Deonte Henson",
+  score: "N/A"
+}, {
+  name: "Diego Alatorre Montoya",
+  score: "N/A"
+}, {
+  name: "Mason Nyhus",
+  score: "N/A"
+}];

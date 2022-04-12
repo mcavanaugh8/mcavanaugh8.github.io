@@ -37,6 +37,15 @@ class UI {
         /f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g,
         'f_auto,q_85'
       );
+      prospectsRAS.forEach((prospectRAS, index) => {
+        if (prospect.name === prospectRAS.name) {
+          if (prospectRAS.score !== 'N/A') {
+            prospect['RAS'] = Number(prospectRAS.score);
+          } else {
+            prospect['RAS'] = prospectRAS.score;
+          }
+        }
+      });
     });
   }
 
@@ -377,11 +386,11 @@ class UI {
             newCell.classList.add('text-center');
             this.formatTeamCells(newCell);
             break;
-          // case 3:
-          //   newCell.innerHTML =
-          //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
-          //   const pickText = newCell.querySelector("input");
-          //   pickText.classList.add("actual-pick");
+            // case 3:
+            //   newCell.innerHTML =
+            //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+            //   const pickText = newCell.querySelector("input");
+            //   pickText.classList.add("actual-pick");
         }
       }
 
@@ -567,9 +576,9 @@ class UI {
         reader.onload = function (event) {
           // console.log(event.target.result);
           const picksArr =
-            event.target.result.split('\r\n').length > 1
-              ? event.target.result.split('\r\n')
-              : event.target.result.split('\n');
+            event.target.result.split('\r\n').length > 1 ?
+            event.target.result.split('\r\n') :
+            event.target.result.split('\n');
           const picksArrClean = picksArr.map((item) => {
             return item.replace(/(^)(\s.+?)(\w)/g, '$1$3');
           });
@@ -617,6 +626,7 @@ class UI {
                     <p class="prospect-info-para"><b>Position:</b> ${prospect.position}</p>
                     <p class="prospect-info-para"><b>School:</b> ${prospect.school}</p>
                     <p class="prospect-info-para"><b>NFL.com Grade:</b> ${prospect.grade}</p>
+                    <p class="prospect-info-para"><b>RAS:</b> ${prospect['RAS']}</p>
                 </div>
                </div>
               </div>
@@ -640,7 +650,7 @@ class UI {
       if (
         this.boardTable.rows[i].cells[lastRow].querySelector('.actual-pick') &&
         this.boardTable.rows[i].cells[lastRow].querySelector('.actual-pick')
-          .value !== ''
+        .value !== ''
       ) {
         const pick =
           this.boardTable.rows[i].cells[lastRow].querySelector(
