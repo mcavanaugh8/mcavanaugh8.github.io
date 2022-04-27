@@ -249,6 +249,7 @@ document.addEventListener('click', (event) => {
     ui.addPlayers(
       document.getElementById('modal-player-name').value,
       document.getElementById('playerPicks').files[0],
+      document.getElementById('altPlayerPicks').files[0],
       false
     );
     document.getElementById('modal-player-name').value = '';

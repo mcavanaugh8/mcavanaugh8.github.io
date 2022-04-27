@@ -94,7 +94,7 @@ class UI {
 
     participants.forEach((participant, index) => {
       this.participantObjects.push(participant);
-      this.addPlayers(participant.name, false, true, participant.picks);
+      this.addPlayers(participant.name, false, false, true, participant.picks);
       // console.log(participant.name, participant.picks);
     });
 
@@ -512,7 +512,7 @@ class UI {
     }
   }
 
-  addPlayers(name, file, onReload, participantPicks) {
+  addPlayers(name, file, altFile, onReload, participantPicks) {
     if (onReload === true) {
       const scope = this;
 
@@ -571,6 +571,21 @@ class UI {
         trTop.appendChild(thTop);
         trBottom.appendChild(thBottom);
 
+        let altPicksArr = [];
+        if (altFile) {
+          const reader = new FileReader();
+          reader.readAsText(altFile, 'UTF-8');
+          reader.onload = function (event) {
+            const picksArr =
+              event.target.result.split('\r\n').length > 1 ?
+              event.target.result.split('\r\n') :
+              event.target.result.split('\n');
+            altPicksArr = picksArr.map((item) => {
+              return item.replace(/(^)(\s.+?)(\w)/g, '$1$3');
+            });
+          };
+        }
+
         const reader = new FileReader();
         reader.readAsText(file, 'UTF-8');
         reader.onload = function (event) {
@@ -586,6 +601,7 @@ class UI {
           let obj = {
             name: name,
             picks: [],
+            altPicks: altPicksArr,
             score: 0,
           };
 
@@ -691,6 +707,7 @@ class UI {
        *  - +1 if FIRST ROUND IS CORRECT
        * add formatting to cells
        */
+      // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
 
       // check if PLAYER (or altPlayer) is correct
       if (draftObj[j].player !== '') {
@@ -778,13 +795,13 @@ class UI {
             </button>
         </div>`;
 
-        // document.getElementById('results-modal-body').innerHTML +=
-        //   document.querySelector('.scoreboard').innerHTML;
+        document.getElementById('results-modal-body').innerHTML += document.querySelector('.scoreboard').innerHTML;
       }
     }
 
     const scores = document.querySelectorAll('.player-score');
     scores.forEach((score, index) => {
+      // console.log(score, index);
       this.participantObjects[index].score = score.textContent;
     });
   }

@@ -68,9 +68,15 @@
                   corresponds to the draft position that they will be taken
                   (e.g., the name on line one of the plain text file is the
                   player you believe will be selected at position 1, currently
-                  held by the Jacksonville Jaguars). Once you submit your name and selections, the draft table will be
-                  automatically populated.
-                </li>
+                  held by the Jacksonville Jaguars). </li>
+                <li>Once you submit your name and selections, the draft table will be
+                  automatically populated. An additional file upload is available. This file can contain the names of 5
+                  additional prospects who you predict may end up in the first round. If any of these players are
+                  selected in the first round, regardless of the team they are selected by, you will be awarded half a
+                  point.</li>
+                <li>NOTE: If you wish, you can add a / after the name of up to 5 of your selections and add the name of
+                  another player. This will be your alternate selection for that pick. Alternates are worth half the
+                  value of getting a normal selection correct.</li>
                 <li>Add the actual selections as they happen! In the empty fields that say "Player Name," enter the name
                   of the player selected at that draft position. For example, if Alabama OT Evan Neal is selected 1st
                   overall, his name should be entered in that empty field.</li>
@@ -90,10 +96,19 @@
                   <li>Correctly predicting that a player will be selected by a specific team.</li>
                 </ul>
               </p>
+              <p>Half of a point each is awarded for:
+                <ul>
+                  <li>Correctly predicting that a ALTERNATE player will be selected in the first round</li>
+                  <li>Correctly predicting that a ALTERNATE player will be selected at a specific draft position.</li>
+                  <li>Correctly predicting that a ALTERNATE player will be selected by a specific team.</li>
+                </ul>
+              </p>
               <label for="modal-player-name" class="form-label">Name</label>
               <input type="text" class="form-control" id="modal-player-name" placeholder="Name..." />
-              <label class="form-label" for="playerPicks">Default file input example</label>
+              <label class="form-label" for="playerPicks">First 32 selections</label>
               <input type="file" class="form-control" id="playerPicks" />
+              <label class="form-label" for="altPlayerPicks">Alternate Players</label>
+              <input type="file" class="form-control" id="altPlayerPicks" />
           </div>
           <div class="modal-footer">
             <button class="btn btn-primary add-player-submit" data-bs-dismiss="modal">
@@ -114,7 +129,7 @@
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary results-share-results" data-bs-dismiss="modal">
-            Share Results
+              Share Results
             </button>
           </div>
         </div>

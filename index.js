@@ -6,12 +6,16 @@ const User = require('./models/user');
 const app = express();
 const dbURL =
   'mongodb+srv://test-user:test-password@draft-site-live.vdolk.mongodb.net/draft-site-live?retryWrites=true&w=majority';
+
 mongoose
-  .connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(dbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then((result) => {
     const PORT = process.env.PORT || 5000;
     app.listen(PORT);
-    console.log(`SUCCESS: Server started on port ${PORT}`);
+    // console.log(`SUCCESS: Server started on port ${PORT}`);
   })
   .catch((err) => console.log('ERR: ' + err));
 
@@ -19,10 +23,14 @@ const PORT = process.env.PORT || 3000;
 
 // app.listen(PORT, () => console.log(`Listening at PORT ${PORT}`));
 app.use(express.static('public'));
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({
+  limit: '1mb'
+}));
 
 app.get('/', (req, res) => {
-  res.sendFile('./public/index.html', { root: __dirname });
+  res.sendFile('./public/index.html', {
+    root: __dirname
+  });
 });
 
 app.post('/user-results', (req, res) => {
