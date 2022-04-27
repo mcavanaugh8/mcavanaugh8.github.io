@@ -509,10 +509,13 @@ class UI {
           newCell.textContent = playerPicks[i - 1];
         }
       }
+
+      this.addAltPicksTable();
     }
   }
 
   addPlayers(name, file, altFile, onReload, participantPicks) {
+
     if (onReload === true) {
       const scope = this;
 
@@ -615,9 +618,12 @@ class UI {
           // console.log(scope.participantObjects);
           scope.addAllRounds(picksArrClean, name);
         };
+
+        this.addAltPicksTable();
       }
     }
 
+    this.addAltPicksTable();
     /**
      * <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
      */
@@ -813,5 +819,48 @@ class UI {
     players.forEach((player) => (dataList += `<option value="${player}">`));
     dataList += `</datalist>`;
     return dataList;
+  }
+
+  addAltPicksTable() {
+    const altTableDiv = document.querySelector('.alternates');
+    altTableDiv.innerHTML = `
+    <table class="table table-dark table-bordered table-alternates text-center">
+      <thead id="table-alternates-head">
+        <tr class="text-center">
+          <th colspan="3">Alternate First Rounders</th>
+        </tr>
+        <tr class="text-center alternates-names"></tr>
+      </thead>
+    </table>`;
+
+    const altTable = document.querySelector('.table-alternates');
+    const altTableHead = document.getElementById('table-alternates-head');
+
+    const headRowNames = document.querySelector('.alternates-names');
+    const tableBody = document.createElement('tbody');
+    altTable.appendChild(tableBody);
+
+    for (let i = 0; i < 5; i++) {
+      const tr = document.createElement('tr');
+      tableBody.appendChild(tr);
+
+      this.participantObjects.forEach((participant, index) => {
+        if (i === 0) {
+          const newTD = document.createElement('td');
+          newTD.scope = 'col-3';
+          newTD.textContent = participant.name;
+
+          headRowNames.appendChild(newTD);
+        }
+
+        const pick = document.createElement('td');
+        pick.textContent = participant.altPicks[i];
+        tr.appendChild(pick);
+
+      });
+
+    }
+
+
   }
 }
