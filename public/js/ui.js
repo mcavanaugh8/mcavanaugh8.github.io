@@ -11,6 +11,7 @@ class UI {
 
     this.participantObjects = [];
     this.actualPicks = [];
+    this.updatedDraftOrder = [];
   }
 
   disableButton() {
@@ -56,6 +57,7 @@ class UI {
 
     this.resetLocalStorage('participants');
     this.resetLocalStorage('draft-results');
+    this.resetLocalStorage('updated-draft-order');
     this.addAllRounds();
 
     let trTop = document.getElementById('scoreboard-table-row-top'),
@@ -346,6 +348,7 @@ class UI {
   addAllRoundsOnReload(playerPicks, playerName) {
     const participants = this.getFromLocalStorage('participants');
     const draftPicks = this.getFromLocalStorage('draft-results');
+    const newDraftOrder = this.getFromLocalStorage('updated-draft-order');
 
     if (this.boardTable.querySelector('td') !== null) {
       this.boardTable.innerHTML = `          
@@ -427,6 +430,9 @@ class UI {
         '<input class="form-control form-control-sm" type="text" placeholder="Player Name" list="player-list">';
       const pickText = currRow.cells[c].querySelector('input');
       pickText.classList.add('actual-pick');
+
+      currRow.cells[1].textContent = newDraftOrder[i - 1];
+      this.formatTeamCells(currRow.cells[1]);
     }
   }
 
@@ -441,6 +447,7 @@ class UI {
             </tr>
         </thead>`;
       }
+
       for (let i = 0; i <= 31; i++) {
         let newRow = this.boardTable.insertRow(i + 1);
         if (i === 0) {
@@ -459,6 +466,7 @@ class UI {
           th3.innerHTML = 'Actual';
           this.boardTable.rows[0].appendChild(th3);
         }
+
         for (let j = 0; j < 3; j++) {
           let newCell = newRow.insertCell();
           newCell.classList.add('text-center');
@@ -640,17 +648,17 @@ class UI {
             let popoutString = `
               <div class=\"container player-card-container\">
                 <div class="row player-card-row">
-                <div class="col-md-4 my-auto pick-name">${prospect.name}</div>
-                <div class="col-md-4 prospect-image">
+                  <div class="col-md-4 my-auto pick-name">${prospect.name}</div>
+                  <div class="col-md-4 prospect-image">
                     <img class="prospect-info-image" src=\"${prospect.imageLink}\" alt=\"\">
-                </div>
-                <div class="col-md-4 my-auto pick-info">
+                  </div>
+                  <div class="col-md-4 my-auto pick-info">
                     <p class="prospect-info-para"><b>Position:</b> ${prospect.position}</p>
                     <p class="prospect-info-para"><b>School:</b> ${prospect.school}</p>
                     <p class="prospect-info-para"><b>NFL.com Grade:</b> ${prospect.grade}</p>
-                    <p class="prospect-info-para"><b>RAS:</b> ${prospect['RAS']}</p>
+                    <p class="prospect-info-para"><b>RAS:</b> ${prospect.RAS}</p>
+                  </div>
                 </div>
-               </div>
               </div>
               `;
             this.boardTable.rows[i].cells[c].innerHTML = popoutString;
@@ -713,7 +721,7 @@ class UI {
        *  - +1 if FIRST ROUND IS CORRECT
        * add formatting to cells
        */
-      console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
+      // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
 
       // check if PLAYER (or altPlayer) is correct
       if (draftObj[j].player !== '') {
@@ -810,6 +818,14 @@ class UI {
       // console.log(score, index);
       this.participantObjects[index].score = score.textContent;
     });
+
+    for (let i = 1; i < this.boardTable.rows.length; i++) {
+      let currRow = this.boardTable.rows[i];
+      i === 0 ? this.updatedDraftOrder = [] : false;
+      this.updatedDraftOrder.push(currRow.cells[1].textContent);
+    }
+
+    this.addToLocalStorage('updated-draft-order', this.updatedDraftOrder);
   }
 
   createPlayerDataList() {
