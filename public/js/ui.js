@@ -713,7 +713,7 @@ class UI {
        *  - +1 if FIRST ROUND IS CORRECT
        * add formatting to cells
        */
-      // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
+      console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
 
       // check if PLAYER (or altPlayer) is correct
       if (draftObj[j].player !== '') {
