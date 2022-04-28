@@ -821,7 +821,7 @@ class UI {
 
     for (let i = 1; i < this.boardTable.rows.length; i++) {
       let currRow = this.boardTable.rows[i];
-      i === 0 ? this.updatedDraftOrder = [] : false;
+      i === 1 ? this.updatedDraftOrder = [] : false;
       this.updatedDraftOrder.push(currRow.cells[1].textContent);
     }
 
