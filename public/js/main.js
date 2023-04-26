@@ -7,134 +7,37 @@
  */
 const submitButton = document.querySelector('.validate-pick');
 
-const intitialDraftOrder = [{
-    team: 'JACKSONVILLE',
-    needs: [],
-  },
-  {
-    team: 'DETROIT',
-    needs: [],
-  },
-  {
-    team: 'HOUSTON',
-    needs: [],
-  },
-  {
-    team: 'NEW YORK JETS',
-    needs: [],
-  },
-  {
-    team: 'NEW YORK GIANTS',
-    needs: [],
-  },
-  {
-    team: 'CAROLINA',
-    needs: [],
-  },
-  {
-    team: 'NEW YORK GIANTS',
-    needs: [],
-  },
-  {
-    team: 'ATLANTA',
-    needs: [],
-  },
-  {
-    team: 'SEATTLE',
-    needs: [],
-  },
-  {
-    team: 'NEW YORK JETS',
-    needs: [],
-  },
-  {
-    team: 'WASHINGTON',
-    needs: [],
-  },
-  {
-    team: 'MINNESOTA',
-    needs: [],
-  },
-  {
-    team: 'HOUSTON',
-    needs: [],
-  },
-  {
-    team: 'BALTIMORE',
-    needs: [],
-  },
-  {
-    team: 'PHILADELPHIA',
-    needs: [],
-  },
-  {
-    team: 'NEW ORLEANS',
-    needs: [],
-  },
-  {
-    team: 'LOS ANGELES CHARGERS',
-    needs: [],
-  },
-  {
-    team: 'PHILADELPHIA',
-    needs: [],
-  },
-  {
-    team: 'NEW ORLEANS',
-    needs: [],
-  },
-  {
-    team: 'PITTSBURGH',
-    needs: [],
-  },
-  {
-    team: 'NEW ENGLAND',
-    needs: [],
-  },
-  {
-    team: 'GREEN BAY',
-    needs: [],
-  },
-  {
-    team: 'ARIZONA',
-    needs: [],
-  },
-  {
-    team: 'DALLAS',
-    needs: [],
-  },
-  {
-    team: 'BUFFALO',
-    needs: [],
-  },
-  {
-    team: 'TENNESSEE',
-    needs: [],
-  },
-  {
-    team: 'TAMPA BAY',
-    needs: [],
-  },
-  {
-    team: 'GREEN BAY',
-    needs: [],
-  },
-  {
-    team: 'KANSAS CITY',
-    needs: [],
-  },
-  {
-    team: 'KANSAS CITY',
-    needs: [],
-  },
-  {
-    team: 'CINCINNATI',
-    needs: [],
-  },
-  {
-    team: 'DETROIT',
-    needs: [],
-  },
+const intitialDraftOrder = [{ team: 'CAROLINA', needs: [] },
+{ team: 'HOUSTON', needs: [] },
+{ team: 'ARIZONA', needs: [] },
+{ team: 'INDIANAPOLIS', needs: [] },
+{ team: 'SEATTLE', needs: [] },
+{ team: 'DETROIT', needs: [] },
+{ team: 'LAS VEGAS', needs: [] },
+{ team: 'ATLANTA', needs: [] },
+{ team: 'CHICAGO', needs: [] },
+{ team: 'PHILADELPHIA', needs: [] },
+{ team: 'TENNESSEE', needs: [] },
+{ team: 'HOUSTON', needs: [] },
+{ team: 'GREEN BAY', needs: [] },
+{ team: 'NEW ENGLAND', needs: [] },
+{ team: 'NEW YORK JETS', needs: [] },
+{ team: 'WASHINGTON', needs: [] },
+{ team: 'PITTSBURGH', needs: [] },
+{ team: 'DETROIT', needs: [] },
+{ team: 'TAMPA BAY', needs: [] },
+{ team: 'SEATTLE', needs: [] },
+{ team: 'LOS ANGELES CHARGERS', needs: [] },
+{ team: 'BALTIMORE', needs: [] },
+{ team: 'MINNESOTA', needs: [] },
+{ team: 'JACKSONVILLE', needs: [] },
+{ team: 'NEW YORK GIANTS', needs: [] },
+{ team: 'DALLAS', needs: [] },
+{ team: 'BUFFALO', needs: [] },
+{ team: 'CINCINNATI', needs: [] },
+{ team: 'NEW ORLEANS', needs: [] },
+{ team: 'PHILADELPHIA', needs: [] },
+{ team: 'KANSAS CITY', needs: [] },
 ];
 
 let realDraftOrder = [...intitialDraftOrder];

@@ -38,6 +38,7 @@ class UI {
         /f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g,
         'f_auto,q_85'
       );
+      
       prospectsRAS.forEach((prospectRAS, index) => {
         if (prospect.name === prospectRAS.name) {
           if (prospectRAS.score !== 'N/A') {
