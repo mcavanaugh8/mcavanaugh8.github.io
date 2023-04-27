@@ -38,16 +38,16 @@ class UI {
         /f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g,
         'f_auto,q_85'
       );
-      
-      prospectsRAS.forEach((prospectRAS, index) => {
-        if (prospect.name === prospectRAS.name) {
-          if (prospectRAS.score !== 'N/A') {
-            prospect['RAS'] = Number(prospectRAS.score);
-          } else {
-            prospect['RAS'] = prospectRAS.score;
-          }
-        }
-      });
+
+      // prospectsRAS.forEach((prospectRAS, index) => {
+      //   if (prospect.name === prospectRAS.name) {
+      //     if (prospectRAS.score !== 'N/A') {
+      //       prospect['RAS'] = Number(prospectRAS.score);
+      //     } else {
+      //       prospect['RAS'] = prospectRAS.score;
+      //     }
+      //   }
+      // });
     });
   }
 
@@ -359,7 +359,7 @@ class UI {
         </thead>`;
     }
 
-    for (let i = 0; i <= 31; i++) {
+    for (let i = 0; i <= 30; i++) {
       let newRow = this.boardTable.insertRow(i + 1);
       if (i === 0) {
         let th1 = document.createElement('th');
@@ -449,7 +449,7 @@ class UI {
         </thead>`;
       }
 
-      for (let i = 0; i <= 31; i++) {
+      for (let i = 0; i <= 30; i++) {
         let newRow = this.boardTable.insertRow(i + 1);
         if (i === 0) {
           let th1 = document.createElement('th');
@@ -657,7 +657,6 @@ class UI {
                     <p class="prospect-info-para"><b>Position:</b> ${prospect.position}</p>
                     <p class="prospect-info-para"><b>School:</b> ${prospect.school}</p>
                     <p class="prospect-info-para"><b>NFL.com Grade:</b> ${prospect.grade}</p>
-                    <p class="prospect-info-para"><b>RAS:</b> ${prospect.RAS}</p>
                   </div>
                 </div>
               </div>
@@ -722,11 +721,11 @@ class UI {
        *  - +1 if FIRST ROUND IS CORRECT
        * add formatting to cells
        */
-      // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
+      console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
 
       // check if PLAYER (or altPlayer) is correct
       if (draftObj[j].player !== '') {
-        if (draftObj[j].player === personDraftObject[j].player) {
+        if (draftObj[j].player.replace(/\t|\n|\r/g, '') === personDraftObject[j].player.replace(/\t|\n|\r/g, '')) {
           score.textContent = Number(score.textContent) + 1;
           this.boardTable.rows[j].cells[index].style.backgroundColor = 'green';
         } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
