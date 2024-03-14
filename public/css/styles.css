@@ -76,13 +76,9 @@ body {
   padding: 0px;
 }
 
-.prospect-image img {
-  width: 90%;
-}
-
 .pick-name,
 .pick-info {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .page-head {
@@ -179,4 +175,17 @@ body {
 
 .hidden {
   display: none;
+}
+
+.align-to-bottom {
+  display: flex;
+  align-items: flex-end; /* Aligns the item to the end of the flex container */
+  height: 100%; /* Makes sure the div takes the full height */
+}
+
+.prospect-image img {
+  width: 90%;
+}
+.prospect-image {
+  height: 100%;
 }

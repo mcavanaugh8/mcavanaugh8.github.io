@@ -116,6 +116,8 @@ class UI {
     }
 
     this.addPlayerCards();
+    this.validatePicks();
+    this.createDraftObjects();
   }
 
   resetLocalStorage(name) {
@@ -313,7 +315,7 @@ class UI {
           draftObj[i] = {
             draftPosition: i,
             team: realDraftOrder[i - 1],
-            player: pickName,
+            player: pickName.replace(/\t|\n|\r/g, '').replace(/\s{2,}/g,'').replace(/^.+? /, ''),
           };
         }
 
@@ -341,9 +343,9 @@ class UI {
     });
 
     this.actualPicks.push(draftObj);
-    // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+    console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.addToLocalStorage('draft-results', draftObj);
-    // console.log(this.participantObjects, this.actualPicks);
+    console.log(this.participantObjects, this.actualPicks);
   }
 
   addAllRoundsOnReload(playerPicks, playerName) {
@@ -359,7 +361,7 @@ class UI {
         </thead>`;
     }
 
-    for (let i = 0; i <= 30; i++) {
+    for (let i = 0; i <= 31; i++) {
       let newRow = this.boardTable.insertRow(i + 1);
       if (i === 0) {
         let th1 = document.createElement('th');
@@ -449,7 +451,7 @@ class UI {
         </thead>`;
       }
 
-      for (let i = 0; i <= 30; i++) {
+      for (let i = 0; i <= 31; i++) {
         let newRow = this.boardTable.insertRow(i + 1);
         if (i === 0) {
           let th1 = document.createElement('th');
@@ -649,14 +651,20 @@ class UI {
             let popoutString = `
               <div class=\"container player-card-container\">
                 <div class="row player-card-row">
-                  <div class="col-md-4 my-auto pick-name">${prospect.name}</div>
-                  <div class="col-md-4 prospect-image">
-                    <img class="prospect-info-image" src=\"${prospect.imageLink}\" alt=\"\">
+                  <div class="col-md-4 my-auto pick-name">
+                  <p class="prospect-info-para">${prospect.position} ${prospect.name}</p>
+                  <p class="prospect-info-para">
+                      <img class="prospect-school-image" src=\"${prospect.teamLogoUrl}\" alt=\"\">  
+                    </p>
+                  </div>
+                  <div class="col-md-4 prospect-image align-to-bottom">
+                    <img class="prospect-info-image" src=\"${prospect.image}\" alt=\"\">
                   </div>
                   <div class="col-md-4 my-auto pick-info">
-                    <p class="prospect-info-para"><b>Position:</b> ${prospect.position}</p>
-                    <p class="prospect-info-para"><b>School:</b> ${prospect.school}</p>
-                    <p class="prospect-info-para"><b>NFL.com Grade:</b> ${prospect.grade}</p>
+                    <p class="prospect-info-para"><b>Height:</b> ${prospect.weight}</p>
+                    <p class="prospect-info-para"><b>Weight:</b> ${prospect.height}</p>
+                    <p class="prospect-info-para"><b>40 Time:</b> ${prospect.fortyYd}</p>
+                    <p class="prospect-info-para"><b>Grade:</b> ${prospect.rating}</p>
                   </div>
                 </div>
               </div>
@@ -725,7 +733,7 @@ class UI {
 
       // check if PLAYER (or altPlayer) is correct
       if (draftObj[j].player !== '') {
-        if (draftObj[j].player.replace(/\t|\n|\r/g, '') === personDraftObject[j].player.replace(/\t|\n|\r/g, '')) {
+        if (draftObj[j].player === personDraftObject[j].player) {
           score.textContent = Number(score.textContent) + 1;
           this.boardTable.rows[j].cells[index].style.backgroundColor = 'green';
         } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
@@ -796,7 +804,7 @@ class UI {
       draftPicks[x].player !== '' ? numPicksCounter++ : false;
     }
 
-    if (numPicksCounter === 32) {
+    if (numPicksCounter === 31) {
       const topButtonsRow = document
         .getElementById('top-buttons')
         .querySelector('.row');
@@ -816,7 +824,7 @@ class UI {
     const scores = document.querySelectorAll('.player-score');
     scores.forEach((score, index) => {
       // console.log(score, index);
-      this.participantObjects[index].score = score.textContent;
+      this.participantObjects[index].score = score.textContent;      
     });
 
     for (let i = 1; i < this.boardTable.rows.length; i++) {
@@ -826,10 +834,12 @@ class UI {
     }
 
     this.addToLocalStorage('updated-draft-order', this.updatedDraftOrder);
+    this.addToLocalStorage('participants', this.participantObjects)
   }
 
   createPlayerDataList() {
     const players = this.getProspectNames();
+
     let dataList = `
     <datalist id="player-list">`;
     players.forEach((player) => (dataList += `<option value="${player}">`));

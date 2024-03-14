@@ -5,38 +5,41 @@
  *  convert to ES6 using classes
  *
  */
+
 const submitButton = document.querySelector('.validate-pick');
 
-const intitialDraftOrder = [{ team: 'CAROLINA', needs: [] },
-{ team: 'HOUSTON', needs: [] },
+const intitialDraftOrder = [
+{ team: 'CHICAGO', needs: [] },
+{ team: 'WASHINGTON', needs: [] },
+{ team: 'NEW ENGLAND', needs: [] },
 { team: 'ARIZONA', needs: [] },
-{ team: 'INDIANAPOLIS', needs: [] },
-{ team: 'SEATTLE', needs: [] },
-{ team: 'DETROIT', needs: [] },
-{ team: 'LAS VEGAS', needs: [] },
+{ team: 'LOS ANGELES CHARGERS', needs: [] },
+{ team: 'NEW YORK GIANTS', needs: [] },
+{ team: 'TENNESSEE', needs: [] },
 { team: 'ATLANTA', needs: [] },
 { team: 'CHICAGO', needs: [] },
-{ team: 'PHILADELPHIA', needs: [] },
-{ team: 'TENNESSEE', needs: [] },
-{ team: 'HOUSTON', needs: [] },
-{ team: 'GREEN BAY', needs: [] },
-{ team: 'NEW ENGLAND', needs: [] },
 { team: 'NEW YORK JETS', needs: [] },
-{ team: 'WASHINGTON', needs: [] },
-{ team: 'PITTSBURGH', needs: [] },
-{ team: 'DETROIT', needs: [] },
-{ team: 'TAMPA BAY', needs: [] },
-{ team: 'SEATTLE', needs: [] },
-{ team: 'LOS ANGELES CHARGERS', needs: [] },
-{ team: 'BALTIMORE', needs: [] },
 { team: 'MINNESOTA', needs: [] },
-{ team: 'JACKSONVILLE', needs: [] },
-{ team: 'NEW YORK GIANTS', needs: [] },
-{ team: 'DALLAS', needs: [] },
-{ team: 'BUFFALO', needs: [] },
-{ team: 'CINCINNATI', needs: [] },
+{ team: 'DENVER', needs: [] },
+{ team: 'LAS VEGAS', needs: [] },
 { team: 'NEW ORLEANS', needs: [] },
+{ team: 'INDIANAPOLIS', needs: [] },
+{ team: 'SEATTLE', needs: [] },
+{ team: 'JACKSONVILLE', needs: [] },
+{ team: 'CINCINNATI', needs: [] },
+{ team: 'LOS ANGELES RAMS', needs: [] },
+{ team: 'PITTSBURGH', needs: [] },
+{ team: 'MIAMI', needs: [] },
 { team: 'PHILADELPHIA', needs: [] },
+{ team: 'HOUSTON', needs: [] },
+{ team: 'DALLAS', needs: [] },
+{ team: 'GREEN BAY', needs: [] },
+{ team: 'TAMPA BAY', needs: [] },
+{ team: 'ARIZONA', needs: [] },
+{ team: 'BUFFALO', needs: [] },
+{ team: 'DETROIT', needs: [] },
+{ team: 'BALTIMORE', needs: [] },
+{ team: 'SAN FRANCISCO', needs: [] },
 { team: 'KANSAS CITY', needs: [] },
 ];
 
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const participants = ui.getFromLocalStorage('participants');
   const draftPicks = ui.getFromLocalStorage('draft-results');
   ui.numberOfPlayers = Object.keys(participants).length;
-  ui.addImageLinksToPlayerObject();
+
   ui.addAllRounds();
 
   if (Object.keys(participants).length > 0) {
