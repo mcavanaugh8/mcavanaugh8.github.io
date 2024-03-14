@@ -40,7 +40,7 @@ const intitialDraftOrder = [
 { team: 'DETROIT', needs: [] },
 { team: 'BALTIMORE', needs: [] },
 { team: 'SAN FRANCISCO', needs: [] },
-{ team: 'KANSAS CITY', needs: [] },
+{ team: 'KANSAS CITY', needs: [] }
 ];
 
 let realDraftOrder = [...intitialDraftOrder];
