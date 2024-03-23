@@ -3,18 +3,22 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    googleId: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: false
+    },
     name: {
       type: String,
       required: true,
     },
-    picks: {
+    drafts: {
       type: Array,
       required: true,
-    },
-    score: {
-      type: Number,
-      required: true,
-    },
+    }
   },
   { timestamps: true }
 );

@@ -8,17 +8,34 @@ const {
     getHomePage,
 } = require('../controllers/controllers.js')
 
-router.get('/', (req, res) => getHomePage(req, res));
+// router.get('/login', (req, res) => {
+//     // Render the login page
+//     res.render('login');
+// });
+
+router.get('/', (req, res) => {
+    // Render the homepage, only accessible if logged in
+    getHomePage(req, res)
+
+});
 
 router.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }));
+    passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+    });
+
+router.get('/logout', (req, res) => {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        // Redirect to home page or any other page after logout
+        res.redirect('/');
+    });
+});
 
 router.post('/user-results', (req, res) => {
     console.log('Request received.');

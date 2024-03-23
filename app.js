@@ -25,24 +25,49 @@ mongoose.connect(process.env.dbURL, {
 })
 .catch((err) => console.log('ERR: ' + err));
 
+let callbackURL = '';
+
+if (process.env.NODE_ENV === 'development') {
+  callbackURL = process.env.CALLBACK_URL_DEV;
+} else {
+  callbackURL = process.env.CALLBACK_URL_PRODUCTION;
+}
+
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.CALLBACK_URL
+  callbackURL: callbackURL
 },
-  (accessToken, refreshToken, profile, cb) => {
-    // Here, you would usually find or create a user in your database.
-    // For demonstration purposes, we'll just pass the profile through.
-    return cb(null, profile);
+async (accessToken, refreshToken, profile, done) => {
+  try {
+    let user = await User.findOne({ googleId: profile.id })
+    
+    if (user) {
+      return done(null, user);
+    } else {
+      user = new User({
+        googleId: profile.id,
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        drafts: [],        
+      });
+      await user.save();
+      return done(null, user);
+    }
+  } catch (err) {
+    return done(err);
   }
+}
 ));
 
-passport.serializeUser((user, cb) => {
-  cb(null, user);
+passport.serializeUser((user, done) => {
+  done(null, user._id); // Assuming "_id" is the field that MongoDB automatically generates
 });
 
-passport.deserializeUser((obj, cb) => {
-  cb(null, obj);
+passport.deserializeUser((id, done) => {
+  User.findById(id).lean().exec((err, user) => {
+    done(err, user); // This will be attached to req.user
+  });
 });
 
 /**parse json and http requests */
