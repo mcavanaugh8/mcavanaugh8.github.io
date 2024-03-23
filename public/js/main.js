@@ -3,7 +3,9 @@
  *  add custom number of players (via prompt)
  *  submit picks via .txt file
  *  convert to ES6 using classes
- *
+ *  add handlebars or react for customizability
+ *  enhance user system. Authenticate/Login with Google OAuth?
+ *  
  */
 
 const submitButton = document.querySelector('.validate-pick');
