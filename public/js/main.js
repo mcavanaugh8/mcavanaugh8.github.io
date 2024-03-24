@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
+
 submitButton.addEventListener('click', function (event) {
   const audio = new Audio('draft_sound.mp3');
   audio.play();

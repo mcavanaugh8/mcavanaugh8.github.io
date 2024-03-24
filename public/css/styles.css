@@ -212,58 +212,53 @@ body {
 
 .header-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* This will place the child elements on opposite ends */
   align-items: center;
-  padding: 10px;
-  background-color: #212529; /* Assuming the header has this background color */
+  padding: 0 10px; /* Adjusted padding */
+  background-color: #212529;
 }
 
 .page-head {
-  margin: 0; /* Remove margin to center the title */
-  flex-grow: 1;
-  text-align: center;
+  flex-grow: 1; /* Allows the title to grow and occupy available space */
+  text-align: left; /* Aligns the title text to the left */
+  margin: 0; /* Reset margins */
   color: white;
   font-size: 50px;
-  line-height: 75px;
+  line-height: 75px; /* Adjust line-height to match header height */
   font-weight: bolder;
 }
 
 .login-info {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #fff; /* Set the color of the text to white */
-  margin-right: 10px; /* Adjust the right margin as needed */
-  white-space: nowrap; /* Prevents the text from wrapping */
-}
-.login-info i {
-  margin-right: 5px;
+  gap: 10px; /* Add a gap between the icon and the text */
 }
 
-.login-button a,
-.logout-button a {
+/* Correct the user name and logout button placement and styling */
+.user-info {
+  display: flex;
+  align-items: center;
+  color: white; /* Set the color of the text to white */
+}
+
+.user-info span {
+  margin-right: 10px; /* Space between name and logout button */
+}
+
+.logout-button {
   display: inline-block;
-  padding: 5px 10px;
+  padding: 5px 15px; /* Adjust padding as needed */
   text-decoration: none;
   color: #fff;
-  background-color: #007bff;
+  background-color: #dc3545; /* Use a different color for the logout button for contrast */
   border-radius: 5px;
   font-size: 16px;
+  margin-left: 10px; /* Space between name and logout button */
 }
 
-.logout-button a {
-  display: inline-block;
-  margin-left: 10px; /* Add space between the user name and logout button */
-  padding: 5px 10px;
-  text-decoration: none;
-  color: #fff;
-  background-color: #007bff;
-  border-radius: 5px;
-  font-size: 16px;
+#header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
-
-/* If the name is still not wide enough, you can adjust the width property */
-.login-info {
-  width: auto; /* or you can set a specific width like width: 200px; */
-}
-

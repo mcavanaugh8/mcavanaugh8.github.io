@@ -6,7 +6,11 @@ const passport = require('passport');
 
 const {
     getHomePage,
+    logOut,
+    sendResults
 } = require('../controllers/controllers.js')
+
+const User = require('../models/user.js');
 
 // router.get('/login', (req, res) => {
 //     // Render the login page
@@ -29,37 +33,8 @@ router.get('/auth/google/callback',
         res.redirect('/');
     });
 
-router.get('/logout', (req, res) => {
-    req.logout(function (err) {
-        if (err) { return next(err); }
-        // Redirect to home page or any other page after logout
-        res.redirect('/');
-    });
-});
+router.get('/logout', (req, res) => logOut(req, res));
 
-router.post('/user-results', (req, res) => {
-    console.log('Request received.');
-    console.log(req.body);
-
-    const newResult = new User({
-        name: req.body.name,
-        picks: req.body.picks,
-        score: req.body.score,
-    });
-
-    newResult
-        .save()
-        .then((result) => {
-            res.send(result);
-        })
-        .catch((error) => console.log('ERROR: ' + error));
-
-    // res.json({
-    //   status: 'success!!',
-    //   name: req.body.name,
-    //   picks: req.body.picks,
-    //   score: req.body.score,
-    // });
-});
+router.post('/user-results', async (req, res) => sendResults(req.user.googleId, req.body));
 
 module.exports = router;

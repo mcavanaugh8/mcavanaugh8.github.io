@@ -5,11 +5,12 @@ const router = express.Router();
 const moment = require('moment');
 const axios = require('axios');
 
+const User = require('../models/user.js');
 
 /**
  * router.get('/')
  */
-function getHomePage(req, res) {
+async function getHomePage(req, res) {
     console.log(`Loading home page...`);
 
     res.status(200).render('main', {
@@ -17,6 +18,46 @@ function getHomePage(req, res) {
         Authenticated: req.isAuthenticated() ? true : false,
         user: req.isAuthenticated() ? req.user : false,
     })
+}
+
+function logOut(req, res) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        // Redirect to home page or any other page after logout
+        res.redirect('/');
+    });
+}
+
+async function sendResults(req, res) {
+    console.log('Request received.');
+    console.log(req.body);
+
+    try {
+        let user = await User.findOne({ googleId: req.user.googleId })
+
+        if (user) {
+            return done(null, user);
+        } else {
+
+            await user.save();
+            return done(null, user);
+        }
+    } catch (err) {
+        return done(err);
+    }
+
+    const newResult = new User({
+        name: req.body.name,
+        picks: req.body.picks,
+        score: req.body.score,
+    });
+
+    newResult
+        .save()
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((error) => console.log('ERROR: ' + error));
 }
 
 function getUser(userProfile) {
@@ -48,62 +89,16 @@ function getUser(userProfile) {
         });
 }
 
-function updateUserOrCreate(userProfile, field, val, self, target) {
-    // console.log(userProfile)
-    const query = self ? { email: target } : { email: userProfile.email };
-    const update = {};
-
-    switch (field) {
-        // case 'displayName':
-        //     break;
-        // case 'email':
-        //     break;
-        case 'log':
-            moment.locale('en');
-            let time = moment().tz("America/New_York").format('MM/DD/YY HH:mm:ss');
-
-
-            if (!userProfile.log) {
-                update.log = [{
-                    user: userProfile.displayName,
-                    time: time,
-                    message: val
-                }];
-            } else {
-                update.$push = {
-                    log: {
-                        user: userProfile.displayName,
-                        time: time,
-                        message: val
-                    }
-                };
-            }
-            break;
-        case 'role':
-            update.role = val;
-            break;
-        case 'activity':
-            update.$push = { activity: val };
-            break;
-    }
-
-    const options = {
-        new: true, // Return the updated document
-        upsert: true, // Create a new document if one doesn't exist
-        setDefaultsOnInsert: true // If a new document is created, default schema values will be set
-    };
-
-    return User.findOneAndUpdate(query, update, options).lean()
-        .exec()
-        .then(function (user) {
-            return user;
-        })
-        .catch(function (error) {
-            console.error('Error in updateUserOrCreate:', error);
-            throw error;
-        });
+function sendResults(userId, draftData) {
+    return User.findByIdAndUpdate(
+        userId,
+        { $push: { drafts: draftData } },
+        { new: true, useFindAndModify: false }
+    ).exec();
 }
 
 module.exports = {
     getHomePage,
+    logOut,
+    sendResults
 }

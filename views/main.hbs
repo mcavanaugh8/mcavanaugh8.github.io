@@ -1,18 +1,17 @@
 <main>
-    <div class="header-container">
-        <div class="page-head">2024 NFL Draft</div>
+     <!-- Header section -->
+    <div id="header" class="container-fluid bg-dark text-white d-flex justify-content-between align-items-center">
+        <!-- NFL Draft title -->
+        <div class="h2 mb-0" style="flex-grow: 1;">2024 NFL Draft</div>
+        
+        <!-- User information -->
         {{#if Authenticated}}
-        <div class="login-info">
-            <i class="fa-sharp fa-solid fa-person"></i>
-            <span>Logged in as {{user.name}}</span>
-            <div class="logout-button">
-                <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-            </div>
+        <div class="d-flex align-items-center">
+            <i class="fas fa-user me-2"></i> Logged in as {{user.name}}
+            <a href="/logout" class="btn btn-danger btn-sm ms-3">Logout</a>
         </div>
         {{else}}
-        <div class="login-button">
-            <a href="/auth/google" class="btn btn-primary">Login</a>
-        </div>
+        <a href="/auth/google" class="btn btn-primary">Login</a>
         {{/if}}
     </div>
     <div class="container" id="top-buttons">
@@ -95,9 +94,9 @@
                         <label for="modal-player-name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="modal-player-name" placeholder="Name..." />
                         <label class="form-label" for="playerPicks">First 32 selections</label>
-                        <input type="file" class="form-control" id="playerPicks" />
+                        <input type="file" class="form-control" id="playerPicks" onclick="click()"/>
                         <label class="form-label" for="altPlayerPicks">Alternate Players</label>
-                        <input type="file" class="form-control" id="altPlayerPicks" />
+                        <input type="file" class="form-control" id="altPlayerPicks" onclick="click()" />
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary add-player-submit" data-bs-dismiss="modal">
