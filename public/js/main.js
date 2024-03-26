@@ -49,13 +49,12 @@ const intitialDraftOrder = [
 let realDraftOrder = [...intitialDraftOrder];
 
 const ui = new UI(realDraftOrder);
+ui.addAllRounds();
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const participants = ui.getFromLocalStorage('participants');
   const draftPicks = ui.getFromLocalStorage('draft-results');
   ui.numberOfPlayers = Object.keys(participants).length;
-
-  ui.addAllRounds();
 
   if (Object.keys(participants).length > 0) {
     // console.log(ui.numberOfPlayers);

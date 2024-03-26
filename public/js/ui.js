@@ -448,7 +448,7 @@ class UI {
     teamList.innerHTML = '';
 
     if (onReload) {
-      
+
     } else {
       this.intitialDraftOrder.forEach((team, index) => {
         const listItem = document.createElement('li');
@@ -471,9 +471,7 @@ class UI {
 
   }
 
-
   addPlayers(name, file, altFile, onReload, participantPicks) {
-
     if (onReload === true) {
       const scope = this;
 
@@ -519,33 +517,27 @@ class UI {
           this.enableButton();
         }
 
-        let trTop = document.getElementById('scoreboard-table-row-top'),
-          trBottom = document.getElementById('scoreboard-table-row-score');
-        let thTop = document.createElement('th'),
-          thBottom = document.createElement('th');
+        const scoreboardContent = document.querySelector('#scoreboard-content');
 
-        thTop.innerHTML = name;
-        thTop.scope = 'col';
-        thBottom.innerHTML = '0';
-        thBottom.classList.add('player-score');
+        let newPlayerRow = document.createElement('p');
+        newPlayerRow.id = name.toLowerCase().replace(/\s/g, '-');
+        newPlayerRow.innerHTML = `${name}: <span class="player-score">0</span> points`;
+        scoreboardContent.appendChild(newPlayerRow);
 
-        trTop.appendChild(thTop);
-        trBottom.appendChild(thBottom);
-
-        let altPicksArr = [];
-        if (altFile) {
-          const reader = new FileReader();
-          reader.readAsText(altFile, 'UTF-8');
-          reader.onload = function (event) {
-            const picksArr =
-              event.target.result.split('\r\n').length > 1 ?
-                event.target.result.split('\r\n') :
-                event.target.result.split('\n');
-            altPicksArr = picksArr.map((item) => {
-              return item.replace(/(^)(\s.+?)(\w)/g, '$1$3');
-            });
-          };
-        }
+        // let altPicksArr = [];
+        // if (altFile) {
+        //   const reader = new FileReader();
+        //   reader.readAsText(altFile, 'UTF-8');
+        //   reader.onload = function (event) {
+        //     const picksArr =
+        //       event.target.result.split('\r\n').length > 1 ?
+        //         event.target.result.split('\r\n') :
+        //         event.target.result.split('\n');
+        //     altPicksArr = picksArr.map((item) => {
+        //       return item.replace(/(^)(\s.+?)(\w)/g, '$1$3');
+        //     });
+        //   };
+        // }
 
         const reader = new FileReader();
         reader.readAsText(file, 'UTF-8');
@@ -562,7 +554,7 @@ class UI {
           let obj = {
             name: name,
             picks: [],
-            altPicks: altPicksArr,
+            // altPicks: altPicksArr,
             score: 0,
           };
 
@@ -572,8 +564,8 @@ class UI {
 
           scope.participantObjects.push(obj);
           scope.addToLocalStorage('participants', scope.participantObjects);
-          // console.log(scope.getFromLocalStorage("participants"));
-          // console.log(scope.participantObjects);
+          console.log(scope.getFromLocalStorage("participants"));
+          console.log(scope.participantObjects);
           scope.addAllRounds(picksArrClean, name);
         };
 
