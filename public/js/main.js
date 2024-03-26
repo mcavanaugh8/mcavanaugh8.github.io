@@ -12,43 +12,43 @@ const submitButton = document.querySelector('.validate-pick');
 const submitButtonFloating = document.querySelector('.submit-picks');
 
 const intitialDraftOrder = [
-{ team: 'CHICAGO', needs: [] },
-{ team: 'WASHINGTON', needs: [] },
-{ team: 'NEW ENGLAND', needs: [] },
-{ team: 'ARIZONA', needs: [] },
-{ team: 'LOS ANGELES CHARGERS', needs: [] },
-{ team: 'NEW YORK GIANTS', needs: [] },
-{ team: 'TENNESSEE', needs: [] },
-{ team: 'ATLANTA', needs: [] },
-{ team: 'CHICAGO', needs: [] },
-{ team: 'NEW YORK JETS', needs: [] },
-{ team: 'MINNESOTA', needs: [] },
-{ team: 'DENVER', needs: [] },
-{ team: 'LAS VEGAS', needs: [] },
-{ team: 'NEW ORLEANS', needs: [] },
-{ team: 'INDIANAPOLIS', needs: [] },
-{ team: 'SEATTLE', needs: [] },
-{ team: 'JACKSONVILLE', needs: [] },
-{ team: 'CINCINNATI', needs: [] },
-{ team: 'LOS ANGELES RAMS', needs: [] },
-{ team: 'PITTSBURGH', needs: [] },
-{ team: 'MIAMI', needs: [] },
-{ team: 'PHILADELPHIA', needs: [] },
-{ team: 'HOUSTON', needs: [] },
-{ team: 'DALLAS', needs: [] },
-{ team: 'GREEN BAY', needs: [] },
-{ team: 'TAMPA BAY', needs: [] },
-{ team: 'ARIZONA', needs: [] },
-{ team: 'BUFFALO', needs: [] },
-{ team: 'DETROIT', needs: [] },
-{ team: 'BALTIMORE', needs: [] },
-{ team: 'SAN FRANCISCO', needs: [] },
-{ team: 'KANSAS CITY', needs: [] }
+  { team: 'CHICAGO', needs: [] },
+  { team: 'WASHINGTON', needs: [] },
+  { team: 'NEW ENGLAND', needs: [] },
+  { team: 'ARIZONA', needs: [] },
+  { team: 'LOS ANGELES CHARGERS', needs: [] },
+  { team: 'NEW YORK GIANTS', needs: [] },
+  { team: 'TENNESSEE', needs: [] },
+  { team: 'ATLANTA', needs: [] },
+  { team: 'CHICAGO', needs: [] },
+  { team: 'NEW YORK JETS', needs: [] },
+  { team: 'MINNESOTA', needs: [] },
+  { team: 'DENVER', needs: [] },
+  { team: 'LAS VEGAS', needs: [] },
+  { team: 'NEW ORLEANS', needs: [] },
+  { team: 'INDIANAPOLIS', needs: [] },
+  { team: 'SEATTLE', needs: [] },
+  { team: 'JACKSONVILLE', needs: [] },
+  { team: 'CINCINNATI', needs: [] },
+  { team: 'LOS ANGELES RAMS', needs: [] },
+  { team: 'PITTSBURGH', needs: [] },
+  { team: 'MIAMI', needs: [] },
+  { team: 'PHILADELPHIA', needs: [] },
+  { team: 'HOUSTON', needs: [] },
+  { team: 'DALLAS', needs: [] },
+  { team: 'GREEN BAY', needs: [] },
+  { team: 'TAMPA BAY', needs: [] },
+  { team: 'ARIZONA', needs: [] },
+  { team: 'BUFFALO', needs: [] },
+  { team: 'DETROIT', needs: [] },
+  { team: 'BALTIMORE', needs: [] },
+  { team: 'SAN FRANCISCO', needs: [] },
+  { team: 'KANSAS CITY', needs: [] }
 ];
 
 let realDraftOrder = [...intitialDraftOrder];
 
-const ui = new UI();
+const ui = new UI(realDraftOrder);
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const participants = ui.getFromLocalStorage('participants');
@@ -63,6 +63,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ui.enableButton();
     ui.addFromLocalStorageToPage();
   }
+
+  document.querySelector('#team-list').querySelectorAll('li').forEach(item => {
+    ui.formatTeamCells(item.querySelector('.team'));
+  })
 });
 
 
@@ -141,10 +145,8 @@ document.addEventListener('dblclick', (event) => {
 
 document.addEventListener('focusin', (event) => {
   if (event.target.classList.contains('actual-pick')) {
-    if (
-      event.target.textContent === '' &&
-      event.target.parentNode.querySelector('datalist') === null
-    ) {
+    console.log('focusin');
+    if (event.target.textContent === '' && event.target.parentNode.querySelector('datalist') === null ) {
       event.target.parentNode.innerHTML += ui.createPlayerDataList();
     }
   }
@@ -177,12 +179,12 @@ document.addEventListener('click', (event) => {
     const data = ui.participantObjects;
     data.forEach((item, index, arr) => {
       fetch('/user-results', {
-          method: 'POST',
-          body: JSON.stringify(item),
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        })
+        method: 'POST',
+        body: JSON.stringify(item),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
         .then((response) => response.json())
         .then((item) => {
           // console.log(item);
@@ -192,7 +194,7 @@ document.addEventListener('click', (event) => {
   }
 });
 
-document.getElementById('scoreboard-tab-handle').addEventListener('click', function() {
+document.getElementById('scoreboard-tab-handle').addEventListener('click', function () {
   var content = document.getElementById('scoreboard-content');
   if (content.style.display === 'block') {
     content.style.display = 'none';
@@ -201,4 +203,54 @@ document.getElementById('scoreboard-tab-handle').addEventListener('click', funct
     content.style.display = 'block';
     this.innerHTML = '&#9664; Scoreboard';
   }
+});
+
+// Function to handle the drag start
+function handleDragStart(e) {
+  e.dataTransfer.setData('text/plain', e.target.id);
+  this.style.opacity = '0.4';  // This item is being dragged
+}
+
+// Function to handle the drag over
+function handleDragOver(e) {
+  if (e.preventDefault) {
+    e.preventDefault(); // Necessary to allow dropping
+  }
+
+  this.classList.add('over');
+  e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+  return false;
+}
+
+// Function to handle the drop
+function handleDrop(e) {
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops the browser from redirecting.
+  }
+
+  // Don't do anything if we're dropping on the same column we're dragging.
+  if (dragSrcEl !== this) {
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData('text/plain');
+  }
+
+  return false;
+}
+
+// Function to handle drag end
+function handleDragEnd(e) {
+  this.style.opacity = '1';  // Item is no longer being dragged
+
+  items.forEach(function (item) {
+    item.classList.remove('over');
+  });
+}
+
+let items = document.querySelectorAll('.container .draggable');
+items.forEach(function (item) {
+  item.addEventListener('dragstart', handleDragStart);
+  item.addEventListener('dragover', handleDragOver);
+  item.addEventListener('drop', handleDrop);
+  item.addEventListener('dragend', handleDragEnd);
 });
