@@ -3,7 +3,7 @@ class UI {
     this.numberOfPlayers = 0;
     this.hasActivePlayer = false;
 
-    this.validateButton = document.querySelector('.validate-pick');
+    this.validateButton = document.querySelectorAll('.validate-pick');
     this.draftBoard = document.querySelector('.draftboard');
     this.boardTable = document.querySelector('.board-table');
 
@@ -68,6 +68,7 @@ class UI {
     trBottom.innerHTML = ``;
 
     this.disableButton();
+    
     if (document.getElementById('submitDraft')) {
       document.getElementById('submitDraft').parentNode.remove();
       location.reload();

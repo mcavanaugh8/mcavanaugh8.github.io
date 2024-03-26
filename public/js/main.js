@@ -9,6 +9,7 @@
  */
 
 const submitButton = document.querySelector('.validate-pick');
+const submitButtonFloating = document.querySelector('.submit-picks');
 
 const intitialDraftOrder = [
 { team: 'CHICAGO', needs: [] },
@@ -66,6 +67,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 submitButton.addEventListener('click', function (event) {
+  const audio = new Audio('draft_sound.mp3');
+  audio.play();
+  ui.validatePicks();
+});
+
+submitButtonFloating.addEventListener('click', function (event) {
   const audio = new Audio('draft_sound.mp3');
   audio.play();
   ui.validatePicks();
@@ -182,5 +189,16 @@ document.addEventListener('click', (event) => {
           return item;
         });
     });
+  }
+});
+
+document.getElementById('scoreboard-tab-handle').addEventListener('click', function() {
+  var content = document.getElementById('scoreboard-content');
+  if (content.style.display === 'block') {
+    content.style.display = 'none';
+    this.innerHTML = '&#9654; Scoreboard';
+  } else {
+    content.style.display = 'block';
+    this.innerHTML = '&#9664; Scoreboard';
   }
 });
