@@ -31,8 +31,27 @@
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
     <script src="/public/source/players.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/dist/sortable.min.js"></script>
     <script src="/public/js/ui.js"></script>
     <script src="/public/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var el = document.getElementById('items');
+            var sortable = Sortable.create(el, {
+                animation: 150,
+                ghostClass: 'sortable-ghost', // Class name for the drop placeholder
+                dragClass: 'sortable-drag', // Class name for the dragging item
+                onEnd: function (/**Event*/evt) {
+                    var itemEl = evt.item; // dragged HTMLElement
+                    // + indexes from onEnd
+                    evt.to;    // target list
+                    evt.from;  // previous list
+                    evt.oldIndex;  // element's old index within old parent
+                    evt.newIndex;  // element's new index within new parent
+                },
+            });
+        })
+    </script>
 </body>
 
 </html>

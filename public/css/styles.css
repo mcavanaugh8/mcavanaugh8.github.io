@@ -345,3 +345,7 @@ body {
   padding: 10px;
   background-color: #333;
 }
+
+.over {
+  border: 2px dashed #000;
+}

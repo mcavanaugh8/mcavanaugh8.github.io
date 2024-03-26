@@ -68,7 +68,7 @@ class UI {
     trBottom.innerHTML = ``;
 
     this.disableButton();
-    
+
     if (document.getElementById('submitDraft')) {
       document.getElementById('submitDraft').parentNode.remove();
       location.reload();
@@ -316,7 +316,7 @@ class UI {
           draftObj[i] = {
             draftPosition: i,
             team: realDraftOrder[i - 1],
-            player: pickName.replace(/\t|\n|\r/g, '').replace(/\s{2,}/g,'').replace(/^.+? /, ''),
+            player: pickName.replace(/\t|\n|\r/g, '').replace(/\s{2,}/g, '').replace(/^.+? /, ''),
           };
         }
 
@@ -353,6 +353,7 @@ class UI {
     const participants = this.getFromLocalStorage('participants');
     const draftPicks = this.getFromLocalStorage('draft-results');
     const newDraftOrder = this.getFromLocalStorage('updated-draft-order');
+    let tableBody = this.boardTable.querySelector('tbody');
 
     if (this.boardTable.querySelector('td') !== null) {
       this.boardTable.innerHTML = `          
@@ -363,24 +364,29 @@ class UI {
     }
 
     for (let i = 0; i <= 31; i++) {
-      let newRow = this.boardTable.insertRow(i + 1);
+
       if (i === 0) {
         let th1 = document.createElement('th');
         th1.scope = 'col';
         th1.innerHTML = '#';
+        th1.setAttribute('scope', 'col');
         this.boardTable.rows[0].appendChild(th1);
 
         let th2 = document.createElement('th');
         th2.scope = 'col';
         th2.innerHTML = 'Team';
+        th2.setAttribute('scope', 'col');
         this.boardTable.rows[0].appendChild(th2);
 
         let th3 = document.createElement('th');
         th3.scope = 'col';
         th3.innerHTML = 'Actual';
+        th3.setAttribute('scope', 'col');
         this.boardTable.rows[0].appendChild(th3);
-      }
+      }     
 
+      let newRow = tableBody.insertRow(i);
+      
       for (let j = 0; j < 3; j++) {
         let newCell = newRow.insertCell();
         newCell.classList.add('text-center');
@@ -393,11 +399,11 @@ class UI {
             newCell.classList.add('text-center');
             this.formatTeamCells(newCell);
             break;
-            // case 3:
-            //   newCell.innerHTML =
-            //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
-            //   const pickText = newCell.querySelector("input");
-            //   pickText.classList.add("actual-pick");
+          // case 3:
+          //   newCell.innerHTML =
+          //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+          //   const pickText = newCell.querySelector("input");
+          //   pickText.classList.add("actual-pick");
         }
       }
 
@@ -442,7 +448,7 @@ class UI {
 
   addAllRounds(playerPicks, playerName) {
     /**Add different functionality for loading picks from local storage */
-
+    let tableBody = this.boardTable.querySelector('tbody');
     if (this.hasActivePlayer === false) {
       if (this.boardTable.querySelector('td') !== null) {
         this.boardTable.innerHTML = `          
@@ -453,23 +459,27 @@ class UI {
       }
 
       for (let i = 0; i <= 31; i++) {
-        let newRow = this.boardTable.insertRow(i + 1);
+
         if (i === 0) {
           let th1 = document.createElement('th');
           th1.scope = 'col';
           th1.innerHTML = '#';
+          th1.setAttribute('scope', 'col');
           this.boardTable.rows[0].appendChild(th1);
 
           let th2 = document.createElement('th');
           th2.scope = 'col';
           th2.innerHTML = 'Team';
+          th2.setAttribute('scope', 'col');
           this.boardTable.rows[0].appendChild(th2);
 
           let th3 = document.createElement('th');
           th3.scope = 'col';
           th3.innerHTML = 'Actual';
+          th3.setAttribute('scope', 'col');
           this.boardTable.rows[0].appendChild(th3);
-        }
+        }        
+        let newRow = tableBody.insertRow(i);
 
         for (let j = 0; j < 3; j++) {
           let newCell = newRow.insertCell();
@@ -593,8 +603,8 @@ class UI {
           reader.onload = function (event) {
             const picksArr =
               event.target.result.split('\r\n').length > 1 ?
-              event.target.result.split('\r\n') :
-              event.target.result.split('\n');
+                event.target.result.split('\r\n') :
+                event.target.result.split('\n');
             altPicksArr = picksArr.map((item) => {
               return item.replace(/(^)(\s.+?)(\w)/g, '$1$3');
             });
@@ -607,8 +617,8 @@ class UI {
           // console.log(event.target.result);
           const picksArr =
             event.target.result.split('\r\n').length > 1 ?
-            event.target.result.split('\r\n') :
-            event.target.result.split('\n');
+              event.target.result.split('\r\n') :
+              event.target.result.split('\n');
           const picksArrClean = picksArr.map((item) => {
             return item.replace(/(^)(\s.+?)(\w)/g, '$1$3');
           });
@@ -689,7 +699,7 @@ class UI {
       if (
         this.boardTable.rows[i].cells[lastRow].querySelector('.actual-pick') &&
         this.boardTable.rows[i].cells[lastRow].querySelector('.actual-pick')
-        .value !== ''
+          .value !== ''
       ) {
         const pick =
           this.boardTable.rows[i].cells[lastRow].querySelector(
@@ -825,7 +835,7 @@ class UI {
     const scores = document.querySelectorAll('.player-score');
     scores.forEach((score, index) => {
       // console.log(score, index);
-      this.participantObjects[index].score = score.textContent;      
+      this.participantObjects[index].score = score.textContent;
     });
 
     for (let i = 1; i < this.boardTable.rows.length; i++) {
