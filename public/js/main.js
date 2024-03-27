@@ -47,6 +47,7 @@ const intitialDraftOrder = [
 ];
 
 let realDraftOrder = [...intitialDraftOrder];
+let dragSrcEl = null;
 
 const ui = new UI(realDraftOrder);
 ui.addAllRounds();
@@ -206,8 +207,10 @@ document.getElementById('scoreboard-tab-handle').addEventListener('click', funct
 
 // Function to handle the drag start
 function handleDragStart(e) {
-  e.dataTransfer.setData('text/plain', e.target.id);
-  this.style.opacity = '0.4';  // This item is being dragged
+  dragSrcEl = this; // 'this' refers to the element on which the dragstart event was fired
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', this.innerHTML); // Set the drag's data to the innerHTML of the element
+  this.style.opacity = '0.4';
 }
 
 // Function to handle the drag over
@@ -237,12 +240,19 @@ function handleDrop(e) {
   return false;
 }
 
-// Function to handle drag end
+
 function handleDragEnd(e) {
-  this.style.opacity = '1';  // Item is no longer being dragged
+  this.style.opacity = '1'; 
 
   items.forEach(function (item) {
     item.classList.remove('over');
+  });
+
+  document.querySelectorAll('.container .draggable').forEach((item, index) => {
+    const numberDiv = item.querySelector('.row > div:first-child');
+    if (numberDiv) {
+      numberDiv.textContent = index + 1; // Update the number
+    }
   });
 }
 
