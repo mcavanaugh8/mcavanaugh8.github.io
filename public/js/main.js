@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ui.hasActivePlayer = true;
     ui.enableButton();
     ui.addFromLocalStorageToPage();
+  } else if (Object.keys(draftPicks).length > 0) {
+    console.log(draftPicks)
+    ui.addFromLocalStorageToPage();
   }
 
   document.querySelector('#team-list').querySelectorAll('li').forEach(item => {
@@ -130,17 +133,6 @@ document.addEventListener('dblclick', (event) => {
   //   const pickText = event.target.querySelector("input");
   //   pickText.classList.add("actual-pick");
   // }
-
-  /**
-   * add editing of team name  for trades
-   */
-
-  if (event.target.classList.contains('team')) {
-    event.target.innerHTML =
-      '<input class="form-control form-control-sm" type="text" placeholder="Team Name">';
-    const teamText = event.target.querySelector('input');
-    teamText.classList.add('new-team');
-  }
 });
 
 document.addEventListener('focusin', (event) => {

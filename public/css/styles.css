@@ -150,11 +150,6 @@ body {
   border: 2px solid #198754;
 }
 
-.team,
-.draftboard td {
-  vertical-align: middle;
-}
-
 .alternates-names {
   font-weight: bolder;
 }
@@ -350,3 +345,6 @@ body {
   border: 2px dashed #000;
 }
 
+.list-group-item {
+  background-color: lightgray;
+}

@@ -106,12 +106,14 @@ class UI {
     /** load actual draft selections */
 
     if (draftPicks !== null && Object.keys(draftPicks).length === 32) {
-      for (let i = 0; i < this.boardTable.rows.length; i++) {
-        if (draftPicks[i + 1] !== undefined) {
-          const currRow = this.boardTable.rows[i + 1];
-          const c = this.boardTable.rows[i + 1].cells.length - 1;
-          if (draftPicks[i + 1].player !== '') {
-            currRow.cells[c].textContent = draftPicks[i + 1].player;
+      const teamList = document.querySelector('#team-list');
+
+      for (let i = 0; i < teamList.querySelectorAll('li').length; i++) {
+        if (draftPicks[i] !== undefined) {
+          const currRow = teamList.querySelectorAll('li')[i]
+
+          if (draftPicks[i].player !== '') {
+            currRow.querySelector('.actual-pick').value = draftPicks[i].player.replace(/.+?\s/, '');
           }
         }
       }
@@ -292,163 +294,115 @@ class UI {
   }
 
   createDraftObjects() {
-    const players = document.querySelectorAll('.player-score');
+    const players = this.getFromLocalStorage('participants');
     let draftObj = {};
 
-    players.forEach((player, index) => {
-      let playerDraftObj = {};
-      let pickName;
+    if (players.length > 0) {
+      players.forEach((player, index) => {
+        let playerDraftObj = {};
+        let pickName;
 
-      const teams = this.teamList.querySelectorAll('li');
+        const teams = this.teamList.querySelectorAll('li');
 
-      for (let i = 1; i < teams.length; i++) {
-        let lastCell = teams[i].querySelector('.actual-pick');
-        if (index === 0) {
-          if (teams[i].querySelector('div') !== null) {
-            pickName = teams[i]
-              .querySelector('.container')
-              .querySelector('div')
-              .querySelector('.pick-name').textContent;
-          } else {
-            pickName = '';
+        for (let i = 1; i < teams.length; i++) {
+          let lastCell = teams[i].querySelector('.actual-pick');
+          if (index === 0) {
+            if (teams[i].querySelector('div') !== null) {
+              pickName = teams[i]
+                .querySelector('.container')
+                .querySelector('div')
+                .querySelector('.pick-name').textContent;
+            } else {
+              pickName = '';
+            }
+
+            draftObj[i] = {
+              draftPosition: i,
+              team: realDraftOrder[i - 1],
+              player: pickName
+            };
           }
 
-          draftObj[i] = {
-            draftPosition: i,
-            team: realDraftOrder[i - 1],
-            player: pickName
-          };
+          if (teams[i].cells[index + 2].textContent.includes('/')) {
+            const picksArr =
+              teams[i].cells[index + 2].textContent.split('/');
+            playerDraftObj[i] = {
+              team: intitialDraftOrder[i - 1],
+              player: picksArr[0],
+              altPlayer: picksArr[1],
+            };
+          } else {
+            playerDraftObj[i] = {
+              team: intitialDraftOrder[i - 1],
+              player: teams[i].cells[index + 2].textContent,
+              altPlayer: '',
+            };
+          }
+          // console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
         }
 
-        if (teams[i].cells[index + 2].textContent.includes('/')) {
-          const picksArr =
-            teams[i].cells[index + 2].textContent.split('/');
-          playerDraftObj[i] = {
-            team: intitialDraftOrder[i - 1],
-            player: picksArr[0],
-            altPlayer: picksArr[1],
-          };
-        } else {
-          playerDraftObj[i] = {
-            team: intitialDraftOrder[i - 1],
-            player: teams[i].cells[index + 2].textContent,
-            altPlayer: '',
-          };
-        }
-        // console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
+        this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
+      });
+
+      this.actualPicks.push(draftObj);
+
+    } else {
+      if (!this.teamList) {
+        this.teamList = document.querySelector('#team-list');
       }
 
-      this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
-    });
+      for (let i = 0; i < this.teamList.querySelectorAll('li').length; i++) {
+        let currRow = this.teamList.querySelectorAll('li')[i];
+        let pickName;
 
-    this.actualPicks.push(draftObj);
+        if (currRow.querySelector('.pick-name') !== null) {
+          pickName = currRow.querySelector('.pick-name').textContent
+            .replace(/^.+?\s/, '')
+            .replace(/\n|\s{2,}/g, '')
+        } else {
+          pickName = '';
+        }
+
+        draftObj[i] = {
+          draftPosition: i,
+          team: realDraftOrder[i],
+          player: pickName,
+        };
+      }
+    }
+
     // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.addToLocalStorage('draft-results', draftObj);
     // console.log(this.participantObjects, this.actualPicks);
-  }
-
-  addAllRoundsOnReload(dra, playerName) {
-    const participants = this.getFromLocalStorage('participants');
-    const draftPicks = this.getFromLocalStorage('draft-results');
-    const newDraftOrder = this.getFromLocalStorage('updated-draft-order');
-
-    if (!this.draftBoard) {
-      this.draftBoard = document.querySelector('.draftboard');
-    }
-
-    const teamList = this.draftBoard.querySelector('#team-list');
-
-    if (teamList.querySelector('li') !== null) {
-      this.draftBoard.innerHTML = `          
-      <ul id="team-list" class="list-group draggable-list"></ul>`;
-    }
-
-    for (let i = 0; i <= 31; i++) {
-      // Create the main list item
-      let listItem = document.createElement('li');
-      listItem.className = 'list-group-item draggable';
-      listItem.setAttribute('draggable', 'true');
-
-      // Create the row div
-      let rowDiv = document.createElement('div');
-      rowDiv.className = 'row';
-
-      // Create the first column div
-      let col1Div = document.createElement('div');
-      col1Div.className = 'col-md-1';
-      col1Div.textContent = i + 1;
-
-      // Create the second column div
-      let col2Div = document.createElement('div');
-      col2Div.className = 'col-md-4 team text-center';
-      col2Div.textContent = intitialDraftOrder[i].team;
-
-      // Create the third column div
-      let col3Div = document.createElement('div');
-      col3Div.className = 'col-md-7';
-
-      // Create the input element
-      let inputElement = document.createElement('input');
-      inputElement.className = 'form-control form-control-sm actual-pick';
-      inputElement.type = 'text';
-      inputElement.placeholder = 'Player Name';
-
-      // Append the input element to the third column div
-      col3Div.appendChild(inputElement);
-
-      // Append the column divs to the row div
-      rowDiv.appendChild(col1Div);
-      rowDiv.appendChild(col2Div);
-      rowDiv.appendChild(col3Div);
-
-      // Append the row div to the list item
-      listItem.appendChild(rowDiv);
-
-      teamList.appendChild(listItem);
-    }
-
-    // participants.forEach((participant, index) => {
-    //   // console.log(
-    //   //   `${index}: ${participant.name} | Number of Players: ${this.numberOfPlayers}`
-    //   // );
-    //   const teams = teamList.querySelectorAll('li');
-
-    //   for (let i = 0; i < teams.length; i++) {
-    //     let currRow = teams[i];
-    //     if (i === 0) {
-    //       let th = document.createElement('th');
-    //       th.scope = 'col';
-    //       th.innerHTML = participant.name;
-    //       currRow.insertBefore(
-    //         th,
-    //         currRow.children[currRow.children.length - 1]
-    //       );
-    //     } else {
-    //       let newCell = currRow.insertCell(index + 2);
-    //       newCell.classList.add('text-center');
-    //       newCell.textContent = participant.picks[i - 1];
-    //     }
-    //   }
-    // });
-
-    const teams = teamList.querySelectorAll('li');
-
-    for (let i = 1; i < teams.length; i++) {
-      let currRow = teams[i];
-      // console.log(currRow)
-      currRow.querySelector('.team').textContent = newDraftOrder[i - 1];
-
-      this.formatTeamCells(currRow.querySelector('.team'));
-    }
   }
 
   addAllRounds(playerPicks, playerName, onReload) {
     const draftBoard = document.querySelector('.draftboard');
     const teamList = draftBoard.querySelector('#team-list');
     teamList.innerHTML = '';
-
+    
     if (onReload) {
+      this.updatedDraftOrder = this.getFromLocalStorage('draft-results');
 
+      this.updatedDraftOrder.forEach((pick, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item draggable';
+        listItem.setAttribute('draggable', 'true');
+        listItem.innerHTML = `
+          <div class="row">
+            <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
+            <div class="col-md-4 team d-flex align-items-center justify-content-center">${pick.team.team}</div>
+            <div class="col-md-7">
+              <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
+            </div>
+          </div>`;
+
+        teamList.appendChild(listItem);
+        listItem.querySelector('.actual-pick').value = pick.player.replace(/.+?\s/, '')
+        this.formatTeamCells(listItem.querySelector('.team'));
+      });
+
+      this.addPlayerCards();
     } else {
       this.intitialDraftOrder.forEach((team, index) => {
         const listItem = document.createElement('li');
@@ -456,19 +410,18 @@ class UI {
         listItem.setAttribute('draggable', 'true');
         listItem.innerHTML = `
           <div class="row">
-            <div class="col-md-1">${index + 1}</div>
-            <div class="col-md-4 team text-center">${team.team}</div>
+            <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
+            <div class="col-md-4 team d-flex align-items-center justify-content-center">${team.team}</div>
             <div class="col-md-7">
-              <input class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
+              <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
             </div>
           </div>`;
-  
+
         teamList.appendChild(listItem);
-  
+
         this.formatTeamCells(listItem.querySelector('.team'));
       });
     }
-
   }
 
   addPlayers(name, file, altFile, onReload, participantPicks) {
@@ -583,10 +536,11 @@ class UI {
     const teamList = this.draftBoard.querySelector('#team-list');
     const teams = teamList.querySelectorAll('li');
 
-    for (let i = 1; i < teams.length; i++) {
-      const c = teams[i].length - 1;
-      if (teams[i].textContent !== '') {
-        const selection = teams[i].textContent;
+    for (let i = 0; i < teams.length; i++) {
+      const pick = teams[i].querySelector('.actual-pick');
+
+      if (pick.textContent !== null && pick.textContent !== '') {
+        const selection = pick.textContent;
 
         prospects.forEach((prospect, index) => {
           if (prospect.name == selection) {
@@ -594,7 +548,7 @@ class UI {
               <div class=\"container player-card-container\">
                 <div class="row player-card-row">
                   <div class="col-md-4 my-auto pick-name">
-                  <p class="prospect-info-para">${prospect.position} ${prospect.name}</p>
+                  <p class="prospect-info-para"><strong>${prospect.position} ${prospect.name}</strong></p>
                   <p class="prospect-info-para">
                       <img class="prospect-school-image" src=\"${prospect.teamLogoUrl}\" alt=\"\">  
                     </p>
@@ -611,7 +565,7 @@ class UI {
                 </div>
               </div>
               `;
-            teams[i].innerHTML = popoutString;
+            pick.parentElement.innerHTML = popoutString;
           }
         });
         // console.log(this.boardTable.rows[i].cells[c].innerHTML);
@@ -630,55 +584,10 @@ class UI {
     teams.forEach(item => {
       if (item.querySelector('.actual-pick') && item.querySelector('.actual-pick').value !== '') {
         const pick = item.querySelector('.actual-pick').value;
-        item.innerHTML = pick;
+        item.querySelector('.actual-pick').innerHTML = pick;
         item.classList.add('pick-final');
       }
-
-      if (item.querySelector('.new-team') && item.querySelector('.new-team').value !== '') {
-        const newTeam = item.querySelector('.new-team').value;
-        item.innerHTML = '';
-        item.textContent = newTeam;
-        item.classList.add('team');
-
-        realDraftOrder[i - 1] = newTeam;
-      }
-
-      this.addPlayerCards();
-      this.createDraftObjects();
-
     })
-
-    // for (let i = 1; i < this.boardTable.rows.length; i++) {
-    //   var lastRow = this.boardTable.rows[i].cells.length - 1;
-    //   if (
-    //     this.boardTable.rows[i].cells[lastRow].querySelector('.actual-pick') &&
-    //     this.boardTable.rows[i].cells[lastRow].querySelector('.actual-pick')
-    //       .value !== ''
-    //   ) {
-    //     const pick =
-    //       this.boardTable.rows[i].cells[lastRow].querySelector(
-    //         '.actual-pick'
-    //       ).value;
-    //     this.boardTable.rows[i].cells[lastRow].innerHTML = pick;
-    //     this.boardTable.rows[i].cells[lastRow].classList.add('pick-final');
-    //   }
-
-    //   if (
-    //     this.boardTable.rows[i].cells[1].querySelector('.new-team') &&
-    //     this.boardTable.rows[i].cells[1].querySelector('.new-team').value !== ''
-    //   ) {
-    //     const newTeam =
-    //       this.boardTable.rows[i].cells[1].querySelector('.new-team').value;
-    //     this.boardTable.rows[i].cells[1].innerHTML = '';
-    //     this.boardTable.rows[i].cells[1].textContent = newTeam;
-    //     this.boardTable.rows[i].cells[1].classList.add('team');
-
-    //     realDraftOrder[i - 1] = newTeam;
-    //     try {
-    //       this.formatTeamCells(this.draftBoard.querySelector('#team-list').querySelectorAll('li')[i].querySelector('.team'));
-    //     } catch (e) { }
-    //   }
-    // }
 
     this.addPlayerCards();
     this.createDraftObjects();
