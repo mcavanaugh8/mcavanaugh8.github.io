@@ -348,3 +348,18 @@ body {
 .list-group-item {
   background-color: lightgray;
 }
+
+.player-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns items to the start of the container */
+  overflow-x: auto; /* Allows horizontal scrolling */
+  overflow-y: hidden; /* Prevents vertical scrolling */
+  max-height: 100%; /* Ensures the div does not grow beyond its container */
+}
+
+.player-name.single-line {
+  white-space: nowrap;
+  margin: 0; /* Removes default paragraph margins */
+  padding: 2px 0; /* Adjust vertical padding as needed */
+}

@@ -304,14 +304,10 @@ class UI {
 
         const teams = this.teamList.querySelectorAll('li');
 
-        for (let i = 1; i < teams.length; i++) {
-          let lastCell = teams[i].querySelector('.actual-pick');
+        for (let i = 0; i < teams.length; i++) {
           if (index === 0) {
-            if (teams[i].querySelector('div') !== null) {
-              pickName = teams[i]
-                .querySelector('.container')
-                .querySelector('div')
-                .querySelector('.pick-name').textContent;
+            if (teams[i].querySelector('#real-draft-selection').querySelector('div') !== null) {
+              pickName = teams[i].querySelector('.pick-name').textContent;
             } else {
               pickName = '';
             }
@@ -323,18 +319,18 @@ class UI {
             };
           }
 
-          if (teams[i].cells[index + 2].textContent.includes('/')) {
+          if (teams[i].querySelectorAll('.player-name')[index].textContent.includes('/')) {
             const picksArr =
-              teams[i].cells[index + 2].textContent.split('/');
+              teams[i].querySelectorAll('.player-name')[index].textContent.split('/');
             playerDraftObj[i] = {
-              team: intitialDraftOrder[i - 1],
+              team: intitialDraftOrder[i],
               player: picksArr[0],
               altPlayer: picksArr[1],
             };
           } else {
             playerDraftObj[i] = {
-              team: intitialDraftOrder[i - 1],
-              player: teams[i].cells[index + 2].textContent,
+              team: intitialDraftOrder[i],
+              player: teams[i].querySelectorAll('.player-name')[index].textContent,
               altPlayer: '',
             };
           }
@@ -380,48 +376,80 @@ class UI {
     const draftBoard = document.querySelector('.draftboard');
     const teamList = draftBoard.querySelector('#team-list');
     teamList.innerHTML = '';
-    
-    if (onReload) {
-      this.updatedDraftOrder = this.getFromLocalStorage('draft-results');
 
-      this.updatedDraftOrder.forEach((pick, index) => {
+    if (playerPicks) {
+      let draftResults = this.getFromLocalStorage('draft-results');
+      let draftOrder;
+      if (draftResults.length > 0) {
+        draftOrder = draftResults;
+      } else {
+        draftOrder = this.updatedDraftOrder.length > 0 ? this.updatedDraftOrder : this.intitialDraftOrder
+      }
+      let participants = this.getFromLocalStorage('participants');
+      console.log(draftOrder)
+      draftOrder.forEach((pick, index) => {
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item draggable';
         listItem.setAttribute('draggable', 'true');
         listItem.innerHTML = `
           <div class="row">
             <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
-            <div class="col-md-4 team d-flex align-items-center justify-content-center">${pick.team.team}</div>
-            <div class="col-md-7">
+            <div class="col-md-2 team d-flex align-items-center justify-content-center">${pick.team}</div>
+            <div class="col-md-2 player-pick d-flex flex-column justify-content-center">
+              <p class="player-name single-line">${playerPicks[index]}</p>
+            </div>
+            <div id="real-draft-selection" class="col-md-7">
               <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
             </div>
           </div>`;
 
         teamList.appendChild(listItem);
-        listItem.querySelector('.actual-pick').value = pick.player.replace(/.+?\s/, '')
         this.formatTeamCells(listItem.querySelector('.team'));
       });
-
-      this.addPlayerCards();
     } else {
-      this.intitialDraftOrder.forEach((team, index) => {
-        const listItem = document.createElement('li');
-        listItem.className = 'list-group-item draggable';
-        listItem.setAttribute('draggable', 'true');
-        listItem.innerHTML = `
-          <div class="row">
-            <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
-            <div class="col-md-4 team d-flex align-items-center justify-content-center">${team.team}</div>
-            <div class="col-md-7">
-              <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
-            </div>
-          </div>`;
+      if (onReload) {
+        this.updatedDraftOrder = this.getFromLocalStorage('draft-results');
 
-        teamList.appendChild(listItem);
+        this.updatedDraftOrder.forEach((pick, index) => {
+          const listItem = document.createElement('li');
+          listItem.className = 'list-group-item draggable';
+          listItem.setAttribute('draggable', 'true');
+          listItem.innerHTML = `
+            <div class="row">
+              <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
+              <div class="col-md-4 team d-flex align-items-center justify-content-center">${pick.team.team}</div>
+              <div id="real-draft-selection" class="col-md-7">
+                <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
+              </div>
+            </div>`;
 
-        this.formatTeamCells(listItem.querySelector('.team'));
-      });
+          teamList.appendChild(listItem);
+          listItem.querySelector('.actual-pick').value = pick.player.replace(/.+?\s/, '')
+          this.formatTeamCells(listItem.querySelector('.team'));
+        });
+
+        this.addPlayerCards();
+      } else {
+        this.intitialDraftOrder.forEach((team, index) => {
+          const listItem = document.createElement('li');
+          listItem.className = 'list-group-item draggable';
+          listItem.setAttribute('draggable', 'true');
+          listItem.innerHTML = `
+            <div class="row">
+              <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
+              <div class="col-md-4 team d-flex align-items-center justify-content-center">${team.team}</div>
+              <div id="real-draft-selection" class="col-md-7">
+                <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
+              </div>
+            </div>`;
+
+          teamList.appendChild(listItem);
+
+          this.formatTeamCells(listItem.querySelector('.team'));
+        });
+      }
     }
+
   }
 
   addPlayers(name, file, altFile, onReload, participantPicks) {
@@ -432,19 +460,6 @@ class UI {
         this.hasActivePlayer = true;
         this.enableButton();
       }
-
-      let trTop = document.getElementById('scoreboard-table-row-top'),
-        trBottom = document.getElementById('scoreboard-table-row-score');
-      let thTop = document.createElement('th'),
-        thBottom = document.createElement('th');
-
-      thTop.innerHTML = name;
-      thTop.scope = 'col';
-      thBottom.innerHTML = '0';
-      thBottom.classList.add('player-score');
-
-      trTop.appendChild(thTop);
-      trBottom.appendChild(thBottom);
 
       let obj = {
         name: name,
@@ -457,7 +472,7 @@ class UI {
       });
 
       this.hasActivePlayer = true;
-      scope.addAllRoundsOnReload(participantPicks, name);
+      scope.addAllRounds(participantPicks, name);
     } else {
       if (!file) {
         alert('You must add a file containing your picks!');
@@ -539,7 +554,7 @@ class UI {
     for (let i = 0; i < teams.length; i++) {
       const pick = teams[i].querySelector('.actual-pick');
 
-      if (pick.textContent !== null && pick.textContent !== '') {
+      if (pick && pick.textContent !== null && pick.textContent !== '') {
         const selection = pick.textContent;
 
         prospects.forEach((prospect, index) => {
@@ -631,22 +646,22 @@ class UI {
         altFirstRounders.push(personDraftObject[x].altPlayer);
       }
 
-      const altsTable = document.querySelector('.table-alternates');
+      // const altsTable = document.querySelector('.table-alternates');
 
-      if (altsTable) {
-        for (let r = 1; r < altsTable.rows.length; r++) {
-          if (draftObj[j].player !== '') {
-            if (
-              draftObj[j].player ===
-              altsTable.rows[r].cells[altsIndex].textContent
-            ) {
-              altsTable.rows[r].cells[altsIndex].style.backgroundColor =
-                'green';
-              score.textContent = Number(score.textContent) + 0.5;
-            }
-          }
-        }
-      }
+      // if (altsTable) {
+      //   for (let r = 1; r < altsTable.rows.length; r++) {
+      //     if (draftObj[j].player !== '') {
+      //       if (
+      //         draftObj[j].player ===
+      //         altsTable.rows[r].cells[altsIndex].textContent
+      //       ) {
+      //         altsTable.rows[r].cells[altsIndex].style.backgroundColor =
+      //           'green';
+      //         score.textContent = Number(score.textContent) + 0.5;
+      //       }
+      //     }
+      //   }
+      // }
 
       if (draftObj[j].player !== '') {
         if (firstRoundersArr.includes(draftObj[j].player)) {
@@ -680,22 +695,22 @@ class UI {
       draftPicks[x].player !== '' ? numPicksCounter++ : false;
     }
 
-    if (numPicksCounter === 31) {
-      const topButtonsRow = document
-        .getElementById('top-buttons')
-        .querySelector('.row');
-      if (topButtonsRow.querySelector('.submit-draft') === null) {
-        topButtonsRow.innerHTML += `
-        <div class="col mx-auto text-center">
-            <button type="button" id="submitDraft" class="btn btn-success btn-lg submit-draft" data-bs-toggle="modal"
-            data-bs-target="#results-modal">
-              Submit Draft
-            </button>
-        </div>`;
+    // if (numPicksCounter === 31) {
+    //   const topButtonsRow = document
+    //     .getElementById('top-buttons')
+    //     .querySelector('.row');
+    //   if (topButtonsRow.querySelector('.submit-draft') === null) {
+    //     topButtonsRow.innerHTML += `
+    //     <div class="col mx-auto text-center">
+    //         <button type="button" id="submitDraft" class="btn btn-success btn-lg submit-draft" data-bs-toggle="modal"
+    //         data-bs-target="#results-modal">
+    //           Submit Draft
+    //         </button>
+    //     </div>`;
 
-        document.getElementById('results-modal-body').innerHTML += document.querySelector('.scoreboard').innerHTML;
-      }
-    }
+    //     document.getElementById('results-modal-body').innerHTML += document.querySelector('.scoreboard').innerHTML;
+    //   }
+    // }
 
     const scores = document.querySelectorAll('.player-score');
     scores.forEach((score, index) => {
@@ -703,10 +718,23 @@ class UI {
       this.participantObjects[index].score = score.textContent;
     });
 
-    for (let i = 1; i < this.boardTable.rows.length; i++) {
-      let currRow = this.boardTable.rows[i];
-      i === 1 ? this.updatedDraftOrder = [] : false;
-      this.updatedDraftOrder.push(currRow.cells[1].textContent);
+    if (!this.teamList) {
+      this.teamList = document.querySelector('#team-list');
+    }
+
+    for (let i = 0; i < this.teamList.querySelectorAll('li').length; i++) {
+      let currRow = this.teamList.querySelectorAll('li')[i];
+      let pickName;
+
+      if (currRow.querySelector('.pick-name') !== null) {
+        pickName = currRow.querySelector('.pick-name').textContent
+          .replace(/^.+?\s/, '')
+          .replace(/\n|\s{2,}/g, '')
+      } else {
+        pickName = '';
+      }
+
+      this.updatedDraftOrder.push(pickName)
     }
 
     this.addToLocalStorage('updated-draft-order', this.updatedDraftOrder);
