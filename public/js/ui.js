@@ -61,7 +61,7 @@ class UI {
     this.resetLocalStorage('participants');
     this.resetLocalStorage('draft-results');
     this.resetLocalStorage('updated-draft-order');
-    this.addAllRounds();
+    this.addAllRounds(true);
 
     let trTop = document.getElementById('scoreboard-table-row-top'),
       trBottom = document.getElementById('scoreboard-table-row-score');
@@ -92,37 +92,37 @@ class UI {
     return obj;
   }
 
-  addFromLocalStorageToPage() {
-    /**load each participant & their picks */
-    const participants = this.getFromLocalStorage('participants');
-    const draftPicks = this.getFromLocalStorage('draft-results');
+  // addFromLocalStorageToPage() {
+  //   /**load each participant & their picks */
+  //   const participants = this.getFromLocalStorage('participants');
+  //   const draftPicks = this.getFromLocalStorage('draft-results');
 
-    participants.forEach((participant, index) => {
-      this.participantObjects.push(participant);
-      this.addPlayers(participant.name, false, false, true, participant.picks);
-      // console.log(participant.name, participant.picks);
-    });
+  //   participants.forEach((participant, index) => {
+  //     this.participantObjects.push(participant);
+  //     this.addPlayers(participant.name, false, false, true, participant.picks);
+  //     // console.log(participant.name, participant.picks);
+  //   });
 
-    /** load actual draft selections */
+  //   /** load actual draft selections */
 
-    if (draftPicks !== null && Object.keys(draftPicks).length === 32) {
-      const teamList = document.querySelector('#team-list');
+  //   if (draftPicks !== null && Object.keys(draftPicks).length === 32) {
+  //     const teamList = document.querySelector('#team-list');
 
-      for (let i = 0; i < teamList.querySelectorAll('li').length; i++) {
-        if (draftPicks[i] !== undefined) {
-          const currRow = teamList.querySelectorAll('li')[i]
+  //     for (let i = 0; i < teamList.querySelectorAll('li').length; i++) {
+  //       if (draftPicks[i] !== undefined) {
+  //         const currRow = teamList.querySelectorAll('li')[i]
 
-          if (draftPicks[i].player !== '') {
-            currRow.querySelector('.actual-pick').value = draftPicks[i].player.replace(/.+?\s/, '');
-          }
-        }
-      }
-    }
+  //         if (draftPicks[i].player !== '') {
+  //           currRow.querySelector('.actual-pick').value = draftPicks[i].player.replace(/.+?\s/, '');
+  //         }
+  //       }
+  //     }
+  //   }
 
-    this.addPlayerCards();
-    this.validatePicks();
-    this.createDraftObjects();
-  }
+  //   this.addPlayerCards();
+  //   this.validatePicks();
+  //   this.createDraftObjects();
+  // }
 
   resetLocalStorage(name) {
     localStorage.removeItem(name);
@@ -297,10 +297,10 @@ class UI {
     const players = this.getFromLocalStorage('participants');
     let draftObj = {};
     const teams = this.teamList.querySelectorAll('li');
-    
+
     for (let i = 0; i < teams.length; i++) {
       let pickName;
-      console.log(teams[i])
+
       if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
         pickName = teams[i].querySelector('.prospect-name').textContent.replace(/\n|\s{2,}/g, '').replace(/^.*?\s/, '');
       } else {
@@ -315,60 +315,78 @@ class UI {
     }
 
 
-    console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+    // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.addToLocalStorage('draft-results', draftObj);
     // console.log(this.participantObjects, this.actualPicks);
   }
 
-  addAllRounds() {
-    const draftBoard = document.querySelector('.draftboard');
-    if (!this.teamList) {
-      this.teamList = document.querySelector('#team-list');
-    }
+  addAllRounds(reset) {
     const participants = this.getFromLocalStorage('participants');
-    let draftResults = this.getFromLocalStorage('draft-results');
+    const draftResults = this.getFromLocalStorage('draft-results');
 
-    this.teamList.innerHTML = '';
-
-    /** create draft board, regardless of participants picks */
-    if (this.teamList.querySelectorAll('li').length == 0) { 
+    if (reset) {
+      this.teamList.innerHTML = '';
       this.addTeamPick(this.intitialDraftOrder);
-    } 
-    
-    if (Object.keys(draftResults).length > 0) {
-      console.log(draftResults)
-      this.addTeamPick(draftResults);
     } else {
-      this.addTeamPick(this.intitialDraftOrder);
+      if (!this.teamList) {
+        this.teamList = document.querySelector('#team-list');
+      }
+
+
+      /** create draft board, regardless of participants picks */
+      if (this.teamList.querySelectorAll('li').length == 0) {
+        console.log('create initial board')
+        this.addTeamPick(this.intitialDraftOrder);
+      }
+
+      if (Object.keys(draftResults).length > 0) {
+        this.addTeamPick(draftResults);
+      } else {
+        this.addTeamPick(this.intitialDraftOrder);
+      }
     }
 
     /** loop through participants and procedurally add their selections to the draft board */
 
+    participants.forEach((participant, index) => {
+      const teams = this.teamList.querySelectorAll('li');
+    
+      for (var i = 0; i < teams.length; i++) {
+        let currRow = teams[i];
+        currRow.querySelector('.player-pick').innerHTML = `<p class="player-name single-line">${participant.picks[i]}</p>`;
+      }
+    })
+
   }
 
-  addTeamPick(order, selection) {
-    for (var i = 0; i < order.length; i++) {
-      let pick = order[i];
+  addTeamPick(order) {
+    this.teamList.innerHTML = '';
+    // console.log(order)
+    for (let key in order) {
+      let pick = order[key];
+      // console.log(pick)
+      let team = pick.team.team ? pick.team.team : pick.team;
+
       const listItem = document.createElement('li');
       listItem.className = 'list-group-item draggable';
       listItem.setAttribute('draggable', 'true');
       listItem.innerHTML = `
         <div class="row">
-          <div class="col-md-1 d-flex align-items-center justify-content-center">${i + 1}</div>
-          <div class="col-md-2 team d-flex align-items-center justify-content-center">${pick.team}</div>
+          <div class="col-md-1 d-flex align-items-center justify-content-center">${Number(key) + 1}</div>
+          <div class="col-md-2 team d-flex align-items-center justify-content-center">${team}</div>
           <div class="col-md-2 player-pick d-flex flex-column justify-content-center">
           </div>
           <div class="col-md-7 real-draft-selection">
             <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
           </div>
         </div>`;
-  
+
       this.teamList.appendChild(listItem);
-  
+
       if (pick.player !== undefined) {
-        console.log()
         this.addSinglePlayerCard(pick.player, listItem.querySelector('.real-draft-selection'));
       }
+
       this.formatTeamCells(listItem.querySelector('.team'));
     }
   }
@@ -492,8 +510,9 @@ class UI {
             </div>
           </div>
           `;
-        console.log(popoutString)
+
         element.innerHTML = popoutString;
+        console.log(element)
       }
     });
   }
@@ -602,23 +621,6 @@ class UI {
         altFirstRounders.push(personDraftObject[x].altPlayer);
       }
 
-      // const altsTable = document.querySelector('.table-alternates');
-
-      // if (altsTable) {
-      //   for (let r = 1; r < altsTable.rows.length; r++) {
-      //     if (draftObj[j].player !== '') {
-      //       if (
-      //         draftObj[j].player ===
-      //         altsTable.rows[r].cells[altsIndex].textContent
-      //       ) {
-      //         altsTable.rows[r].cells[altsIndex].style.backgroundColor =
-      //           'green';
-      //         score.textContent = Number(score.textContent) + 0.5;
-      //       }
-      //     }
-      //   }
-      // }
-
       if (draftObj[j].player !== '') {
         if (firstRoundersArr.includes(draftObj[j].player)) {
           score.textContent = Number(score.textContent) + 1;
@@ -650,23 +652,6 @@ class UI {
     for (let x in draftPicks) {
       draftPicks[x].player !== '' ? numPicksCounter++ : false;
     }
-
-    // if (numPicksCounter === 31) {
-    //   const topButtonsRow = document
-    //     .getElementById('top-buttons')
-    //     .querySelector('.row');
-    //   if (topButtonsRow.querySelector('.submit-draft') === null) {
-    //     topButtonsRow.innerHTML += `
-    //     <div class="col mx-auto text-center">
-    //         <button type="button" id="submitDraft" class="btn btn-success btn-lg submit-draft" data-bs-toggle="modal"
-    //         data-bs-target="#results-modal">
-    //           Submit Draft
-    //         </button>
-    //     </div>`;
-
-    //     document.getElementById('results-modal-body').innerHTML += document.querySelector('.scoreboard').innerHTML;
-    //   }
-    // }
 
     const scores = document.querySelectorAll('.player-score');
     scores.forEach((score, index) => {

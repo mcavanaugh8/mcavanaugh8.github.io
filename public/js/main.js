@@ -61,10 +61,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // console.log(ui.numberOfPlayers);
     ui.hasActivePlayer = true;
     ui.enableButton();
-    ui.addFromLocalStorageToPage();
+    ui.addAllRounds()
   } else if (Object.keys(draftPicks).length > 0) {
     // console.log(draftPicks)
-    ui.addFromLocalStorageToPage();
+    ui.addAllRounds()
   }
 
   document.querySelector('#team-list').querySelectorAll('li').forEach(item => {

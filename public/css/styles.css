@@ -363,3 +363,7 @@ body {
   margin: 0; /* Removes default paragraph margins */
   padding: 2px 0; /* Adjust vertical padding as needed */
 }
+
+.prospect-name {
+  font-weight: 400;
+}
