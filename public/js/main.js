@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ui.enableButton();
     ui.addFromLocalStorageToPage();
   } else if (Object.keys(draftPicks).length > 0) {
-    console.log(draftPicks)
+    // console.log(draftPicks)
     ui.addFromLocalStorageToPage();
   }
 

@@ -297,159 +297,65 @@ class UI {
     const players = this.getFromLocalStorage('participants');
     let draftObj = {};
 
-    if (players.length > 0) {
+   if (players.length > 0) {
       players.forEach((player, index) => {
-        let playerDraftObj = {};
-        let pickName;
-
-        const teams = this.teamList.querySelectorAll('li');
-
-        for (let i = 0; i < teams.length; i++) {
-          if (index === 0) {
-            if (teams[i].querySelector('#real-draft-selection').querySelector('div') !== null) {
-              pickName = teams[i].querySelector('.pick-name').textContent;
-            } else {
-              pickName = '';
-            }
-
-            draftObj[i] = {
-              draftPosition: i,
-              team: realDraftOrder[i - 1],
-              player: pickName
-            };
-          }
-
-          if (teams[i].querySelectorAll('.player-name')[index].textContent.includes('/')) {
-            const picksArr =
-              teams[i].querySelectorAll('.player-name')[index].textContent.split('/');
-            playerDraftObj[i] = {
-              team: intitialDraftOrder[i],
-              player: picksArr[0],
-              altPlayer: picksArr[1],
-            };
-          } else {
-            playerDraftObj[i] = {
-              team: intitialDraftOrder[i],
-              player: teams[i].querySelectorAll('.player-name')[index].textContent,
-              altPlayer: '',
-            };
-          }
-          // console.log(`PLAYER OBJECT (${Object.keys(playerDraftObj).length}):`, playerDraftObj);
-        }
-
-        this.calculatePoints(draftObj, playerDraftObj, player, index + 2, index);
-      });
-
-      this.actualPicks.push(draftObj);
-
-    } else {
-      if (!this.teamList) {
-        this.teamList = document.querySelector('#team-list');
-      }
-
-      for (let i = 0; i < this.teamList.querySelectorAll('li').length; i++) {
-        let currRow = this.teamList.querySelectorAll('li')[i];
-        let pickName;
-
-        if (currRow.querySelector('.pick-name') !== null) {
-          pickName = currRow.querySelector('.pick-name').textContent
-            .replace(/^.+?\s/, '')
-            .replace(/\n|\s{2,}/g, '')
-        } else {
-          pickName = '';
-        }
-
-        draftObj[i] = {
-          draftPosition: i,
-          team: realDraftOrder[i],
-          player: pickName,
+        draftObj[player.name] = {
+          player: player.picks,
         };
-      }
-    }
+      });
+   }
 
     // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.addToLocalStorage('draft-results', draftObj);
     // console.log(this.participantObjects, this.actualPicks);
   }
 
-  addAllRounds(playerPicks, playerName, onReload) {
+  addAllRounds() {
     const draftBoard = document.querySelector('.draftboard');
-    const teamList = draftBoard.querySelector('#team-list');
-    teamList.innerHTML = '';
+    if (!this.teamList) {
+      this.teamList = document.querySelector('#team-list');
+    }
+    const participants = this.getFromLocalStorage('participants');
+    let draftResults = this.getFromLocalStorage('draft-results');
 
-    if (playerPicks) {
-      let draftResults = this.getFromLocalStorage('draft-results');
-      let draftOrder;
-      if (draftResults.length > 0) {
-        draftOrder = draftResults;
-      } else {
-        draftOrder = this.updatedDraftOrder.length > 0 ? this.updatedDraftOrder : this.intitialDraftOrder
-      }
-      let participants = this.getFromLocalStorage('participants');
-      console.log(draftOrder)
-      draftOrder.forEach((pick, index) => {
-        const listItem = document.createElement('li');
-        listItem.className = 'list-group-item draggable';
-        listItem.setAttribute('draggable', 'true');
-        listItem.innerHTML = `
-          <div class="row">
-            <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
-            <div class="col-md-2 team d-flex align-items-center justify-content-center">${pick.team}</div>
-            <div class="col-md-2 player-pick d-flex flex-column justify-content-center">
-              <p class="player-name single-line">${playerPicks[index]}</p>
-            </div>
-            <div id="real-draft-selection" class="col-md-7">
-              <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
-            </div>
-          </div>`;
 
-        teamList.appendChild(listItem);
-        this.formatTeamCells(listItem.querySelector('.team'));
-      });
+    this.teamList.innerHTML = '';
+
+    /** create draft board, regardless of participants picks */
+
+    if (draftResults.length > 0) {
+      this.addTeamPick(draftResults);
     } else {
-      if (onReload) {
-        this.updatedDraftOrder = this.getFromLocalStorage('draft-results');
-
-        this.updatedDraftOrder.forEach((pick, index) => {
-          const listItem = document.createElement('li');
-          listItem.className = 'list-group-item draggable';
-          listItem.setAttribute('draggable', 'true');
-          listItem.innerHTML = `
-            <div class="row">
-              <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
-              <div class="col-md-4 team d-flex align-items-center justify-content-center">${pick.team.team}</div>
-              <div id="real-draft-selection" class="col-md-7">
-                <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
-              </div>
-            </div>`;
-
-          teamList.appendChild(listItem);
-          listItem.querySelector('.actual-pick').value = pick.player.replace(/.+?\s/, '')
-          this.formatTeamCells(listItem.querySelector('.team'));
-        });
-
-        this.addPlayerCards();
-      } else {
-        this.intitialDraftOrder.forEach((team, index) => {
-          const listItem = document.createElement('li');
-          listItem.className = 'list-group-item draggable';
-          listItem.setAttribute('draggable', 'true');
-          listItem.innerHTML = `
-            <div class="row">
-              <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
-              <div class="col-md-4 team d-flex align-items-center justify-content-center">${team.team}</div>
-              <div id="real-draft-selection" class="col-md-7">
-                <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
-              </div>
-            </div>`;
-
-          teamList.appendChild(listItem);
-
-          this.formatTeamCells(listItem.querySelector('.team'));
-        });
-      }
+      this.addTeamPick(this.intitialDraftOrder);
     }
 
+    /** loop through participants and procedurally add their selections to the draft board */
+
+  }
+
+  addTeamPick(order, selection) {
+    order.forEach((pick, index) => {
+      const listItem = document.createElement('li');
+      listItem.className = 'list-group-item draggable';
+      listItem.setAttribute('draggable', 'true');
+      listItem.innerHTML = `
+        <div class="row">
+          <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
+          <div class="col-md-2 team d-flex align-items-center justify-content-center">${pick.team}</div>
+          <div class="col-md-2 player-pick d-flex flex-column justify-content-center">
+          </div>
+          <div class="col-md-7 real-draft-selection">
+            <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
+          </div>
+        </div>`;
+
+        this.teamList.appendChild(listItem);
+
+        if (pick.player !== undefined) {
+          this.addSinglePlayerCard(pick.player, listItem.querySelector('.real-draft-selection'));
+        }
+        this.formatTeamCells(listItem.querySelector('.team'));
+      });
   }
 
   addPlayers(name, file, altFile, onReload, participantPicks) {
@@ -547,6 +453,36 @@ class UI {
      */
   }
 
+  addSinglePlayerCard(name, element) {
+    prospects.forEach((prospect, index) => {
+      if (prospect.name == name) {
+        let popoutString = `
+          <div class=\"container player-card-container\">
+            <div class="row player-card-row">
+              <div class="col-md-4 my-auto pick-name">
+              <p class="prospect-info-para"><strong>${prospect.position} ${prospect.name}</strong></p>
+              <p class="prospect-info-para">
+                  <img class="prospect-school-image" src=\"${prospect.teamLogoUrl}\" alt=\"\">  
+                </p>
+              </div>
+              <div class="col-md-4 prospect-image align-to-bottom">
+                <img class="prospect-info-image" src=\"${prospect.image}\" alt=\"\">
+              </div>
+              <div class="col-md-4 my-auto pick-info">
+                <p class="prospect-info-para"><b>Height:</b> ${prospect.weight}</p>
+                <p class="prospect-info-para"><b>Weight:</b> ${prospect.height}</p>
+                <p class="prospect-info-para"><b>40 Time:</b> ${prospect.fortyYd}</p>
+                <p class="prospect-info-para"><b>Grade:</b> ${prospect.rating}</p>
+              </div>
+            </div>
+          </div>
+          `;
+
+        element.innerHTML = popoutString;
+      }
+    });
+  }
+
   addPlayerCards() {
     const teamList = this.draftBoard.querySelector('#team-list');
     const teams = teamList.querySelectorAll('li');
@@ -610,7 +546,7 @@ class UI {
 
   calculatePoints(draftObj, personDraftObject, score, index, altsIndex) {
     const draftPicks = this.getFromLocalStorage('draft-results');
-
+    const teams = this.draftBoard.querySelector('#team-list').querySelectorAll('li');
     score.textContent = '0';
 
     for (var j in draftObj) {
@@ -626,13 +562,18 @@ class UI {
       if (draftObj[j].player !== '') {
         if (draftObj[j].player === personDraftObject[j].player) {
           score.textContent = Number(score.textContent) + 1;
-          this.boardTable.rows[j].cells[index].style.backgroundColor = 'green';
+          console.log(teams[j].querySelectorAll('.player-name')[index])
+          teams[j].querySelectorAll('.player-name')[index].style.backgroundColor = 'green';
+          teams[j].querySelectorAll('.player-name')[index].style.color = '#fff';
         } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
+          console.log(teams[j].querySelectorAll('.player-name')[index])
           score.textContent = Number(score.textContent) + 0.5;
-          this.boardTable.rows[j].cells[index].style.backgroundColor = 'navy';
+          teams[j].querySelectorAll('.player-name')[index].style.backgroundColor = 'navy';
+          teams[j].querySelectorAll('.player-name')[index].style.color = '#fff';
         } else {
-          this.boardTable.rows[j].cells[index].style.backgroundColor =
-            '#212529';
+          console.log(teams[j].querySelectorAll('.player-name')[index])
+          teams[j].querySelectorAll('.player-name')[index].style.backgroundColor = '#212529';
+          teams[j].querySelectorAll('.player-name')[index].style.color = '#fff';
         }
       }
 

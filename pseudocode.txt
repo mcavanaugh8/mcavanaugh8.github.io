@@ -1,5 +1,6 @@
 Here's how the process should work:
     1. App initially loads with no players. Draft board loads with just 3 columns: pick position, team, and the input field for the actual pick
-    2. User adds a player
+    2. User adds a player (addPlayers())
         1. player and his picks to the localStorage participants array
         2. player's selections are programmatically added into the draft board
+        3. player's name and score are added to the scoreboard
