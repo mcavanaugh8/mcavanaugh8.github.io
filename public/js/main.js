@@ -146,7 +146,7 @@ document.addEventListener('dblclick', (event) => {
 
 document.addEventListener('focusin', (event) => {
   if (event.target.classList.contains('actual-pick')) {
-    console.log('focusin');
+
     if (event.target.textContent === '' && event.target.parentNode.querySelector('datalist') === null) {
       event.target.parentNode.innerHTML += ui.createPlayerDataList();
     }
