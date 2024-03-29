@@ -600,6 +600,7 @@ class UI {
 
   calculatePoints(draftObj, personDraftObject, score, index, altsIndex) {
     const draftPicks = this.getFromLocalStorage('draft-results');
+    const participants = this.getFromLocalStorage('participants');
     const teams = this.draftBoard.querySelector('#team-list').querySelectorAll('li');
     score.textContent = '0';
 
@@ -679,8 +680,7 @@ class UI {
 
     const scores = document.querySelectorAll('.player-score');
     scores.forEach((score, index) => {
-      // console.log(score, index);
-      this.participantObjects[index].score = score.textContent;
+      participants[index].score = Number(score.textContent);
     });
 
     if (!this.teamList) {
@@ -703,7 +703,7 @@ class UI {
     }
 
     this.addToLocalStorage('updated-draft-order', this.updatedDraftOrder);
-    this.addToLocalStorage('participants', this.participantObjects)
+    // this.addToLocalStorage('participants', this.participantObjects)
   }
 
   createPlayerDataList() {
