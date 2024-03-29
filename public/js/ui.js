@@ -296,16 +296,26 @@ class UI {
   createDraftObjects() {
     const players = this.getFromLocalStorage('participants');
     let draftObj = {};
+    const teams = this.teamList.querySelectorAll('li');
+    
+    for (let i = 0; i < teams.length; i++) {
+      let pickName;
+      console.log(teams[i])
+      if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
+        pickName = teams[i].querySelector('.prospect-name').textContent.replace(/\n|\s{2,}/g, '').replace(/^.*?\s/, '');
+      } else {
+        pickName = '';
+      }
 
-   if (players.length > 0) {
-      players.forEach((player, index) => {
-        draftObj[player.name] = {
-          player: player.picks,
-        };
-      });
-   }
+      draftObj[i] = {
+        draftPosition: i,
+        team: realDraftOrder[i],
+        player: pickName
+      };
+    }
 
-    // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+
+    console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
     this.addToLocalStorage('draft-results', draftObj);
     // console.log(this.participantObjects, this.actualPicks);
   }
@@ -318,12 +328,15 @@ class UI {
     const participants = this.getFromLocalStorage('participants');
     let draftResults = this.getFromLocalStorage('draft-results');
 
-
     this.teamList.innerHTML = '';
 
     /** create draft board, regardless of participants picks */
-
-    if (draftResults.length > 0) {
+    if (this.teamList.querySelectorAll('li').length == 0) { 
+      this.addTeamPick(this.intitialDraftOrder);
+    } 
+    
+    if (Object.keys(draftResults).length > 0) {
+      console.log(draftResults)
       this.addTeamPick(draftResults);
     } else {
       this.addTeamPick(this.intitialDraftOrder);
@@ -334,13 +347,14 @@ class UI {
   }
 
   addTeamPick(order, selection) {
-    order.forEach((pick, index) => {
+    for (var i = 0; i < order.length; i++) {
+      let pick = order[i];
       const listItem = document.createElement('li');
       listItem.className = 'list-group-item draggable';
       listItem.setAttribute('draggable', 'true');
       listItem.innerHTML = `
         <div class="row">
-          <div class="col-md-1 d-flex align-items-center justify-content-center">${index + 1}</div>
+          <div class="col-md-1 d-flex align-items-center justify-content-center">${i + 1}</div>
           <div class="col-md-2 team d-flex align-items-center justify-content-center">${pick.team}</div>
           <div class="col-md-2 player-pick d-flex flex-column justify-content-center">
           </div>
@@ -348,14 +362,15 @@ class UI {
             <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
           </div>
         </div>`;
-
-        this.teamList.appendChild(listItem);
-
-        if (pick.player !== undefined) {
-          this.addSinglePlayerCard(pick.player, listItem.querySelector('.real-draft-selection'));
-        }
-        this.formatTeamCells(listItem.querySelector('.team'));
-      });
+  
+      this.teamList.appendChild(listItem);
+  
+      if (pick.player !== undefined) {
+        console.log()
+        this.addSinglePlayerCard(pick.player, listItem.querySelector('.real-draft-selection'));
+      }
+      this.formatTeamCells(listItem.querySelector('.team'));
+    }
   }
 
   addPlayers(name, file, altFile, onReload, participantPicks) {
@@ -460,7 +475,7 @@ class UI {
           <div class=\"container player-card-container\">
             <div class="row player-card-row">
               <div class="col-md-4 my-auto pick-name">
-              <p class="prospect-info-para"><strong>${prospect.position} ${prospect.name}</strong></p>
+              <p class="prospect-info-para prospect-name">${prospect.position} ${prospect.name}</p>
               <p class="prospect-info-para">
                   <img class="prospect-school-image" src=\"${prospect.teamLogoUrl}\" alt=\"\">  
                 </p>
@@ -477,7 +492,7 @@ class UI {
             </div>
           </div>
           `;
-
+        console.log(popoutString)
         element.innerHTML = popoutString;
       }
     });
@@ -496,26 +511,26 @@ class UI {
         prospects.forEach((prospect, index) => {
           if (prospect.name == selection) {
             let popoutString = `
-              <div class=\"container player-card-container\">
-                <div class="row player-card-row">
-                  <div class="col-md-4 my-auto pick-name">
-                  <p class="prospect-info-para"><strong>${prospect.position} ${prospect.name}</strong></p>
-                  <p class="prospect-info-para">
-                      <img class="prospect-school-image" src=\"${prospect.teamLogoUrl}\" alt=\"\">  
-                    </p>
-                  </div>
-                  <div class="col-md-4 prospect-image align-to-bottom">
-                    <img class="prospect-info-image" src=\"${prospect.image}\" alt=\"\">
-                  </div>
-                  <div class="col-md-4 my-auto pick-info">
-                    <p class="prospect-info-para"><b>Height:</b> ${prospect.weight}</p>
-                    <p class="prospect-info-para"><b>Weight:</b> ${prospect.height}</p>
-                    <p class="prospect-info-para"><b>40 Time:</b> ${prospect.fortyYd}</p>
-                    <p class="prospect-info-para"><b>Grade:</b> ${prospect.rating}</p>
-                  </div>
-                </div>
+          <div class=\"container player-card-container\">
+            <div class="row player-card-row">
+              <div class="col-md-4 my-auto pick-name">
+              <p class="prospect-info-para prospect-name">${prospect.position} ${prospect.name}</p>
+              <p class="prospect-info-para">
+                  <img class="prospect-school-image" src=\"${prospect.teamLogoUrl}\" alt=\"\">  
+                </p>
               </div>
-              `;
+              <div class="col-md-4 prospect-image align-to-bottom">
+                <img class="prospect-info-image" src=\"${prospect.image}\" alt=\"\">
+              </div>
+              <div class="col-md-4 my-auto pick-info">
+                <p class="prospect-info-para"><b>Height:</b> ${prospect.weight}</p>
+                <p class="prospect-info-para"><b>Weight:</b> ${prospect.height}</p>
+                <p class="prospect-info-para"><b>40 Time:</b> ${prospect.fortyYd}</p>
+                <p class="prospect-info-para"><b>Grade:</b> ${prospect.rating}</p>
+              </div>
+            </div>
+          </div>
+          `;
             pick.parentElement.innerHTML = popoutString;
           }
         });
