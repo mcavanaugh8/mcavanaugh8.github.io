@@ -70,6 +70,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.querySelector('#team-list').querySelectorAll('li').forEach(item => {
     ui.formatTeamCells(item.querySelector('.team'));
   })
+
+  let items = document.querySelectorAll('.container .draggable');
+  items.forEach(function (item) {
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('drop', handleDrop);
+    item.addEventListener('dragend', handleDragEnd);
+  });
+
 });
 
 
@@ -138,7 +147,7 @@ document.addEventListener('dblclick', (event) => {
 document.addEventListener('focusin', (event) => {
   if (event.target.classList.contains('actual-pick')) {
     console.log('focusin');
-    if (event.target.textContent === '' && event.target.parentNode.querySelector('datalist') === null ) {
+    if (event.target.textContent === '' && event.target.parentNode.querySelector('datalist') === null) {
       event.target.parentNode.innerHTML += ui.createPlayerDataList();
     }
   }
@@ -234,7 +243,7 @@ function handleDrop(e) {
 
 
 function handleDragEnd(e) {
-  this.style.opacity = '1'; 
+  this.style.opacity = '1';
 
   items.forEach(function (item) {
     item.classList.remove('over');

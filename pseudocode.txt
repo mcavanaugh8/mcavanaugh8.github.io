@@ -4,3 +4,5 @@ Here's how the process should work:
         1. player and his picks to the localStorage participants array
         2. player's selections are programmatically added into the draft board
         3. player's name and score are added to the scoreboard
+
+- on reload, draft order should reload too – not just the picks!
