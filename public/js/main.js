@@ -52,6 +52,7 @@ let dragSrcEl = null;
 
 const ui = new UI(realDraftOrder);
 ui.addAllRounds();
+addDragEvents();
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const participants = ui.getFromLocalStorage('participants');
@@ -72,14 +73,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ui.formatTeamCells(item.querySelector('.team'));
   })
 
-  let items = document.querySelectorAll('.container .draggable');
-  items.forEach(function (item) {
-    item.addEventListener('dragstart', handleDragStart);
-    item.addEventListener('dragover', handleDragOver);
-    item.addEventListener('drop', handleDrop);
-    item.addEventListener('dragend', handleDragEnd);
-  });
-
+  addDragEvents();
 });
 
 
@@ -87,6 +81,7 @@ submitButton.addEventListener('click', function (event) {
   if (!isAudioPlaying) {
     playSound();
     ui.validatePicks();
+    addDragEvents();
   }
 });
 
@@ -94,6 +89,7 @@ submitButtonFloating.addEventListener('click', function (event) {
   if (!isAudioPlaying) {
     playSound();
     ui.validatePicks();
+    addDragEvents();
   } else {
     event.preventDefault(); // Prevent the default link action
   }
@@ -262,15 +258,6 @@ function handleDragEnd(e) {
   });
 }
 
-let items = document.querySelectorAll('.container .draggable');
-items.forEach(function (item) {
-  item.addEventListener('dragstart', handleDragStart);
-  item.addEventListener('dragover', handleDragOver);
-  item.addEventListener('drop', handleDrop);
-  item.addEventListener('dragend', handleDragEnd);
-});
-
-
 function playSound() {
   const audio = new Audio('draft_sound.mp3');
   isAudioPlaying = true;
@@ -281,11 +268,21 @@ function playSound() {
 
   audio.play();
 
-  audio.onended = function() {
+  audio.onended = function () {
     isAudioPlaying = false;
     // Re-enable the button
     submitButton.disabled = false;
     // Remove the class that simulates disabling the floating button
     submitButtonFloating.classList.remove('disabled');
   };
+}
+
+function addDragEvents() {
+  let items = document.querySelectorAll('.draggable');
+  items.forEach(function (item) {
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('drop', handleDrop);
+    item.addEventListener('dragend', handleDragEnd);
+  });
 }
