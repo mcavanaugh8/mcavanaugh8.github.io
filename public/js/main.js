@@ -10,6 +10,7 @@
 
 const submitButton = document.querySelector('.validate-pick');
 const submitButtonFloating = document.querySelector('.submit-picks');
+let isAudioPlaying = false;
 
 const intitialDraftOrder = [
   { team: 'CHICAGO', needs: [] },
@@ -83,15 +84,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 submitButton.addEventListener('click', function (event) {
-  const audio = new Audio('draft_sound.mp3');
-  audio.play();
-  ui.validatePicks();
+  if (!isAudioPlaying) {
+    playSound();
+    ui.validatePicks();
+  }
 });
 
 submitButtonFloating.addEventListener('click', function (event) {
-  const audio = new Audio('draft_sound.mp3');
-  audio.play();
-  ui.validatePicks();
+  if (!isAudioPlaying) {
+    playSound();
+    ui.validatePicks();
+  } else {
+    event.preventDefault(); // Prevent the default link action
+  }
 });
 
 document.addEventListener('dblclick', (event) => {
@@ -264,3 +269,23 @@ items.forEach(function (item) {
   item.addEventListener('drop', handleDrop);
   item.addEventListener('dragend', handleDragEnd);
 });
+
+
+function playSound() {
+  const audio = new Audio('draft_sound.mp3');
+  isAudioPlaying = true;
+  // Disable the button
+  submitButton.disabled = true;
+  // Add a class to simulate disabling the floating button
+  submitButtonFloating.classList.add('disabled');
+
+  audio.play();
+
+  audio.onended = function() {
+    isAudioPlaying = false;
+    // Re-enable the button
+    submitButton.disabled = false;
+    // Remove the class that simulates disabling the floating button
+    submitButtonFloating.classList.remove('disabled');
+  };
+}

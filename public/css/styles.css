@@ -362,8 +362,14 @@ body {
   white-space: nowrap;
   margin: 0; /* Removes default paragraph margins */
   padding: 2px 0; /* Adjust vertical padding as needed */
+  width: 100%;
 }
 
 .prospect-name {
   font-weight: 400;
+}
+
+.disabled {
+  pointer-events: none; /* This makes sure the link can't be clicked */
+  background-color: grey; !important /* Optional: change the color to indicate it's disabled */
 }

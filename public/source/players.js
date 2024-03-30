@@ -300,7 +300,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Bo-Nix-QB-Auburn.png"
     },
     {
-      "name": "Jackson Powers-Johns...",
+      "name": "Jackson Powers-Johnson",
       "position": "C",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Oregon-Ducks.png",
       "height": "328lbs",
@@ -340,7 +340,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Ladd-McConkey-WR-Georgia.png"
     },
     {
-      "name": "Ennis Rakestraw Jr...",
+      "name": "Ennis Rakestraw Jr.",
       "position": "CB",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Missouri-Tigers.png",
       "height": "183lbs",
@@ -810,7 +810,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/DJ-James-CB-Auburn.png"
     },
     {
-      "name": "Kris Abrams-Drain...",
+      "name": "Kris Abrams-Draine",
       "position": "CB",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Missouri-Tigers.png",
       "height": "179lbs",
@@ -870,7 +870,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Renardo-Green-DB-FloridaState.png"
     },
     {
-      "name": "Dadrion Taylor-Demer...",
+      "name": "Dadrion Taylor-Demerson",
       "position": "S",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Texas-Tech-Red-Raiders.png",
       "height": "197lbs",
@@ -1130,7 +1130,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Maason-Smith-DT-LSU.png"
     },
     {
-      "name": "Jarvis Brownlee Jr....",
+      "name": "Jarvis Brownlee Jr.",
       "position": "CB",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Louisville-Cardinals.png",
       "height": "194lbs",
@@ -1940,7 +1940,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Trente-Jones-OL-Michigan.png"
     },
     {
-      "name": "Marcus Rosemy-Jacks...",
+      "name": "Marcus Rosemy-Jackson",
       "position": "WR",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Georgia-Bulldogs.png",
       "height": "195lbs",
@@ -2130,7 +2130,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Caedan-Wallace-OL-PennState.png"
     },
     {
-      "name": "Zion Tupuola-Fetu...",
+      "name": "Zion Tupuola-Fetui",
       "position": "DE/ED",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Washington-Huskies.png",
       "height": "244lbs",
@@ -2160,7 +2160,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Garret-Greenfield-OL-SouthDakotaState.png"
     },
     {
-      "name": "Javontae Jean-Baptist...",
+      "name": "Javontae Jean-Baptiste",
       "position": "DE/ED",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Notre-Dame-Fighting-Irish.png",
       "height": "239lbs",
@@ -2170,7 +2170,7 @@ const prospects = [
       "image": "https://nfldraftbuzz.com//Content/PlayerHeadShots/Javontae-Jean-Baptiste-DE-OhioState.png"
     },
     {
-      "name": "Keith Randolph Jr....",
+      "name": "Keith Randolph Jr.",
       "position": "DL/ED",
       "teamLogoUrl": "https://nfldraftbuzz.com//Content/collmascotsSmall/Illinois-Fighting-Illini.png",
       "height": "296lbs",

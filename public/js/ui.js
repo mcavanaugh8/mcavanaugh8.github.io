@@ -275,7 +275,7 @@ class UI {
         teamCell.style.color = '#FFF';
         teamCell.style.fontWeight = 'bolder';
         break;
-      case 'LA RAMS':
+      case 'LOS ANGELES RAMS':
         teamCell.style.backgroundColor = 'rgba(7,55,99,1)';
         teamCell.style.color = '#d5b11b';
         teamCell.style.fontWeight = 'bolder';
@@ -320,30 +320,19 @@ class UI {
 
         for (let i = 0; i < player.picks.length; i++) {
           let currentPick = player.picks[i]
-          console.log(currentPick)
-          if (teams[i].querySelectorAll('.player-name')[index] !== undefined && currentPick.includes('/')) {
-            const picksArr = currentPick.split('/');
-            playerDraftObj[i] = {
-              team: intitialDraftOrder[i],
-              player: picksArr[0],
-              altPlayer: picksArr[1],
-            };
-          } else {
-            playerDraftObj[i] = {
-              team: intitialDraftOrder[i],
-              player: currentPick,
-              altPlayer: '',
-            };
-          }
+          // console.log(currentPick)
+          playerDraftObj[i] = {
+            team: currentPick.team,
+            player: currentPick.player,
+            altPlayer: currentPick.altPlayer,
+          };
 
-          
-          
           console.log(playerDraftObj);
         }
 
         const scoreboardContent = document.querySelector('#scoreboard-content');
         // scoreboardContent.innerHTML = '';
-        
+
         let playerScoreDiv = scoreboardContent.querySelectorAll('.player-score');
         this.calculatePoints(draftObj, playerDraftObj, playerScoreDiv[index], index, index);
 
@@ -405,10 +394,18 @@ class UI {
 
     participants.forEach((participant, index) => {
       const teams = this.teamList.querySelectorAll('li');
-
       for (var i = 0; i < teams.length; i++) {
+        console.log(participant)
+        console.log(participant.picks)
+        console.log(participant.picks[i])
+        console.log(i)
+        console.log(teams[i])
         let currRow = teams[i];
-        currRow.querySelector('.player-pick').innerHTML = `<p class="player-name single-line">${participant.picks[i]}</p>`;
+        if (participant.picks[i].altPlayer !== '' && participant.picks[i].altPlayer !== undefined) {
+          currRow.querySelector('.player-pick').innerHTML += `<p class="player-name single-line text-center">${participant.picks[i].player}/${participant.picks[i].altPlayer}</p>`;
+        } else {
+          currRow.querySelector('.player-pick').innerHTML += `<p class="player-name single-line text-center">${participant.picks[i].player}</p>`;
+        }
       }
 
       let newPlayerRow = document.createElement('p');
@@ -481,6 +478,7 @@ class UI {
           event.target.result.split('\r\n').length > 1 ?
             event.target.result.split('\r\n') :
             event.target.result.split('\n');
+
         const picksArrClean = picksArr.map((item) => {
           return item.replace(/(^)(\s.+?)(\w)/g, '$1$3');
         });
@@ -488,18 +486,31 @@ class UI {
         let obj = {
           name: name,
           picks: [],
-          // altPicks: altPicksArr,
+          altPicks: [],
           score: 0,
         };
 
-        picksArrClean.forEach((pick, index, arr) => {
-          obj.picks.push(pick);
-        });
+        for (var p = 1; p < picksArrClean.length; p++) {
+          let pick = picksArrClean[p].split(/\t/);
+
+          if (p > 32) {
+            obj.altPicks.push(pick[1]);
+          } else {
+            if (pick[3] !== '') {
+              obj.picks.push({ team: pick[1], player: pick[2], altPlayer: pick[3] });
+            } else {
+              obj.picks.push({ team: pick[1], player: pick[2], altPlayer: '' });
+            }            
+          }
+        }
 
         scope.participantObjects.push(obj);
-        scope.addToLocalStorage('participants', scope.participantObjects);
+
+        let allParticipants = scope.getFromLocalStorage('participants');
+        allParticipants.push(obj);
+        scope.addToLocalStorage('participants', allParticipants);
         console.log(scope.getFromLocalStorage("participants"));
-        console.log(scope.participantObjects);
+        // console.log(scope.participantObjects);
         scope.addAllRounds(picksArrClean, name);
       };
 
@@ -618,16 +629,18 @@ class UI {
       // check if PLAYER (or altPlayer) is correct
       if (draftObj[j].player !== '') {
         console.log(draftObj[j].player, personDraftObject[j])
+        if (teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').length > 0) {
+          teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').forEach(item => item.remove());
+        }
+
         if (personDraftObject[j].player !== undefined && draftObj[j].player === personDraftObject[j].player) {
           score.textContent = Number(score.textContent) + 1;
-          console.log(teams[j].querySelectorAll('.player-name')[index])
-          teams[j].querySelectorAll('.player-name')[index].style.backgroundColor = 'green';
-          teams[j].querySelectorAll('.player-name')[index].style.color = '#fff';
+          // console.log(teams[j].querySelectorAll('.player-name')[index])
+          teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
         } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
           console.log(teams[j].querySelectorAll('.player-name')[index])
           score.textContent = Number(score.textContent) + 0.5;
-          teams[j].querySelectorAll('.player-name')[index].style.backgroundColor = 'navy';
-          teams[j].querySelectorAll('.player-name')[index].style.color = '#fff';
+          teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star-half" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
         } else {
           console.log(teams[j].querySelectorAll('.player-name')[index])
           teams[j].querySelectorAll('.player-name')[index].style.backgroundColor = '#212529';
@@ -755,7 +768,109 @@ class UI {
       });
 
     }
+  }
 
-
+  abbreviateTeamName(team) {
+    let newStr = '';
+    switch (team) {
+      case 'JACKSONVILLE':
+        newStr =  'JAX';
+        break;
+      case 'NEW YORK JETS':
+        newStr =  'NYJ';
+        break;
+      case 'SAN FRANCISCO':
+        newStr =  'SF';
+        break;
+      case 'ATLANTA':
+        newStr =  'ATL';
+        break;
+      case 'CINCINNATI':
+        newStr =  'CIN';
+        break;
+      case 'MIAMI':
+        newStr =  'MIA';
+        break;
+      case 'DETROIT':
+        newStr =  'DET';
+        break;
+      case 'CAROLINA':
+        newStr =  'CAR';
+        break;
+      case 'DENVER':
+        newStr =  'DEN';
+        break;
+      case 'DALLAS':
+        newStr =  'DAL';
+        break;
+      case 'NEW YORK GIANTS':
+        newStr =  'NYG';
+        break;
+      case 'PHILADELPHIA':
+        newStr =  'PHI';
+        break;
+      case 'LOS ANGELES CHARGERS':
+        newStr =  'LAC';
+        break;
+      case 'MINNESOTA':
+        newStr =  'MIN';
+        break;
+      case 'NEW ENGLAND':
+        newStr =  'NE';
+        break;
+      case 'ARIZONA':
+        newStr =  'ARI';
+        break;
+      case 'LAS VEGAS':
+        newStr =  'LV';
+        break;
+      case 'WASHINGTON':
+        newStr =  'WAS';
+        break;
+      case 'CHICAGO':
+        newStr =  'CHI';
+        break;
+      case 'INDIANAPOLIS':
+        newStr =  'IND';
+        break;
+      case 'TENNESSEE':
+        newStr =  'TEN';
+        break;
+      case 'PITTSBURGH':
+        newStr =  'PIT';
+        break;
+      case 'CLEVELAND':
+        newStr =  'CLE';
+        break;
+      case 'BALTIMORE':
+        newStr =  'BAL';
+        break;
+      case 'NEW ORLEANS':
+        newStr =  'NO';
+        break;
+      case 'GREEN BAY':
+        newStr =  'GB';
+        break;
+      case 'BUFFALO':
+        newStr =  'BUF';
+        break;
+      case 'HOUSTON':
+        newStr =  'HOU';
+        break;
+      case 'KANSAS CITY':
+        newStr =  'KC';
+        break;
+      case 'LOS ANGELES RAMS':
+        newStr =  'LAR';
+        break;
+      case 'TAMPA BAY':
+        newStr =  'TB';
+        break;
+      case 'SEATTLE':
+        newStr =  'SEA';
+        break;
+    }
+  
+    return newStr;
   }
 }
