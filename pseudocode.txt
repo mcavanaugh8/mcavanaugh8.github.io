@@ -6,3 +6,5 @@ Here's how the process should work:
         3. player's name and score are added to the scoreboard
 
 - on reload, draft order should reload too – not just the picks!
+- whenever draft is reordered (because of trades), there needs to be a new draft object made. And the trades need to persist on reload
+- need logic so that same player can't be selected twice
