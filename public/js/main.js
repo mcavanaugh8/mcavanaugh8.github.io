@@ -246,7 +246,7 @@ function handleDrop(e) {
 function handleDragEnd(e) {
   this.style.opacity = '1';
 
-  items.forEach(function (item) {
+  document.querySelectorAll('.container .draggable').forEach(function (item) {
     item.classList.remove('over');
   });
 

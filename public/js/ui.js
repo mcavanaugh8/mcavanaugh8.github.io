@@ -295,8 +295,10 @@ class UI {
 
   createDraftObjects() {
     const players = this.getFromLocalStorage('participants');
-    let draftObj = {};
+    const teamCells = document.querySelectorAll('.team');
     const teams = this.teamList.querySelectorAll('li');
+    
+    let draftObj = {};
 
     for (let i = 0; i < teams.length; i++) {
       let pickName;
@@ -309,9 +311,12 @@ class UI {
 
       draftObj[i] = {
         draftPosition: i,
-        team: realDraftOrder[i],
+        team: teamCells[i].textContent,
         player: pickName
       };
+
+      this.updatedDraftOrder[i] = teamCells[i].textContent;
+      this.updatedDraftOrder[i] = teamCells[i].textContent;
     }
 
     if (players.length > 0) {
@@ -327,13 +332,14 @@ class UI {
             altPlayer: currentPick.altPlayer,
           };
 
-          console.log(playerDraftObj);
+          // console.log(playerDraftObj);
         }
 
         const scoreboardContent = document.querySelector('#scoreboard-content');
         // scoreboardContent.innerHTML = '';
 
         let playerScoreDiv = scoreboardContent.querySelectorAll('.player-score');
+        // console.log(draftObj)
         this.calculatePoints(draftObj, playerDraftObj, playerScoreDiv[index], index, index);
 
       });
@@ -349,10 +355,12 @@ class UI {
 
         draftObj[i] = {
           draftPosition: i,
-          team: realDraftOrder[i],
+          team: teamCells[i].textContent,
           player: pickName
         };
       }
+
+      this.updatedDraftOrder[i] = teamCells[i].textContent;
 
     }
 
@@ -622,6 +630,7 @@ class UI {
        *  - +1 if PLAYER is correct at draft position predicted by player
        *  - +1 if PLAYER/TEAM combo is correct
        *  - +1 if FIRST ROUND IS CORRECT
+       *  - +1 if TEAM is selecting at the spot predicted by player (should this be a setting?)
        * add formatting to cells
        */
       // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
@@ -633,18 +642,21 @@ class UI {
           teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').forEach(item => item.remove());
         }
 
+        if (personDraftObject[j].team === draftObj[j].team) {
+          score.textContent = Number(score.textContent) + 0.5;          
+        }
+
         if (personDraftObject[j].player !== undefined && draftObj[j].player === personDraftObject[j].player) {
           score.textContent = Number(score.textContent) + 1;
           // console.log(teams[j].querySelectorAll('.player-name')[index])
           teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
         } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
-          console.log(teams[j].querySelectorAll('.player-name')[index])
+          // console.log(teams[j].querySelectorAll('.player-name')[index])
           score.textContent = Number(score.textContent) + 0.5;
           teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star-half" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
         } else {
-          console.log(teams[j].querySelectorAll('.player-name')[index])
-          teams[j].querySelectorAll('.player-name')[index].style.backgroundColor = '#212529';
-          teams[j].querySelectorAll('.player-name')[index].style.color = '#fff';
+          // console.log(teams[j].querySelectorAll('.player-name')[index])
+          teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-circle-xmark" style="color: red; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
         }
       }
 
