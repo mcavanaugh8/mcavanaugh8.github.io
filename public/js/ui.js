@@ -35,22 +35,22 @@ class UI {
   }
 
   addImageLinksToPlayerObject() {
-    prospects.forEach((prospect, index) => {
-      prospect.imageLink = prospectsHeadshots[index].replace(
-        /f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g,
-        'f_auto,q_85'
-      );
+    // prospects.forEach((prospect, index) => {
+    //   // prospect.imageLink = prospectsHeadshots[index].replace(
+    //   //   /f_png,q_85,h_47,w_47,c_fill,g_face:center,f_auto/g,
+    //   //   'f_auto,q_85'
+    //   // );
 
-      // prospectsRAS.forEach((prospectRAS, index) => {
-      //   if (prospect.name === prospectRAS.name) {
-      //     if (prospectRAS.score !== 'N/A') {
-      //       prospect['RAS'] = Number(prospectRAS.score);
-      //     } else {
-      //       prospect['RAS'] = prospectRAS.score;
-      //     }
-      //   }
-      // });
-    });
+    //   prospectsRAS.forEach((prospectRAS, index) => {
+    //     if (prospect.name === prospectRAS.name) {
+    //       if (prospectRAS.score !== 'N/A') {
+    //         prospect['RAS'] = Number(prospectRAS.score);
+    //       } else {
+    //         prospect['RAS'] = prospectRAS.score;
+    //       }
+    //     }
+    //   });
+    // });
   }
 
   resetDraft() {
@@ -546,6 +546,7 @@ class UI {
                 <p class="prospect-info-para"><b>Weight:</b> ${prospect.height}</p>
                 <p class="prospect-info-para"><b>40 Time:</b> ${prospect.fortyYd}</p>
                 <p class="prospect-info-para"><b>Grade:</b> ${prospect.rating}</p>
+                <p class="prospect-info-para"><b>RAS:</b> ${prospect.RAS}</p>
               </div>
             </div>
           </div>
@@ -585,6 +586,7 @@ class UI {
                 <p class="prospect-info-para"><b>Weight:</b> ${prospect.height}</p>
                 <p class="prospect-info-para"><b>40 Time:</b> ${prospect.fortyYd}</p>
                 <p class="prospect-info-para"><b>Grade:</b> ${prospect.rating}</p>
+                <p class="prospect-info-para"><b>RAS:</b> ${prospect.RAS}</p>
               </div>
             </div>
           </div>
