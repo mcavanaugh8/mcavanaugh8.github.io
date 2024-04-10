@@ -403,22 +403,22 @@ class UI {
     participants.forEach((participant, index) => {
       const teams = this.teamList.querySelectorAll('li');
       for (var i = 0; i < teams.length; i++) {
-        console.log(participant)
-        console.log(participant.picks)
-        console.log(participant.picks[i])
-        console.log(i)
-        console.log(teams[i])
+        // console.log(participant)
+        // console.log(participant.picks)
+        // console.log(participant.picks[i])
+        // console.log(i)
+        // console.log(teams[i])
         let currRow = teams[i];
         if (participant.picks[i].altPlayer !== '' && participant.picks[i].altPlayer !== undefined) {
-          currRow.querySelector('.player-pick').innerHTML += `<p class="player-name single-line text-center">${participant.picks[i].player}/${participant.picks[i].altPlayer}</p>`;
+          currRow.querySelector('.player-pick').innerHTML += `<p class="player-name single-line text-center"> <sup>${index + 1}</sup> ${participant.picks[i].player}/${participant.picks[i].altPlayer}</p>`;
         } else {
-          currRow.querySelector('.player-pick').innerHTML += `<p class="player-name single-line text-center">${participant.picks[i].player}</p>`;
+          currRow.querySelector('.player-pick').innerHTML += `<p class="player-name single-line text-center"> <sup>${index + 1}</sup> ${participant.picks[i].player}</p>`;
         }
       }
 
       let newPlayerRow = document.createElement('p');
       newPlayerRow.id = participant.name.toLowerCase().replace(/\s/g, '-');
-      newPlayerRow.innerHTML = `${participant.name}: <span class="player-score">${participant.score}</span> points`;
+      newPlayerRow.innerHTML = ` <sup>${index + 1}</sup> ${participant.name}: <span class="player-score">${participant.score}</span> points`;
       scoreboardContent.appendChild(newPlayerRow);
 
       // this.calculatePoints(draftResults, participant.picks, newPlayerRow.querySelector('.player-score'), index);
@@ -521,8 +521,6 @@ class UI {
         // console.log(scope.participantObjects);
         scope.addAllRounds(picksArrClean, name);
       };
-
-      // this.addAltPicksTable();
     }
   }
 

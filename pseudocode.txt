@@ -9,4 +9,4 @@ Here's how the process should work:
 - whenever draft is reordered (because of trades), there needs to be a new draft object made. And the trades need to persist on reload
 - need logic so that same player can't be selected twice
 - If a new participant is added after draft starts, draft-results object should not reset
-- put a player number next to player's name on scoreboard and their selection on draftboard; should be a superscript <sub></sub>
+- put a player number next to player's name on scoreboard and their selection on draftboard; should be a superscript <sup></sup>
