@@ -194,6 +194,7 @@ class UI {
         teamCell.style.backgroundColor = '#11a1ff';
         teamCell.style.color = '#f1c232';
         teamCell.style.fontWeight = 'bolder';
+        teamCell.style.fontSize = '0.9rem';
         break;
       case 'MINNESOTA':
         teamCell.style.backgroundColor = '#351c75';

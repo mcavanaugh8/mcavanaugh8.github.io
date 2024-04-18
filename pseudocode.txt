@@ -5,8 +5,22 @@ Here's how the process should work:
         2. player's selections are programmatically added into the draft board
         3. player's name and score are added to the scoreboard
 
-- on reload, draft order should reload too – not just the picks!
-- whenever draft is reordered (because of trades), there needs to be a new draft object made. And the trades need to persist on reload
+TO DO
+-----
 - need logic so that same player can't be selected twice
 - If a new participant is added after draft starts, draft-results object should not reset
+- need to create a user system
+- users should be able to store drafts in their account
+
+MODES:
+- upload a mock draft, store it in the system (these will be graded later on)
+- LIVE DRAFT
+
+
+
+DONE
+-----
+- on reload, draft order should reload too – not just the picks!
 - put a player number next to player's name on scoreboard and their selection on draftboard; should be a superscript <sup></sup>
+- whenever draft is reordered (because of trades), there needs to be a new draft object made. And the trades need to persist on reload
+

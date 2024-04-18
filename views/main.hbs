@@ -17,6 +17,16 @@
     <div class="container" id="top-buttons">
         <div class="row">
             <div class="col mx-auto text-center">
+                <button type="button" id="newLiveDraft" class="btn btn-dark btn-lg new-live-draft">
+                    Begin Live Draft
+                </button>
+            </div>
+            <div class="col mx-auto text-center">
+                <button type="button" id="newOfflineDraft" class="btn btn-dark btn-lg new-offline-draft">
+                    New Mock Draft
+                </button>
+            </div>
+            {{!-- <div class="col mx-auto text-center">
                 <button type="button" id="addPlayerButton" class="btn btn-dark btn-lg add-player" data-bs-toggle="modal"
                     data-bs-target="#add-player-modal">
                     <i class="fa-solid fa-person"></i> Add New Participant
@@ -26,7 +36,7 @@
                 <button type="button" id="resetDraft" class="btn btn-dark btn-lg reset-draft">
                     Reset Draft
                 </button>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="modal fade" id="add-player-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -181,10 +191,11 @@
 
     <!-- Floating Button Menu -->
     <div class="floating-menu">
-        <a class="btn-floating" data-hover="Add Player"><i class="fa fa-plus"></i><span class="text">Add
-                Player</span></a>
-        {{!-- <a class="btn-floating" data-hover="Profile"><i class="fa fa-user"></i><span class="text">Profile</span></a> --}}
-        <a class="btn-floating" data-hover="Sync"><i class="fa fa-rotate"></i><span class="text">Sync Live Results</span></a>
+        <a id="addPlayerButton" class="btn-floating" data-hover="Add New Participan" data-bs-toggle="modal"
+            data-bs-target="#add-player-modal"><i class="fa fa-person"></i><span class="text">Add New Participant</span></a>
+        {{!-- <a class="btn-floating" data-hover="Profile"><i class="fa fa-user"></i><span
+                class="text">Profile</span></a> --}}
+        <a id="resetDraft" class="btn-floating reset-draft" data-hover="Reset Draft"><i class="fa fa-rotate"></i><span class="text">Reset Draft</span></a>
         <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span class="text">Pick
                 is In</span></a>
     </div>

@@ -117,7 +117,8 @@ body {
 .draftboard,
 .scoreboard,
 #addPlayerButton,
-.reset-draft,
+.new-offline-draft,
+.new-live-draft,
 .submit-draft {
   margin-top: 25px;
 }
