@@ -2,6 +2,7 @@
     <!-- Header section -->
     <div id="header" class="container-fluid bg-dark text-white d-flex justify-content-between align-items-center">
         <!-- NFL Draft title -->
+
         <div class="h2 mb-0" style="flex-grow: 1;">2024 NFL Draft</div>
 
         <!-- User information -->
@@ -139,7 +140,7 @@
         </button>
     </div>
     {{/if}}
-    
+
     <div class="container draftboard">
         <ul id="team-list" class="list-group draggable-list">
             {{!-- <li class="list-group-item draggable" draggable="true">
@@ -203,6 +204,13 @@
     <div id="scoreboard-tab" class="scoreboard-tab">
         <div id="scoreboard-tab-handle" class="handle">&#9654; Scoreboard</div>
         <div id="scoreboard-content" class="content">
+        </div>
+    </div>
+
+    {{else}}
+    <div id="mock-tab" class="mock-tab">
+        <div id="mock-tab-handle" class="handle"> Mock Draft Mode</div>
+        <div id="mock-content" class="content">
         </div>
     </div>
     {{/if}}

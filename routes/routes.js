@@ -20,7 +20,7 @@ const User = require('../models/user.js');
 
 router.get('/', (req, res) => {
     // Render the homepage, only accessible if logged in
-    getHomePage(req, res, null)
+    getHomePage(req, res, 'mock')
 });
 
 router.get('/live-draft', (req, res) => {

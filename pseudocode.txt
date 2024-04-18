@@ -9,11 +9,12 @@ TO DO
 -----
 - need to create a user system
 - need logic so that same player can't be selected twice
-- users should be able to store drafts in their account. Use session ID as draft UUID?
+- users should be able to store drafts in their account.
 
 MODES:
 - upload a mock draft, store it in the system (these will be graded later on)
 - LIVE DRAFT
+- switching draft modes should prompt user to save draft or have it be lost
 
 
 DONE

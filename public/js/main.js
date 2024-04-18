@@ -78,16 +78,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const offlineDraftButton = document.getElementById('newOfflineDraft');
 
   if (liveDraftButton) {
-    liveDraftButton.addEventListener('click', function () {
-      // Replace '/live-draft-route' with the actual path you want for live drafts
-      window.location.href = '/live-draft';
+    liveDraftButton.addEventListener('click', function () {    
+      let confirmSwitch = confirm('Are you sure you wish to start a new live draft? Doing so will reset all unsaved draft progress.');
+      if (confirmSwitch) {
+        ui.resetDraft();
+        window.location.href = '/live-draft';
+      }
     });
   }
 
   if (offlineDraftButton) {
     offlineDraftButton.addEventListener('click', function () {
-      // Replace '/offline-draft-route' with the actual path you want for offline/mock drafts
-      window.location.href = '/mock-draft';
+      let confirmSwitch = confirm('Are you sure you wish to start a new mock draft? Doing so will reset all unsaved draft progress.');
+      if (confirmSwitch) {
+        ui.resetDraft();
+        window.location.href = '/mock-draft';
+      }
     });
   }
 

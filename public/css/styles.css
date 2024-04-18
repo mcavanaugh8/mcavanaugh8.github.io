@@ -318,7 +318,8 @@ body {
   }
 }
 
-.scoreboard-tab {
+.scoreboard-tab,
+.mock-tab {
   position: fixed;
   left: 0;
   top: 50%;
