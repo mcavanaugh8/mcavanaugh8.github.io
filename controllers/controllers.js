@@ -11,21 +11,24 @@ const User = require('../models/user.js');
 /**
  * router.get('/')
  */
-async function getHomePage(req, res) {
+async function getHomePage(req, res, draftType) {
     console.log(`Loading home page...`);
     if (req.user) {
         let existingUser = await getUser(req.user);
-        if (existingUser) { 
+
+        if (existingUser) {
             res.status(200).render('main', {
                 layout: 'main',
                 Authenticated: req.isAuthenticated() ? true : false,
                 user: req.isAuthenticated() ? req.user : false,
+                LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false ) : null
             })
         } else {
             res.status(200).render('main', {
                 layout: 'main',
                 Authenticated: req.isAuthenticated() ? true : false,
                 user: req.isAuthenticated() ? req.user : false,
+                LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false ) : null
             })
         }
     } else {
@@ -33,6 +36,7 @@ async function getHomePage(req, res) {
             layout: 'main',
             Authenticated: req.isAuthenticated() ? true : false,
             user: req.isAuthenticated() ? req.user : false,
+            LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false ) : null
         })
     }
 }
@@ -45,39 +49,25 @@ function logOut(req, res) {
     });
 }
 
-async function sendResults(req, res) {
+async function saveDraft(req, res) {
     console.log('Request received.');
     console.log(req.body);
 
     try {
-        let user = await User.findOne({ googleId: req.user.googleId })
-
-        if (user) {
-            return done(null, user);
+        let existingUser = await getUser(req.user);
+        if (existingUser) {
+            updateUserOrCreate(existingUser, 'drafts', req.body);
+            res.redirect('/');
         } else {
-
-            await user.save();
-            return done(null, user);
+            res.status(500).send('Error saving draft. No user found.');
         }
     } catch (err) {
-        return done(err);
+        console.error('Error in saveDraft:', err);
     }
-
-    const newResult = new User({
-        name: req.body.name,
-        picks: req.body.picks,
-        score: req.body.score,
-    });
-
-    newResult
-        .save()
-        .then((result) => {
-            res.send(result);
-        })
-        .catch((error) => console.log('ERROR: ' + error));
 }
 
 function getUser(userProfile) {
+    // console.log(userProfile);
     // Return a Promise that resolves with the user or the new user
     return User.findOne({ googleId: userProfile.googleId }).lean()
         .exec()
@@ -97,47 +87,23 @@ function getUser(userProfile) {
             // } else {
             //     // console.log('user exists');
             //     // Return the found user
-                return result;
+            return result;
             // }
         })
         .catch(function (error) {
             console.error('Error in getUser:', error);
-            throw error; // Re-throw the error to be caught by the calling function
+            throw error;
         });
 }
 
 function updateUserOrCreate(userProfile, field, val, self, target) {
-    console.log(userProfile)
-    const query = self ? { email: target } : { email: userProfile.email };
+    // console.log(userProfile)
+    const query = self ? { googleId: target } : { googleId: userProfile.googleId };
     const update = {};
 
     switch (field) {
-        case 'log':
-            moment.locale('en');
-            let time = moment().tz("America/New_York").format('MM/DD/YY HH:mm:ss');
-
-
-            if (!userProfile.log) {
-                update.log = [{
-                    user: userProfile.displayName,
-                    time: time,
-                    message: val
-                }];
-            } else {
-                update.$push = {
-                    log: {
-                        user: userProfile.displayName,
-                        time: time,
-                        message: val
-                    }
-                };
-            }
-            break;
-        case 'role':
-            update.role = val;
-            break;
-        case 'activity':
-            update.$push = { activity: val };
+        case 'drafts':
+            update.$push = { drafts: val };
             break;
     }
 
@@ -150,6 +116,7 @@ function updateUserOrCreate(userProfile, field, val, self, target) {
     return User.findOneAndUpdate(query, update, options).lean()
         .exec()
         .then(function (user) {
+            console.log('User updated:', user)
             return user;
         })
         .catch(function (error) {
@@ -169,5 +136,6 @@ function sendResults(userId, draftData) {
 module.exports = {
     getHomePage,
     logOut,
-    sendResults
+    sendResults,
+    saveDraft
 }

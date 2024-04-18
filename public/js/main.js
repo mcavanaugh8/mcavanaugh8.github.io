@@ -74,26 +74,47 @@ document.addEventListener('DOMContentLoaded', (event) => {
   })
 
   addDragEvents();
-});
+  const liveDraftButton = document.getElementById('newLiveDraft');
+  const offlineDraftButton = document.getElementById('newOfflineDraft');
 
-
-submitButton.addEventListener('click', function (event) {
-  if (!isAudioPlaying) {
-    playSound();
-    ui.validatePicks();
-    addDragEvents();
+  if (liveDraftButton) {
+    liveDraftButton.addEventListener('click', function () {
+      // Replace '/live-draft-route' with the actual path you want for live drafts
+      window.location.href = '/live-draft';
+    });
   }
+
+  if (offlineDraftButton) {
+    offlineDraftButton.addEventListener('click', function () {
+      // Replace '/offline-draft-route' with the actual path you want for offline/mock drafts
+      window.location.href = '/mock-draft';
+    });
+  }
+
 });
 
-submitButtonFloating.addEventListener('click', function (event) {
-  if (!isAudioPlaying) {
-    playSound();
-    ui.validatePicks();
-    addDragEvents();
-  } else {
-    event.preventDefault(); // Prevent the default link action
-  }
-});
+if (submitButton) {
+  submitButton.addEventListener('click', function (event) {
+    if (!isAudioPlaying) {
+      playSound();
+      ui.validatePicks();
+      addDragEvents();
+    }
+  });
+}
+
+if (submitButtonFloating) {
+  submitButtonFloating.addEventListener('click', function (event) {
+    if (!isAudioPlaying) {
+      playSound();
+      ui.validatePicks();
+      addDragEvents();
+    } else {
+      event.preventDefault(); // Prevent the default link action
+    }
+  });
+}
+
 
 document.addEventListener('dblclick', (event) => {
   // console.log(event.target);
@@ -151,11 +172,19 @@ document.addEventListener('focusin', (event) => {
     if (event.target.textContent === '' && event.target.parentNode.querySelector('datalist') === null) {
       event.target.parentNode.innerHTML += ui.createPlayerDataList();
     }
+
+    event.target.addEventListener('keypress', function(keyPressEvent) {
+      if (keyPressEvent.key === 'Enter') {
+        console.log('Enter key was pressed while focused on an actual-pick element.');
+        ui.validatePicks();
+      }
+    });
   }
 });
 
+
 document.addEventListener('click', (event) => {
-  if (event.target.classList.contains('reset-draft')) {
+  if (event.target.classList.contains('reset-draft') || event.target.classList.contains('fa-rotate')) {
     let result = confirm(
       'Are you sure you wish to reset the draft? All draft progress will be lost.'
     );
@@ -196,16 +225,43 @@ document.addEventListener('click', (event) => {
   }
 });
 
-document.getElementById('scoreboard-tab-handle').addEventListener('click', function () {
-  var content = document.getElementById('scoreboard-content');
-  if (content.style.display === 'block') {
-    content.style.display = 'none';
-    this.innerHTML = '&#9654; Scoreboard';
-  } else {
-    content.style.display = 'block';
-    this.innerHTML = '&#9664; Scoreboard';
+if (document.getElementById('scoreboard-tab-handle')) {
+  document.getElementById('scoreboard-tab-handle').addEventListener('click', function () {
+    var content = document.getElementById('scoreboard-content');
+    if (content.style.display === 'block') {
+      content.style.display = 'none';
+      this.innerHTML = '&#9654; Scoreboard';
+    } else {
+      content.style.display = 'block';
+      this.innerHTML = '&#9664; Scoreboard';
+    }
+  });
+}
+
+document.getElementById('saveDraft').addEventListener('click', function (event) {
+
+  let results = confirm('Are you sure you wish to save the draft?');
+  if (results) {
+    event.preventDefault();
+
+    const url = '/save-draft';
+    const data = ui.getFromLocalStorage('draft-results')
+    console.log('data', data)
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => alert('Draft saved successfully!'))
+      .catch((error) => {
+        // console.error('Error:', error);
+        // Handle errors here (e.g., display an error message)
+      });
   }
 });
+
 
 // Function to handle the drag start
 function handleDragStart(e) {
@@ -265,7 +321,7 @@ function playSound() {
   submitButton.disabled = true;
   submitButtonFloating.classList.add('disabled');
 
-  audio.onerror = function(event) {
+  audio.onerror = function (event) {
     console.error("Error loading audio:", event);
     console.log("Error code:", audio.error.code); // Log specific error code
     console.log("Error message:", audio.error.message); // Log error message
@@ -273,14 +329,12 @@ function playSound() {
 
   audio.play().catch(e => console.error('Error playing audio:', e));
 
-  audio.onended = function() {
+  audio.onended = function () {
     isAudioPlaying = false;
     submitButton.disabled = false;
     submitButtonFloating.classList.remove('disabled');
   };
 }
-
-
 
 function addDragEvents() {
   let items = document.querySelectorAll('.draggable');

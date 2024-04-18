@@ -26,17 +26,6 @@
                     New Mock Draft
                 </button>
             </div>
-            {{!-- <div class="col mx-auto text-center">
-                <button type="button" id="addPlayerButton" class="btn btn-dark btn-lg add-player" data-bs-toggle="modal"
-                    data-bs-target="#add-player-modal">
-                    <i class="fa-solid fa-person"></i> Add New Participant
-                </button>
-            </div>
-            <div class="col mx-auto text-center">
-                <button type="button" id="resetDraft" class="btn btn-dark btn-lg reset-draft">
-                    Reset Draft
-                </button>
-            </div> --}}
         </div>
     </div>
     <div class="modal fade" id="add-player-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -143,12 +132,14 @@
         </table>
     </div>
 
+    {{#if LiveDraftMode}}
     <div class="container">
         <button type="button" class="btn btn-dark btn-lg validate-pick">
             The Pick Is In . . .
         </button>
     </div>
-
+    {{/if}}
+    
     <div class="container draftboard">
         <ul id="team-list" class="list-group draggable-list">
             {{!-- <li class="list-group-item draggable" draggable="true">
@@ -191,22 +182,28 @@
 
     <!-- Floating Button Menu -->
     <div class="floating-menu">
+        {{#if LiveDraftMode}}
         <a id="addPlayerButton" class="btn-floating" data-hover="Add New Participan" data-bs-toggle="modal"
             data-bs-target="#add-player-modal"><i class="fa fa-person"></i><span class="text">Add New
                 Participant</span></a>
+        {{/if}}
         <a id="saveDraft" class="btn-floating save-draft" data-hover="Save Current Draft"><i
                 class="fa fa-floppy-disk"></i><span class="text">Save Current Draft</span></a>
         {{!-- <a class="btn-floating" data-hover="Profile"><i class="fa fa-user"></i><span
                 class="text">Profile</span></a> --}}
         <a id="resetDraft" class="btn-floating reset-draft" data-hover="Reset Draft"><i class="fa fa-rotate"></i><span
                 class="text">Reset Draft</span></a>
+        {{#if LiveDraftMode}}
         <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span class="text">Pick
                 is In</span></a>
+        {{/if}}
     </div>
 
+    {{#if LiveDraftMode}}
     <div id="scoreboard-tab" class="scoreboard-tab">
         <div id="scoreboard-tab-handle" class="handle">&#9654; Scoreboard</div>
         <div id="scoreboard-content" class="content">
         </div>
     </div>
+    {{/if}}
 </main>

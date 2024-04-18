@@ -8,7 +8,12 @@ class UI {
     this.boardTable = document.querySelector('.board-table');
     this.teamList = document.querySelector('#team-list');
 
-    this.validateButton.disabled = true;
+    if (this.validateButton) {
+      this.mode = 'live';
+      this.validateButton.disabled = true;
+    } else {
+      this.mode = 'mock';
+    }
 
     this.participantObjects = [];
     this.actualPicks = [];
@@ -68,8 +73,10 @@ class UI {
 
     trTop.innerHTML = ``;
     trBottom.innerHTML = ``;
+    if (this.mode === 'live') {
+      this.disableButton();
+    }
 
-    this.disableButton();
     if (document.getElementById('submitDraft')) {
       document.getElementById('submitDraft').parentNode.remove();
       location.reload();
@@ -337,11 +344,13 @@ class UI {
         }
 
         const scoreboardContent = document.querySelector('#scoreboard-content');
-        // scoreboardContent.innerHTML = '';
-
-        let playerScoreDiv = scoreboardContent.querySelectorAll('.player-score');
-        // console.log(draftObj)
-        this.calculatePoints(draftObj, playerDraftObj, playerScoreDiv[index], index, index);
+        if (scoreboardContent) {
+          // scoreboardContent.innerHTML = '';
+  
+          let playerScoreDiv = scoreboardContent.querySelectorAll('.player-score');
+          // console.log(draftObj)
+          this.calculatePoints(draftObj, playerDraftObj, playerScoreDiv[index], index, index);
+        }
 
       });
     } else {
@@ -359,10 +368,8 @@ class UI {
           team: teamCells[i].textContent,
           player: pickName
         };
+        this.updatedDraftOrder[i] = teamCells[i].textContent;
       }
-
-      this.updatedDraftOrder[i] = teamCells[i].textContent;
-
     }
 
 
@@ -383,7 +390,6 @@ class UI {
         this.teamList = document.querySelector('#team-list');
       }
 
-
       /** create draft board, regardless of participants picks */
       if (this.teamList.querySelectorAll('li').length == 0) {
         console.log('create initial board')
@@ -399,7 +405,9 @@ class UI {
 
     /** loop through participants and procedurally add their selections to the draft board */
     const scoreboardContent = document.querySelector('#scoreboard-content');
-    scoreboardContent.innerHTML = '';
+    if (scoreboardContent) {
+      scoreboardContent.innerHTML = '';
+    }
 
     participants.forEach((participant, index) => {
       const teams = this.teamList.querySelectorAll('li');
@@ -417,10 +425,12 @@ class UI {
         }
       }
 
-      let newPlayerRow = document.createElement('p');
-      newPlayerRow.id = participant.name.toLowerCase().replace(/\s/g, '-');
-      newPlayerRow.innerHTML = ` <sup>${index + 1}</sup> ${participant.name}: <span class="player-score">${participant.score}</span> points`;
-      scoreboardContent.appendChild(newPlayerRow);
+      if (scoreboardContent) {
+        let newPlayerRow = document.createElement('p');
+        newPlayerRow.id = participant.name.toLowerCase().replace(/\s/g, '-');
+        newPlayerRow.innerHTML = ` <sup>${index + 1}</sup> ${participant.name}: <span class="player-score">${participant.score}</span> points`;
+        scoreboardContent.appendChild(newPlayerRow);
+      }
 
       // this.calculatePoints(draftResults, participant.picks, newPlayerRow.querySelector('.player-score'), index);
     })
@@ -438,6 +448,7 @@ class UI {
       const listItem = document.createElement('li');
       listItem.className = 'list-group-item draggable';
       listItem.setAttribute('draggable', 'true');
+      if (this.mode === 'live') {
       listItem.innerHTML = `
         <div class="row">
           <div class="col-md-1 d-flex align-items-center justify-content-center">${Number(key) + 1}</div>
@@ -448,6 +459,17 @@ class UI {
             <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
           </div>
         </div>`;
+      } else {
+        listItem.innerHTML = `
+          <div class="row">
+            <div class="col-md-1 d-flex align-items-center justify-content-center">${Number(key) + 1}</div>
+            <div class="col-md-2 team d-flex align-items-center justify-content-center">${team}</div>
+            <div class="col-md-9 real-draft-selection">
+              <input list="player-list" class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
+            </div>
+          </div>`;
+
+      }
 
       this.teamList.appendChild(listItem);
 

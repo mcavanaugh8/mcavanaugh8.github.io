@@ -14,6 +14,9 @@ const User = require('./models/user');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+
 mongoose.connect(process.env.dbURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

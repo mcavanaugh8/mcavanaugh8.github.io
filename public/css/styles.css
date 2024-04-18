@@ -136,8 +136,7 @@ body {
 }
 
 .validate-pick:hover,
-.add-player:hover,
-.reset-draft:hover {
+.add-player:hover {
   color: #212529;
   background-color: #fff;
   font-weight: bolder;
