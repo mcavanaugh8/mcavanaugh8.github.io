@@ -519,8 +519,8 @@ class UI {
         allParticipants.push(obj);
         scope.addToLocalStorage('participants', allParticipants);
         console.log(scope.getFromLocalStorage("participants"));
-        // console.log(scope.participantObjects);
-        scope.addAllRounds(picksArrClean, name);
+        console.log(picksArrClean);
+        scope.addAllRounds();
       };
     }
   }

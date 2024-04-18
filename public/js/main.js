@@ -259,23 +259,28 @@ function handleDragEnd(e) {
 }
 
 function playSound() {
-  const audio = new Audio('draft_sound.mp3');
+  const audio = new Audio('/public/assets/draft_sound.mp3');
+
   isAudioPlaying = true;
-  // Disable the button
   submitButton.disabled = true;
-  // Add a class to simulate disabling the floating button
   submitButtonFloating.classList.add('disabled');
 
-  audio.play();
+  audio.onerror = function(event) {
+    console.error("Error loading audio:", event);
+    console.log("Error code:", audio.error.code); // Log specific error code
+    console.log("Error message:", audio.error.message); // Log error message
+  };
 
-  audio.onended = function () {
+  audio.play().catch(e => console.error('Error playing audio:', e));
+
+  audio.onended = function() {
     isAudioPlaying = false;
-    // Re-enable the button
     submitButton.disabled = false;
-    // Remove the class that simulates disabling the floating button
     submitButtonFloating.classList.remove('disabled');
   };
 }
+
+
 
 function addDragEvents() {
   let items = document.querySelectorAll('.draggable');

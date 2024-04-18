@@ -7,9 +7,8 @@ Here's how the process should work:
 
 TO DO
 -----
-- need logic so that same player can't be selected twice
-- If a new participant is added after draft starts, draft-results object should not reset
 - need to create a user system
+- need logic so that same player can't be selected twice
 - users should be able to store drafts in their account
 
 MODES:
@@ -23,4 +22,5 @@ DONE
 - on reload, draft order should reload too – not just the picks!
 - put a player number next to player's name on scoreboard and their selection on draftboard; should be a superscript <sup></sup>
 - whenever draft is reordered (because of trades), there needs to be a new draft object made. And the trades need to persist on reload
+- If a new participant is added after draft starts, draft-results object should not reset
 
