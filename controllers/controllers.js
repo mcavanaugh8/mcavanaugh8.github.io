@@ -15,13 +15,31 @@ async function getHomePage(req, res, draftType) {
     console.log(`Loading home page...`);
     if (req.user) {
         let existingUser = await getUser(req.user);
+        res.status(200).render('home', {
+            layout: 'main',
+            Authenticated: req.isAuthenticated() ? true : false,
+            user: req.isAuthenticated() ? req.user : false,
+        })
+    } else {
+        res.status(200).render('main', {
+            layout: 'main',
+            Authenticated: req.isAuthenticated() ? true : false,
+            user: req.isAuthenticated() ? req.user : false,
+        })
+    }
+}
+
+async function getLiveDraft(req, res, draftType) {
+    console.log(`Loading live draft...`);
+    if (req.user) {
+        let existingUser = await getUser(req.user);
 
         if (existingUser) {
             res.status(200).render('main', {
                 layout: 'main',
                 Authenticated: req.isAuthenticated() ? true : false,
                 user: req.isAuthenticated() ? req.user : false,
-                LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false ) : null
+                LiveDraftMode: true
             })
         } else {
             res.status(200).render('main', {
@@ -32,12 +50,42 @@ async function getHomePage(req, res, draftType) {
             })
         }
     } else {
-        res.status(200).render('main', {
-            layout: 'main',
-            Authenticated: req.isAuthenticated() ? true : false,
-            user: req.isAuthenticated() ? req.user : false,
-            LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false ) : null
-        })
+        // res.status(200).render('main', {
+        //     layout: 'main',
+        //     Authenticated: req.isAuthenticated() ? true : false,
+        //     user: req.isAuthenticated() ? req.user : false,
+        //     LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false ) : null
+        // })
+    }
+}
+
+async function getMockDraft(req, res, draftType) {
+    console.log(`Loading mock draft...`);
+    if (req.user) {
+        let existingUser = await getUser(req.user);
+
+        if (existingUser) {
+            res.status(200).render('main', {
+                layout: 'main',
+                Authenticated: req.isAuthenticated() ? true : false,
+                user: req.isAuthenticated() ? req.user : false,
+                LiveDraftMode: false
+            })
+        } else {
+            res.status(200).render('main', {
+                layout: 'main',
+                Authenticated: req.isAuthenticated() ? true : false,
+                user: req.isAuthenticated() ? req.user : false,
+                LiveDraftMode: draftType != null ? (draftType === 'mock' ? true : false ) : null
+            })
+        }
+    } else {
+        // res.status(200).render('main', {
+        //     layout: 'main',
+        //     Authenticated: req.isAuthenticated() ? true : false,
+        //     user: req.isAuthenticated() ? req.user : false,
+        //     LiveDraftMode: draftType != null ? (draftType === 'mock' ? true : false ) : null
+        // })
     }
 }
 
@@ -51,11 +99,12 @@ function logOut(req, res) {
 
 async function saveDraft(req, res) {
     console.log('Request received.');
-    console.log(req.body);
 
     try {
         let existingUser = await getUser(req.user);
         if (existingUser) {
+            let draftData = req.body;
+            draftData.lastSaved = new Date().toLocaleString();
             updateUserOrCreate(existingUser, 'drafts', req.body);
             res.redirect('/');
         } else {
@@ -137,5 +186,7 @@ module.exports = {
     getHomePage,
     logOut,
     sendResults,
-    saveDraft
+    saveDraft,
+    getLiveDraft,
+    getMockDraft
 }

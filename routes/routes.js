@@ -8,7 +8,9 @@ const {
     getHomePage,
     logOut,
     sendResults,
-    saveDraft
+    saveDraft,
+    getLiveDraft,
+    getMockDraft
 } = require('../controllers/controllers.js')
 
 const User = require('../models/user.js');
@@ -20,17 +22,15 @@ const User = require('../models/user.js');
 
 router.get('/', (req, res) => {
     // Render the homepage, only accessible if logged in
-    getHomePage(req, res, 'mock')
+    getHomePage(req, res)
 });
 
 router.get('/live-draft', (req, res) => {
-    // Render the homepage, only accessible if logged in
-    getHomePage(req, res, 'live')
+    getLiveDraft(req, res);
 });
 
 router.get('/mock-draft', (req, res) => {
-    // Render the homepage, only accessible if logged in
-    getHomePage(req, res, 'mock')
+    getMockDraft(req, res);
 });
 
 router.get('/auth/google',

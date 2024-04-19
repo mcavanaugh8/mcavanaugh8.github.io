@@ -1,0 +1,57 @@
+<main>
+    <!-- Header section -->
+    <div id="header" class="container-fluid bg-dark text-white d-flex justify-content-between align-items-center">
+        <!-- NFL Draft title -->
+
+        <div class="h2 mb-0" style="flex-grow: 1;">2024 NFL Draft</div>
+
+        <!-- User information -->
+        {{#if Authenticated}}
+        <div class="d-flex align-items-center">
+            <i class="fas fa-user me-2"></i> Logged in as {{user.name}}
+            <a href="/logout" class="btn btn-danger btn-sm ms-3">Logout</a>
+        </div>
+        {{else}}
+        <a href="/auth/google" class="btn btn-primary">Login</a>
+        {{/if}}
+    </div>
+    <div class="container" id="top-buttons">
+        <div class="row">
+            <div class="col mx-auto text-center">
+                <button type="button" id="newLiveDraft" class="btn btn-dark btn-lg new-live-draft">
+                    Begin Live Draft
+                </button>
+            </div>
+            <div class="col mx-auto text-center">
+                <button type="button" id="newOfflineDraft" class="btn btn-dark btn-lg new-offline-draft">
+                    New Mock Draft
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+  <!-- Draft Card Start -->
+  <div class="draft-card">
+    <div class="draft-card-header">
+      <div>
+        <div class="draft-title">The Game Day</div>
+        <small>By: Michael Rochman</small>
+      </div>
+      <div class="draft-update">UPDATED</div>
+    </div>
+    <div class="draft-card-body">
+      <div class="draft-info">
+        <div>
+          <div class="draft-rank">1</div>
+          <div class="draft-player">Caleb Williams</div>
+          <small>QB | USC</small>
+        </div>
+        <!-- More players here -->
+      </div>
+      <a href="url_to_full_mock" class="view-button">View Mock</a>
+    </div>
+  </div>
+  <!-- Draft Card End -->
+  <!-- Repeat Draft Cards as needed -->
+</div>
+</main>

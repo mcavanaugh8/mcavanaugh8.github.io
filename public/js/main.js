@@ -12,7 +12,7 @@ const submitButton = document.querySelector('.validate-pick');
 const submitButtonFloating = document.querySelector('.submit-picks');
 let isAudioPlaying = false;
 
-const intitialDraftOrder = [
+let intitialDraftOrder = [
   { team: 'CHICAGO', needs: [] },
   { team: 'WASHINGTON', needs: [] },
   { team: 'NEW ENGLAND', needs: [] },
@@ -50,39 +50,47 @@ const intitialDraftOrder = [
 let realDraftOrder = [...intitialDraftOrder];
 let dragSrcEl = null;
 
-const ui = new UI(realDraftOrder);
-ui.addAllRounds();
-addDragEvents();
-
 document.addEventListener('DOMContentLoaded', (event) => {
   const participants = ui.getFromLocalStorage('participants');
   const draftPicks = ui.getFromLocalStorage('draft-results');
   ui.numberOfPlayers = Object.keys(participants).length;
 
+  if (document.querySelector('#team-list').querySelectorAll('li').length === 0) {
+    try {
+      ui.addAllRounds()
+    } catch(e) {}
+  }
+
   if (Object.keys(participants).length > 0) {
     // console.log(ui.numberOfPlayers);
     ui.hasActivePlayer = true;
-    ui.enableButton();
-    ui.addAllRounds()
+    try {
+      ui.enableButton();
+    } catch(e) {}
+
   } else if (Object.keys(draftPicks).length > 0) {
     // console.log(draftPicks)
-    ui.addAllRounds()
+    // ui.addAllRounds()
   }
 
-  document.querySelector('#team-list').querySelectorAll('li').forEach(item => {
-    ui.formatTeamCells(item.querySelector('.team'));
-  })
+  if (document.querySelector('#team-list')) {
+    document.querySelector('#team-list').querySelectorAll('li').forEach(item => {
+      ui.formatTeamCells(item.querySelector('.team'));
+    })
+  }
 
   addDragEvents();
   const liveDraftButton = document.getElementById('newLiveDraft');
   const offlineDraftButton = document.getElementById('newOfflineDraft');
 
   if (liveDraftButton) {
-    liveDraftButton.addEventListener('click', function () {    
+    liveDraftButton.addEventListener('click', function () {
       let confirmSwitch = confirm('Are you sure you wish to start a new live draft? Doing so will reset all unsaved draft progress.');
       if (confirmSwitch) {
-        ui.resetDraft();
-        window.location.href = '/live-draft';
+        try {
+          ui.resetDraft();
+          window.location.href = '/live-draft';
+        } catch (e) { }
       }
     });
   }
@@ -91,8 +99,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     offlineDraftButton.addEventListener('click', function () {
       let confirmSwitch = confirm('Are you sure you wish to start a new mock draft? Doing so will reset all unsaved draft progress.');
       if (confirmSwitch) {
-        ui.resetDraft();
-        window.location.href = '/mock-draft';
+        try {
+          ui.resetDraft();
+          window.location.href = '/mock-draft';
+        } catch (e) { }
       }
     });
   }
@@ -179,7 +189,7 @@ document.addEventListener('focusin', (event) => {
       event.target.parentNode.innerHTML += ui.createPlayerDataList();
     }
 
-    event.target.addEventListener('keypress', function(keyPressEvent) {
+    event.target.addEventListener('keypress', function (keyPressEvent) {
       if (keyPressEvent.key === 'Enter') {
         console.log('Enter key was pressed while focused on an actual-pick element.');
         ui.validatePicks();
@@ -244,29 +254,31 @@ if (document.getElementById('scoreboard-tab-handle')) {
   });
 }
 
-document.getElementById('saveDraft').addEventListener('click', function (event) {
+if (document.getElementById('saveDraft')) {
+  document.getElementById('saveDraft').addEventListener('click', function (event) {
 
-  let results = confirm('Are you sure you wish to save the draft?');
-  if (results) {
-    event.preventDefault();
+    let results = confirm('Are you sure you wish to save the draft?');
+    if (results) {
+      event.preventDefault();
 
-    const url = '/save-draft';
-    const data = ui.getFromLocalStorage('draft-results')
-    console.log('data', data)
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => alert('Draft saved successfully!'))
-      .catch((error) => {
-        // console.error('Error:', error);
-        // Handle errors here (e.g., display an error message)
-      });
-  }
-});
+      const url = '/save-draft';
+      const data = ui.getFromLocalStorage('draft-results')
+      console.log('data', data)
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => alert('Draft saved successfully!'))
+        .catch((error) => {
+          // console.error('Error:', error);
+          // Handle errors here (e.g., display an error message)
+        });
+    }
+  });
+}
 
 
 // Function to handle the drag start

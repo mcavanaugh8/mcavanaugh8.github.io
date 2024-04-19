@@ -7,18 +7,20 @@ Here's how the process should work:
 
 TO DO
 -----
-- need to create a user system
-- need logic so that same player can't be selected twice
-- users should be able to store drafts in their account.
+- need logic so that same player can't be selected twice [LOW PRIORITY]
+- users should be able to view saved and completed drafts
 
 MODES:
 - upload a mock draft, store it in the system (these will be graded later on)
+- manually build mock draft & store in database (both at user and application level)
 - LIVE DRAFT
 - switching draft modes should prompt user to save draft or have it be lost
 
 
 DONE
 -----
+- users should be able to store drafts in their account
+- need to create a user system
 - on reload, draft order should reload too – not just the picks!
 - put a player number next to player's name on scoreboard and their selection on draftboard; should be a superscript <sup></sup>
 - whenever draft is reordered (because of trades), there needs to be a new draft object made. And the trades need to persist on reload

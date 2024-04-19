@@ -374,3 +374,52 @@ body {
   pointer-events: none; /* This makes sure the link can't be clicked */
   background-color: grey; !important /* Optional: change the color to indicate it's disabled */
 }
+
+.draft-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+.draft-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.draft-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.draft-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.draft-update {
+  font-size: 0.8rem;
+  color: #28a745;
+}
+.draft-info {
+  display: flex;
+  align-items: center;
+}
+.draft-info div {
+  margin-right: 2rem;
+}
+.draft-rank {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.draft-player {
+  font-weight: bold;
+}
+.view-button {
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  font-size: 1rem;
+}
