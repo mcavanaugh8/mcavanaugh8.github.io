@@ -80,8 +80,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   addDragEvents();
+
   const liveDraftButton = document.getElementById('newLiveDraft');
   const offlineDraftButton = document.getElementById('newOfflineDraft');
+  const exportDraftButton = document.getElementById('exportDraft');
 
   if (liveDraftButton) {
     liveDraftButton.addEventListener('click', function () {
@@ -280,6 +282,92 @@ if (document.getElementById('saveDraft')) {
   });
 }
 
+if (document.getElementById('exportDraft')) {
+  document.getElementById('exportDraft').addEventListener('click', function (event) {
+      event.preventDefault();
+      const url = '/export-draft-results';
+      
+      const draftData = getDraftBoardData();
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(draftData), // Make sure the data is properly serialized
+      })
+      .then(response => {
+          if (response.ok) {
+            return response.blob();
+          } else {
+            throw new Error('Network response was not ok.');
+          }
+      })
+      .then(blob => {
+        // Create a new URL for the blob
+        const blobUrl = window.URL.createObjectURL(blob);
+
+        // Create a link element
+        const link = document.createElement('a');
+
+        // Set link's href to point to the blob URL
+        link.href = blobUrl;
+        link.download = 'draft-results.png'; // Set the filename for download
+
+        // Append link to the body
+        document.body.appendChild(link);
+
+        // Use the link to initiate a download
+        link.click();
+
+        // Clean up by revoking the Object URL and removing the link
+        window.URL.revokeObjectURL(blobUrl);
+        document.body.removeChild(link);
+
+        alert('Draft exported successfully!');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('Error exporting draft.');
+      });
+  });
+}
+
+function getDraftBoardData() {
+  const draftPicks = [];
+  const listItems = document.querySelectorAll('.draftboard .list-group-item');
+
+  listItems.forEach(item => {
+    const rank = item.querySelector('.row > .col-md-1').textContent.trim();
+    const teamElement = item.querySelector('.team');
+    const team = teamElement.textContent.trim();
+    const playerElement = item.querySelector('.prospect-name');
+    const player = playerElement ? playerElement.textContent.trim() : '';
+    const playerDetails = {};
+
+    // Extract player details
+    const playerInfoElements = item.querySelectorAll('.pick-info .prospect-info-para');
+    playerInfoElements.forEach(info => {
+      const text = info.textContent.trim();
+      const [key, value] = text.split(':');
+      if (key && value) {
+        playerDetails[key.trim()] = value.trim();
+      }
+    });
+
+    // Add to the draftPicks array
+    draftPicks.push({
+      rank,
+      team,
+      teamColor: teamElement.style.backgroundColor,
+      teamTextColor: teamElement.style.color,
+      player,
+      ...playerDetails
+    });
+  });
+
+  return draftPicks;
+}
 
 // Function to handle the drag start
 function handleDragStart(e) {

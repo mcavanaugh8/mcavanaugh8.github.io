@@ -91,6 +91,7 @@ mongoose.connect(process.env.dbURL, {
   app.set('view engine', '.hbs');
 
   app.use('/public', express.static(path.join(__dirname, 'public')));
+  app.use('/img', express.static(path.join(__dirname, 'public/img')));
 
   app.use('/', require('./routes/routes'));
 
