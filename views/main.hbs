@@ -3,7 +3,7 @@
     <div id="header" class="container-fluid bg-dark text-white d-flex justify-content-between align-items-center">
         <!-- NFL Draft title -->
 
-        <div class="h2 mb-0" style="flex-grow: 1;">2024 NFL Draft</div>
+        <div class="h2 mb-0" style="flex-grow: 1;"> <img id="draft-logo" src="/public/img/logo.png" alt="NFL Draft Logo" style="max-height: 50px;"> NFL Draft</div>
 
         <!-- User information -->
         {{#if Authenticated}}
@@ -195,8 +195,7 @@
         <a id="resetDraft" class="btn-floating reset-draft" data-hover="Reset Draft"><i class="fa fa-rotate"></i><span class="text">Reset Draft</span></a>
         <a id="exportDraft" class="btn-floating export-draft" data-hover="Export Draft"><i class="fa fa-file-export"></i><span class="text">Export Draft</span></a>
         {{#if LiveDraftMode}}
-        <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span class="text">Pick
-                is In</span></a>
+        <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span class="text">Confirm Selection</span></a>
         {{/if}}
     </div>
 
