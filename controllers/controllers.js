@@ -7,6 +7,7 @@ const axios = require('axios');
 const mongoose = require('mongoose')
 
 const User = require('../models/user.js');
+const Draft = require('../models/draft.js');
 
 /**
  * router.get('/')
@@ -46,7 +47,7 @@ async function getLiveDraft(req, res, draftType) {
                 layout: 'main',
                 Authenticated: req.isAuthenticated() ? true : false,
                 user: req.isAuthenticated() ? req.user : false,
-                LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false ) : null
+                LiveDraftMode: draftType != null ? (draftType === 'live' ? true : false) : null
             })
         }
     } else {
@@ -76,7 +77,7 @@ async function getMockDraft(req, res, draftType) {
                 layout: 'main',
                 Authenticated: req.isAuthenticated() ? true : false,
                 user: req.isAuthenticated() ? req.user : false,
-                LiveDraftMode: draftType != null ? (draftType === 'mock' ? true : false ) : null
+                LiveDraftMode: draftType != null ? (draftType === 'mock' ? true : false) : null
             })
         }
     } else {
@@ -98,20 +99,72 @@ function logOut(req, res) {
 }
 
 async function saveDraft(req, res) {
-    console.log('Request received.');
+    console.log('Request received: save draft');
 
     try {
         let existingUser = await getUser(req.user);
         if (existingUser) {
             let draftData = req.body;
             draftData.lastSaved = new Date().toLocaleString();
-            updateUserOrCreate(existingUser, 'drafts', req.body);
+
+            // Find the user document to update
+            const userToUpdate = await User.findOne({ googleId: existingUser.googleId });
+            if (!userToUpdate) {
+                return res.status(500).send('User not found for updating.');
+            }
+
+            // Check if a draft with the same id already exists
+            let existingDraftIndex = userToUpdate.drafts.findIndex(d => d.id === draftData.id);
+
+            if (existingDraftIndex !== -1) {
+                userToUpdate.drafts[existingDraftIndex] = draftData;
+                userToUpdate.markModified('drafts');
+            } else {
+                userToUpdate.drafts.push(draftData);
+            }
+
+            await userToUpdate.save();
             res.redirect('/');
         } else {
             res.status(500).send('Error saving draft. No user found.');
         }
     } catch (err) {
         console.error('Error in saveDraft:', err);
+        res.status(500).send('Server error.');
+    }
+}
+
+
+async function publishDraft(req, res) {
+    console.log('Request received: publish draft');
+
+    try {
+        let existingUser = await getUser(req.user);
+        if (existingUser) {
+            let draftData = req.body;
+
+            // Update the draft if it exists or create a new one if it doesn't
+            let existingDraft = await Draft.findOne({ id: draftData.id, user: existingUser.name });
+            if (existingDraft) {
+                existingDraft.draft = Object.values(draftData).filter(value => typeof value === 'object'); // Assuming all the pick objects are the only objects
+                existingDraft.lastSaved = new Date().toLocaleString();
+                await existingDraft.save();
+            } else {
+                const newDraft = new Draft({
+                    draft: Object.values(draftData).filter(value => typeof value === 'object'), // Assuming all the pick objects are the only objects
+                    user: existingUser.name,
+                    id: draftData.id
+                });
+
+                await newDraft.save();
+            }
+
+            res.redirect('/');
+        } else {
+            res.status(500).send('Error publishing draft. No user found.');
+        }
+    } catch (err) {
+        console.error('Error in publishDraft:', err);
     }
 }
 
@@ -187,6 +240,7 @@ module.exports = {
     logOut,
     sendResults,
     saveDraft,
+    publishDraft,
     getLiveDraft,
     getMockDraft
 }

@@ -10,6 +10,7 @@ const {
     logOut,
     sendResults,
     saveDraft,
+    publishDraft,
     getLiveDraft,
     getMockDraft
 } = require('../controllers/controllers.js')
@@ -50,6 +51,11 @@ router.post('/user-results', async (req, res) => sendResults(req.user.googleId, 
 router.post('/save-draft', async (req, res) => {
     console.log("Save draft endpoint hit");
     saveDraft(req, res);
+});
+
+router.post('/publish-draft', async (req, res) => {
+    console.log("Publish draft endpoint hit");
+    publishDraft(req, res);
 });
 
 router.post('/export-draft-results', async (req, res) => {

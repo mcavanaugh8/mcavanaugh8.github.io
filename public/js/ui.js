@@ -111,10 +111,10 @@ class UI {
       this.disableButton();
     }
 
-    if (document.getElementById('submitDraft')) {
-      document.getElementById('submitDraft').parentNode.remove();
-      location.reload();
-    }
+    // if (document.getElementById('submitDraft')) {
+    //   document.getElementById('submitDraft').parentNode.remove();
+    //   location.reload();
+    // }
   }
 
   addToLocalStorage(name, src) {
@@ -339,27 +339,30 @@ class UI {
     const players = this.getFromLocalStorage('participants');
     const teamCells = document.querySelectorAll('.team');
     const teams = this.teamList.querySelectorAll('li');
-
-    let draftObj = {};
-    draftObj.id = this.generateUUID();
+  
+    let existingDraft = this.getFromLocalStorage('draft-results');
+    let draftObj = existingDraft || {};
+  
+    if (!existingDraft) {
+      draftObj.id = this.generateUUID();
+    }
+  
     draftObj.started = new Date().toLocaleString();
-
+  
     for (let i = 0; i < teams.length; i++) {
       let pickName;
-
       if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
         pickName = teams[i].querySelector('.prospect-name').textContent.replace(/\n|\s{2,}/g, '').replace(/^.*?\s/, '');
       } else {
         pickName = '';
       }
-
+  
       draftObj[i] = {
         draftPosition: i,
         team: teamCells[i].textContent,
         player: pickName
       };
-
-      this.updatedDraftOrder[i] = teamCells[i].textContent;
+  
       this.updatedDraftOrder[i] = teamCells[i].textContent;
     }
 

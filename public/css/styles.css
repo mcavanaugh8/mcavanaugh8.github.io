@@ -423,3 +423,27 @@ body {
   border-radius: .25rem;
   font-size: 1rem;
 }
+
+.bottom-buttons-container {
+  position: fixed; 
+  bottom: 10px;   
+  left: 10px;    
+  display: flex;  
+  flex-direction: column; 
+  align-items: flex-end; 
+  gap: 10px; 
+  z-index: 1000; 
+}
+
+.bottom-button {
+  display: block;
+  background-color: #333;
+  border-radius: 25px; 
+  margin-bottom: 10px; 
+}
+
+.bottom-button:hover {
+  background-color: #fff;
+  color: #333;
+}
+

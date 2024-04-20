@@ -265,7 +265,7 @@ if (document.getElementById('saveDraft')) {
 
       const url = '/save-draft';
       const data = ui.getFromLocalStorage('draft-results')
-      console.log('data', data)
+
       fetch(url, {
         method: 'POST',
         headers: {
@@ -274,6 +274,32 @@ if (document.getElementById('saveDraft')) {
         body: JSON.stringify(data),
       })
         .then(response => alert('Draft saved successfully!'))
+        .catch((error) => {
+          // console.error('Error:', error);
+          // Handle errors here (e.g., display an error message)
+        });
+    }
+  });
+}
+
+if (document.getElementById('publishDraft')) {
+  document.getElementById('publishDraft').addEventListener('click', function (event) {
+
+    let results = confirm('Are you sure you wish to publish this mock draft?');
+    if (results) {
+      event.preventDefault();
+
+      const url = '/publish-draft';
+      const data = ui.getFromLocalStorage('draft-results');
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => alert('Draft published successfully!'))
         .catch((error) => {
           // console.error('Error:', error);
           // Handle errors here (e.g., display an error message)

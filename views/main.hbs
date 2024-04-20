@@ -3,7 +3,8 @@
     <div id="header" class="container-fluid bg-dark text-white d-flex justify-content-between align-items-center">
         <!-- NFL Draft title -->
 
-        <div class="h2 mb-0" style="flex-grow: 1;"> <img id="draft-logo" src="/public/img/logo.png" alt="NFL Draft Logo" style="max-height: 50px;"> NFL Draft</div>
+        <div class="h2 mb-0" style="flex-grow: 1;"> <img id="draft-logo" src="/public/img/logo.png" alt="NFL Draft Logo"
+                style="max-height: 50px;"> 2024 NFL Draft</div>
 
         <!-- User information -->
         {{#if Authenticated}}
@@ -192,12 +193,28 @@
                 class="fa fa-floppy-disk"></i><span class="text">Save Current Draft</span></a>
         {{!-- <a class="btn-floating" data-hover="Profile"><i class="fa fa-user"></i><span
                 class="text">Profile</span></a> --}}
-        <a id="resetDraft" class="btn-floating reset-draft" data-hover="Reset Draft"><i class="fa fa-rotate"></i><span class="text">Reset Draft</span></a>
-        <a id="exportDraft" class="btn-floating export-draft" data-hover="Export Draft"><i class="fa fa-file-export"></i><span class="text">Export Draft</span></a>
+        <a id="resetDraft" class="btn-floating reset-draft" data-hover="Reset Draft"><i class="fa fa-rotate"></i><span
+                class="text">Reset Draft</span></a>
+        <a id="exportDraft" class="btn-floating export-draft" data-hover="Export Draft"><i
+                class="fa fa-file-export"></i><span class="text">Export Draft</span></a>
         {{#if LiveDraftMode}}
-        <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span class="text">Confirm Selection</span></a>
+        <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span
+                class="text">Confirm Selection</span></a>
+        {{else}}
+        <a id="publishDraft" class="btn-floating upload-picks" data-hover="Publish Picks"><i class="fa fa-upload"></i><span class="text">Publish Mock Draft</span></a>
         {{/if}}
+
     </div>
+
+    <div class="bottom-buttons-container">
+        <a href="/" class="btn btn-primary bottom-button">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="/profile" class="btn btn-secondary bottom-button">
+            <i class="fas fa-user"></i>
+        </a>
+    </div>
+
 
     {{#if LiveDraftMode}}
     <div id="scoreboard-tab" class="scoreboard-tab">
