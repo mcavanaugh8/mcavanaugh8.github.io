@@ -14,7 +14,7 @@
   }
 
   .prospect-image {
-      height: auto; /* Adjusts the image container height for smaller screens */
+    height: 80px; /* Smaller fixed height for mobile */
   }
 }
 
@@ -95,6 +95,12 @@ body {
 .pick-name,
 .pick-info {
   font-size: 1rem;
+}
+
+.pick-name {
+  /* If you want to align the player's name next to the image */
+  display: flex;
+  align-items: center; /* Aligns the text vertically */
 }
 
 .page-head {
@@ -193,17 +199,26 @@ body {
   align-items: flex-end; /* Aligns the item to the end of the flex container */
   height: 100%; /* Makes sure the div takes the full height */
 }
+
 .prospect-image {
-  /* Set a fixed height for the image container */
-  height: 150px; /* Example height, adjust as needed */
+  /* Adjust the image container size */
+  height: 120px; /* Example fixed height, adjust as needed */
   display: flex;
-  align-items: flex-end; /* Aligns the item to the end of the flex container */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  overflow: hidden; /* Hide overflow */
+  border-radius: 5px; /* Rounded corners for the image container */
+  margin-bottom: 10px; /* Space below the image container */
+  background-color: #fff; /* Background color for the image container */
+  border: 1px solid #ddd; /* Border for the image container */
 }
 
 .prospect-image img {
-  width: auto; /* Maintains aspect ratio */
-  max-height: 100%; /* Ensures image doesn't stretch outside the container */
+  max-width: 100%; /* Image can be as wide as the container but no wider */
+  max-height: 100%; /* Image can be as tall as the container but no taller */
+  display: block; /* Remove default inline characteristics */
 }
+
 
 .header-container {
   display: flex;
