@@ -405,8 +405,7 @@ body {
 }
 .draft-card-body {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: relative; /* Needed for absolute positioning of child elements */
 }
 .draft-title {
   font-size: 1.2rem;
@@ -437,6 +436,9 @@ body {
   padding: .375rem .75rem;
   border-radius: .25rem;
   font-size: 1rem;
+  position: absolute; /* Position the button absolutely */
+  top: 0; /* Align to the top */
+  right: 0; /* Align to the right */
 }
 
 .bottom-buttons-container {

@@ -55,10 +55,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const draftPicks = ui.getFromLocalStorage('draft-results');
   ui.numberOfPlayers = Object.keys(participants).length;
 
-  if (document.querySelector('#team-list').querySelectorAll('li').length === 0) {
-    try {
-      ui.addAllRounds()
-    } catch(e) {}
+  if (document.querySelector('#team-list')) {
+    if (document.querySelector('#team-list').querySelectorAll('li').length === 0) {
+      try {
+        ui.addAllRounds()
+      } catch(e) {}
+    }
   }
 
   if (Object.keys(participants).length > 0) {

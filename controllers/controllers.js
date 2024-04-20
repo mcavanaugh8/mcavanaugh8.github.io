@@ -16,16 +16,19 @@ async function getHomePage(req, res, draftType) {
     console.log(`Loading home page...`);
     if (req.user) {
         let existingUser = await getUser(req.user);
+
         res.status(200).render('home', {
             layout: 'main',
             Authenticated: req.isAuthenticated() ? true : false,
             user: req.isAuthenticated() ? req.user : false,
+            recentDrafts: await getRecentDrafts()
         })
     } else {
         res.status(200).render('main', {
             layout: 'main',
             Authenticated: req.isAuthenticated() ? true : false,
             user: req.isAuthenticated() ? req.user : false,
+            recentDrafts: await getRecentDrafts()
         })
     }
 }
@@ -234,6 +237,166 @@ function sendResults(userId, draftData) {
         { new: true, useFindAndModify: false }
     ).exec();
 }
+
+async function getRecentDrafts() {
+    let html = '';
+    let appUrl = 'http://localhost:3000';
+    // let appUrl = 'https://www.mcavanaugh8.github.io.com';
+
+    const allDrafts = await Draft.find().exec();
+
+    allDrafts.forEach((draft, index) => {
+        let currentDraft = draft.draft;
+
+        html += ` <!-- Draft Card Start -->
+      <div class="draft-card">
+        <div class="draft-card-header">
+          <div>
+            <div class="draft-title">${draft.user}'s Draft</div>
+            <small>${new Date(draft.updatedAt).toLocaleString()}</small>
+          </div>
+        </div>
+        <div class="draft-card-body">
+          <div class="draft-info">
+            <div>
+              <div class="draft-rank">1 ${abbreviateTeamName(currentDraft[0].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[0].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[0].team}"></div>
+              <div class="draft-player">${currentDraft[0].player}</div>
+              <small>QB | USC</small>
+            </div>
+            <div>
+              <div class="draft-rank">2 ${abbreviateTeamName(currentDraft[1].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[1].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[1].team}"></div>
+              <div class="draft-player">${currentDraft[1].player}</div>
+              <small>QB | USC</small>
+            </div>
+            <div>
+              <div class="draft-rank">3 ${abbreviateTeamName(currentDraft[2].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[2].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[2].team}"></div>
+              <div class="draft-player">${currentDraft[2].player}</div>
+              <small>QB | USC</small>
+            </div>
+            <div>
+              <div class="draft-rank">4 ${abbreviateTeamName(currentDraft[3].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[3].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[3].team}"></div>
+              <div class="draft-player">${currentDraft[3].player}</div>
+              <small>QB | USC</small>
+            </div>
+            <div>
+              <div class="draft-rank">5 ${abbreviateTeamName(currentDraft[4].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[4].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[4].team}"></div>
+              <div class="draft-player">${currentDraft[4].player}</div>
+              <small>QB | USC</small>
+            </div>
+            <!-- More players here -->
+          </div>
+          <a href="url_to_full_mock" class="view-button">View Mock</a>
+        </div>
+      </div>
+      <!-- Draft Card End -->`;
+    });
+
+    return html;
+}
+
+function abbreviateTeamName(team) {
+    let newStr = '';
+    switch (team) {
+      case 'JACKSONVILLE':
+        newStr = 'JAX';
+        break;
+      case 'NEW YORK JETS':
+        newStr = 'NYJ';
+        break;
+      case 'SAN FRANCISCO':
+        newStr = 'SF';
+        break;
+      case 'ATLANTA':
+        newStr = 'ATL';
+        break;
+      case 'CINCINNATI':
+        newStr = 'CIN';
+        break;
+      case 'MIAMI':
+        newStr = 'MIA';
+        break;
+      case 'DETROIT':
+        newStr = 'DET';
+        break;
+      case 'CAROLINA':
+        newStr = 'CAR';
+        break;
+      case 'DENVER':
+        newStr = 'DEN';
+        break;
+      case 'DALLAS':
+        newStr = 'DAL';
+        break;
+      case 'NEW YORK GIANTS':
+        newStr = 'NYG';
+        break;
+      case 'PHILADELPHIA':
+        newStr = 'PHI';
+        break;
+      case 'LOS ANGELES CHARGERS':
+        newStr = 'LAC';
+        break;
+      case 'MINNESOTA':
+        newStr = 'MIN';
+        break;
+      case 'NEW ENGLAND':
+        newStr = 'NE';
+        break;
+      case 'ARIZONA':
+        newStr = 'ARI';
+        break;
+      case 'LAS VEGAS':
+        newStr = 'LV';
+        break;
+      case 'WASHINGTON':
+        newStr = 'WAS';
+        break;
+      case 'CHICAGO':
+        newStr = 'CHI';
+        break;
+      case 'INDIANAPOLIS':
+        newStr = 'IND';
+        break;
+      case 'TENNESSEE':
+        newStr = 'TEN';
+        break;
+      case 'PITTSBURGH':
+        newStr = 'PIT';
+        break;
+      case 'CLEVELAND':
+        newStr = 'CLE';
+        break;
+      case 'BALTIMORE':
+        newStr = 'BAL';
+        break;
+      case 'NEW ORLEANS':
+        newStr = 'NO';
+        break;
+      case 'GREEN BAY':
+        newStr = 'GB';
+        break;
+      case 'BUFFALO':
+        newStr = 'BUF';
+        break;
+      case 'HOUSTON':
+        newStr = 'HOU';
+        break;
+      case 'KANSAS CITY':
+        newStr = 'KC';
+        break;
+      case 'LOS ANGELES RAMS':
+        newStr = 'LAR';
+        break;
+      case 'TAMPA BAY':
+        newStr = 'TB';
+        break;
+      case 'SEATTLE':
+        newStr = 'SEA';
+        break;
+    }
+
+    return newStr;
+  }
 
 module.exports = {
     getHomePage,
