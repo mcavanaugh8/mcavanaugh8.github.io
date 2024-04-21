@@ -24,7 +24,7 @@ async function getHomePage(req, res, draftType) {
             recentDrafts: await getRecentDrafts()
         })
     } else {
-        res.status(200).render('main', {
+        res.status(200).render('home', {
             layout: 'main',
             Authenticated: req.isAuthenticated() ? true : false,
             user: req.isAuthenticated() ? req.user : false,
@@ -93,6 +93,26 @@ async function getMockDraft(req, res, draftType) {
     }
 }
 
+async function getProfile(req, res) {
+    if (req.user) {
+        let existingUser = await getUser(req.user);
+
+        res.status(200).render('profile', {
+            layout: 'main',
+            Authenticated: req.isAuthenticated() ? true : false,
+            user: req.isAuthenticated() ? req.user : false,
+            recentDrafts: await getRecentDrafts(true, existingUser)
+        })
+    } else {
+        res.status(200).render('profile', {
+            layout: 'main',
+            Authenticated: req.isAuthenticated() ? true : false,
+            user: req.isAuthenticated() ? req.user : false,
+            recentDrafts: await getRecentDrafts()
+        })
+    }
+}
+
 function logOut(req, res) {
     req.logout(function (err) {
         if (err) { return next(err); }
@@ -137,7 +157,6 @@ async function saveDraft(req, res) {
     }
 }
 
-
 async function publishDraft(req, res) {
     console.log('Request received: publish draft');
 
@@ -155,7 +174,8 @@ async function publishDraft(req, res) {
             } else {
                 const newDraft = new Draft({
                     draft: Object.values(draftData).filter(value => typeof value === 'object'), // Assuming all the pick objects are the only objects
-                    user: existingUser.name,
+                    user: existingUser.displayName,
+                    trueUser: existingUser.name,
                     id: draftData.id
                 });
 
@@ -210,6 +230,9 @@ function updateUserOrCreate(userProfile, field, val, self, target) {
         case 'drafts':
             update.$push = { drafts: val };
             break;
+        case 'displayName':
+            update.displayName = val;
+            break;
     }
 
     const options = {
@@ -238,12 +261,17 @@ function sendResults(userId, draftData) {
     ).exec();
 }
 
-async function getRecentDrafts() {
+async function getRecentDrafts(byUser, user) {
     let html = '';
     let appUrl = 'http://localhost:3000';
     // let appUrl = 'https://www.mcavanaugh8.github.io.com';
+    let allDrafts;
 
-    const allDrafts = await Draft.find().exec();
+    if (byUser) {
+        allDrafts = await Draft.find({ googleId: user.googleId}).exec();
+    } else {
+        allDrafts = await Draft.find().exec();
+    }
 
     allDrafts.forEach((draft, index) => {
         let currentDraft = draft.draft;
@@ -259,27 +287,27 @@ async function getRecentDrafts() {
         <div class="draft-card-body">
           <div class="draft-info">
             <div>
-              <div class="draft-rank">1 ${abbreviateTeamName(currentDraft[0].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[0].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[0].team}"></div>
+              <div class="draft-rank">1. ${abbreviateTeamName(currentDraft[0].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[0].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[0].team}"></div>
               <div class="draft-player">${currentDraft[0].player}</div>
               <small>QB | USC</small>
             </div>
             <div>
-              <div class="draft-rank">2 ${abbreviateTeamName(currentDraft[1].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[1].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[1].team}"></div>
+              <div class="draft-rank">2. ${abbreviateTeamName(currentDraft[1].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[1].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[1].team}"></div>
               <div class="draft-player">${currentDraft[1].player}</div>
               <small>QB | USC</small>
             </div>
             <div>
-              <div class="draft-rank">3 ${abbreviateTeamName(currentDraft[2].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[2].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[2].team}"></div>
+              <div class="draft-rank">3. ${abbreviateTeamName(currentDraft[2].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[2].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[2].team}"></div>
               <div class="draft-player">${currentDraft[2].player}</div>
               <small>QB | USC</small>
             </div>
             <div>
-              <div class="draft-rank">4 ${abbreviateTeamName(currentDraft[3].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[3].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[3].team}"></div>
+              <div class="draft-rank">4. ${abbreviateTeamName(currentDraft[3].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[3].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[3].team}"></div>
               <div class="draft-player">${currentDraft[3].player}</div>
               <small>QB | USC</small>
             </div>
             <div>
-              <div class="draft-rank">5 ${abbreviateTeamName(currentDraft[4].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[4].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[4].team}"></div>
+              <div class="draft-rank">5. ${abbreviateTeamName(currentDraft[4].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[4].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[4].team}"></div>
               <div class="draft-player">${currentDraft[4].player}</div>
               <small>QB | USC</small>
             </div>
@@ -292,6 +320,21 @@ async function getRecentDrafts() {
     });
 
     return html;
+}
+
+async function modifyUser(req, res) {
+    if (req.user) {
+        let existingUser = await getUser(req.user);
+        try {
+            await updateUserOrCreate(existingUser, 'displayName', req.body.displayName);
+            res.json({ success: true, message: `Display name updated successfully! It is now ${req.body.displayName}.` });
+        } catch(error) {
+            console.error('Error saving display name:', error);
+            res.status(500).json({ success: false, message: 'Error saving display name.' });
+        }
+    } else {
+        res.status(500).json({ success: false, message: 'No user found.' });
+    }
 }
 
 function abbreviateTeamName(team) {
@@ -400,6 +443,8 @@ function abbreviateTeamName(team) {
 
 module.exports = {
     getHomePage,
+    getProfile,
+    modifyUser,
     logOut,
     sendResults,
     saveDraft,

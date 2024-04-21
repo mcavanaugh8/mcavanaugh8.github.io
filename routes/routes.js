@@ -7,6 +7,8 @@ const puppeteer = require('puppeteer');
 
 const {
     getHomePage,
+    getProfile,
+    modifyUser,
     logOut,
     sendResults,
     saveDraft,
@@ -35,6 +37,10 @@ router.get('/mock-draft', (req, res) => {
     getMockDraft(req, res);
 });
 
+router.get('/profile', (req, res) => {
+    getProfile(req, res);
+});
+
 router.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -56,6 +62,11 @@ router.post('/save-draft', async (req, res) => {
 router.post('/publish-draft', async (req, res) => {
     console.log("Publish draft endpoint hit");
     publishDraft(req, res);
+});
+
+router.post('/modify-user', async (req, res) => {
+    console.log("Modifying user...");
+    modifyUser(req, res);
 });
 
 router.post('/export-draft-results', async (req, res) => {

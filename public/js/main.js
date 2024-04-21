@@ -479,3 +479,31 @@ function addDragEvents() {
     item.addEventListener('dragend', handleDragEnd);
   });
 }
+
+if (document.getElementById('saveDisplayNameButton')) {
+  document.getElementById('saveDisplayNameButton').addEventListener('click', event => {
+      event.preventDefault();
+      
+      var newDisplayName = document.getElementById('displayNameField').value;
+      
+      fetch('/modify-user', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ displayName: newDisplayName }),
+      })
+      .then(response => response.json()) 
+      .then(data => {
+          if (data.success) {
+              alert(data.message);
+          } else {
+              alert(data.message);
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+          alert('Error updating display name.');
+      });
+  });
+}

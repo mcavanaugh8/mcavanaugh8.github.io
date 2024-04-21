@@ -9,6 +9,7 @@ TO DO
 -----
 - need logic so that same player can't be selected twice [LOW PRIORITY]
 - users should be able to view saved and completed drafts
+- users should be able to go back and edit an incomplete draft
 
 MODES:
 - upload a mock draft, store it in the system (these will be graded later on)
@@ -19,6 +20,7 @@ MODES:
 
 DONE
 -----
+- users should be able to modify their display name
 - users should be able to store drafts in their account
 - need to create a user system
 - on reload, draft order should reload too – not just the picks!
