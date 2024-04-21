@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       if (confirmSwitch) {
         try {
           ui.resetDraft();
+          console.log(window.location)
           window.location.href = '/live-draft';
         } catch (e) { }
       }
@@ -244,6 +245,34 @@ document.addEventListener('click', (event) => {
     });
   }
 });
+
+if (document.getElementById('saveDisplayNameButton')) {
+  document.getElementById('saveDisplayNameButton').addEventListener('click', event => {
+      event.preventDefault();
+      
+      var newDisplayName = document.getElementById('displayNameField').value;
+      
+      fetch('/modify-user', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ displayName: newDisplayName }),
+      })
+      .then(response => response.json()) 
+      .then(data => {
+          if (data.success) {
+              alert(data.message);
+          } else {
+              alert(data.message);
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+          alert('Error updating display name.');
+      });
+  });
+}
 
 if (document.getElementById('scoreboard-tab-handle')) {
   document.getElementById('scoreboard-tab-handle').addEventListener('click', function () {
@@ -480,30 +509,3 @@ function addDragEvents() {
   });
 }
 
-if (document.getElementById('saveDisplayNameButton')) {
-  document.getElementById('saveDisplayNameButton').addEventListener('click', event => {
-      event.preventDefault();
-      
-      var newDisplayName = document.getElementById('displayNameField').value;
-      
-      fetch('/modify-user', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ displayName: newDisplayName }),
-      })
-      .then(response => response.json()) 
-      .then(data => {
-          if (data.success) {
-              alert(data.message);
-          } else {
-              alert(data.message);
-          }
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-          alert('Error updating display name.');
-      });
-  });
-}
