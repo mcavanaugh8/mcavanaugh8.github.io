@@ -3,21 +3,30 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    googleId: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: false
+    },
     name: {
       type: String,
       required: true,
     },
-    picks: {
+    displayName: {
+      type: String,
+      required: false,
+    },
+    drafts: {
       type: Array,
       required: true,
-    },
-    score: {
-      type: Number,
-      required: true,
-    },
+    }
   },
   { timestamps: true }
 );
 
 const User = mongoose.model('User', userSchema);
+
 module.exports = User;

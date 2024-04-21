@@ -1,0 +1,233 @@
+<main>
+    <!-- Header section -->
+    <div id="header" class="container-fluid bg-dark text-white d-flex justify-content-between align-items-center">
+        <!-- NFL Draft title -->
+
+        <div class="h2 mb-0" style="flex-grow: 1;"> <img id="draft-logo" src="/public/img/logo.png" alt="NFL Draft Logo"
+                style="max-height: 50px;"> 2024 NFL Draft</div>
+
+        <!-- User information -->
+        {{#if Authenticated}}
+        <div class="d-flex align-items-center">
+            <i class="fas fa-user me-2"></i> Logged in as {{user.name}}
+            <a href="/logout" class="btn btn-danger btn-sm ms-3">Logout</a>
+        </div>
+        {{else}}
+        <a href="/auth/google" class="btn btn-primary">Login</a>
+        {{/if}}
+    </div>
+    <div class="container" id="top-buttons">
+        <div class="row">
+            <div class="col mx-auto text-center">
+                <button type="button" id="newLiveDraft" class="btn btn-dark btn-lg new-live-draft">
+                    Begin Live Draft
+                </button>
+            </div>
+            <div class="col mx-auto text-center">
+                <button type="button" id="newOfflineDraft" class="btn btn-dark btn-lg new-offline-draft">
+                    New Mock Draft
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="add-player-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">
+                        Add a New Participant...
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>How to Play</h5>
+                        <h5>Getting Started</h5>
+                        <ol>
+                            <li>Add your name.</li>
+                            <li>
+                                Add a *.txt file that contains your picks. The file should be
+                                very simply formatted: thirty-two lines, with each line
+                                containing the name of one player. The number of that line
+                                corresponds to the draft position that they will be taken
+                                (e.g., the name on line one of the plain text file is the
+                                player you believe will be selected at position 1, currently
+                                held by the Jacksonville Jaguars). </li>
+                            <li>Once you submit your name and selections, the draft table will be
+                                automatically populated. An additional file upload is available. This file can contain
+                                the names of 5
+                                additional prospects who you predict may end up in the first round. If any of these
+                                players are
+                                selected in the first round, regardless of the team they are selected by, you will be
+                                awarded half a
+                                point.</li>
+                            <li>NOTE: If you wish, you can add a / after the name of up to 5 of your selections and add
+                                the name of
+                                another player. This will be your alternate selection for that pick. Alternates are
+                                worth half the value of getting a normal selection correct.</li>
+                            <li>Add the actual selections as they happen! In the empty fields that say "Player Name,"
+                                enter the name of the player selected at that draft position. For example, if USC QB
+                                Caleb Williams is selected 1st overall, his name should be entered in that empty field.
+                            </li>
+                            <li>Once a pick is made, hit the button that says "The Pick Is In..." and (hopefully) watch
+                                your score go up!</li>
+                            <li>If a team trades out of their selection, you can DOUBLE-CLICK on the team name and enter
+                                the name of the team that is now drafting at that position. Once you hit "The Pick Is
+                                In...", the table will re-format itself accordingly.</li>
+                            <li>If you make a mistake in the name of the player that was selected, you can also
+                                DOUBLE-CLICK and edit that name.</li>
+                        </ol>
+                        <h5>Scoring</h5>
+                        <p>One point each is awarded for:
+                        <ul>
+                            <li>Correctly predicting that a player will be selected in the first round</li>
+                            <li>Correctly predicting that a player will be selected at a specific draft position.</li>
+                            <li>Correctly predicting that a player will be selected by a specific team.</li>
+                        </ul>
+                        </p>
+                        <p>Half of a point each is awarded for:
+                        <ul>
+                            <li>Correctly predicting that a ALTERNATE player will be selected in the first round</li>
+                            <li>Correctly predicting that a ALTERNATE player will be selected at a specific draft
+                                position.</li>
+                            <li>Correctly predicting that a ALTERNATE player will be selected by a specific team.</li>
+                        </ul>
+                        </p>
+                        <label for="modal-player-name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="modal-player-name"
+                            placeholder="{{{ user.name }}}" />
+                        <label class="form-label" for="playerPicks">First 32 selections</label>
+                        <input type="file" class="form-control" id="playerPicks" />
+                        <label class="form-label" for="altPlayerPicks">Alternate Players</label>
+                        <input type="file" class="form-control" id="altPlayerPicks" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary add-player-submit" data-bs-dismiss="modal">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="results-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="results-modal-body" class="modal-body">
+                    <h2 class="text-center">Results</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary results-share-results" data-bs-dismiss="modal">
+                        Share Results
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container scoreboard">
+        <table id="score-table" class="table table-dark table-bordered table-scoreboard">
+            <thead>
+                <tr id="scoreboard-table-row-top" class="text-center"></tr>
+            </thead>
+            <tr id="scoreboard-table-row-score" class="text-center"></tr>
+        </table>
+    </div>
+
+    {{#if LiveDraftMode}}
+    <div class="container">
+        <button type="button" class="btn btn-dark btn-lg validate-pick">
+            The Pick Is In . . .
+        </button>
+    </div>
+    {{/if}}
+
+    <div class="container draftboard">
+        <ul id="team-list" class="list-group draggable-list">
+            {{!-- <li class="list-group-item draggable" draggable="true">
+                <div class="row">
+                    <div class="col-md-1">#1</div>
+                    <div class="col-md-4 team text-center"
+                        style="background-color: rgb(7, 34, 83); color: rgb(255, 110, 7); font-weight: bolder;">CHICAGO
+                    </div>
+                    <div class="col-md-7">
+                        <input class="form-control form-control-sm actual-pick" type="text" placeholder="Player Name">
+                    </div>
+                </div>
+            </li> --}}
+        </ul>
+    </div>
+
+    {{!-- <div class="container draftboard">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-dark table-bordered board-table">
+                    <thead>
+                        <tr class="text-center"></tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div> --}}
+
+    {{!-- <div class="container alternates">
+        <table class="table table-dark table-bordered table-alternates text-center">
+            <thead id="table-alternates-head">
+                <tr class="text-center">
+                    <th colspan="3">Alternate First Rounders</th>
+                </tr>
+                <tr class="text-center alternates-names">
+                </tr>
+            </thead>
+        </table>
+    </div> --}}
+
+    <!-- Floating Button Menu -->
+    <div class="floating-menu">
+        {{#if LiveDraftMode}}
+        <a id="addPlayerButton" class="btn-floating" data-hover="Add New Participan" data-bs-toggle="modal"
+            data-bs-target="#add-player-modal"><i class="fa fa-person"></i><span class="text">Add New
+                Participant</span></a>
+        {{/if}}
+        <a id="saveDraft" class="btn-floating save-draft" data-hover="Save Current Draft"><i
+                class="fa fa-floppy-disk"></i><span class="text">Save Current Draft</span></a>
+        {{!-- <a class="btn-floating" data-hover="Profile"><i class="fa fa-user"></i><span
+                class="text">Profile</span></a> --}}
+        <a id="resetDraft" class="btn-floating reset-draft" data-hover="Reset Draft"><i class="fa fa-rotate"></i><span
+                class="text">Reset Draft</span></a>
+        <a id="exportDraft" class="btn-floating export-draft" data-hover="Export Draft"><i
+                class="fa fa-file-export"></i><span class="text">Export Draft</span></a>
+        {{#if LiveDraftMode}}
+        <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span
+                class="text">Confirm Selection</span></a>
+        {{else}}
+        <a id="publishDraft" class="btn-floating upload-picks" data-hover="Publish Picks"><i class="fa fa-upload"></i><span class="text">Publish Mock Draft</span></a>
+        {{/if}}
+
+    </div>
+
+    <div class="bottom-buttons-container">
+        <a href="/" class="btn btn-primary bottom-button">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="/profile" class="btn btn-secondary bottom-button">
+            <i class="fas fa-user"></i>
+        </a>
+    </div>
+
+
+    {{#if LiveDraftMode}}
+    <div id="scoreboard-tab" class="scoreboard-tab">
+        <div id="scoreboard-tab-handle" class="handle">&#9654; Scoreboard</div>
+        <div id="scoreboard-content" class="content">
+        </div>
+    </div>
+
+    {{else}}
+    <div id="mock-tab" class="mock-tab">
+        <div id="mock-tab-handle" class="handle"> Mock Draft Mode</div>
+        <div id="mock-content" class="content">
+        </div>
+    </div>
+    {{/if}}
+</main>

@@ -2,6 +2,22 @@
   box-sizing: border-box;
 }
 
+/* Additional styles for responsive alignment and better layout */
+@media (max-width: 768px) {
+  .header-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .login-button {
+      margin-top: 10px; /* Adds space between the title and login button on smaller screens */
+  }
+
+  .prospect-image {
+    height: 80px; /* Smaller fixed height for mobile */
+  }
+}
+
 #results-canvas {
   width: 100%;
 }
@@ -81,6 +97,12 @@ body {
   font-size: 1rem;
 }
 
+.pick-name {
+  /* If you want to align the player's name next to the image */
+  display: flex;
+  align-items: center; /* Aligns the text vertically */
+}
+
 .page-head {
   width: 100%;
   background-color: #212529;
@@ -101,7 +123,8 @@ body {
 .draftboard,
 .scoreboard,
 #addPlayerButton,
-.reset-draft,
+.new-offline-draft,
+.new-live-draft,
 .submit-draft {
   margin-top: 25px;
 }
@@ -119,8 +142,7 @@ body {
 }
 
 .validate-pick:hover,
-.add-player:hover,
-.reset-draft:hover {
+.add-player:hover {
   color: #212529;
   background-color: #fff;
   font-weight: bolder;
@@ -132,11 +154,6 @@ body {
   background-color: white;
   font-weight: bolder;
   border: 2px solid #198754;
-}
-
-.team,
-.draftboard td {
-  vertical-align: middle;
 }
 
 .alternates-names {
@@ -183,9 +200,269 @@ body {
   height: 100%; /* Makes sure the div takes the full height */
 }
 
-.prospect-image img {
-  width: 90%;
-}
 .prospect-image {
-  height: 100%;
+  /* Adjust the image container size */
+  height: 120px; /* Example fixed height, adjust as needed */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  overflow: hidden; /* Hide overflow */
+  border-radius: 5px; /* Rounded corners for the image container */
+  margin-bottom: 10px; /* Space below the image container */
+  background-color: #fff; /* Background color for the image container */
+  border: 1px solid #ddd; /* Border for the image container */
+}
+
+.prospect-image img {
+  max-width: 100%; /* Image can be as wide as the container but no wider */
+  max-height: 100%; /* Image can be as tall as the container but no taller */
+  display: block; /* Remove default inline characteristics */
+}
+
+
+.header-container {
+  display: flex;
+  justify-content: space-between; /* This will place the child elements on opposite ends */
+  align-items: center;
+  padding: 0 10px; /* Adjusted padding */
+  background-color: #212529;
+}
+
+.page-head {
+  flex-grow: 1; /* Allows the title to grow and occupy available space */
+  text-align: left; /* Aligns the title text to the left */
+  margin: 0; /* Reset margins */
+  color: white;
+  font-size: 50px;
+  line-height: 75px; /* Adjust line-height to match header height */
+  font-weight: bolder;
+}
+
+.login-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add a gap between the icon and the text */
+}
+
+/* Correct the user name and logout button placement and styling */
+.user-info {
+  display: flex;
+  align-items: center;
+  color: white; /* Set the color of the text to white */
+}
+
+.user-info span {
+  margin-right: 10px; /* Space between name and logout button */
+}
+
+.logout-button {
+  display: inline-block;
+  padding: 5px 15px; /* Adjust padding as needed */
+  text-decoration: none;
+  color: #fff;
+  background-color: #dc3545; /* Use a different color for the logout button for contrast */
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 10px; /* Space between name and logout button */
+}
+
+#header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.floating-menu {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align buttons to the right */
+}
+
+.btn-floating {
+  background-color: #007bff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  margin-bottom: 10px; /* Space between buttons */
+  position: relative;
+  width: 50px;
+  overflow: visible;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-floating .fa {
+  font-size: 24px;
+  color: white;
+}
+
+.btn-floating .text {
+  position: absolute;
+  right: 100%; /* Start from the left edge of the button */
+  margin-right: 10px; /* Space between icon and text */
+  white-space: nowrap;
+  background-color: #007bff;
+  color: white;
+  border-radius: 25px;
+  padding: 10px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none; /* Ignore pointer events */
+  
+}
+
+.btn-floating:hover .text {
+  opacity: 1;
+  right: 50px; /* Shift text to the right on hover */
+  transition: opacity 0.3s ease-in-out, right 0.3s ease-in-out;
+}
+
+/* Optional: Hide text for touch devices */
+@media (hover: none) {
+  .btn-floating .text {
+    display: none;
+  }
+}
+
+.scoreboard-tab,
+.mock-tab {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: white;
+  z-index: 1000;
+}
+
+.handle {
+  padding: 10px;
+  background-color: #555;
+  cursor: pointer;
+  user-select: none;
+}
+
+.content {
+  display: none;
+  padding: 10px;
+  background-color: #333;
+}
+
+.over {
+  border: 2px dashed #000;
+}
+
+.list-group-item {
+  background-color: lightgray;
+}
+
+.player-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns items to the start of the container */
+  overflow-x: auto; /* Allows horizontal scrolling */
+  overflow-y: hidden; /* Prevents vertical scrolling */
+  max-height: 100%; /* Ensures the div does not grow beyond its container */
+}
+
+.player-name.single-line {
+  white-space: nowrap;
+  margin: 0; /* Removes default paragraph margins */
+  padding: 2px 0; /* Adjust vertical padding as needed */
+  width: 100%;
+}
+
+.prospect-name {
+  font-weight: 400;
+}
+
+.disabled {
+  pointer-events: none; /* This makes sure the link can't be clicked */
+  background-color: grey; !important /* Optional: change the color to indicate it's disabled */
+}
+
+.draft-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+.draft-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.draft-card-body {
+  display: flex;
+  position: relative; /* Needed for absolute positioning of child elements */
+}
+.draft-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.draft-update {
+  font-size: 0.8rem;
+  color: #28a745;
+}
+.draft-info {
+  display: flex;
+  align-items: center;
+}
+.draft-info div {
+  margin-right: 2rem;
+}
+.draft-rank {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.draft-player {
+  font-weight: bold;
+}
+.view-button {
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  font-size: 1rem;
+  position: absolute; /* Position the button absolutely */
+  top: 0; /* Align to the top */
+  right: 0; /* Align to the right */
+}
+
+.bottom-buttons-container {
+  position: fixed; 
+  bottom: 10px;   
+  left: 10px;    
+  display: flex;  
+  flex-direction: column; 
+  align-items: flex-end; 
+  gap: 10px; 
+  z-index: 1000; 
+}
+
+.bottom-button {
+  display: block;
+  background-color: #333;
+  border-radius: 25px; 
+  margin-bottom: 10px; 
+}
+
+.bottom-button:hover {
+  background-color: #fff;
+  color: #333;
+}
+.profile-section {
+  margin-top: 20px;
 }

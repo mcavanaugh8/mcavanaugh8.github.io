@@ -1,0 +1,53 @@
+<main>
+    <!-- Header section -->
+    <div id='header' class='container-fluid bg-dark text-white d-flex justify-content-between align-items-center'>
+        <!-- NFL Draft title -->
+
+        <div class='h2 mb-0' style='flex-grow: 1;'>
+            <img id='draft-logo' src='/public/img/logo.png' alt='NFL Draft Logo' style='max-height: 50px;' />
+            2024 NFL Draft
+        </div>
+        
+        <!-- User information -->
+        {{#if Authenticated}}
+        <div class='d-flex align-items-center'>
+            <i class='fas fa-user me-2'></i>
+            Logged in as
+            {{user.name}}
+            <a href='/logout' class='btn btn-danger btn-sm ms-3'>Logout</a>
+        </div>
+        {{else}}
+        <a href='/auth/google' class='btn btn-primary'>Login</a>
+        {{/if}}
+    </div>
+    <div class='container'>
+        <div class='profile-section'>
+            <h1>Account Information</h1>
+            <div class='account-information'>
+                <p><strong>Name:</strong> {{user.name}}</p>
+                <p><strong>Email:</strong> {{user.email}}</p>
+                <div class="d-flex align-items-center mb-2">
+                    <strong class="me-2">Display Name:</strong>
+                    <input type="text" id="displayNameField" value="{{user.displayName}}" class="form-control me-2">
+                    <button id="saveDisplayNameButton" class="btn btn-outline-success btn-sm">Save</button>
+                </div>
+                <p><strong>Account Created:</strong> {{user.accountCreated}}</p>
+            </div>
+        </div>
+        <div class='profile-section'>
+            <h1>Recent Mock Drafts</h1>
+            <div id='recentDrafts' class='container mt-4'>
+                {{{recentDrafts}}}
+            </div>
+        </div>
+    </div>
+
+    <div class='bottom-buttons-container'>
+        <a href='/' class='btn btn-primary bottom-button'>
+            <i class='fas fa-home'></i>
+        </a>
+        <a href='/profile' class='btn btn-secondary bottom-button'>
+            <i class='fas fa-user'></i>
+        </a>
+    </div>
+</main>
