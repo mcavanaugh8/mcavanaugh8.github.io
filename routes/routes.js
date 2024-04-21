@@ -149,8 +149,8 @@ function generateDraftHtml(draftData) {
           <tbody>
     `;
 
-    let appUrl = 'http://localhost:3000';
-    // let appUrl = 'https://www.mcavanaugh8.github.io.com';
+    // let appUrl = 'http://localhost:3000';
+    let appUrl = 'https://mock-draft-site-b402cd3a9da5.herokuapp.com/';
     // Adding each draft pick row
     draftData.forEach(pick => {
         html += `
