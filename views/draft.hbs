@@ -1,0 +1,33 @@
+<main>
+    <!-- Header section -->
+    <div id="header" class="container-fluid bg-dark text-white d-flex justify-content-between align-items-center">
+        <!-- NFL Draft title -->
+
+        <div class='h2 mb-0' style='flex-grow: 1;'>
+            <img href="/" id='draft-logo' src='/public/img/logo.png' alt='NFL Draft Logo' style='max-height: 50px;' />
+            2024 NFL Draft
+        </div>
+        <!-- User information -->
+        {{#if Authenticated}}
+        <div class="d-flex align-items-center">
+            <i class="fas fa-user me-2"></i> Logged in as {{user.name}}
+            <a href="/logout" class="btn btn-danger btn-sm ms-3">Logout</a>
+        </div>
+        {{else}}
+        <a href="/auth/google" class="btn btn-primary">Login</a>
+        {{/if}}
+    </div>
+    <div id="recentDrafts" class="container mt-4">
+        {{{ draft }}}
+    </div>
+    <div class="bottom-buttons-container">
+        <a href="/" class="btn btn-primary bottom-button">
+            <i class="fas fa-home"></i>
+        </a>
+        {{#if Authenticated}}
+        <a href="/profile" class="btn btn-secondary bottom-button">
+            <i class="fas fa-user"></i>
+        </a>
+        {{/if}}
+    </div>
+</main>

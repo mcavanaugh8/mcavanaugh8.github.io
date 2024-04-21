@@ -14,10 +14,12 @@ const {
     saveDraft,
     publishDraft,
     getLiveDraft,
-    getMockDraft
+    getMockDraft,
+    renderDraft
 } = require('../controllers/controllers.js')
 
 const User = require('../models/user.js');
+const Draft = require('../models/draft.js');
 
 // router.get('/login', (req, res) => {
 //     // Render the login page
@@ -39,6 +41,11 @@ router.get('/mock-draft', (req, res) => {
 
 router.get('/profile', (req, res) => {
     getProfile(req, res);
+});
+
+router.get('/drafts/:id', async (req, res) => {
+    console.log('Viewing draft ' + req.params.id)
+    renderDraft(req, res);
 });
 
 router.get('/auth/google',
