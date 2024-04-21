@@ -150,7 +150,7 @@ function generateDraftHtml(draftData) {
     `;
 
     // let appUrl = 'http://localhost:3000';
-    let appUrl = 'https://mock-draft-site-b402cd3a9da5.herokuapp.com/';
+    let appUrl = 'https://mcavanaugh8-github-io.fly.dev/';
     // Adding each draft pick row
     draftData.forEach(pick => {
         html += `

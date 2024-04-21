@@ -339,7 +339,7 @@ async function renderDraft(req, res) {
 async function getRecentDrafts(byUser, user) {
     let html = '';
     // let appUrl = 'http://localhost:3000';
-    let appUrl = 'https://mock-draft-site-b402cd3a9da5.herokuapp.com/';
+    let appUrl = 'https://mcavanaugh8-github-io.fly.dev/';
     let allDrafts;
 
     if (byUser) {
