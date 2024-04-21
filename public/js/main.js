@@ -88,26 +88,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const exportDraftButton = document.getElementById('exportDraft');
 
   if (liveDraftButton) {
-    liveDraftButton.addEventListener('click', function () {
+    liveDraftButton.addEventListener('click', event => {
+      // e.preventDefault();
+      // e.preventPropagation();
       let confirmSwitch = confirm('Are you sure you wish to start a new live draft? Doing so will reset all unsaved draft progress.');
       if (confirmSwitch) {
         try {
           ui.resetDraft();
-          console.log(window.location)
-          window.location.href = '/live-draft';
         } catch (e) { }
+        try {
+          window.location.href = '/live-draft';
+        } catch(e) {}
       }
     });
   }
 
   if (offlineDraftButton) {
-    offlineDraftButton.addEventListener('click', function () {
+    offlineDraftButton.addEventListener('click', event => {
+      // e.preventDefault();
+      // e.preventPropagation();
       let confirmSwitch = confirm('Are you sure you wish to start a new mock draft? Doing so will reset all unsaved draft progress.');
       if (confirmSwitch) {
         try {
           ui.resetDraft();
-          window.location.href = '/mock-draft';
         } catch (e) { }
+        try {
+          window.location.href = '/mock-draft';
+        } catch(e) {}
       }
     });
   }
@@ -131,7 +138,7 @@ if (submitButtonFloating) {
       ui.validatePicks();
       addDragEvents();
     } else {
-      event.preventDefault(); // Prevent the default link action
+      event.preventDefault(); 
     }
   });
 }
@@ -196,7 +203,7 @@ document.addEventListener('focusin', (event) => {
 
     event.target.addEventListener('keypress', function (keyPressEvent) {
       if (keyPressEvent.key === 'Enter') {
-        console.log('Enter key was pressed while focused on an actual-pick element.');
+        // console.log('Enter key was pressed while focused on an actual-pick element.');
         ui.validatePicks();
       }
     });
@@ -389,6 +396,17 @@ if (document.getElementById('exportDraft')) {
       });
   });
 }
+
+if (document.querySelectorAll('.view-button').length > 0) {
+  document.querySelectorAll('.view-button').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+        console.log('Navigating to', this.getAttribute('href'));
+        window.location.href = this.getAttribute('href');
+    });
+  });  
+}
+
 
 function getDraftBoardData() {
   const draftPicks = [];

@@ -44,9 +44,19 @@ router.get('/profile', (req, res) => {
 });
 
 router.get('/drafts/:id', async (req, res) => {
-    console.log('Viewing draft ' + req.params.id)
-    renderDraft(req, res);
+    console.log('Viewing draft ' + req.params.id);
+    try {
+        const draft = await Draft.find({ id: req.params.id }).exec();
+        if (!draft) {
+            return res.status(404).send('Draft not found.');
+        }
+        renderDraft(req, res);
+    } catch (error) {
+        console.error('Error fetching draft:', error);
+        res.status(500).send('Internal server error.');
+    }
 });
+
 
 router.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -84,16 +94,15 @@ router.post('/export-draft-results', async (req, res) => {
     const draftHtmlContent = generateDraftHtml(draftData);
 
     try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], headless: true });
+
         const page = await browser.newPage();
-        await page.setContent(draftHtmlContent, { waitUntil: 'networkidle0' }); // wait until page load is done
+        await page.setContent(draftHtmlContent, { waitUntil: 'networkidle0' });
         const imageBuffer = await page.screenshot({ fullPage: true });
         await browser.close();
 
-        // Set the header for content type as a stream of bytes
         res.setHeader('Content-Type', 'application/octet-stream');
 
-        // Send the image buffer directly
         res.send(imageBuffer);
     } catch (error) {
         console.error('Error generating draft image:', error);

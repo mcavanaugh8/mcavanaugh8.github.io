@@ -432,9 +432,9 @@ class UI {
       if (this.teamList) {
         /** create draft board, regardless of participants picks */
         if (this.teamList.querySelectorAll('li').length == 0) {
-          console.log('create initial board')
-          console.log(this.intitialDraftOrder)
-          console.log(this.teamList)
+          // console.log('create initial board')
+          // console.log(this.intitialDraftOrder)
+          // console.log(this.teamList)
           this.addTeamPick(this.intitialDraftOrder);
         }
 
