@@ -343,12 +343,6 @@ class UI {
     let existingDraft = this.getFromLocalStorage('draft-results');
     let draftObj = existingDraft || {};
   
-    if (!existingDraft) {
-      draftObj.id = this.generateUUID();
-    }
-  
-    draftObj.started = new Date().toLocaleString();
-  
     for (let i = 0; i < teams.length; i++) {
       let pickName;
       if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
@@ -387,7 +381,7 @@ class UI {
           // scoreboardContent.innerHTML = '';
 
           let playerScoreDiv = scoreboardContent.querySelectorAll('.player-score');
-          // console.log(draftObj)
+
           this.calculatePoints(draftObj, playerDraftObj, playerScoreDiv[index], index, index);
         }
 
@@ -411,8 +405,12 @@ class UI {
       }
     }
 
-
     // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+    if (!this.hasID(draftObj)) {
+      draftObj.push({ started: new Date().toLocaleString() });
+      draftObj.push({ id: this.generateUUID() })
+    }
+
     this.addToLocalStorage('draft-results', draftObj);
     // console.log(this.participantObjects, this.actualPicks);
   }
@@ -485,9 +483,9 @@ class UI {
     this.teamList.innerHTML = '';
     // console.log(order)
     for (let key in order) {
-      if (key !== 'id' && key !== 'started' && key !== 'lastSaved') {
-        let pick = order[key];
 
+      if (!order[key].hasOwnProperty('id') && !order[key].hasOwnProperty('started') && !order[key].hasOwnProperty('lastSaved')) {
+        let pick = order[key];
         let team = pick.team.team ? pick.team.team : pick.team;
 
         const listItem = document.createElement('li');
@@ -586,8 +584,8 @@ class UI {
         let allParticipants = scope.getFromLocalStorage('participants');
         allParticipants.push(obj);
         scope.addToLocalStorage('participants', allParticipants);
-        console.log(scope.getFromLocalStorage("participants"));
-        console.log(picksArrClean);
+        // console.log(scope.getFromLocalStorage("participants"));
+        // console.log(picksArrClean);
         scope.addAllRounds();
       };
     }
@@ -680,6 +678,16 @@ class UI {
         item.querySelector('.actual-pick').innerHTML = pick;
         item.classList.add('pick-final');
       }
+
+      if (item.querySelector('.new-team')) {
+        const newTeamInput = item.querySelector('.new-team');
+        if (newTeamInput.value !== '') {
+          const newTeam = newTeamInput.value;
+          item.querySelector('.team').textContent = newTeam;
+          this.formatTeamCells(item.querySelector('.team'));
+        }
+        newTeamInput.remove();
+      }
     })
 
     this.addPlayerCards();
@@ -692,7 +700,7 @@ class UI {
     const teams = this.draftBoard.querySelector('#team-list').querySelectorAll('li');
     score.textContent = '0';
 
-    console.log('calculating points...')
+    // console.log('calculating points...')
     for (var j in draftObj) {
       /**
        *  - +1 if PLAYER is correct at draft position predicted by player
@@ -704,25 +712,39 @@ class UI {
       // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
 
       // check if PLAYER (or altPlayer) is correct
-      if (j != 'id' && j != 'started' && j != 'lastSaved') {
+
+      if (!draftObj[j].hasOwnProperty('id') && !draftObj[j].hasOwnProperty('started') && !draftObj[j].hasOwnProperty('lastSaved')) {
 
         if (draftObj[j].player !== '') {
           // console.log(draftObj[j].player, personDraftObject[j])
-          if (teams[j].querySelectorAll('.player-name')[index] && teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').length > 0) {
-            teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').forEach(item => item.remove());
-          }
+          try {
+            if (teams[j].querySelectorAll('.player-name')[index] && teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').length > 0) {
+              teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').forEach(item => item.remove());
+            }
+          } catch(e) {}
 
-          if (personDraftObject[j].team === draftObj[j].team) {
+          /** 0.5 points for the team selecting in the right spot */
+          if (draftObj[j].team && (personDraftObject[j].team === draftObj[j].team)) {
+            // console.log('Adding +0.5 for guessing team in correct spot: ' + score.textContent)   
             score.textContent = Number(score.textContent) + 0.5;
+            // console.log('new score: ' + score.textContent)
           }
-
-          if (personDraftObject[j].player !== undefined && draftObj[j].player === personDraftObject[j].player) {
+          
+          /** 1 point for getting the player's draft position correct */
+          
+          if ((personDraftObject[j].player !== undefined) && draftObj[j].player === personDraftObject[j].player) {
+            // console.log('Adding +1 for guessing correct player: ' + score.textContent)         
             score.textContent = Number(score.textContent) + 1;
-            // console.log(teams[j].querySelectorAll('.player-name')[index])
+            // console.log('new score: ' + score.textContent)
+            
             teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
+            
+            /** 0.5 point for getting the ALTERNATE player's draft position correct */
           } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
-            // console.log(teams[j].querySelectorAll('.player-name')[index])
+            // console.log('Adding +0.5 for guessing correct player with alternate: ' + score.textContent)          
             score.textContent = Number(score.textContent) + 0.5;
+            // console.log('new score: ' + score.textContent)
+
             teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star-half" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
           } else {
             // console.log(teams[j].querySelectorAll('.player-name')[index])
@@ -740,16 +762,22 @@ class UI {
           altFirstRounders.push(personDraftObject[x].altPlayer);
         }
 
+      /** 1 point for correctly guessing that the player would be picked in round 1 */  
+
         if (draftObj[j].player !== '') {
           if (firstRoundersArr.includes(draftObj[j].player)) {
+            // console.log('Adding +1 for guessing 1st round DC: ' + score.textContent)
             score.textContent = Number(score.textContent) + 1;
+            // console.log('new score: ' + score.textContent)
           }
           // else if (altsTable && altFirstRounders.includes(draftObj[j].player)) {
           //   score.textContent = Number(score.textContent) + 0.5;
           // }
         }
 
-        // check if PLAYER/TEAM combo is correct
+        /** 1 point for getting the player/team combo correct
+         *  0.5 points for getting the ALTERNATE player/team combo correct
+         */
 
         for (var z in personDraftObject) {
           if (draftObj[j].player !== '') {
@@ -971,5 +999,16 @@ class UI {
       }
       return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
+  }
+
+  hasID(arr) {
+    for (var i = 0; i < arr.length; i++) {
+      // console.log(arr[i])
+      if (arr[i].id) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

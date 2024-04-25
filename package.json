@@ -27,6 +27,7 @@
     "express-session": "^1.18.0",
     "express-sessions": "^1.0.6",
     "handlebars-helpers": "^0.10.0",
+    "moment-timezone": "^0.5.45",
     "mongoose": "^6.2.9",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",

@@ -16,7 +16,15 @@
   .prospect-image {
     height: 80px; /* Smaller fixed height for mobile */
   }
+
+  .draft-card-body {
+    display: none;
+  }
 }
+
+/* phone screen */
+
+/* */
 
 #results-canvas {
   width: 100%;
@@ -465,4 +473,10 @@ body {
 }
 .profile-section {
   margin-top: 20px;
+}
+
+.draft-info small img {
+  height: 40px; /* Adjust the size as needed */
+  width: auto; /* This will maintain the aspect ratio */
+  vertical-align: middle; /* To align it nicely with the text */
 }

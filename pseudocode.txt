@@ -7,8 +7,9 @@ Here's how the process should work:
 
 TO DO
 -----
+- should be able to see the live grades of stored drafts
 - need logic so that same player can't be selected twice [LOW PRIORITY]
-- users should be able to view saved and completed drafts
+- users should be able to view saved drafts (and edit if incomplete)
 - users should be able to go back and edit an incomplete draft
 
 MODES:
@@ -20,6 +21,8 @@ MODES:
 
 DONE
 -----
+- users should be able to view completed drafts
+- re-implement non 1:1 trades; double-click team name to change who is drafting there
 - users should be able to modify their display name
 - users should be able to store drafts in their account
 - need to create a user system
