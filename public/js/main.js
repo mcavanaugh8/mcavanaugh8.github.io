@@ -362,7 +362,7 @@ if (document.getElementById('exportDraft')) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(draftData), // Make sure the data is properly serialized
+      body: JSON.stringify({ draftData: draftData, participantsData: ui.getFromLocalStorage('participants').length > 0 ? ui.getFromLocalStorage('participants') : false})
     })
       .then(response => {
         if (response.ok) {

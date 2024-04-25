@@ -106,7 +106,7 @@ class UI {
 
     trTop.innerHTML = ``;
     trBottom.innerHTML = ``;
-    
+
     if (this.mode === 'live') {
       this.disableButton();
     }
@@ -339,10 +339,10 @@ class UI {
     const players = this.getFromLocalStorage('participants');
     const teamCells = document.querySelectorAll('.team');
     const teams = this.teamList.querySelectorAll('li');
-  
+
     let existingDraft = this.getFromLocalStorage('draft-results');
     let draftObj = existingDraft || {};
-  
+
     for (let i = 0; i < teams.length; i++) {
       let pickName;
       if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
@@ -350,13 +350,13 @@ class UI {
       } else {
         pickName = '';
       }
-  
+
       draftObj[i] = {
         draftPosition: i,
         team: teamCells[i].textContent,
         player: pickName
       };
-  
+
       this.updatedDraftOrder[i] = teamCells[i].textContent;
     }
 
@@ -721,7 +721,7 @@ class UI {
             if (teams[j].querySelectorAll('.player-name')[index] && teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').length > 0) {
               teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').forEach(item => item.remove());
             }
-          } catch(e) {}
+          } catch (e) { }
 
           /** 0.5 points for the team selecting in the right spot */
           if (draftObj[j].team && (personDraftObject[j].team === draftObj[j].team)) {
@@ -729,16 +729,16 @@ class UI {
             score.textContent = Number(score.textContent) + 0.5;
             // console.log('new score: ' + score.textContent)
           }
-          
+
           /** 1 point for getting the player's draft position correct */
-          
+
           if ((personDraftObject[j].player !== undefined) && draftObj[j].player === personDraftObject[j].player) {
             // console.log('Adding +1 for guessing correct player: ' + score.textContent)         
             score.textContent = Number(score.textContent) + 1;
             // console.log('new score: ' + score.textContent)
-            
+
             teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
-            
+
             /** 0.5 point for getting the ALTERNATE player's draft position correct */
           } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
             // console.log('Adding +0.5 for guessing correct player with alternate: ' + score.textContent)          
@@ -762,7 +762,7 @@ class UI {
           altFirstRounders.push(personDraftObject[x].altPlayer);
         }
 
-      /** 1 point for correctly guessing that the player would be picked in round 1 */  
+        /** 1 point for correctly guessing that the player would be picked in round 1 */
 
         if (draftObj[j].player !== '') {
           if (firstRoundersArr.includes(draftObj[j].player)) {
@@ -801,11 +801,6 @@ class UI {
         draftPicks[x].player !== '' ? numPicksCounter++ : false;
       }
 
-      const scores = document.querySelectorAll('.player-score');
-      scores.forEach((score, index) => {
-        participants[index].score = Number(score.textContent);
-      });
-
       if (!this.teamList) {
         this.teamList = document.querySelector('#team-list');
       }
@@ -827,7 +822,21 @@ class UI {
     }
 
     this.addToLocalStorage('updated-draft-order', this.updatedDraftOrder);
-    // this.addToLocalStorage('participants', this.participantObjects)
+    
+    if (this.participantObjects.length == 0) {
+      participants.forEach((participant, index) => {
+        this.participantObjects.push(participant);
+      });
+    } else {
+      this.participantObjects = this.getFromLocalStorage('participants');
+    }
+
+    const scores = document.querySelectorAll('.player-score');
+    scores.forEach((score, index) => {
+      this.participantObjects[index].score = Number(score.textContent);
+    });
+
+    this.addToLocalStorage('participants', this.participantObjects)
   }
 
   createPlayerDataList() {
