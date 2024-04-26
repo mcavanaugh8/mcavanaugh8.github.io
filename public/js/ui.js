@@ -40,7 +40,7 @@ class UI {
       { team: 'PITTSBURGH', needs: [] },
       { team: 'MIAMI', needs: [] },
       { team: 'PHILADELPHIA', needs: [] },
-      { team: 'HOUSTON', needs: [] },
+      { team: 'MINNESOTA', needs: [] },
       { team: 'DALLAS', needs: [] },
       { team: 'GREEN BAY', needs: [] },
       { team: 'TAMPA BAY', needs: [] },
@@ -476,6 +476,7 @@ class UI {
       })
     }
 
+    this.addAltPicksTable();
 
   }
 
@@ -587,6 +588,7 @@ class UI {
         // console.log(scope.getFromLocalStorage("participants"));
         // console.log(picksArrClean);
         scope.addAllRounds();
+        scope.addAltPicksTable();
       };
     }
   }
@@ -708,6 +710,7 @@ class UI {
        *  - +1 if FIRST ROUND IS CORRECT
        *  - +1 if TEAM is selecting at the spot predicted by player (should this be a setting?)
        * add formatting to cells
+       * 
       */
       // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
 
@@ -728,7 +731,7 @@ class UI {
             // console.log('Adding +0.5 for guessing team in correct spot: ' + score.textContent)   
             score.textContent = Number(score.textContent) + 0.5;
             // console.log('new score: ' + score.textContent)
-          }
+          }          
 
           /** 1 point for getting the player's draft position correct */
 
@@ -761,6 +764,18 @@ class UI {
           firstRoundersArr.push(personDraftObject[x].player);
           altFirstRounders.push(personDraftObject[x].altPlayer);
         }
+
+      const altsTable = document.querySelector('.table-alternates');
+      if (altsTable) {
+        for (let r = 1; r < altsTable.rows.length; r++) {
+          if (draftObj[j].player !== '') {
+            if (draftObj[j].player ===  altsTable.rows[r].cells[altsIndex].textContent) {
+              altsTable.rows[r].cells[altsIndex].style.backgroundColor = 'green';
+              score.textContent = Number(score.textContent) + 0.5;
+            }
+          }
+        }
+      }
 
         /** 1 point for correctly guessing that the player would be picked in round 1 */
 
@@ -852,7 +867,7 @@ class UI {
   addAltPicksTable() {
     const altTableDiv = document.querySelector('.alternates');
     altTableDiv.innerHTML = `
-    <table class="table table-dark table-bordered table-alternates text-center">
+    <table class="table table-bordered table-alternates text-center">
       <thead id="table-alternates-head">
         <tr class="text-center">
           <th colspan="3">Alternate First Rounders</th>
@@ -871,6 +886,16 @@ class UI {
     for (let i = 0; i < 5; i++) {
       const tr = document.createElement('tr');
       tableBody.appendChild(tr);
+      
+      if (this.participantObjects.length == 0) {
+        let participants = this.getFromLocalStorage('participants');
+
+        participants.forEach((participant, index) => {
+          this.participantObjects.push(participant);
+        });
+      } else {
+        this.participantObjects = this.getFromLocalStorage('participants');
+      }
 
       this.participantObjects.forEach((participant, index) => {
         if (i === 0) {
@@ -884,7 +909,6 @@ class UI {
         const pick = document.createElement('td');
         pick.textContent = participant.altPicks[i];
         tr.appendChild(pick);
-
       });
 
     }

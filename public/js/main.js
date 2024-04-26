@@ -35,7 +35,7 @@ let intitialDraftOrder = [
   { team: 'PITTSBURGH', needs: [] },
   { team: 'MIAMI', needs: [] },
   { team: 'PHILADELPHIA', needs: [] },
-  { team: 'HOUSTON', needs: [] },
+  { team: 'MINNESOTA', needs: [] },
   { team: 'DALLAS', needs: [] },
   { team: 'GREEN BAY', needs: [] },
   { team: 'TAMPA BAY', needs: [] },
