@@ -101,13 +101,13 @@ class UI {
     this.resetLocalStorage('updated-draft-order');
     this.addAllRounds(true);
 
-    let trTop = document.getElementById('scoreboard-table-row-top'),
-      trBottom = document.getElementById('scoreboard-table-row-score');
-
-    trTop.innerHTML = ``;
-    trBottom.innerHTML = ``;
     
     if (this.mode === 'live') {
+      let trTop = document.getElementById('scoreboard-table-row-top'),
+        trBottom = document.getElementById('scoreboard-table-row-score');
+  
+      trTop.innerHTML = ``;
+      trBottom.innerHTML = ``;
       this.disableButton();
     }
 
@@ -339,16 +339,16 @@ class UI {
     const players = this.getFromLocalStorage('participants');
     const teamCells = document.querySelectorAll('.team');
     const teams = this.teamList.querySelectorAll('li');
-  
+
     let existingDraft = this.getFromLocalStorage('draft-results');
     let draftObj = existingDraft || {};
-  
+
     if (!existingDraft) {
       draftObj.id = this.generateUUID();
     }
-  
+
     draftObj.started = new Date().toLocaleString();
-  
+
     for (let i = 0; i < teams.length; i++) {
       let pickName;
       if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
@@ -356,13 +356,13 @@ class UI {
       } else {
         pickName = '';
       }
-  
+
       draftObj[i] = {
         draftPosition: i,
         team: teamCells[i].textContent,
         player: pickName
       };
-  
+
       this.updatedDraftOrder[i] = teamCells[i].textContent;
     }
 
@@ -422,6 +422,13 @@ class UI {
     const draftResults = this.getFromLocalStorage('draft-results');
 
     if (reset) {
+      // if (!this.teamList) {
+      //   const teamList = document.createElement('div');
+      //   teamList.id = 'team-list';
+      //   document.querySelector('main').appendChild(teamList);
+
+      //   this.teamList = document.getElementById('team-list')
+      // }
       this.teamList.innerHTML = '';
       this.addTeamPick(this.intitialDraftOrder);
     } else {
