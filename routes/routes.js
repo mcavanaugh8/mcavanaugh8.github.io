@@ -87,11 +87,16 @@ router.post('/modify-user', async (req, res) => {
 });
 
 router.post('/export-draft-results', async (req, res) => {
-    // Extract draft data from request body
-    const draftData = req.body; // Ensure this is properly validated and sanitized
 
-    // Convert draft data to HTML
-    const draftHtmlContent = generateDraftHtml(draftData);
+    const draftData = req.body.draftData;
+    const participantData = req.body.participantsData;
+    let draftHtmlContent;
+
+    if (participantData) {
+       draftHtmlContent = generateDraftHtml(draftData, true, participantData);
+    } else {
+        draftHtmlContent = generateDraftHtml(draftData);
+    }    
 
     try {
         const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], headless: true });
@@ -110,15 +115,16 @@ router.post('/export-draft-results', async (req, res) => {
     }
 });
 
-function generateDraftHtml(draftData) {
-    let html = `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Draft Results</title>
-        <style>
+function generateDraftHtml(draftData, isLiveDraft, participantData) {
+    if (isLiveDraft) {
+        let html = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Draft Results</title>
+          <style>
           body {
             font-family: Arial, sans-serif;
             background: white;
@@ -149,41 +155,132 @@ function generateDraftHtml(draftData) {
             font-weight: bold;
             width: 10%;
           }
-          /* Add more styles as needed */
-        </style>
-      </head>
-      <body>
-        <div class="header">ROUND 1 MOCK DRAFT</div>
-        <table class="draft-table">
-          <tbody>
-    `;
-
-    // let appUrl = 'http://localhost:3000';
-    let appUrl = 'https://mcavanaugh8-github-io.fly.dev';
-    // Adding each draft pick row
-    draftData.forEach(pick => {
-        html += `
-        <tr>
-          <td class="rank">${pick.rank}</td>
-          <td><img class="team-logo" src="${appUrl}/img/${pick.team.replace(/\s/g, '_')}.gif" alt="${pick.team}"></td>
-          <td class="team-name" style="${getTeamCellStyle(pick.team)} text-align: center;">${pick.team}</td>
-          <td class="player-name">${pick.player.replace(/^.+?\s/, '')}</td>
-          <td>${pick.player.match(/^.+? /) ? pick.player.match(/^.+? /)[0] : ''}</td>
-        </tr>
+          </style>
+        </head>
+        <body>
+          <div class="header">ROUND 1 MOCK DRAFT</div>
+          <div class="scoreboard">
+            <!-- Scoreboard Table -->
+            <table class="draft-table">
+              <tr>
+                ${participantData.map((p, index) => `<th><sup>${index + 1}</sup> ${p.name}</th>`).join('')}
+              </tr>
+              <tr>
+                ${participantData.map(p => `<td>${p.score} points</td>`).join('')}
+              </tr>
+            </table>
+          </div>
+          <table class="draft-table">
+            <!-- Table Headers -->
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Participants' Picks</th>
+              <th>Player Name</th>
+              <th>Position</th>
+            </tr>
+            <tbody>
       `;
-    });
-
-    // Closing out the table and HTML document
-    html += `
-          </tbody>
-        </table>
-      </body>
-      </html>
-    `;
-    console.log(html)
-    return html;
+  
+      let appUrl = 'https://mcavanaugh8-github-io.fly.dev';
+      // Adding each draft pick row
+      draftData.forEach(pick => {
+          html += `
+          <tr>
+            <td class="rank">${pick.rank}</td>
+            <td><img class="team-logo" src="${appUrl}/img/${pick.team.replace(/\s/g, '_')}.gif" alt="${pick.team}"></td>
+            <td>${participantData.map((p, index) => {
+              let participantPick = p.picks.find(pick => pick.rank == pick.rank);
+              return participantPick ? `<sup>${index + 1}</sup> ${participantPick.player}` : '';
+            }).join('<br>')}</td>
+            <td class="player-name">${pick.player.replace(/^.+?\s/, '')}</td>
+            <td>${pick.player.match(/^.+? /) ? pick.player.match(/^.+? /)[0] : ''}</td>
+          </tr>
+        `;
+      });
+  
+      html += `
+            </tbody>
+          </table>
+        </body>
+        </html>
+      `;
+  
+      return html;
+    } else {
+        let html = `
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Draft Results</title>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                background: white;
+                color: black;
+                text-align: center;
+              }
+              .draft-table {
+                width: 100%;
+                text-align: left;
+              }
+              .draft-table th, .draft-table td {
+                padding: 10px;
+                border: 1px solid #ddd;
+              }
+              .header {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+              }
+              .team-logo {
+                width: 30px;
+                height: auto;
+              }
+              .team-name, .player-name {
+                font-weight: bold;
+              }
+              .rank {
+                font-weight: bold;
+                width: 10%;
+              }
+              /* Add more styles as needed */
+            </style>
+          </head>
+          <body>
+            <div class="header">ROUND 1 MOCK DRAFT</div>
+            <table class="draft-table">
+              <tbody>
+        `;
+    
+        // let appUrl = 'http://localhost:3000';
+        let appUrl = 'https://mcavanaugh8-github-io.fly.dev';
+        // Adding each draft pick row
+        draftData.forEach(pick => {
+            html += `
+            <tr>
+              <td class="rank">${pick.rank}</td>
+              <td><img class="team-logo" src="${appUrl}/img/${pick.team.replace(/\s/g, '_')}.gif" alt="${pick.team}"></td>
+              <td class="team-name" style="${getTeamCellStyle(pick.team)} text-align: center;">${pick.team}</td>
+              <td class="player-name">${pick.player.replace(/^.+?\s/, '')}</td>
+              <td>${pick.player.match(/^.+? /) ? pick.player.match(/^.+? /)[0] : ''}</td>
+            </tr>
+          `;
+        });
+    
+        // Closing out the table and HTML document
+        html += `
+              </tbody>
+            </table>
+          </body>
+          </html>
+        `;
+    
+        return html;
+    }
 }
-
 
 function getTeamCellStyle(teamName) {
     const teamStyles = {
