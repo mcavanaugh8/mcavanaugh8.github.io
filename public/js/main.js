@@ -13,38 +13,43 @@ const submitButtonFloating = document.querySelector('.submit-picks');
 let isAudioPlaying = false;
 
 let intitialDraftOrder = [
-  { team: 'CHICAGO', needs: [] },
-  { team: 'WASHINGTON', needs: [] },
-  { team: 'NEW ENGLAND', needs: [] },
-  { team: 'ARIZONA', needs: [] },
-  { team: 'LOS ANGELES CHARGERS', needs: [] },
-  { team: 'NEW YORK GIANTS', needs: [] },
+  // 1-10
   { team: 'TENNESSEE', needs: [] },
-  { team: 'ATLANTA', needs: [] },
-  { team: 'CHICAGO', needs: [] },
-  { team: 'NEW YORK JETS', needs: [] },
-  { team: 'MINNESOTA', needs: [] },
-  { team: 'DENVER', needs: [] },
-  { team: 'LAS VEGAS', needs: [] },
-  { team: 'NEW ORLEANS', needs: [] },
-  { team: 'INDIANAPOLIS', needs: [] },
-  { team: 'SEATTLE', needs: [] },
+  { team: 'CLEVELAND', needs: [] },
+  { team: 'NEW YORK GIANTS', needs: [] },
+  { team: 'NEW ENGLAND', needs: [] },
   { team: 'JACKSONVILLE', needs: [] },
-  { team: 'CINCINNATI', needs: [] },
-  { team: 'LOS ANGELES RAMS', needs: [] },
-  { team: 'PITTSBURGH', needs: [] },
-  { team: 'MIAMI', needs: [] },
-  { team: 'PHILADELPHIA', needs: [] },
-  { team: 'MINNESOTA', needs: [] },
-  { team: 'DALLAS', needs: [] },
-  { team: 'GREEN BAY', needs: [] },
-  { team: 'TAMPA BAY', needs: [] },
-  { team: 'ARIZONA', needs: [] },
-  { team: 'BUFFALO', needs: [] },
-  { team: 'DETROIT', needs: [] },
-  { team: 'BALTIMORE', needs: [] },
+  { team: 'LAS VEGAS', needs: [] },
+  { team: 'NEW YORK JETS', needs: [] },
+  { team: 'CAROLINA', needs: [] },
+  { team: 'NEW ORLEANS', needs: [] },
+  { team: 'CHICAGO', needs: [] },
+
+  // 11-20
   { team: 'SAN FRANCISCO', needs: [] },
-  { team: 'KANSAS CITY', needs: [] }
+  { team: 'DALLAS', needs: [] },
+  { team: 'MIAMI', needs: [] },
+  { team: 'INDIANAPOLIS', needs: [] },
+  { team: 'ATLANTA', needs: [] },
+  { team: 'ARIZONA', needs: [] },
+  { team: 'CINCINNATI', needs: [] },
+  { team: 'SEATTLE', needs: [] },
+  { team: 'TAMPA BAY', needs: [] },
+  { team: 'DENVER', needs: [] },
+
+  // 21-32
+  { team: 'PITTSBURGH', needs: [] },
+  { team: 'LOS ANGELES CHARGERS', needs: [] },
+  { team: 'GREEN BAY', needs: [] },
+  { team: 'MINNESOTA', needs: [] },
+  { team: 'HOUSTON', needs: [] },
+  { team: 'LOS ANGELES RAMS', needs: [] },
+  { team: 'BALTIMORE', needs: [] },
+  { team: 'DETROIT', needs: [] },
+  { team: 'WASHINGTON', needs: [] },
+  { team: 'BUFFALO', needs: [] },
+  { team: 'KANSAS CITY', needs: [] },
+  { team: 'PHILADELPHIA', needs: [] },
 ];
 
 let realDraftOrder = [...intitialDraftOrder];
@@ -72,7 +77,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     try {
       ui.addAllRounds()
-    } catch(e) {
+    } catch (e) {
       console.log(e)
     }
 
@@ -141,9 +146,11 @@ if (submitButtonFloating) {
   submitButtonFloating.addEventListener('click', function (event) {
     if (!isAudioPlaying) {
       try {
-        playSound();
-      } catch(e) {}
+        // playSound();
+      } catch (e) { }
+
       ui.validatePicks();
+    
       addDragEvents();
     } else {
       event.preventDefault();
@@ -191,7 +198,7 @@ document.addEventListener('dblclick', (event) => {
       <input class="form-control form-control-sm new-team" type="text" list="team-options" placeholder="Team Name">`;
     const teamText = event.target.querySelector('.new-team');
     teamText.focus();
-}
+  }
 
 
 });
@@ -362,7 +369,7 @@ if (document.getElementById('exportDraft')) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ draftData: draftData, participantsData: ui.getFromLocalStorage('participants').length > 0 ? ui.getFromLocalStorage('participants') : false})
+      body: JSON.stringify({ draftData: draftData, participantsData: ui.getFromLocalStorage('participants').length > 0 ? ui.getFromLocalStorage('participants') : false })
     })
       .then(response => {
         if (response.ok) {

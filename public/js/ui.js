@@ -18,39 +18,45 @@ class UI {
     this.participantObjects = [];
     this.actualPicks = [];
     this.intitialDraftOrder = [
-      { team: 'CHICAGO', needs: [] },
-      { team: 'WASHINGTON', needs: [] },
-      { team: 'NEW ENGLAND', needs: [] },
-      { team: 'ARIZONA', needs: [] },
-      { team: 'LOS ANGELES CHARGERS', needs: [] },
-      { team: 'NEW YORK GIANTS', needs: [] },
+      // 1-10
       { team: 'TENNESSEE', needs: [] },
-      { team: 'ATLANTA', needs: [] },
-      { team: 'CHICAGO', needs: [] },
-      { team: 'NEW YORK JETS', needs: [] },
-      { team: 'MINNESOTA', needs: [] },
-      { team: 'DENVER', needs: [] },
-      { team: 'LAS VEGAS', needs: [] },
-      { team: 'NEW ORLEANS', needs: [] },
-      { team: 'INDIANAPOLIS', needs: [] },
-      { team: 'SEATTLE', needs: [] },
+      { team: 'CLEVELAND', needs: [] },
+      { team: 'NEW YORK GIANTS', needs: [] },
+      { team: 'NEW ENGLAND', needs: [] },
       { team: 'JACKSONVILLE', needs: [] },
-      { team: 'CINCINNATI', needs: [] },
-      { team: 'LOS ANGELES RAMS', needs: [] },
-      { team: 'PITTSBURGH', needs: [] },
-      { team: 'MIAMI', needs: [] },
-      { team: 'PHILADELPHIA', needs: [] },
-      { team: 'MINNESOTA', needs: [] },
-      { team: 'DALLAS', needs: [] },
-      { team: 'GREEN BAY', needs: [] },
-      { team: 'TAMPA BAY', needs: [] },
-      { team: 'ARIZONA', needs: [] },
-      { team: 'BUFFALO', needs: [] },
-      { team: 'DETROIT', needs: [] },
-      { team: 'BALTIMORE', needs: [] },
+      { team: 'LAS VEGAS', needs: [] },
+      { team: 'NEW YORK JETS', needs: [] },
+      { team: 'CAROLINA', needs: [] },
+      { team: 'NEW ORLEANS', needs: [] },
+      { team: 'CHICAGO', needs: [] },
+
+      // 11-20
       { team: 'SAN FRANCISCO', needs: [] },
-      { team: 'KANSAS CITY', needs: [] }
+      { team: 'DALLAS', needs: [] },
+      { team: 'MIAMI', needs: [] },
+      { team: 'INDIANAPOLIS', needs: [] },
+      { team: 'ATLANTA', needs: [] },
+      { team: 'ARIZONA', needs: [] },
+      { team: 'CINCINNATI', needs: [] },
+      { team: 'SEATTLE', needs: [] },
+      { team: 'TAMPA BAY', needs: [] },
+      { team: 'DENVER', needs: [] },
+
+      // 21-32
+      { team: 'PITTSBURGH', needs: [] },
+      { team: 'LOS ANGELES CHARGERS', needs: [] },
+      { team: 'GREEN BAY', needs: [] },
+      { team: 'MINNESOTA', needs: [] },
+      { team: 'HOUSTON', needs: [] },
+      { team: 'LOS ANGELES RAMS', needs: [] },
+      { team: 'BALTIMORE', needs: [] },
+      { team: 'DETROIT', needs: [] },
+      { team: 'WASHINGTON', needs: [] },
+      { team: 'BUFFALO', needs: [] },
+      { team: 'KANSAS CITY', needs: [] },
+      { team: 'PHILADELPHIA', needs: [] },
     ];
+
     this.updatedDraftOrder = [];
   }
 
@@ -688,6 +694,7 @@ class UI {
           item.querySelector('.team').textContent = newTeam;
           this.formatTeamCells(item.querySelector('.team'));
         }
+
         newTeamInput.remove();
       }
     })
@@ -731,7 +738,7 @@ class UI {
             // console.log('Adding +0.5 for guessing team in correct spot: ' + score.textContent)   
             score.textContent = Number(score.textContent) + 0.5;
             // console.log('new score: ' + score.textContent)
-          }          
+          }
 
           /** 1 point for getting the player's draft position correct */
 
@@ -765,17 +772,17 @@ class UI {
           altFirstRounders.push(personDraftObject[x].altPlayer);
         }
 
-      const altsTable = document.querySelector('.table-alternates');
-      if (altsTable) {
-        for (let r = 1; r < altsTable.rows.length; r++) {
-          if (draftObj[j].player !== '') {
-            if (draftObj[j].player ===  altsTable.rows[r].cells[altsIndex].textContent) {
-              altsTable.rows[r].cells[altsIndex].style.backgroundColor = 'green';
-              score.textContent = Number(score.textContent) + 0.5;
+        const altsTable = document.querySelector('.table-alternates');
+        if (altsTable) {
+          for (let r = 1; r < altsTable.rows.length; r++) {
+            if (draftObj[j].player !== '') {
+              if (draftObj[j].player === altsTable.rows[r].cells[altsIndex].textContent) {
+                altsTable.rows[r].cells[altsIndex].style.backgroundColor = 'green';
+                score.textContent = Number(score.textContent) + 0.5;
+              }
             }
           }
         }
-      }
 
         /** 1 point for correctly guessing that the player would be picked in round 1 */
 
@@ -837,7 +844,7 @@ class UI {
     }
 
     this.addToLocalStorage('updated-draft-order', this.updatedDraftOrder);
-    
+
     if (this.participantObjects.length == 0) {
       participants.forEach((participant, index) => {
         this.participantObjects.push(participant);
@@ -864,6 +871,10 @@ class UI {
     return dataList;
   }
 
+  updatePlayerDataList() {
+    
+  }
+
   addAltPicksTable() {
     const altTableDiv = document.querySelector('.alternates');
     altTableDiv.innerHTML = `
@@ -886,7 +897,7 @@ class UI {
     for (let i = 0; i < 5; i++) {
       const tr = document.createElement('tr');
       tableBody.appendChild(tr);
-      
+
       if (this.participantObjects.length == 0) {
         let participants = this.getFromLocalStorage('participants');
 
