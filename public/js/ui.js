@@ -18,39 +18,45 @@ class UI {
     this.participantObjects = [];
     this.actualPicks = [];
     this.intitialDraftOrder = [
-      { team: 'CHICAGO', needs: [] },
-      { team: 'WASHINGTON', needs: [] },
-      { team: 'NEW ENGLAND', needs: [] },
-      { team: 'ARIZONA', needs: [] },
-      { team: 'LOS ANGELES CHARGERS', needs: [] },
-      { team: 'NEW YORK GIANTS', needs: [] },
+      // 1-10
       { team: 'TENNESSEE', needs: [] },
-      { team: 'ATLANTA', needs: [] },
-      { team: 'CHICAGO', needs: [] },
-      { team: 'NEW YORK JETS', needs: [] },
-      { team: 'MINNESOTA', needs: [] },
-      { team: 'DENVER', needs: [] },
-      { team: 'LAS VEGAS', needs: [] },
-      { team: 'NEW ORLEANS', needs: [] },
-      { team: 'INDIANAPOLIS', needs: [] },
-      { team: 'SEATTLE', needs: [] },
+      { team: 'CLEVELAND', needs: [] },
+      { team: 'NEW YORK GIANTS', needs: [] },
+      { team: 'NEW ENGLAND', needs: [] },
       { team: 'JACKSONVILLE', needs: [] },
-      { team: 'CINCINNATI', needs: [] },
-      { team: 'LOS ANGELES RAMS', needs: [] },
-      { team: 'PITTSBURGH', needs: [] },
-      { team: 'MIAMI', needs: [] },
-      { team: 'PHILADELPHIA', needs: [] },
-      { team: 'HOUSTON', needs: [] },
-      { team: 'DALLAS', needs: [] },
-      { team: 'GREEN BAY', needs: [] },
-      { team: 'TAMPA BAY', needs: [] },
-      { team: 'ARIZONA', needs: [] },
-      { team: 'BUFFALO', needs: [] },
-      { team: 'DETROIT', needs: [] },
-      { team: 'BALTIMORE', needs: [] },
+      { team: 'LAS VEGAS', needs: [] },
+      { team: 'NEW YORK JETS', needs: [] },
+      { team: 'CAROLINA', needs: [] },
+      { team: 'NEW ORLEANS', needs: [] },
+      { team: 'CHICAGO', needs: [] },
+
+      // 11-20
       { team: 'SAN FRANCISCO', needs: [] },
-      { team: 'KANSAS CITY', needs: [] }
+      { team: 'DALLAS', needs: [] },
+      { team: 'MIAMI', needs: [] },
+      { team: 'INDIANAPOLIS', needs: [] },
+      { team: 'ATLANTA', needs: [] },
+      { team: 'ARIZONA', needs: [] },
+      { team: 'CINCINNATI', needs: [] },
+      { team: 'SEATTLE', needs: [] },
+      { team: 'TAMPA BAY', needs: [] },
+      { team: 'DENVER', needs: [] },
+
+      // 21-32
+      { team: 'PITTSBURGH', needs: [] },
+      { team: 'LOS ANGELES CHARGERS', needs: [] },
+      { team: 'GREEN BAY', needs: [] },
+      { team: 'MINNESOTA', needs: [] },
+      { team: 'HOUSTON', needs: [] },
+      { team: 'LOS ANGELES RAMS', needs: [] },
+      { team: 'BALTIMORE', needs: [] },
+      { team: 'DETROIT', needs: [] },
+      { team: 'WASHINGTON', needs: [] },
+      { team: 'BUFFALO', needs: [] },
+      { team: 'KANSAS CITY', needs: [] },
+      { team: 'PHILADELPHIA', needs: [] },
     ];
+
     this.updatedDraftOrder = [];
   }
 
@@ -101,15 +107,11 @@ class UI {
     this.resetLocalStorage('updated-draft-order');
     this.addAllRounds(true);
 
-    
-    if (this.mode === 'live') {
-      let trTop = document.getElementById('scoreboard-table-row-top'),
-        trBottom = document.getElementById('scoreboard-table-row-score');
-  
-      trTop.innerHTML = ``;
-      trBottom.innerHTML = ``;
-      this.disableButton();
-    }
+    let trTop = document.getElementById('scoreboard-table-row-top'),
+      trBottom = document.getElementById('scoreboard-table-row-score');
+
+    trTop.innerHTML = ``;
+    trBottom.innerHTML = ``;
 
     // if (document.getElementById('submitDraft')) {
     //   document.getElementById('submitDraft').parentNode.remove();
@@ -387,7 +389,7 @@ class UI {
           // scoreboardContent.innerHTML = '';
 
           let playerScoreDiv = scoreboardContent.querySelectorAll('.player-score');
-          // console.log(draftObj)
+
           this.calculatePoints(draftObj, playerDraftObj, playerScoreDiv[index], index, index);
         }
 
@@ -411,8 +413,12 @@ class UI {
       }
     }
 
-
     // console.log(`DRAFT OBJECT (${Object.keys(draftObj).length}):`, draftObj);
+    if (!this.hasID(draftObj)) {
+      draftObj.push({ started: new Date().toLocaleString() });
+      draftObj.push({ id: this.generateUUID() })
+    }
+
     this.addToLocalStorage('draft-results', draftObj);
     // console.log(this.participantObjects, this.actualPicks);
   }
@@ -439,9 +445,9 @@ class UI {
       if (this.teamList) {
         /** create draft board, regardless of participants picks */
         if (this.teamList.querySelectorAll('li').length == 0) {
-          console.log('create initial board')
-          console.log(this.intitialDraftOrder)
-          console.log(this.teamList)
+          // console.log('create initial board')
+          // console.log(this.intitialDraftOrder)
+          // console.log(this.teamList)
           this.addTeamPick(this.intitialDraftOrder);
         }
 
@@ -485,6 +491,7 @@ class UI {
       })
     }
 
+    this.addAltPicksTable();
 
   }
 
@@ -492,9 +499,9 @@ class UI {
     this.teamList.innerHTML = '';
     // console.log(order)
     for (let key in order) {
-      if (key !== 'id' && key !== 'started' && key !== 'lastSaved') {
-        let pick = order[key];
 
+      if (!order[key].hasOwnProperty('id') && !order[key].hasOwnProperty('started') && !order[key].hasOwnProperty('lastSaved')) {
+        let pick = order[key];
         let team = pick.team.team ? pick.team.team : pick.team;
 
         const listItem = document.createElement('li');
@@ -593,9 +600,10 @@ class UI {
         let allParticipants = scope.getFromLocalStorage('participants');
         allParticipants.push(obj);
         scope.addToLocalStorage('participants', allParticipants);
-        console.log(scope.getFromLocalStorage("participants"));
-        console.log(picksArrClean);
+        // console.log(scope.getFromLocalStorage("participants"));
+        // console.log(picksArrClean);
         scope.addAllRounds();
+        scope.addAltPicksTable();
       };
     }
   }
@@ -687,6 +695,17 @@ class UI {
         item.querySelector('.actual-pick').innerHTML = pick;
         item.classList.add('pick-final');
       }
+
+      if (item.querySelector('.new-team')) {
+        const newTeamInput = item.querySelector('.new-team');
+        if (newTeamInput.value !== '') {
+          const newTeam = newTeamInput.value;
+          item.querySelector('.team').textContent = newTeam;
+          this.formatTeamCells(item.querySelector('.team'));
+        }
+
+        newTeamInput.remove();
+      }
     })
 
     this.addPlayerCards();
@@ -699,7 +718,7 @@ class UI {
     const teams = this.draftBoard.querySelector('#team-list').querySelectorAll('li');
     score.textContent = '0';
 
-    console.log('calculating points...')
+    // console.log('calculating points...')
     for (var j in draftObj) {
       /**
        *  - +1 if PLAYER is correct at draft position predicted by player
@@ -707,29 +726,44 @@ class UI {
        *  - +1 if FIRST ROUND IS CORRECT
        *  - +1 if TEAM is selecting at the spot predicted by player (should this be a setting?)
        * add formatting to cells
+       * 
       */
       // console.log(`j: ${j}`, draftObj[j].player, personDraftObject[j].player);
 
       // check if PLAYER (or altPlayer) is correct
-      if (j != 'id' && j != 'started' && j != 'lastSaved') {
+
+      if (!draftObj[j].hasOwnProperty('id') && !draftObj[j].hasOwnProperty('started') && !draftObj[j].hasOwnProperty('lastSaved')) {
 
         if (draftObj[j].player !== '') {
           // console.log(draftObj[j].player, personDraftObject[j])
-          if (teams[j].querySelectorAll('.player-name')[index] && teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').length > 0) {
-            teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').forEach(item => item.remove());
-          }
+          try {
+            if (teams[j].querySelectorAll('.player-name')[index] && teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').length > 0) {
+              teams[j].querySelectorAll('.player-name')[index].querySelectorAll('i').forEach(item => item.remove());
+            }
+          } catch (e) { }
 
-          if (personDraftObject[j].team === draftObj[j].team) {
+          /** 0.5 points for the team selecting in the right spot */
+          if (draftObj[j].team && (personDraftObject[j].team === draftObj[j].team)) {
+            // console.log('Adding +0.5 for guessing team in correct spot: ' + score.textContent)   
             score.textContent = Number(score.textContent) + 0.5;
+            // console.log('new score: ' + score.textContent)
           }
 
-          if (personDraftObject[j].player !== undefined && draftObj[j].player === personDraftObject[j].player) {
+          /** 1 point for getting the player's draft position correct */
+
+          if ((personDraftObject[j].player !== undefined) && draftObj[j].player === personDraftObject[j].player) {
+            // console.log('Adding +1 for guessing correct player: ' + score.textContent)         
             score.textContent = Number(score.textContent) + 1;
-            // console.log(teams[j].querySelectorAll('.player-name')[index])
+            // console.log('new score: ' + score.textContent)
+
             teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
+
+            /** 0.5 point for getting the ALTERNATE player's draft position correct */
           } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
-            // console.log(teams[j].querySelectorAll('.player-name')[index])
+            // console.log('Adding +0.5 for guessing correct player with alternate: ' + score.textContent)          
             score.textContent = Number(score.textContent) + 0.5;
+            // console.log('new score: ' + score.textContent)
+
             teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star-half" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
           } else {
             // console.log(teams[j].querySelectorAll('.player-name')[index])
@@ -747,16 +781,34 @@ class UI {
           altFirstRounders.push(personDraftObject[x].altPlayer);
         }
 
+        const altsTable = document.querySelector('.table-alternates');
+        if (altsTable) {
+          for (let r = 1; r < altsTable.rows.length; r++) {
+            if (draftObj[j].player !== '') {
+              if (draftObj[j].player === altsTable.rows[r].cells[altsIndex].textContent) {
+                altsTable.rows[r].cells[altsIndex].style.backgroundColor = 'green';
+                score.textContent = Number(score.textContent) + 0.5;
+              }
+            }
+          }
+        }
+
+        /** 1 point for correctly guessing that the player would be picked in round 1 */
+
         if (draftObj[j].player !== '') {
           if (firstRoundersArr.includes(draftObj[j].player)) {
+            // console.log('Adding +1 for guessing 1st round DC: ' + score.textContent)
             score.textContent = Number(score.textContent) + 1;
+            // console.log('new score: ' + score.textContent)
           }
           // else if (altsTable && altFirstRounders.includes(draftObj[j].player)) {
           //   score.textContent = Number(score.textContent) + 0.5;
           // }
         }
 
-        // check if PLAYER/TEAM combo is correct
+        /** 1 point for getting the player/team combo correct
+         *  0.5 points for getting the ALTERNATE player/team combo correct
+         */
 
         for (var z in personDraftObject) {
           if (draftObj[j].player !== '') {
@@ -780,11 +832,6 @@ class UI {
         draftPicks[x].player !== '' ? numPicksCounter++ : false;
       }
 
-      const scores = document.querySelectorAll('.player-score');
-      scores.forEach((score, index) => {
-        participants[index].score = Number(score.textContent);
-      });
-
       if (!this.teamList) {
         this.teamList = document.querySelector('#team-list');
       }
@@ -806,7 +853,21 @@ class UI {
     }
 
     this.addToLocalStorage('updated-draft-order', this.updatedDraftOrder);
-    // this.addToLocalStorage('participants', this.participantObjects)
+
+    if (this.participantObjects.length == 0) {
+      participants.forEach((participant, index) => {
+        this.participantObjects.push(participant);
+      });
+    } else {
+      this.participantObjects = this.getFromLocalStorage('participants');
+    }
+
+    const scores = document.querySelectorAll('.player-score');
+    scores.forEach((score, index) => {
+      this.participantObjects[index].score = Number(score.textContent);
+    });
+
+    this.addToLocalStorage('participants', this.participantObjects)
   }
 
   createPlayerDataList() {
@@ -819,10 +880,14 @@ class UI {
     return dataList;
   }
 
+  updatePlayerDataList() {
+    
+  }
+
   addAltPicksTable() {
     const altTableDiv = document.querySelector('.alternates');
     altTableDiv.innerHTML = `
-    <table class="table table-dark table-bordered table-alternates text-center">
+    <table class="table table-bordered table-alternates text-center">
       <thead id="table-alternates-head">
         <tr class="text-center">
           <th colspan="3">Alternate First Rounders</th>
@@ -842,6 +907,16 @@ class UI {
       const tr = document.createElement('tr');
       tableBody.appendChild(tr);
 
+      if (this.participantObjects.length == 0) {
+        let participants = this.getFromLocalStorage('participants');
+
+        participants.forEach((participant, index) => {
+          this.participantObjects.push(participant);
+        });
+      } else {
+        this.participantObjects = this.getFromLocalStorage('participants');
+      }
+
       this.participantObjects.forEach((participant, index) => {
         if (i === 0) {
           const newTD = document.createElement('td');
@@ -854,7 +929,6 @@ class UI {
         const pick = document.createElement('td');
         pick.textContent = participant.altPicks[i];
         tr.appendChild(pick);
-
       });
 
     }
@@ -978,5 +1052,16 @@ class UI {
       }
       return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
+  }
+
+  hasID(arr) {
+    for (var i = 0; i < arr.length; i++) {
+      // console.log(arr[i])
+      if (arr[i].id) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

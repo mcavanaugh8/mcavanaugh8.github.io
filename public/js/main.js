@@ -13,38 +13,43 @@ const submitButtonFloating = document.querySelector('.submit-picks');
 let isAudioPlaying = false;
 
 let intitialDraftOrder = [
-  { team: 'CHICAGO', needs: [] },
-  { team: 'WASHINGTON', needs: [] },
-  { team: 'NEW ENGLAND', needs: [] },
-  { team: 'ARIZONA', needs: [] },
-  { team: 'LOS ANGELES CHARGERS', needs: [] },
-  { team: 'NEW YORK GIANTS', needs: [] },
+  // 1-10
   { team: 'TENNESSEE', needs: [] },
-  { team: 'ATLANTA', needs: [] },
-  { team: 'CHICAGO', needs: [] },
-  { team: 'NEW YORK JETS', needs: [] },
-  { team: 'MINNESOTA', needs: [] },
-  { team: 'DENVER', needs: [] },
-  { team: 'LAS VEGAS', needs: [] },
-  { team: 'NEW ORLEANS', needs: [] },
-  { team: 'INDIANAPOLIS', needs: [] },
-  { team: 'SEATTLE', needs: [] },
+  { team: 'CLEVELAND', needs: [] },
+  { team: 'NEW YORK GIANTS', needs: [] },
+  { team: 'NEW ENGLAND', needs: [] },
   { team: 'JACKSONVILLE', needs: [] },
-  { team: 'CINCINNATI', needs: [] },
-  { team: 'LOS ANGELES RAMS', needs: [] },
-  { team: 'PITTSBURGH', needs: [] },
-  { team: 'MIAMI', needs: [] },
-  { team: 'PHILADELPHIA', needs: [] },
-  { team: 'HOUSTON', needs: [] },
-  { team: 'DALLAS', needs: [] },
-  { team: 'GREEN BAY', needs: [] },
-  { team: 'TAMPA BAY', needs: [] },
-  { team: 'ARIZONA', needs: [] },
-  { team: 'BUFFALO', needs: [] },
-  { team: 'DETROIT', needs: [] },
-  { team: 'BALTIMORE', needs: [] },
+  { team: 'LAS VEGAS', needs: [] },
+  { team: 'NEW YORK JETS', needs: [] },
+  { team: 'CAROLINA', needs: [] },
+  { team: 'NEW ORLEANS', needs: [] },
+  { team: 'CHICAGO', needs: [] },
+
+  // 11-20
   { team: 'SAN FRANCISCO', needs: [] },
-  { team: 'KANSAS CITY', needs: [] }
+  { team: 'DALLAS', needs: [] },
+  { team: 'MIAMI', needs: [] },
+  { team: 'INDIANAPOLIS', needs: [] },
+  { team: 'ATLANTA', needs: [] },
+  { team: 'ARIZONA', needs: [] },
+  { team: 'CINCINNATI', needs: [] },
+  { team: 'SEATTLE', needs: [] },
+  { team: 'TAMPA BAY', needs: [] },
+  { team: 'DENVER', needs: [] },
+
+  // 21-32
+  { team: 'PITTSBURGH', needs: [] },
+  { team: 'LOS ANGELES CHARGERS', needs: [] },
+  { team: 'GREEN BAY', needs: [] },
+  { team: 'MINNESOTA', needs: [] },
+  { team: 'HOUSTON', needs: [] },
+  { team: 'LOS ANGELES RAMS', needs: [] },
+  { team: 'BALTIMORE', needs: [] },
+  { team: 'DETROIT', needs: [] },
+  { team: 'WASHINGTON', needs: [] },
+  { team: 'BUFFALO', needs: [] },
+  { team: 'KANSAS CITY', needs: [] },
+  { team: 'PHILADELPHIA', needs: [] },
 ];
 
 let realDraftOrder = [...intitialDraftOrder];
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (document.querySelector('#team-list').querySelectorAll('li').length === 0) {
       try {
         ui.addAllRounds()
-      } catch(e) {}
+      } catch (e) { }
     }
   }
 
@@ -68,7 +73,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ui.hasActivePlayer = true;
     try {
       ui.enableButton();
-    } catch(e) {}
+    } catch (e) { }
+
+    try {
+      ui.addAllRounds()
+    } catch (e) {
+      console.log(e)
+    }
 
   } else if (Object.keys(draftPicks).length > 0) {
     // console.log(draftPicks)
@@ -88,27 +99,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const exportDraftButton = document.getElementById('exportDraft');
 
   if (liveDraftButton) {
-    liveDraftButton.addEventListener('click', function () {
+    liveDraftButton.addEventListener('click', event => {
+      // e.preventDefault();
+      // e.preventPropagation();
       let confirmSwitch = confirm('Are you sure you wish to start a new live draft? Doing so will reset all unsaved draft progress.');
       if (confirmSwitch) {
+       try {
+          ui.resetDraft();
+        } catch (e) { }
         try {
           window.location.href = '/live-draft';
-          ui.resetDraft();
         } catch (e) { }
       }
     });
   }
 
   if (offlineDraftButton) {
-    offlineDraftButton.addEventListener('click', function () {
+    offlineDraftButton.addEventListener('click', event => {
+      // e.preventDefault();
+      // e.preventPropagation();
       let confirmSwitch = confirm('Are you sure you wish to start a new mock draft? Doing so will reset all unsaved draft progress.');
       if (confirmSwitch) {
         try {
-          window.location.href = '/mock-draft';
           ui.resetDraft();
-        } catch (e) { 
-          console.log(e)
-        }
+        } catch (e) { }
+        try {
+          window.location.href = '/live-draft';
+        } catch (e) { }
       }
     });
   }
@@ -128,11 +145,15 @@ if (submitButton) {
 if (submitButtonFloating) {
   submitButtonFloating.addEventListener('click', function (event) {
     if (!isAudioPlaying) {
-      playSound();
+      try {
+        // playSound();
+      } catch (e) { }
+
       ui.validatePicks();
+    
       addDragEvents();
     } else {
-      event.preventDefault(); // Prevent the default link action
+      event.preventDefault();
     }
   });
 }
@@ -172,20 +193,14 @@ document.addEventListener('dblclick', (event) => {
     tgt.querySelector('input').classList.add('actual-pick');
   }
 
-  // if (
-  //   event.target.classList.contains("pick-final") ||
-  //   event.target.classList.contains("pick-name") ||
-  //   event.target.classList.contains("prospect-info-para") ||
-  //   event.target.classList.contains("pick-info") ||
-  //   event.target.classList.contains("pick-info-image")
-  // ) {
-  //   event.target.innerHTML =
-  //     '<input class="form-control form-control-sm" type="text" placeholder="Player Name">';
+  if (event.target.classList.contains('team')) {
+    event.target.innerHTML = `
+      <input class="form-control form-control-sm new-team" type="text" list="team-options" placeholder="Team Name">`;
+    const teamText = event.target.querySelector('.new-team');
+    teamText.focus();
+  }
 
-  //   event.target.classList.remove("pick-final");
-  //   const pickText = event.target.querySelector("input");
-  //   pickText.classList.add("actual-pick");
-  // }
+
 });
 
 document.addEventListener('focusin', (event) => {
@@ -194,10 +209,12 @@ document.addEventListener('focusin', (event) => {
     if (event.target.textContent === '' && event.target.parentNode.querySelector('datalist') === null) {
       event.target.parentNode.innerHTML += ui.createPlayerDataList();
     }
+  }
 
+  if (event.target.classList.contains('actual-pick') || event.target.classList.contains('new-team')) {
     event.target.addEventListener('keypress', function (keyPressEvent) {
-      if (keyPressEvent.key === 'Enter') {
-        console.log('Enter key was pressed while focused on an actual-pick element.');
+      if (keyPressEvent.keyCode === 13) {
+        // console.log('Enter key was pressed while focused on an actual-pick element.');
         ui.validatePicks();
       }
     });
@@ -246,6 +263,34 @@ document.addEventListener('click', (event) => {
     });
   }
 });
+
+if (document.getElementById('saveDisplayNameButton')) {
+  document.getElementById('saveDisplayNameButton').addEventListener('click', event => {
+    event.preventDefault();
+
+    var newDisplayName = document.getElementById('displayNameField').value;
+
+    fetch('/modify-user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ displayName: newDisplayName }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert(data.message);
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('Error updating display name.');
+      });
+  });
+}
 
 if (document.getElementById('scoreboard-tab-handle')) {
   document.getElementById('scoreboard-tab-handle').addEventListener('click', function () {
@@ -314,24 +359,24 @@ if (document.getElementById('publishDraft')) {
 
 if (document.getElementById('exportDraft')) {
   document.getElementById('exportDraft').addEventListener('click', function (event) {
-      event.preventDefault();
-      const url = '/export-draft-results';
-      
-      const draftData = getDraftBoardData();
+    event.preventDefault();
+    const url = '/export-draft-results';
 
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(draftData), // Make sure the data is properly serialized
-      })
+    const draftData = getDraftBoardData();
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ draftData: draftData, participantsData: ui.getFromLocalStorage('participants').length > 0 ? ui.getFromLocalStorage('participants') : false })
+    })
       .then(response => {
-          if (response.ok) {
-            return response.blob();
-          } else {
-            throw new Error('Network response was not ok.');
-          }
+        if (response.ok) {
+          return response.blob();
+        } else {
+          throw new Error('Network response was not ok.');
+        }
       })
       .then(blob => {
         // Create a new URL for the blob
@@ -362,6 +407,17 @@ if (document.getElementById('exportDraft')) {
       });
   });
 }
+
+if (document.querySelectorAll('.view-button').length > 0) {
+  document.querySelectorAll('.view-button').forEach(button => {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      console.log('Navigating to', this.getAttribute('href'));
+      window.location.href = this.getAttribute('href');
+    });
+  });
+}
+
 
 function getDraftBoardData() {
   const draftPicks = [];
@@ -482,30 +538,3 @@ function addDragEvents() {
   });
 }
 
-if (document.getElementById('saveDisplayNameButton')) {
-  document.getElementById('saveDisplayNameButton').addEventListener('click', event => {
-      event.preventDefault();
-      
-      var newDisplayName = document.getElementById('displayNameField').value;
-      
-      fetch('/modify-user', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ displayName: newDisplayName }),
-      })
-      .then(response => response.json()) 
-      .then(data => {
-          if (data.success) {
-              alert(data.message);
-          } else {
-              alert(data.message);
-          }
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-          alert('Error updating display name.');
-      });
-  });
-}

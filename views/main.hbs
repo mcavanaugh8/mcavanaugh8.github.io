@@ -5,7 +5,7 @@
 
         <div class='h2 mb-0' style='flex-grow: 1;'>
             <img href="/" id='draft-logo' src='/public/img/logo.png' alt='NFL Draft Logo' style='max-height: 50px;' />
-            2024 NFL Draft
+            2025 NFL Draft
         </div>
         <!-- User information -->
         {{#if Authenticated}}
@@ -148,8 +148,8 @@
         </ul>
     </div>
 
-    {{!-- <div class="container alternates">
-        <table class="table table-dark table-bordered table-alternates text-center">
+    <div id="altTable" class="container alternates mt-4">
+        <table class="table table-bordered table-alternates text-center">
             <thead id="table-alternates-head">
                 <tr class="text-center">
                     <th colspan="3">Alternate First Rounders</th>
@@ -158,7 +158,7 @@
                 </tr>
             </thead>
         </table>
-    </div> --}}
+    </div>
 
     <!-- Floating Button Menu -->
     <div class="floating-menu">
@@ -181,6 +181,8 @@
         {{else}}
         <a id="publishDraft" class="btn-floating upload-picks" data-hover="Publish Picks"><i
                 class="fa fa-upload"></i><span class="text">Publish Mock Draft</span></a>
+        <a class="btn-floating submit-picks" data-hover="Pick is In"><i class="fa fa-check"></i><span
+                class="text">Confirm Selection</span></a>
         {{/if}}
 
     </div>
@@ -209,4 +211,40 @@
         </div>
     </div>
     {{/if}}
+
+    <datalist id="team-options">
+        <option value="ARIZONA">ARIZONA</option>
+        <option value="ATLANTA">ATLANTA</option>
+        <option value="BALTIMORE">BALTIMORE</option>
+        <option value="BUFFALO">BUFFALO</option>
+        <option value="CAROLINA">CAROLINA</option>
+        <option value="CHICAGO">CHICAGO</option>
+        <option value="CINCINNATI">CINCINNATI</option>
+        <option value="CLEVELAND">CLEVELAND</option>
+        <option value="DALLAS">DALLAS</option>
+        <option value="DENVER">DENVER</option>
+        <option value="DETROIT">DETROIT</option>
+        <option value="GREEN BAY">GREEN BAY</option>
+        <option value="HOUSTON">HOUSTON</option>
+        <option value="INDIANAPOLIS">INDIANAPOLIS</option>
+        <option value="JACKSONVILLE">JACKSONVILLE</option>
+        <option value="KANSAS CITY">KANSAS CITY</option>
+        <option value="LOS ANGELES CHARGERS">LOS ANGELES CHARGERS</option>
+        <option value="LOS ANGELES RAMS">LOS ANGELES RAMS</option>
+        <option value="MIAMI">MIAMI</option>
+        <option value="MINNESOTA">MINNESOTA</option>
+        <option value="NEW ENGLAND">NEW ENGLAND</option>
+        <option value="NEW ORLEANS">NEW ORLEANS</option>
+        <option value="NEW YORK GIANTS">NEW YORK GIANTS</option>
+        <option value="NEW YORK JETS">NEW YORK JETS</option>
+        <option value="LAS VEGAS">LAS VEGAS</option>
+        <option value="PHILADELPHIA">PHILADELPHIA</option>
+        <option value="PITTSBURGH">PITTSBURGH</option>
+        <option value="SAN FRANCISCO">SAN FRANCISCO</option>
+        <option value="SEATTLE">SEATTLE</option>
+        <option value="TAMPA BAY">TAMPA BAY</option>
+        <option value="TENNESSEE">TENNESSEE</option>
+        <option value="WASHINGTON">WASHINGTON</option>
+    </datalist>
+
 </main>

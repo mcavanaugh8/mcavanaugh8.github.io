@@ -2,9 +2,9 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const router = express.Router();
-const moment = require('moment');
 const axios = require('axios');
 const mongoose = require('mongoose')
+const moment = require('moment-timezone')
 
 const User = require('../models/user.js');
 const Draft = require('../models/draft.js');
@@ -130,23 +130,66 @@ async function saveDraft(req, res) {
         let existingUser = await getUser(req.user);
         if (existingUser) {
             let draftData = req.body;
-            draftData.lastSaved = new Date().toLocaleString();
 
-            // Find the user document to update
+            moment.locale('en');
+            let time = moment().tz("America/New_York").format('MM/DD/YY HH:mm:ss');
+
             const userToUpdate = await User.findOne({ googleId: existingUser.googleId });
+
             if (!userToUpdate) {
                 return res.status(500).send('User not found for updating.');
             }
 
-            // Check if a draft with the same id already exists
-            let existingDraftIndex = userToUpdate.drafts.findIndex(d => d.id === draftData.id);
+            let existingDraftIndex = -1;
+
+            if (userToUpdate.drafts.length === 0) {
+                existingDraftIndex = -1;
+            } else {
+                let i = userToUpdate.drafts.length;
+                draftsLoop: while (i--) {
+
+                    subLoop: for (var j = 0; j < userToUpdate.drafts[i].draft.length; j++) {
+                        let currentItem = userToUpdate.drafts[i].draft[j];
+
+                        if (currentItem.hasOwnProperty('id') && (currentItem.id == draftData.find(item => item.hasOwnProperty('id')).id)) {
+                            existingDraftIndex = i;
+
+                            currentItem.hasOwnProperty('id') ? userToUpdate.drafts[i].draft.splice(i, 1) : false;
+                            currentItem.hasOwnProperty('started') ? userToUpdate.drafts[i].draft.splice(i, 1) : false;
+                            currentItem.hasOwnProperty('lastSaved') ? userToUpdate.drafts[i].draft.splice(i, 1) : false;
+
+                            break subLoop;
+                        }
+                    }
+
+                    if (existingDraftIndex !== -1) {
+                        break draftsLoop;
+                    }
+                }
+            }
 
             if (existingDraftIndex !== -1) {
-                userToUpdate.drafts[existingDraftIndex] = draftData;
+                console.log('found draft')
+
+                userToUpdate.drafts[existingDraftIndex].draft = draftData;
+                userToUpdate.drafts[existingDraftIndex].lastSaved = time;
                 userToUpdate.markModified('drafts');
             } else {
-                userToUpdate.drafts.push(draftData);
+                console.log('did not find draft');
+                let draftID = draftData.find(d => d.id);
+
+                const newDraft = {
+                    draft: draftData,
+                    user: existingUser.displayName,
+                    trueUser: existingUser.name,
+                    id: draftID.id,
+                    lastSaved: time
+                };
+
+                userToUpdate.drafts.push(newDraft);
             }
+
+            // console.log('User to update:', userToUpdate);
 
             await userToUpdate.save();
             res.redirect('/');
@@ -159,6 +202,7 @@ async function saveDraft(req, res) {
     }
 }
 
+
 async function publishDraft(req, res) {
     console.log('Request received: publish draft');
 
@@ -167,15 +211,21 @@ async function publishDraft(req, res) {
         if (existingUser) {
             let draftData = req.body;
 
-            // Update the draft if it exists or create a new one if it doesn't
             let existingDraft = await Draft.findOne({ id: draftData.id, user: existingUser.name });
+
             if (existingDraft) {
-                existingDraft.draft = Object.values(draftData).filter(value => typeof value === 'object'); // Assuming all the pick objects are the only objects
-                existingDraft.lastSaved = new Date().toLocaleString();
+                existingDraft.draft = Object.values(draftData).filter(value => typeof value === 'object');
+                if (!existingDraft.id) {
+                    existingDraft.id = generateUUID();
+                }
+                moment.locale('en');
+                let time = moment().tz("America/New_York").format('MM/DD/YY HH:mm:ss');
+
+                draftData.lastSaved = time;
                 await existingDraft.save();
             } else {
                 const newDraft = new Draft({
-                    draft: Object.values(draftData).filter(value => typeof value === 'object'), // Assuming all the pick objects are the only objects
+                    draft: Object.values(draftData).filter(value => typeof value === 'object'),
                     user: existingUser.displayName,
                     trueUser: existingUser.name,
                     id: draftData.id
@@ -274,48 +324,49 @@ async function renderDraft(req, res) {
             <div class="container draftboard">
             <ul id="team-list" class="list-group draggable-list">
             `;
-            const selections = draft[0].draft;            
-            selections.forEach((pick, index) => {
-                console.log(pick)
-                console.log(allProspects.find(p => p.name === pick.player))
-                let playerPosition = allProspects.find(p => p.name === pick.player).position;
-                let playerSchool = allProspects.find(p => p.name === pick.player).school;
-                let playerTeamLogo = allProspects.find(p => p.name === pick.player).teamLogoURL;
-                let playerImage = allProspects.find(p => p.name === pick.player).image;
-                let playerHeight = allProspects.find(p => p.name === pick.player).height;
-                let playerWeight = allProspects.find(p => p.name === pick.player).weight;
-                let player40Time = allProspects.find(p => p.name === pick.player).fortyYd;
-                let playerGrade = allProspects.find(p => p.name === pick.player).rating;
-                let playerRAS = allProspects.find(p => p.name === pick.player).RAS;
+            const selections = draft[0].draft;
 
-                html += `<li class="list-group-item">
-                <div class="row">
-                  <div class="col-md-1 d-flex align-items-center justify-content-center">${pick.draftPosition + 1}</div>
-                  <div class="col-md-2 team d-flex align-items-center justify-content-center" style="${getTeamCellStyle(pick.team)}">${pick.team}</div>
-                  <div class="col-md-9 real-draft-selection">
-              <div class="container player-card-container">
-                <div class="row player-card-row">
-                  <div class="col-md-4 my-auto pick-name">
-                  <p class="prospect-info-para prospect-name">${playerPosition} ${pick.player}</p>
-                  <p class="prospect-info-para">
-                      <img class="prospect-school-image" src="${playerTeamLogo}" alt="">  
-                    </p>
+            selections.forEach((pick, index) => {
+                if (pick.hasOwnProperty('draftPosition')) {
+                    let playerPosition = allProspects.find(p => p.name === pick.player).position;
+                    let playerSchool = allProspects.find(p => p.name === pick.player).school;
+                    let playerTeamLogo = allProspects.find(p => p.name === pick.player).teamLogoUrl;
+                    let playerImage = allProspects.find(p => p.name === pick.player).image;
+                    let playerHeight = allProspects.find(p => p.name === pick.player).height;
+                    let playerWeight = allProspects.find(p => p.name === pick.player).weight;
+                    let player40Time = allProspects.find(p => p.name === pick.player).fortyYd;
+                    let playerGrade = allProspects.find(p => p.name === pick.player).rating;
+                    let playerRAS = allProspects.find(p => p.name === pick.player).RAS;
+
+                    html += `<li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-1 d-flex align-items-center justify-content-center">${pick.draftPosition + 1}</div>
+                      <div class="col-md-2 team d-flex align-items-center justify-content-center" style="${getTeamCellStyle(pick.team)}">${pick.team}</div>
+                      <div class="col-md-9 real-draft-selection">
+                  <div class="container player-card-container">
+                    <div class="row player-card-row">
+                      <div class="col-md-4 my-auto pick-name">
+                      <p class="prospect-info-para prospect-name">${playerPosition} ${pick.player}</p>
+                      <p class="prospect-info-para">
+                          <img class="prospect-school-image" src="${playerTeamLogo}" alt="">  
+                        </p>
+                      </div>
+                      <div class="col-md-4 prospect-image align-to-bottom">
+                        <img class="prospect-info-image" src="${playerImage}" alt="">
+                      </div>
+                      <div class="col-md-4 my-auto pick-info">
+                        <p class="prospect-info-para"><b>Height:</b> ${playerHeight}</p>
+                        <p class="prospect-info-para"><b>Weight:</b>${playerWeight}</p>
+                        <p class="prospect-info-para"><b>40 Time:</b> ${player40Time}</p>
+                        <p class="prospect-info-para"><b>Grade:</b> ${playerGrade}</p>
+                        <p class="prospect-info-para"><b>RAS:</b> ${playerRAS}</p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-4 prospect-image align-to-bottom">
-                    <img class="prospect-info-image" src="${playerImage}" alt="">
                   </div>
-                  <div class="col-md-4 my-auto pick-info">
-                    <p class="prospect-info-para"><b>Height:</b> ${playerHeight}</p>
-                    <p class="prospect-info-para"><b>Weight:</b>${playerWeight}</p>
-                    <p class="prospect-info-para"><b>40 Time:</b> ${player40Time}</p>
-                    <p class="prospect-info-para"><b>Grade:</b> ${playerGrade}</p>
-                    <p class="prospect-info-para"><b>RAS:</b> ${playerRAS}</p>
-                  </div>
-                </div>
-              </div>
-              </div>
-                </div>
-                </li>`
+                    </div>
+                    </li>`
+                }
             });
 
             html += `</ul>
@@ -338,59 +389,65 @@ async function renderDraft(req, res) {
 
 async function getRecentDrafts(byUser, user) {
     let html = '';
-    let appUrl = 'http://localhost:3000';
-    // let appUrl = 'https://www.mcavanaugh8.github.io.com';
+    // let appUrl = 'http://localhost:3000';
+    let appUrl = 'https://mcavanaugh8-github-io.fly.dev';
     let allDrafts;
 
     if (byUser) {
-        allDrafts = await Draft.find({ googleId: user.googleId }).exec();
+        allDrafts = await Draft.find({ user: user.displayName }).exec();
     } else {
         allDrafts = await Draft.find().exec();
     }
 
     allDrafts.forEach((draft, index) => {
+        // if (draft.draftPosition) {
         let currentDraft = draft.draft;
+        moment.locale('en');
+        let time = moment().tz("America/New_York").format('MM/DD/YY HH:mm:ss');
+
         html += ` <!-- Draft Card Start -->
-      <div class="draft-card">
-        <div class="draft-card-header">
-          <div>
-            <div class="draft-title">${draft.user}'s Draft</div>
-            <small>${new Date(draft.updatedAt).toLocaleString()}</small>
+          <div class="draft-card">
+            <div class="draft-card-header">
+              <div>
+                <div class="draft-title">${draft.user}'s Draft</div>
+                <small>${time}</small>
+              </div>
+            </div>
+            <div class="draft-card-body">
+              <div class="draft-info">
+                <div>
+                  <div class="draft-rank">1. ${abbreviateTeamName(currentDraft[0].team)} <img class="team-logo" src="/img/${currentDraft[0].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[0].team}"></div>
+                  <div class="draft-player">${currentDraft[0].player}</div>
+                  <small>${allProspects.find(p => p.name === currentDraft[0].player).position} | <img src="${allProspects.find(p => p.name === currentDraft[0].player).teamLogoUrl}"></small>
+                </div>
+                <div>
+                  <div class="draft-rank">2. ${abbreviateTeamName(currentDraft[1].team)} <img class="team-logo" src="/img/${currentDraft[1].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[1].team}"></div>
+                  <div class="draft-player">${currentDraft[1].player}</div>
+                  <small>${allProspects.find(p => p.name === currentDraft[1].player).position} | <img src="${allProspects.find(p => p.name === currentDraft[1].player).teamLogoUrl}"></small>
+                </div>
+                <div>
+                  <div class="draft-rank">3. ${abbreviateTeamName(currentDraft[2].team)} <img class="team-logo" src="/img/${currentDraft[2].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[2].team}"></div>
+                  <div class="draft-player">${currentDraft[2].player}</div>
+                  <small>${allProspects.find(p => p.name === currentDraft[2].player).position} | <img src="${allProspects.find(p => p.name === currentDraft[2].player).teamLogoUrl}"></small>
+                </div>
+                <div>
+                  <div class="draft-rank">4. ${abbreviateTeamName(currentDraft[3].team)} <img class="team-logo" src="/img/${currentDraft[3].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[3].team}"></div>
+                  <div class="draft-player">${currentDraft[3].player}</div>
+                  <small>${allProspects.find(p => p.name === currentDraft[3].player).position} | <img src="${allProspects.find(p => p.name === currentDraft[3].player).teamLogoUrl}"></small>
+                </div>
+                <div>
+                  <div class="draft-rank">5. ${abbreviateTeamName(currentDraft[4].team)} <img class="team-logo" src="/img/${currentDraft[4].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[4].team}"></div>
+                  <div class="draft-player">${currentDraft[4].player}</div>
+                  <small>${allProspects.find(p => p.name === currentDraft[4].player).position} | <img src="${allProspects.find(p => p.name === currentDraft[4].player).teamLogoUrl}"></small>
+                </div>
+                <!-- More players here -->
+              </div>
+              <a href="/drafts/${draft.id}" class="view-button">View Mock</a>
+            </div>
           </div>
-        </div>
-        <div class="draft-card-body">
-          <div class="draft-info">
-            <div>
-              <div class="draft-rank">1. ${abbreviateTeamName(currentDraft[0].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[0].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[0].team}"></div>
-              <div class="draft-player">${currentDraft[0].player}</div>
-              <small>QB | USC</small>
-            </div>
-            <div>
-              <div class="draft-rank">2. ${abbreviateTeamName(currentDraft[1].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[1].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[1].team}"></div>
-              <div class="draft-player">${currentDraft[1].player}</div>
-              <small>QB | USC</small>
-            </div>
-            <div>
-              <div class="draft-rank">3. ${abbreviateTeamName(currentDraft[2].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[2].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[2].team}"></div>
-              <div class="draft-player">${currentDraft[2].player}</div>
-              <small>QB | USC</small>
-            </div>
-            <div>
-              <div class="draft-rank">4. ${abbreviateTeamName(currentDraft[3].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[3].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[3].team}"></div>
-              <div class="draft-player">${currentDraft[3].player}</div>
-              <small>QB | USC</small>
-            </div>
-            <div>
-              <div class="draft-rank">5. ${abbreviateTeamName(currentDraft[4].team)} <img class="team-logo" src="${appUrl}/img/${currentDraft[4].team.replace(/\s/g, '_')}.gif" alt="${currentDraft[4].team}"></div>
-              <div class="draft-player">${currentDraft[4].player}</div>
-              <small>QB | USC</small>
-            </div>
-            <!-- More players here -->
-          </div>
-          <a href="/drafts/${draft.id}" class="view-button">View Mock</a>
-        </div>
-      </div>
-      <!-- Draft Card End -->`;
+          <!-- Draft Card End -->`;
+
+        // }
     });
 
     return html;
@@ -553,6 +610,21 @@ function getTeamCellStyle(teamName) {
     return teamStyles[teamName] || '';
 }
 
+function generateUUID() {
+    let d = new Date().getTime(); // Timestamp
+    let d2 = (typeof performance !== 'undefined' && performance.now && (performance.now() * 1000)) || 0; // Time in microseconds since page-load or 0 if unsupported
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        let r = Math.random() * 16; // random number between 0 and 16
+        if (d > 0) {
+            r = (d + r) % 16 | 0;
+            d = Math.floor(d / 16);
+        } else {
+            r = (d2 + r) % 16 | 0;
+            d2 = Math.floor(d2 / 16);
+        }
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+}
 
 module.exports = {
     getHomePage,
