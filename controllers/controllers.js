@@ -327,7 +327,7 @@ async function renderDraft(req, res) {
             const selections = draft[0].draft;
 
             selections.forEach((pick, index) => {
-                if (pick.draftPosition) {
+                if (pick.hasOwnProperty('draftPosition')) {
                     let playerPosition = allProspects.find(p => p.name === pick.player).position;
                     let playerSchool = allProspects.find(p => p.name === pick.player).school;
                     let playerTeamLogo = allProspects.find(p => p.name === pick.player).teamLogoUrl;
