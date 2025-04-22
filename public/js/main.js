@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       // e.preventPropagation();
       let confirmSwitch = confirm('Are you sure you wish to start a new live draft? Doing so will reset all unsaved draft progress.');
       if (confirmSwitch) {
-        try {
+       try {
           ui.resetDraft();
         } catch (e) { }
         try {
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           ui.resetDraft();
         } catch (e) { }
         try {
-          window.location.href = '/mock-draft';
+          window.location.href = '/live-draft';
         } catch (e) { }
       }
     });

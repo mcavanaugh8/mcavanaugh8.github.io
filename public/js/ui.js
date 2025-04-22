@@ -113,10 +113,6 @@ class UI {
     trTop.innerHTML = ``;
     trBottom.innerHTML = ``;
 
-    if (this.mode === 'live') {
-      this.disableButton();
-    }
-
     // if (document.getElementById('submitDraft')) {
     //   document.getElementById('submitDraft').parentNode.remove();
     //   location.reload();
@@ -349,6 +345,12 @@ class UI {
     let existingDraft = this.getFromLocalStorage('draft-results');
     let draftObj = existingDraft || {};
 
+    if (!existingDraft) {
+      draftObj.id = this.generateUUID();
+    }
+
+    draftObj.started = new Date().toLocaleString();
+
     for (let i = 0; i < teams.length; i++) {
       let pickName;
       if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
@@ -426,6 +428,13 @@ class UI {
     const draftResults = this.getFromLocalStorage('draft-results');
 
     if (reset) {
+      // if (!this.teamList) {
+      //   const teamList = document.createElement('div');
+      //   teamList.id = 'team-list';
+      //   document.querySelector('main').appendChild(teamList);
+
+      //   this.teamList = document.getElementById('team-list')
+      // }
       this.teamList.innerHTML = '';
       this.addTeamPick(this.intitialDraftOrder);
     } else {
