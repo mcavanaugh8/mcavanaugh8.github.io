@@ -507,7 +507,7 @@ function handleDragEnd(e) {
 }
 
 function playSound() {
-  const audio = new Audio('/docs/assets/draft_sound.mp3');
+  const audio = new Audio('/public/assets/draft_sound.mp3');
 
   isAudioPlaying = true;
   submitButton.disabled = true;

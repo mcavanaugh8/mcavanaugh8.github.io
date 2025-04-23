@@ -1,6 +1,6 @@
 # fly.toml app configuration file generated for mcavanaugh8-github-io on 2024-04-20T21:58:17-04:00
 #
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+# See https://fly.io/public/reference/configuration/ for information about how to use this file.
 #
 
 app = 'mcavanaugh8-github-io'
