@@ -190,7 +190,7 @@ function generateDraftHtml(draftData, isLiveDraft, participantData) {
             <td class="rank">${pick.rank}</td>
             <td><img class="team-logo" src="${appUrl}/img/${pick.team.replace(/\s/g, '_')}.gif" alt="${pick.team}"></td>
             <td>${participantData.map((p, index) => {
-              let participantPick = p.picks.find(pick => pick.rank == pick.rank);
+              let participantPick = p.picks.find((playerPick, index) => index == (pick.rank - 1));
               return participantPick ? `<sup>${index + 1}</sup> ${participantPick.player}` : '';
             }).join('<br>')}</td>
             <td class="player-name">${pick.player.replace(/^.+?\s/, '')}</td>
