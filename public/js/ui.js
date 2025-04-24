@@ -350,7 +350,7 @@ class UI {
     }
 
     draftObj.started = new Date().toLocaleString();
-
+    // console.log('draftObj', draftObj)
     for (let i = 0; i < teams.length; i++) {
       let pickName;
       if (teams[i].querySelector('.real-draft-selection').querySelector('div') !== null) {
@@ -580,7 +580,7 @@ class UI {
           altPicks: [],
           score: 0,
         };
-
+        console.log(picksArrClean)
         for (var p = 1; p < picksArrClean.length; p++) {
           let pick = picksArrClean[p].split(/\t/);
 
@@ -732,7 +732,9 @@ class UI {
 
       // check if PLAYER (or altPlayer) is correct
 
-      if (!draftObj[j].hasOwnProperty('id') && !draftObj[j].hasOwnProperty('started') && !draftObj[j].hasOwnProperty('lastSaved')) {
+      if (typeof draftObj[j] === 'object' && !draftObj[j].hasOwnProperty('id') && !draftObj[j].hasOwnProperty('started') && !draftObj[j].hasOwnProperty('lastSaved')) {
+
+        let addedToScore = 0;
 
         if (draftObj[j].player !== '') {
           // console.log(draftObj[j].player, personDraftObject[j])
@@ -743,31 +745,33 @@ class UI {
           } catch (e) { }
 
           /** 0.5 points for the team selecting in the right spot */
-          if (draftObj[j].team && (personDraftObject[j].team === draftObj[j].team)) {
-            // console.log('Adding +0.5 for guessing team in correct spot: ' + score.textContent)   
-            score.textContent = Number(score.textContent) + 0.5;
-            // console.log('new score: ' + score.textContent)
-          }
+          // if (draftObj[j].team && (personDraftObject[j].team === draftObj[j].team)) {
+            //   score.textContent = Number(score.textContent) + 0.5;
+            //   console.log(`Adding +0.5 point(s) to ${participants[index].name}'s score for guessing team selects in the correct spot. (New Total: ${score.textContent})`);
+          //   // console.log('new score: ' + score.textContent)
+          // }
 
           /** 1 point for getting the player's draft position correct */
 
           if ((personDraftObject[j].player !== undefined) && draftObj[j].player === personDraftObject[j].player) {
-            // console.log('Adding +1 for guessing correct player: ' + score.textContent)         
             score.textContent = Number(score.textContent) + 1;
+            addedToScore = addedToScore + 1;
+            console.log(`Adding +1 point(s) to ${participants[index].name}'s score for guessing ${draftObj[j].player} 's draft position correctly. (New Total: ${score.textContent})`);       
             // console.log('new score: ' + score.textContent)
 
-            teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
+            // teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
 
-            /** 0.5 point for getting the ALTERNATE player's draft position correct */
           } else if (draftObj[j].player === personDraftObject[j].altPlayer) {
-            // console.log('Adding +0.5 for guessing correct player with alternate: ' + score.textContent)          
+            /** 0.5 point for getting the ALTERNATE player's draft position correct */
             score.textContent = Number(score.textContent) + 0.5;
+            addedToScore = addedToScore + 0.5;
+            console.log(`Adding +0.5 point(s) to ${participants[index].name}'s score for guessing ${draftObj[j].player}'s draft position correctly with alternate choice. (New Total: ${score.textContent})`);               
             // console.log('new score: ' + score.textContent)
 
-            teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star-half" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
+            // teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-star-half" style="color: green; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
           } else {
             // console.log(teams[j].querySelectorAll('.player-name')[index])
-            teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-circle-xmark" style="color: red; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
+            // teams[j].querySelectorAll('.player-name')[index].innerHTML = `<i class="fa-solid fa-circle-xmark" style="color: red; font-size: 1.5rem;"></i>` + teams[j].querySelectorAll('.player-name')[index].innerHTML
           }
         }
 
@@ -781,6 +785,8 @@ class UI {
           altFirstRounders.push(personDraftObject[x].altPlayer);
         }
 
+        /** 0.5 points for correctly guessing that the ALT player would be picked in round 1 */
+
         const altsTable = document.querySelector('.table-alternates');
         if (altsTable) {
           for (let r = 1; r < altsTable.rows.length; r++) {
@@ -788,6 +794,9 @@ class UI {
               if (draftObj[j].player === altsTable.rows[r].cells[altsIndex].textContent) {
                 altsTable.rows[r].cells[altsIndex].style.backgroundColor = 'green';
                 score.textContent = Number(score.textContent) + 0.5;
+                addedToScore = addedToScore + 0.5;
+                console.log(`Adding +0.5 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted in first round as an alternate. (New Total: ${score.textContent})`);               
+
               }
             }
           }
@@ -797,33 +806,69 @@ class UI {
 
         if (draftObj[j].player !== '') {
           if (firstRoundersArr.includes(draftObj[j].player)) {
-            // console.log('Adding +1 for guessing 1st round DC: ' + score.textContent)
             score.textContent = Number(score.textContent) + 1;
+            addedToScore = addedToScore + 1;
+            console.log(`Adding +1 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted in first round. (New Total: ${score.textContent})`);               
             // console.log('new score: ' + score.textContent)
-          }
+          } 
           // else if (altsTable && altFirstRounders.includes(draftObj[j].player)) {
           //   score.textContent = Number(score.textContent) + 0.5;
+          //   console.log(`Adding +1 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted in first round as an alternate. (New Total: ${score.textContent})`);               
           // }
         }
 
         /** 1 point for getting the player/team combo correct
          *  0.5 points for getting the ALTERNATE player/team combo correct
          */
-
-        for (var z in personDraftObject) {
-          if (draftObj[j].player !== '') {
-            if (
-              (draftObj[j].team.team || draftObj[j].team) ===
-              personDraftObject[z].team.team
-            ) {
-              if (draftObj[j].player === personDraftObject[z].player) {
-                score.textContent = Number(score.textContent) + 1;
-              } else if (draftObj[j].player === personDraftObject[z].altPlayer) {
-                score.textContent = Number(score.textContent) + 0.5;
-              }
-            }
+        if (draftObj[j].player !== '') {
+          const playerTeamPrediction = Object.values(personDraftObject).find(sel => sel.team === draftObj[j].team);
+  
+          if (playerTeamPrediction.player === draftObj[j].player) {
+            score.textContent = Number(score.textContent) + 1;
+            addedToScore = addedToScore + 1;
+            console.log(`Adding +1 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted by ${draftObj[j].team}.(New Total: ${score.textContent})`);  
+          } else if (draftObj[j].player ===  playerTeamPrediction.altPlayer) {
+            console.log(`Adding +0.5 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted by ${draftObj[j].team}. (New Total: ${score.textContent})`);  
+            score.textContent = Number(score.textContent) + 0.5;
+            addedToScore = addedToScore + 0.5;
           }
+
         }
+
+        let addedToScoreClass = '';
+
+        switch(addedToScore) {
+          case 0:
+            addedToScoreClass = 'zero'
+            break
+          case 0.5:
+            addedToScoreClass = 'zero-point-five'
+            break
+          case 1:
+            addedToScoreClass = 'one'
+            break
+          case 1.5:
+            addedToScoreClass = 'one-point-five'
+            break
+          case 2:
+            addedToScoreClass = 'two'
+            break
+          case 2.5:
+            addedToScoreClass = 'two-point-five'
+            break
+          case 3.0:
+            addedToScoreClass = 'three'
+            break
+        }
+        
+        const playerCell = teams[j].querySelectorAll('.player-name')[index];
+        const existingBadge = playerCell.querySelector('.point-badge');
+        
+        if (existingBadge) {
+          existingBadge.remove(); // Remove existing badge before adding new one
+        }
+        
+        playerCell.innerHTML = `<div class="point-badge ${addedToScoreClass}">${addedToScore}</div>` + playerCell.innerHTML;
       }
 
       let numPicksCounter = 0;
