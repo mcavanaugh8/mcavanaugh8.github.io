@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           ui.resetDraft();
         } catch (e) { }
         try {
-          window.location.href = '/live-draft';
+          window.location.href = '/mock-draft';
         } catch (e) { }
       }
     });

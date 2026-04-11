@@ -19,8 +19,8 @@ class UI {
     this.actualPicks = [];
     this.intitialDraftOrder = [
       // 1-10
-      { team: 'RAIDERS', needs: [] },
-      { team: 'NEW YORK JET', needs: [] },
+      { team: 'LAS VEGAS', needs: [] },
+      { team: 'NEW YORK JETS', needs: [] },
       { team: 'ARIZONA', needs: [] },
       { team: 'TENNESSEE', needs: [] },
       { team: 'NEW YORK GIANTS', needs: [] },
@@ -34,6 +34,7 @@ class UI {
       { team: 'MIAMI', needs: [] },
       { team: 'DALLAS', needs: [] },
       { team: 'LOS ANGELES RAMS', needs: [] },
+      { team: 'BALTIMORE', needs: [] },
       { team: 'TAMPA BAY', needs: [] },
       { team: 'NEW YORK JETS', needs: [] },
       { team: 'DETROIT', needs: [] },
