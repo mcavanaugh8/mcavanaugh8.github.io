@@ -64,7 +64,7 @@ const prospects = [
     "fortyYd": "4.50",
     "rating": "89.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/David-Bailey-DE-Stanford.png",
-    "RAS": "9.65",
+    "RAS": "N/A",
     "team": "Texas Tech",
     "overallRank": 5,
     "positionRank": 2
@@ -78,7 +78,7 @@ const prospects = [
     "fortyYd": "5.13",
     "rating": "89.5",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Francis-Mauigoa-OL-MiamiFL.png",
-    "RAS": "8.75",
+    "RAS": "N/A",
     "team": "Miami",
     "overallRank": 6,
     "positionRank": 1
@@ -120,7 +120,7 @@ const prospects = [
     "fortyYd": "4.91",
     "rating": "88.6",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Spencer-Fano-OL-Utah.png",
-    "RAS": "9.80",
+    "RAS": "N/A",
     "team": "Utah",
     "overallRank": 9,
     "positionRank": 2
@@ -148,7 +148,7 @@ const prospects = [
     "fortyYd": "4.46",
     "rating": "88.5",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Sonny-Styles-S-OhioState.png",
-    "RAS": "9.99",
+    "RAS": "N/A",
     "team": "Ohio State",
     "overallRank": 11,
     "positionRank": 3
@@ -176,7 +176,7 @@ const prospects = [
     "fortyYd": "4.67",
     "rating": "88.4",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Keldric-Faulk-DL-Auburn.png",
-    "RAS": "9.11",
+    "RAS": "N/A",
     "team": "Auburn",
     "overallRank": 13,
     "positionRank": 2
@@ -190,7 +190,7 @@ const prospects = [
     "fortyYd": "5.21",
     "rating": "88.2",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Kadyn-Proctor-OL-Alabama.png",
-    "RAS": "8.79",
+    "RAS": "N/A",
     "team": "Alabama",
     "overallRank": 14,
     "positionRank": 5
@@ -204,7 +204,7 @@ const prospects = [
     "fortyYd": "4.39",
     "rating": "87.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Avieon-Terrell-CB-Clemson.png",
-    "RAS": "4.94",
+    "RAS": "N/A",
     "team": "Clemson",
     "overallRank": 15,
     "positionRank": 4
@@ -218,7 +218,7 @@ const prospects = [
     "fortyYd": "4.40",
     "rating": "87.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Jermod-McCoy-DB-OregonState.png",
-    "RAS": "9.67",
+    "RAS": "N/A",
     "team": "Tennessee",
     "overallRank": 16,
     "positionRank": 3
@@ -232,7 +232,7 @@ const prospects = [
     "fortyYd": "4.39",
     "rating": "87.6",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Kenyon-Sadiq-TE-Oregon.png",
-    "RAS": "9.52",
+    "RAS": "N/A",
     "team": "Oregon",
     "overallRank": 17,
     "positionRank": 1
@@ -274,7 +274,7 @@ const prospects = [
     "fortyYd": "4.68",
     "rating": "87.2",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/TJ-Parker-DE-Clemson.png",
-    "RAS": "9.39",
+    "RAS": "N/A",
     "team": "Clemson",
     "overallRank": 20,
     "positionRank": 7
@@ -302,7 +302,7 @@ const prospects = [
     "fortyYd": "4.59",
     "rating": "87.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Cashius-Howell-DL-BowlingGreen.png",
-    "RAS": "8.11",
+    "RAS": "N/A",
     "team": "Texas A&M",
     "overallRank": 22,
     "positionRank": 5
@@ -316,7 +316,7 @@ const prospects = [
     "fortyYd": "4.93",
     "rating": "87.0",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Monroe-Freeling-OL-Georgia.png",
-    "RAS": "9.99",
+    "RAS": "N/A",
     "team": "Georgia",
     "overallRank": 23,
     "positionRank": 6
@@ -330,7 +330,7 @@ const prospects = [
     "fortyYd": "4.44",
     "rating": "87.0",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Colton-Hood-CB-Auburn.png",
-    "RAS": "9.66",
+    "RAS": "N/A",
     "team": "Tennessee",
     "overallRank": 24,
     "positionRank": 6
@@ -372,7 +372,7 @@ const prospects = [
     "fortyYd": "4.99",
     "rating": "86.4",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Caleb-Lomu-OL-Utah.png",
-    "RAS": "9.77",
+    "RAS": "N/A",
     "team": "Utah",
     "overallRank": 27,
     "positionRank": 4
@@ -400,7 +400,7 @@ const prospects = [
     "fortyYd": "4.75",
     "rating": "86.3",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Peter-Woods-DL-Clemson.png",
-    "RAS": "7.59",
+    "RAS": "N/A",
     "team": "Clemson",
     "overallRank": 29,
     "positionRank": 3
@@ -442,7 +442,7 @@ const prospects = [
     "fortyYd": "4.40",
     "rating": "86.3",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Chris-Johnson-CB-SanDiegoState.png",
-    "RAS": "9.84",
+    "RAS": "N/A",
     "team": "San Diego State",
     "overallRank": 32,
     "positionRank": 7
@@ -456,7 +456,7 @@ const prospects = [
     "fortyYd": "4.67",
     "rating": "86.2",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/RMason-Thomas-DL-Oklahoma.png",
-    "RAS": "7.23",
+    "RAS": "N/A",
     "team": "Oklahoma",
     "overallRank": 33,
     "positionRank": 14
@@ -470,7 +470,7 @@ const prospects = [
     "fortyYd": "4.42",
     "rating": "86.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Omar-CooperJr-WR-Indiana.png",
-    "RAS": "9.15",
+    "RAS": "N/A",
     "team": "Indiana",
     "overallRank": 34,
     "positionRank": 6
@@ -484,7 +484,7 @@ const prospects = [
     "fortyYd": "4.35",
     "rating": "86.0",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Dillon-Thieneman-DB-Purdue.png",
-    "RAS": "9.71",
+    "RAS": "N/A",
     "team": "Oregon",
     "overallRank": 35,
     "positionRank": 5
@@ -498,7 +498,7 @@ const prospects = [
     "fortyYd": "4.40",
     "rating": "86.0",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Brandon-Cisse-CB-NorthCarolinaState.png",
-    "RAS": "9.24",
+    "RAS": "N/A",
     "team": "South Carolina",
     "overallRank": 36,
     "positionRank": 8
@@ -526,7 +526,7 @@ const prospects = [
     "fortyYd": "4.51",
     "rating": "85.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Anthony-HillJr-LB-Texas.png",
-    "RAS": "9.81",
+    "RAS": "N/A",
     "team": "Texas",
     "overallRank": 38,
     "positionRank": 5
@@ -540,7 +540,7 @@ const prospects = [
     "fortyYd": "5.21",
     "rating": "85.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Emmanuel-Pregnon-OT-Wyoming.png",
-    "RAS": "9.16",
+    "RAS": "N/A",
     "team": "Oregon",
     "overallRank": 39,
     "positionRank": 9
@@ -568,7 +568,7 @@ const prospects = [
     "fortyYd": "5.04",
     "rating": "85.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Caleb-Banks-DL-Louisville.png",
-    "RAS": "9.83",
+    "RAS": "N/A",
     "team": "Florida",
     "overallRank": 41,
     "positionRank": 6
@@ -582,7 +582,7 @@ const prospects = [
     "fortyYd": "4.75",
     "rating": "85.6",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Zion-Young-DE-Missouri.png",
-    "RAS": "7.68",
+    "RAS": "N/A",
     "team": "Missouri",
     "overallRank": 42,
     "positionRank": 11
@@ -596,7 +596,7 @@ const prospects = [
     "fortyYd": "4.45",
     "rating": "85.5",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Keith-AbneyII-DB-ArizonaState.png",
-    "RAS": "6.51",
+    "RAS": "N/A",
     "team": "Arizona State",
     "overallRank": 43,
     "positionRank": 12
@@ -610,7 +610,7 @@ const prospects = [
     "fortyYd": "4.73",
     "rating": "85.5",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Joshua-Josephs-DL-Tennessee.png",
-    "RAS": "8.54",
+    "RAS": "N/A",
     "team": "Tennessee",
     "overallRank": 44,
     "positionRank": 18
@@ -624,7 +624,7 @@ const prospects = [
     "fortyYd": "5.04",
     "rating": "85.4",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Blake-Miller-OL-Clemson.png",
-    "RAS": "9.90",
+    "RAS": "N/A",
     "team": "Clemson",
     "overallRank": 45,
     "positionRank": 8
@@ -638,7 +638,7 @@ const prospects = [
     "fortyYd": "4.91",
     "rating": "85.4",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Max-Iheanachor-OL-ArizonaState.png",
-    "RAS": "9.86",
+    "RAS": "N/A",
     "team": "Arizona State",
     "overallRank": 46,
     "positionRank": 10
@@ -652,7 +652,7 @@ const prospects = [
     "fortyYd": "4.36",
     "rating": "85.3",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/DAngelo-Ponds-CB-JamesMadison.png",
-    "RAS": "8.25",
+    "RAS": "N/A",
     "team": "Indiana",
     "overallRank": 47,
     "positionRank": 11
@@ -666,7 +666,7 @@ const prospects = [
     "fortyYd": "5.18",
     "rating": "85.3",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Lee-Hunter-DT-Auburn.png",
-    "RAS": "4.12",
+    "RAS": "N/A",
     "team": "Texas Tech",
     "overallRank": 48,
     "positionRank": 15
@@ -694,7 +694,7 @@ const prospects = [
     "fortyYd": "5.18",
     "rating": "85.2",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Gennings-Dunker-OL-Iowa.png",
-    "RAS": "8.56",
+    "RAS": "N/A",
     "team": "Iowa",
     "overallRank": 50,
     "positionRank": 12
@@ -708,7 +708,7 @@ const prospects = [
     "fortyYd": "4.57",
     "rating": "85.2",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Jacob-Rodriguez-LB-TexasTech.png",
-    "RAS": "9.61",
+    "RAS": "N/A",
     "team": "Texas Tech",
     "overallRank": 51,
     "positionRank": 9
@@ -736,7 +736,7 @@ const prospects = [
     "fortyYd": "5.02",
     "rating": "85.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Chase-Bisontis-OL-TexasAM.png",
-    "RAS": "9.85",
+    "RAS": "N/A",
     "team": "Texas A&M",
     "overallRank": 53,
     "positionRank": 11
@@ -750,7 +750,7 @@ const prospects = [
     "fortyYd": "4.80",
     "rating": "85.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Gabe-Jacas-LB-Illinois.png",
-    "RAS": "9.59",
+    "RAS": "N/A",
     "team": "Illinois",
     "overallRank": 54,
     "positionRank": 6
@@ -764,7 +764,7 @@ const prospects = [
     "fortyYd": "4.52",
     "rating": "85.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Malachi-Lawrence-DL-UCF.png",
-    "RAS": "9.95",
+    "RAS": "N/A",
     "team": "UCF",
     "overallRank": 55,
     "positionRank": 16
@@ -778,7 +778,7 @@ const prospects = [
     "fortyYd": "4.51",
     "rating": "85.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Eli-Stowers-TE-Vanderbilt.png",
-    "RAS": "9.42",
+    "RAS": "N/A",
     "team": "Vanderbilt",
     "overallRank": 56,
     "positionRank": 2
@@ -792,7 +792,7 @@ const prospects = [
     "fortyYd": "5.30",
     "rating": "85.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Caleb-Tiernan-OL-Northwestern.png",
-    "RAS": "9.37",
+    "RAS": "N/A",
     "team": "Northwestern",
     "overallRank": 57,
     "positionRank": 15
@@ -806,7 +806,7 @@ const prospects = [
     "fortyYd": "5.10",
     "rating": "85.1",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Jake-Slaughter-OL-Florida.png",
-    "RAS": "9.97",
+    "RAS": "N/A",
     "team": "Florida",
     "overallRank": 58,
     "positionRank": 20
@@ -848,7 +848,7 @@ const prospects = [
     "fortyYd": "4.62",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Jake-Golday-LB-CentralArkansas.png",
-    "RAS": "9.85",
+    "RAS": "N/A",
     "team": "Cincinnati",
     "overallRank": 61,
     "positionRank": 7
@@ -862,7 +862,7 @@ const prospects = [
     "fortyYd": "4.48",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Germie-Bernard-WR-MichiganState.png",
-    "RAS": "9.06",
+    "RAS": "N/A",
     "team": "Alabama",
     "overallRank": 62,
     "positionRank": 9
@@ -876,7 +876,7 @@ const prospects = [
     "fortyYd": "4.33",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Keionte-Scott-CB-Auburn.png",
-    "RAS": "8.97",
+    "RAS": "N/A",
     "team": "Miami",
     "overallRank": 63,
     "positionRank": 15
@@ -890,7 +890,7 @@ const prospects = [
     "fortyYd": "4.35",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Zachariah-Branch-WR-USC.png",
-    "RAS": "9.12",
+    "RAS": "N/A",
     "team": "Georgia",
     "overallRank": 64,
     "positionRank": 10
@@ -918,7 +918,7 @@ const prospects = [
     "fortyYd": "4.87",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/LT-Overton-DL-TexasAANDM.png",
-    "RAS": "2.47",
+    "RAS": "N/A",
     "team": "Alabama",
     "overallRank": 66,
     "positionRank": 19
@@ -932,7 +932,7 @@ const prospects = [
     "fortyYd": "4.41",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Antonio-Williams-WR-Clemson.png",
-    "RAS": "8.58",
+    "RAS": "N/A",
     "team": "Clemson",
     "overallRank": 67,
     "positionRank": 13
@@ -946,7 +946,7 @@ const prospects = [
     "fortyYd": "4.64",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Romello-Height-LB-Auburn.png",
-    "RAS": "8.83",
+    "RAS": "N/A",
     "team": "Texas Tech",
     "overallRank": 68,
     "positionRank": 22
@@ -988,7 +988,7 @@ const prospects = [
     "fortyYd": "4.50",
     "rating": "84.9",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Michael-Taaffe-DB-Texas.png",
-    "RAS": "7.82",
+    "RAS": "N/A",
     "team": "Texas",
     "overallRank": 71,
     "positionRank": 40
@@ -1002,7 +1002,7 @@ const prospects = [
     "fortyYd": "4.49",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Jadarian-Price-RB-NotreDame.png",
-    "RAS": "8.58",
+    "RAS": "N/A",
     "team": "Notre Dame",
     "overallRank": 72,
     "positionRank": 2
@@ -1044,7 +1044,7 @@ const prospects = [
     "fortyYd": "4.61",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Malachi-Fields-WR-Virginia.png",
-    "RAS": "7.49",
+    "RAS": "N/A",
     "team": "Notre Dame",
     "overallRank": 75,
     "positionRank": 14
@@ -1058,7 +1058,7 @@ const prospects = [
     "fortyYd": "4.33",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Treydan-Stukes-DB-Arizona.png",
-    "RAS": "9.95",
+    "RAS": "N/A",
     "team": "Arizona",
     "overallRank": 76,
     "positionRank": 16
@@ -1086,7 +1086,7 @@ const prospects = [
     "fortyYd": "4.53",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Elijah-Sarratt-WR-StFrancis(PA).png",
-    "RAS": "6.30",
+    "RAS": "N/A",
     "team": "Indiana",
     "overallRank": 78,
     "positionRank": 15
@@ -1100,7 +1100,7 @@ const prospects = [
     "fortyYd": "4.47",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Kamari-Ramsey-DB-UCLA.png",
-    "RAS": "8.48",
+    "RAS": "N/A",
     "team": "USC",
     "overallRank": 79,
     "positionRank": 17
@@ -1114,7 +1114,7 @@ const prospects = [
     "fortyYd": "5.05",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Keylan-Rutledge-OL-MiddleTennessee.png",
-    "RAS": "9.53",
+    "RAS": "N/A",
     "team": "Georgia Tech",
     "overallRank": 80,
     "positionRank": 17
@@ -1142,7 +1142,7 @@ const prospects = [
     "fortyYd": "4.45",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Davison-Igbinosun-CB-OleMiss.png",
-    "RAS": "6.89",
+    "RAS": "N/A",
     "team": "Ohio State",
     "overallRank": 82,
     "positionRank": 18
@@ -1170,7 +1170,7 @@ const prospects = [
     "fortyYd": "4.38",
     "rating": "84.8",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Daylen-Everette-DB-Georgia.png",
-    "RAS": "9.89",
+    "RAS": "N/A",
     "team": "Georgia",
     "overallRank": 84,
     "positionRank": 30
@@ -1198,7 +1198,7 @@ const prospects = [
     "fortyYd": "4.40",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Skyler-Bell-WR-Wisconsin.png",
-    "RAS": "9.83",
+    "RAS": "N/A",
     "team": "UConn",
     "overallRank": 86,
     "positionRank": 16
@@ -1226,7 +1226,7 @@ const prospects = [
     "fortyYd": "4.53",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Kyle-Louis-LB-Pittsburgh.png",
-    "RAS": "8.83",
+    "RAS": "N/A",
     "team": "Pittsburgh",
     "overallRank": 88,
     "positionRank": 10
@@ -1240,7 +1240,7 @@ const prospects = [
     "fortyYd": "4.42",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Ted-Hurst-WR-GeorgiaState.png",
-    "RAS": "9.90",
+    "RAS": "N/A",
     "team": "Georgia State",
     "overallRank": 89,
     "positionRank": 17
@@ -1254,7 +1254,7 @@ const prospects = [
     "fortyYd": "4.62",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Zakee-Wheatley-S-PennState.png",
-    "RAS": "7.68",
+    "RAS": "N/A",
     "team": "Penn State",
     "overallRank": 90,
     "positionRank": 19
@@ -1268,7 +1268,7 @@ const prospects = [
     "fortyYd": "5.10",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Sam-Hecht-OL-KansasState.png",
-    "RAS": "7.76",
+    "RAS": "N/A",
     "team": "Kansas State",
     "overallRank": 91,
     "positionRank": 19
@@ -1296,7 +1296,7 @@ const prospects = [
     "fortyYd": "4.30",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Deion-Burks-WR-Purdue.png",
-    "RAS": "9.11",
+    "RAS": "N/A",
     "team": "Oklahoma",
     "overallRank": 93,
     "positionRank": 19
@@ -1310,7 +1310,7 @@ const prospects = [
     "fortyYd": "4.70",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Sam-Roush-TE-Stanford.png",
-    "RAS": "9.94",
+    "RAS": "N/A",
     "team": "Stanford",
     "overallRank": 94,
     "positionRank": 5
@@ -1324,7 +1324,7 @@ const prospects = [
     "fortyYd": "4.34",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Bryce-Lance-WR-NorthDakotaState.png",
-    "RAS": "9.95",
+    "RAS": "N/A",
     "team": "North Dakota State",
     "overallRank": 95,
     "positionRank": 21
@@ -1338,7 +1338,7 @@ const prospects = [
     "fortyYd": "4.50",
     "rating": "84.7",
     "image": "https://www.nfldraftbuzz.com/Content/PlayerHeadShotsSmall/Devin-Moore-CB-Florida.png",
-    "RAS": "8.52",
+    "RAS": "N/A",
     "team": "Florida",
     "overallRank": 96,
     "positionRank": 28
