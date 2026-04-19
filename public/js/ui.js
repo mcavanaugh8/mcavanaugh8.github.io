@@ -28,7 +28,7 @@ class UI {
       { team: 'WASHINGTON', needs: [] },
       { team: 'NEW ORLEANS', needs: [] },
       { team: 'KANSAS CITY', needs: [] },
-      { team: 'CINCINNATI', needs: [] },
+      { team: 'NEW YORK GIANTS', needs: [] },
 
       // 11-20
       { team: 'MIAMI', needs: [] },
