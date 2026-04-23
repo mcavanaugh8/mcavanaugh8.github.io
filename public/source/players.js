@@ -714,7 +714,7 @@ const prospects = [
     "positionRank": 9
   },
   {
-    "name": "Emmanuel McNeil-Warre...",
+    "name": "Emmanuel McNeil-Warren",
     "position": "S",
     "teamLogoUrl": "https://www.nfldraftbuzz.com/Content/collmascotsSmall/toledo-rockets.png",
     "height": "6-4",
@@ -1008,7 +1008,7 @@ const prospects = [
     "positionRank": 2
   },
   {
-    "name": "Mike Washington J...",
+    "name": "Mike Washington Jr.",
     "position": "RB",
     "teamLogoUrl": "https://www.nfldraftbuzz.com/Content/collmascotsSmall/arkansas-razorbacks.png",
     "height": "6-1",
@@ -1204,7 +1204,7 @@ const prospects = [
     "positionRank": 16
   },
   {
-    "name": "Dani Dennis-Sutto...",
+    "name": "Dani Dennis-Sutton",
     "position": "DE/ED",
     "teamLogoUrl": "https://www.nfldraftbuzz.com/Content/collmascotsSmall/penn-state-nittany-lions.png",
     "height": "6-6",
