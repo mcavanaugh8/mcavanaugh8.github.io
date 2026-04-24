@@ -821,18 +821,17 @@ class UI {
          *  0.5 points for getting the ALTERNATE player/team combo correct
          */
         if (draftObj[j].player !== '') {
-          const playerTeamPrediction = Object.values(personDraftObject).find(sel => (sel.player === draftObj[j].player) || sel.altPlayer === draftObj[j].altPlayer);
+          const playerTeamPrediction = Object.values(personDraftObject).find(sel => sel.team === draftObj[j].team);
   
-          if (playerTeamPrediction.team === draftObj[j].team) {
+          if (playerTeamPrediction.player === draftObj[j].player) {
             score.textContent = Number(score.textContent) + 1;
             addedToScore = addedToScore + 1;
             console.log(`Adding +1 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted by ${draftObj[j].team}.(New Total: ${score.textContent})`);  
-          } 
-          // else if (draftObj[j].player ===  playerTeamPrediction.altPlayer) {
-          //   console.log(`Adding +0.5 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted by ${draftObj[j].team}. (New Total: ${score.textContent})`);  
-          //   score.textContent = Number(score.textContent) + 0.5;
-          //   addedToScore = addedToScore + 0.5;
-          // }
+          } else if (draftObj[j].player ===  playerTeamPrediction.altPlayer) {
+            console.log(`Adding +0.5 point(s) to ${participants[index].name}'s score for correctly predicting ${draftObj[j].player} to be drafted by ${draftObj[j].team}. (New Total: ${score.textContent})`);  
+            score.textContent = Number(score.textContent) + 0.5;
+            addedToScore = addedToScore + 0.5;
+          }
 
         }
 
